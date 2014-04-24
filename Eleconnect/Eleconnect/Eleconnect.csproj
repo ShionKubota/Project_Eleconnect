@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{95B0282B-975A-4E64-A5CA-E77AE3B3BF8F}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Eleconnect</RootNamespace>
+    <AssemblyName>Eleconnect</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="Sce.PlayStation.HighLevel.UI" />
+    <Reference Include="Sce.PlayStation.HighLevel.GameEngine2D" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="app.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="sources\" />
+    <Folder Include="sources\Game\" />
+    <Folder Include="sources\General\" />
+    <Folder Include="sources\Scene\" />
+    <Folder Include="assets\" />
+    <Folder Include="assets\music\" />
+    <Folder Include="assets\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="sources\Game\GameUI.cs" />
+    <Compile Include="sources\General\Animation.cs" />
+    <Compile Include="sources\General\CollisionCheck.cs" />
+    <Compile Include="sources\General\Fade.cs" />
+    <Compile Include="sources\General\FileAccess.cs" />
+    <Compile Include="sources\General\Input.cs" />
+    <Compile Include="sources\General\Music.cs" />
+    <Compile Include="sources\General\MusicEffect.cs" />
+    <Compile Include="sources\General\PlayData.cs" />
+    <Compile Include="sources\General\Sprite2D.cs" />
+    <Compile Include="sources\General\Utility.cs" />
+    <Compile Include="sources\Scene\BaseScene.cs" />
+    <Compile Include="sources\Scene\GameScene.cs" />
+    <Compile Include="sources\Scene\LogoScene.cs" />
+    <Compile Include="sources\Scene\ResultScene.cs" />
+    <Compile Include="sources\Scene\SceneId.cs" />
+    <Compile Include="sources\Scene\SceneManager.cs" />
+    <Compile Include="sources\Scene\SelectScene.cs" />
+    <Compile Include="sources\Scene\TitleScene.cs" />
+    <Compile Include="sources\AppMain.cs" />
+    <Compile Include="sources\Game\PanelManager.cs" />
+    <Compile Include="sources\Game\Panel.cs" />
+    <Compile Include="sources\Game\CursorOnPanels.cs" />
+    <Compile Include="sources\Scene\Number.cs" />
+    <Compile Include="sources\Scene\SelectButton.cs" />
+    <Compile Include="sources\Scene\Score.cs" />
+    <Compile Include="sources\Scene\EditScene.cs" />
+    <Compile Include="sources\Game\PanelEditor.cs" />
+    <Compile Include="sources\Game\TimeManager.cs" />
+    <Compile Include="sources\Game\MenuManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\data\data.dat" />
+    <None Include="assets\data\data.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\se\button55.wav" />
+    <Content Include="assets\se\Rotate_SE.wav" />
+    <Content Include="assets\se\Select_SE.wav" />
+    <Content Include="assets\se\Title_SE.wav" />
+    <Content Include="assets\music\Game_Music.mp3" />
+    <Content Include="assets\music\Title_Music.mp3" />
+    <Content Include="assets\img\Back.png" />
+    <Content Include="assets\img\Cursor.png" />
+    <Content Include="assets\img\eleconnect_background01.png" />
+    <Content Include="assets\img\guide.png" />
+    <Content Include="assets\img\Logo.png" />
+    <Content Include="assets\img\number_0.png" />
+    <Content Include="assets\img\number_1.png" />
+    <Content Include="assets\img\number_2.png" />
+    <Content Include="assets\img\number_3.PNG" />
+    <Content Include="assets\img\number_4.png" />
+    <Content Include="assets\img\number_5.png" />
+    <Content Include="assets\img\number_6.png" />
+    <Content Include="assets\img\number_7.png" />
+    <Content Include="assets\img\number_8.png" />
+    <Content Include="assets\img\number_9.png" />
+    <Content Include="assets\img\Panels.png" />
+    <Content Include="assets\img\paneru0.png" />
+    <Content Include="assets\img\paneru1.png" />
+    <Content Include="assets\img\paneru2.png" />
+    <Content Include="assets\img\paneru3.png" />
+    <Content Include="assets\img\result.png" />
+    <Content Include="assets\img\Select_One.png" />
+    <Content Include="assets\img\Select_Three.png" />
+    <Content Include="assets\img\Select_Two.png" />
+    <Content Include="assets\img\TitleLogo.jpg" />
+    <Content Include="assets\img\White.png" />
+    <Content Include="assets\img\Score.png" />
+    <Content Include="assets\img\pak.png" />
+    <Content Include="assets\img\Time.png" />
+    <Content Include="assets\img\eleconnect_logo.png" />
+    <Content Include="assets\img\eleconnect_titlebackground03.png" />
+    <Content Include="assets\img\startlogo.png" />
+    <Content Include="assets\img\ianzuma.png" />
+    <Content Include="assets\se\Move_SE.wav" />
+    <Content Include="assets\img\pleaselogo.png" />
+    <Content Include="assets\img\timelogo.png" />
+    <Content Include="assets\se\Choice_SE.wav" />
+    <Content Include="assets\se\Result_SE.wav" />
+    <Content Include="assets\img\Menuimg\backmoji.png" />
+    <Content Include="assets\img\Menuimg\exitmoji.png" />
+    <Content Include="assets\img\Menuimg\menubase.png" />
+    <Content Include="assets\img\Menuimg\pausemoji.png" />
+    <Content Include="assets\img\Menuimg\retrymoji.png" />
+    <Content Include="assets\img\Menuimg\selectmoji.png" />
+    <Content Include="assets\img\Menuimg\titlemoji.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
+    <EmbeddedShaderProgram Include="shaders\SimpleSprite.vcg" />
+  </ItemGroup>
+</Project>
