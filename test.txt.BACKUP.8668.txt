@@ -1,7 +1,0 @@
-aaaa
-<<<<<<< HEAD
-bbbbbbbbb
-=======
-vvvvvvvvvvvvvv
-aaaaaaaa
->>>>>>> テストブランチ
