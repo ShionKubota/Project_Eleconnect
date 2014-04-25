@@ -10,20 +10,21 @@ namespace Eleconnect
 		private Texture2D
 			menubaseTex,
 			backmojiTex,
-			exitmojiTex,
 			pausemojiTex,
 			retrymojiTex,
 			selectmojiTex,
 			titlemojiTex;
+		
 		private Sprite2D[] menuSp = new Sprite2D[5];		// ボタン[数]
-		private Sprite2D menubaseSp;
+		private Sprite2D menubaseSp;						// メニュー背景
 		
 		public static bool menuFlg;							// メニューを表示
-		public int menuNum;								// 選んでいるメニュー番号
+		public static int menuNum;								// 選んでいるメニュー番号
 		
 		private float frameCnt;
 		
 		Input input = Input.GetInstance();
+		MenuCommentary menuCommentary = new MenuCommentary();
 		
 		// コンストラクタ
 		public MenuManager ()
@@ -41,12 +42,14 @@ namespace Eleconnect
 			retrymojiTex = new Texture2D(@"/Application/assets/img/menuimg/retrymoji.png", false);
 			selectmojiTex = new Texture2D(@"/Application/assets/img/menuimg/selectmoji.png", false);
 			titlemojiTex = new Texture2D(@"/Application/assets/img/menuimg/titlemoji.png", false);
+			
 			menubaseSp = new Sprite2D(menubaseTex);
 			menuSp[0] = new Sprite2D(pausemojiTex);
 			menuSp[1] = new Sprite2D(backmojiTex);
 			menuSp[2] = new Sprite2D(retrymojiTex);
 			menuSp[3] = new Sprite2D(selectmojiTex);
 			menuSp[4] = new Sprite2D(titlemojiTex);
+			
 			for(int i = 0;i<5;i++)
 			{
 				menuSp[i].size = new Vector2(1.0f);
@@ -72,7 +75,7 @@ namespace Eleconnect
 			{
 				menuNum--;
 			}
-			else if(input.down.isPushStart && menuNum != 5)
+			else if(input.down.isPushStart && menuNum != 4)
 			{
 				menuNum++;
 			}
@@ -90,6 +93,9 @@ namespace Eleconnect
 			
 			// ボタン押したとき
 			MenuFunction();
+			
+			// メニューの説明
+			menuCommentary.Update();
 		}
 		
 		// 描画
@@ -109,6 +115,7 @@ namespace Eleconnect
 			if(menuFlg == true)
 			{
 				menubaseSp.Draw();
+				menuCommentary.Draw();
 				for(int i = 0;i<5;i++)
 				{
 					menuSp[i].Draw();

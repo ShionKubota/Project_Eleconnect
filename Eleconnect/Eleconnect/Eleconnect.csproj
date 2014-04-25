@@ -81,6 +81,7 @@
     <Compile Include="sources\Game\PanelEditor.cs" />
     <Compile Include="sources\Game\TimeManager.cs" />
     <Compile Include="sources\Game\MenuManager.cs" />
+    <Compile Include="sources\Game\MenuCommentary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\data\data.dat" />
@@ -132,12 +133,16 @@
     <Content Include="assets\se\Choice_SE.wav" />
     <Content Include="assets\se\Result_SE.wav" />
     <Content Include="assets\img\Menuimg\backmoji.png" />
-    <Content Include="assets\img\Menuimg\exitmoji.png" />
     <Content Include="assets\img\Menuimg\menubase.png" />
     <Content Include="assets\img\Menuimg\pausemoji.png" />
     <Content Include="assets\img\Menuimg\retrymoji.png" />
     <Content Include="assets\img\Menuimg\selectmoji.png" />
     <Content Include="assets\img\Menuimg\titlemoji.png" />
+    <Content Include="assets\img\Menuimg\commentaryback.png" />
+    <Content Include="assets\img\Menuimg\commentarybar.png" />
+    <Content Include="assets\img\Menuimg\commentaryretry.png" />
+    <Content Include="assets\img\Menuimg\commentaryselect.png" />
+    <Content Include="assets\img\Menuimg\commentarytitle.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
