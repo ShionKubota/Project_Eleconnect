@@ -54,7 +54,7 @@ namespace Eleconnect
 			
 			scoreTex = new Texture2D(@"/Application/assets/img/Score.png", false);
 			scoreSp = new Sprite2D(scoreTex);
-			scoreSp.size = new Vector2(1.0f);
+			scoreSp.size = new Vector2(0.5f);
 			scoreSp.pos = new Vector3(AppMain.ScreenWidth / 4.0f,AppMain.ScreenHeight/2.0f,0.0f);
 			
 			pakTex = new Texture2D(@"/Application/assets/img/pleaselogo.png", false);
