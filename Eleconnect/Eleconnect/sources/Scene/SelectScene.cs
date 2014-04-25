@@ -44,6 +44,7 @@ namespace Eleconnect
 		// 更新
 		public override void Update()
 		{
+			// ボタンの移動等更新
 			selectBtn.Update();
 			
 			// 決定したときの処理
@@ -81,6 +82,7 @@ namespace Eleconnect
 		// 解放
 		public override void Term()
 		{
+			TitleScene.music.Term();
 			musicEffect.Term();
 			selectBackTex.Dispose();
 			selectBtn.Term();

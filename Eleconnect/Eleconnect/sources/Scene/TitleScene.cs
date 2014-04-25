@@ -28,7 +28,7 @@ namespace Eleconnect
 			startTex,
 			logoTex;
 		
-		private Music music;
+		public static Music music;
 		private MusicEffect musicEffect;
 		
 		private int frameCnt;
@@ -43,7 +43,7 @@ namespace Eleconnect
 		// 初期化
 		override public void Init()
 		{
-			// ロゴ
+			// 画像
 			logoTex = new Texture2D(@"/Application/assets/img/eleconnect_logo.png", false);
 			logoSp = new Sprite2D(logoTex);
 			logoSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight / 4.0f, 0.0f);
@@ -60,15 +60,16 @@ namespace Eleconnect
 			startSp.size = new Vector2(1.0f);
 			startSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
 			
+			// 音関連
+			music = new Music(@"/Application/assets/music/Title_Music.mp3");
+			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
+			music.Set(true,0.6f,0.0d);
+			
 			this.fadeInTime = 120;
 			this.fadeOutTime = 30;
 			
 			frameCnt = 0;
 			seFlg = false;
-			
-			music = new Music(@"/Application/assets/music/Title_Music.mp3");
-			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
-			music.Set(true,0.6f,0.0d);
 		}
 		
 		// 更新
@@ -76,7 +77,8 @@ namespace Eleconnect
 		{
 			music.Play();
 			startSp.color.W = 0.3f + 
-						 FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;
+						 FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
+			
 			// なにかボタンが押されたらフェードアウト開始
 			Input input = Input.GetInstance();
 			if((input.circle.isPushEnd || input.cross.isPushEnd || input.triangle.isPushEnd ||
@@ -111,7 +113,7 @@ namespace Eleconnect
 			startSp.Draw();
 		}
 		
-		// 解放
+		// 解放(musicはセレクトシーンでも使用しているのでセレクトシーンで解放)
 		override public void Term()
 		{
 			backTex.Dispose ();
