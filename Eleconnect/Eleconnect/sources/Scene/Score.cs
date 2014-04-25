@@ -31,7 +31,7 @@ namespace Eleconnect
 			num = new Number();
 			
 			point = PlayData.GetInstance().connectNum * 1000+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
-			digit = point.ToString().Length;;
+			digit = point.ToString().Length;
 			numeral = new int[digit];
 		}
 		
@@ -55,7 +55,10 @@ namespace Eleconnect
 		
 		public void Draw()
 		{
+			//	数字をぐちゃぐちゃ
 			Random rand = new Random();
+			
+			//	frameが一定数でスコア表示
 			for(int i = 0;i < digit;i++)
 			{
 				if(frameCnt >= RAND_TIME)
