@@ -98,7 +98,7 @@ namespace Eleconnect
 			
 			guideTex = new Texture2D(@"/Application/assets/img/guide.png", false);
 			guideSp = new Sprite2D(guideTex);
-			guideSp.pos = new Vector3(AppMain.ScreenWidth - 100.0f,
+			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.8f, 0.8f);
