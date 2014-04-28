@@ -7,9 +7,9 @@ namespace Eleconnect
 	public class PanelEditor : PanelManager
 	{
 		// エディット情報
-		public const bool IS_RANDOM_MAP = false;	// マップをランダムに配置
-		public const int RANDOM_MAP_W = 5;
-		public const int RANDOM_MAP_H = 5;
+		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
+		public const int RANDOM_MAP_W = 6;
+		public const int RANDOM_MAP_H = 6;
 		public const int REPEATER_NUM = 0;
 		
 		public PanelEditor ()

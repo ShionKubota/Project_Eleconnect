@@ -59,7 +59,7 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			//PlayData.GetInstance().stageNo = 2;
+			//PlayData.GetInstance().stageNo = 3;
 			Init ();
 		}
 		
@@ -80,7 +80,6 @@ namespace Eleconnect
 			
 			panelManager = new PanelManager();
 			cursor = new CursorOnPanels(panelManager);
-			menuManager = new MenuManager();
 			
 			// デバッグ表示
 			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the ELEC_POW_MAX.");
@@ -106,6 +105,7 @@ namespace Eleconnect
 			// インスタンス生成
 			gameUI = new GameUI();
 			timeManager = new TimeManager();
+			menuManager = new MenuManager();
 			
 			// パラメータ初期化
 			repeaterCnt = 0;

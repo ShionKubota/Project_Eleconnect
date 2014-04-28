@@ -96,16 +96,18 @@ namespace Eleconnect
 		private void SaveMap()
 		{
 			FileAccess fa = FileAccess.GetInstance();
-			
-			// マップデータ保存
 			List<int> mapData = new List<int>();	// データ保存用リスト
 			
 			for(int i = 0; i < EditScene.stageWidth; i++)
 			{
 				for(int j = 0; j < EditScene.stageHeight; j++)	
 				{
-					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプ
-					mapData.Add(panelManager[i, j].rotateCnt);		// パネルの回転数
+					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプを保存
+					
+					int rotateCnt = panelManager[i, j].rotateCnt;
+					if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;
+					if(rotateCnt > 9) rotateCnt = rotateCnt % 4;	// パネルの回転数(2桁の数や負の数であれば、0~3の数値に変換する)
+					mapData.Add(rotateCnt);		// パネルの回転数を保存
 				}
 			}
 			fa.SavaData(mapFileName, mapData.ToArray());
