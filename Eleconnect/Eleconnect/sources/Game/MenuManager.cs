@@ -132,6 +132,7 @@ namespace Eleconnect
 			retrymojiTex.Dispose();
 			selectmojiTex.Dispose();
 			titlemojiTex.Dispose();
+			menuCommentary.Term();
 		}
 		
 		// ボタン押したときの処理

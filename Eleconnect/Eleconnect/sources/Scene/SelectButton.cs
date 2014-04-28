@@ -126,10 +126,9 @@ namespace Eleconnect
 				}
 			}
 			
+			// ボタン配置
 			for(int i = 1;i<=STAGE_NUM;i++)
 			{
-				Console.WriteLine(selectBtnSp[i].pos.X);
-				Console.WriteLine(btnMoveX);
 				selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
 			}
 			
