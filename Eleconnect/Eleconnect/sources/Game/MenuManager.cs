@@ -36,12 +36,12 @@ namespace Eleconnect
 		private void Init()
 		{
 			// 画像
-			menubaseTex = new Texture2D(@"/Application/assets/img/menuimg/menubase.png", false);
-			backmojiTex = new Texture2D(@"/Application/assets/img/menuimg/backmoji.png", false);
-			pausemojiTex = new Texture2D(@"/Application/assets/img/menuimg/pausemoji.png", false);
-			retrymojiTex = new Texture2D(@"/Application/assets/img/menuimg/retrymoji.png", false);
-			selectmojiTex = new Texture2D(@"/Application/assets/img/menuimg/selectmoji.png", false);
-			titlemojiTex = new Texture2D(@"/Application/assets/img/menuimg/titlemoji.png", false);
+			menubaseTex = new Texture2D(@"/Application/assets/img/Menuimg/menubase.png", false);
+			backmojiTex = new Texture2D(@"/Application/assets/img/Menuimg/backmoji.png", false);
+			pausemojiTex = new Texture2D(@"/Application/assets/img/Menuimg/pausemoji.png", false);
+			retrymojiTex = new Texture2D(@"/Application/assets/img/Menuimg/retrymoji.png", false);
+			selectmojiTex = new Texture2D(@"/Application/assets/img/Menuimg/selectmoji.png", false);
+			titlemojiTex = new Texture2D(@"/Application/assets/img/Menuimg/titlemoji.png", false);
 			
 			menubaseSp = new Sprite2D(menubaseTex);
 			menuSp[0] = new Sprite2D(pausemojiTex);

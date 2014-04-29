@@ -84,10 +84,6 @@
     <Compile Include="sources\Game\MenuCommentary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="assets\data\data.dat" />
-    <None Include="assets\data\data.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="assets\se\button55.wav" />
     <Content Include="assets\se\Rotate_SE.wav" />
     <Content Include="assets\se\Select_SE.wav" />
@@ -102,7 +98,6 @@
     <Content Include="assets\img\number_0.png" />
     <Content Include="assets\img\number_1.png" />
     <Content Include="assets\img\number_2.png" />
-    <Content Include="assets\img\number_3.PNG" />
     <Content Include="assets\img\number_4.png" />
     <Content Include="assets\img\number_5.png" />
     <Content Include="assets\img\number_6.png" />
@@ -118,7 +113,6 @@
     <Content Include="assets\img\Select_One.png" />
     <Content Include="assets\img\Select_Three.png" />
     <Content Include="assets\img\Select_Two.png" />
-    <Content Include="assets\img\TitleLogo.jpg" />
     <Content Include="assets\img\White.png" />
     <Content Include="assets\img\Score.png" />
     <Content Include="assets\img\pak.png" />
@@ -143,6 +137,7 @@
     <Content Include="assets\img\Menuimg\commentaryretry.png" />
     <Content Include="assets\img\Menuimg\commentaryselect.png" />
     <Content Include="assets\img\Menuimg\commentarytitle.png" />
+    <Content Include="assets\img\number_3.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

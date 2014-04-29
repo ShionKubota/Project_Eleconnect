@@ -56,7 +56,7 @@ namespace Eleconnect
 		// データ読み込み
 		public void LoadData(string fileName, ref string inputData)
 		{
-            FileStream input = File.Open(@SAVE_FILE + fileName, FileMode.OpenOrCreate);	// ファイルを開く
+            FileStream input = File.Open(@SAVE_FILE + fileName, FileMode.Open);	// ファイルを開く
          	if (input != null)
 			{
                 long dataSize = input.Length;	// 呼び出した保存データの長さを取得
@@ -65,6 +65,8 @@ namespace Eleconnect
                 size = (int)dataSize;				// ?
                 inputData = System.Text.Encoding.Unicode.GetString(data);	// byteデータをstringに変換
                 input.Close();		// ファイルを閉じる
+				
+				Console.WriteLine ("dataSize = " + dataSize);
 			}
 		}
 		
