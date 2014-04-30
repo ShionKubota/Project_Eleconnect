@@ -132,8 +132,6 @@ namespace Eleconnect
 				selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
 			}
 			
-			Console.WriteLine(selectBtnNo);
-			
 		}
 		
 		// 描画

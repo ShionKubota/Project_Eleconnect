@@ -70,7 +70,6 @@ namespace Eleconnect
 			PlayData playData = PlayData.GetInstance();
 			mapFileName = "mapData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");		// マップデータ
 			stageFileName = "stageData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");	// ステージデータ
-			
 			LoadStageData();
 			
 			stageWidth = stageData[0];
@@ -122,28 +121,33 @@ namespace Eleconnect
 		// ステージのデータを読み込み
 		protected void LoadStageData()
 		{
+			Console.WriteLine("hello");
 			// マップ読み込み
 			mapData = new List<int>();
 			string mapDataStr = "";
 			FileAccess.GetInstance().LoadData(mapFileName,
 			                                  ref mapDataStr);
+			Console.WriteLine("hello");
 			for(int i = 0; i < mapDataStr.Length; i++)
 			{
+				Console.WriteLine ("mapdata[{0}] = {1}", i, mapDataStr[i]);
 				if(mapDataStr[i] == ',') continue;
 				mapData.Add(int.Parse(mapDataStr[i]+""));
-				Console.WriteLine("mapdata = " + mapDataStr[i]);
 			}
 			
+			Console.WriteLine("hello");
 			// ステージ情報読み込み
 			stageData = new List<int>();
 			string stageDataStr = "";
 			FileAccess.GetInstance().LoadData(stageFileName,
 			                                  ref stageDataStr);
+			Console.WriteLine("hello");
 			for(int i = 0; i < stageDataStr.Length; i++)
 			{
 				if(stageDataStr[i] == ',') continue;
 				stageData.Add(int.Parse(stageDataStr[i]+""));
 			}
+			Console.WriteLine("hello");
 		}
 		
 		// 更新
