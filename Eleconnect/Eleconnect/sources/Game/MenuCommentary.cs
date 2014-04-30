@@ -27,11 +27,11 @@ namespace Eleconnect
 		private void Init()
 		{
 			// 画像
-			commentaryBarTex = new Texture2D(@"/Application/assets/img/menuimg/commentarybar.png", false);
-			commentaryBackTex = new Texture2D(@"/Application/assets/img/menuimg/commentaryback.png", false);
-			commentaryRetryTex = new Texture2D(@"/Application/assets/img/menuimg/commentaryretry.png", false);
-			commentarySelectTex = new Texture2D(@"/Application/assets/img/menuimg/commentaryselect.png", false);
-			commentaryTitleTex = new Texture2D(@"/Application/assets/img/menuimg/commentarytitle.png", false);
+			commentaryBarTex = new Texture2D(@"/Application/assets/img/Menuimg/commentarybar.png", false);
+			commentaryBackTex = new Texture2D(@"/Application/assets/img/Menuimg/commentaryback.png", false);
+			commentaryRetryTex = new Texture2D(@"/Application/assets/img/Menuimg/commentaryretry.png", false);
+			commentarySelectTex = new Texture2D(@"/Application/assets/img/Menuimg/commentaryselect.png", false);
+			commentaryTitleTex = new Texture2D(@"/Application/assets/img/Menuimg/commentarytitle.png", false);
 			
 			commentaryBarSp = new Sprite2D(commentaryBarTex);
 			commentarySp[0] = new Sprite2D(commentaryBackTex);

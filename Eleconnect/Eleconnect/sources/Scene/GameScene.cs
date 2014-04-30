@@ -59,7 +59,7 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			//PlayData.GetInstance().stageNo = 3;
+			PlayData.GetInstance().stageNo = 3;
 			Init ();
 		}
 		
