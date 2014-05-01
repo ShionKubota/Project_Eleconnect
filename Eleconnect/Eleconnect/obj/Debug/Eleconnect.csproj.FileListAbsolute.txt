@@ -309,7 +309,6 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_0.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_1.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_2.png
-C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_3.PNG
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_4.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_5.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_6.png
@@ -349,6 +348,7 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Menuimg\commentaryretry.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Menuimg\commentaryselect.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Menuimg\commentarytitle.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\number_3.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\app.info
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\app.exe
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\System.Json.dll
@@ -373,7 +373,6 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_0.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_1.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_2.png
-C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_3.PNG
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_4.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_5.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_6.png
@@ -413,6 +412,7 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\commentaryretry.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\commentaryselect.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\commentarytitle.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\number_3.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect.psdp
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.exe

@@ -19,7 +19,7 @@ namespace Eleconnect
 		private Sprite2D menubaseSp;						// メニュー背景
 		
 		public static bool menuFlg;							// メニューを表示
-		public static int menuNum;								// 選んでいるメニュー番号
+		public static int menuNum;							// 選んでいるメニュー番号
 		
 		private float frameCnt;
 		
@@ -52,12 +52,12 @@ namespace Eleconnect
 			
 			for(int i = 0;i<5;i++)
 			{
-				menuSp[i].size = new Vector2(1.0f);
+				menuSp[i].size = new Vector2((i == 0) ? 0.6f : 0.4f);
 				menuSp[i].pos = new Vector3(AppMain.ScreenWidth/2.0f,AppMain.ScreenHeight/2.0f + 65.0f * i - 128.0f,0.0f);
 			}
 			menubaseSp.size = new Vector2(1.0f);
 			menubaseSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f,AppMain.ScreenHeight / 2.0f,0.0f);
-			menubaseSp.color = new Vector4(1.0f,1.0f,1.0f,0.5f);
+			menubaseSp.color = new Vector4(1.0f,1.0f,1.0f,1.0f);
 			
 			menuFlg = false;
 			menuNum = 1;
@@ -69,6 +69,7 @@ namespace Eleconnect
 		public void Update()
 		{
 			frameCnt++;
+			menuFlg = true;
 			
 			// 上下キーで選択
 			if(input.up.isPushStart && menuNum != 1)
@@ -101,6 +102,7 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
+			/*
 			// Startが押されたらメニューON/OFF
 			if(input.start.isPushEnd && menuFlg == false)
 			{
@@ -110,17 +112,17 @@ namespace Eleconnect
 			{
 				menuFlg = false;
 			}
-			
+			*/
 			// メニュー表示
-			if(menuFlg == true)
-			{
+			//if(menuFlg == true)
+			//{
 				menubaseSp.Draw();
 				menuCommentary.Draw();
 				for(int i = 0;i<5;i++)
 				{
 					menuSp[i].Draw();
 				}
-			}
+			//}
 		}
 		
 		// 解放
@@ -164,6 +166,15 @@ namespace Eleconnect
 					}
 				}
 			}
-		}	
+		}
+		
+		// ポーズの終了
+		public bool isEnd
+		{
+			get
+			{
+				return !menuFlg;
+			}
+		}
 	}
 }

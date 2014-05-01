@@ -59,7 +59,7 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			PlayData.GetInstance().stageNo = 3;
+			PlayData.GetInstance().stageNo = 1;
 			Init ();
 		}
 		
@@ -164,6 +164,10 @@ namespace Eleconnect
 			case StateId.CLEAR:
 				AfterClearingProcess();
 				break;
+				
+			case StateId.PAUSE:
+				PausingProcess();
+				break;
 			}
 			
 			// パネルの更新
@@ -192,9 +196,6 @@ namespace Eleconnect
 				nowState = StateId.CLEAR;
 				Panel.ELEC_POW_MAX = 1;
 			}
-			
-			// メニューの更新
-			menuManager.Update();
 		}
 		
 		// クリア後の更新プロセス
@@ -225,8 +226,22 @@ namespace Eleconnect
 			
 			//Panel.ELEC_POW_MAX = (int)(5.0f + 4 * FMath.Sin(FMath.Radians(frameCnt * 10)));
 			//PanelManager.CheckConnectOfPanels(0, 0);
+		}
+		
+		// ポーズ中の更新プロセス
+		protected void PausingProcess()
+		{
+			// ポーズメニューの更新
+			menuManager.Update();
 			
+			// ポーズ終了をチェック
+			if(menuManager.isEnd || Input.GetInstance().start.isPushStart)
+			{
+				nowState = StateId.GAME;
+			}
 			
+			// ゲームに戻る
+			//if()
 		}
 		
 		// プレイヤーの操作
@@ -284,6 +299,9 @@ namespace Eleconnect
 				}
 			}
 			
+			// ポーズメニューを開く
+			if(input.start.isPushStart) nowState = StateId.PAUSE;
+			
 			// デバッグ機能
 			if(GameScene.IS_DEBUG_MODE) DebugProcess(input);
 		}
@@ -337,7 +355,7 @@ namespace Eleconnect
 			panelManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			//gameUI.Draw();
-			menuManager.Draw();
+			if(nowState == StateId.PAUSE) menuManager.Draw();
 		}
 		
 		// 解放
