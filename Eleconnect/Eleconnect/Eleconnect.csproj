@@ -138,6 +138,7 @@
     <Content Include="assets\img\Menuimg\commentaryselect.png" />
     <Content Include="assets\img\Menuimg\commentarytitle.png" />
     <Content Include="assets\img\number_3.png" />
+    <Content Include="assets\img\pushlogo.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

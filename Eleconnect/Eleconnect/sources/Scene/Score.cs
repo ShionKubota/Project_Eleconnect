@@ -16,7 +16,8 @@ namespace Eleconnect
 		public static float point;		// 得点
 		public int[] numeral;			// 桁ごとの得点
 		public int digit;				// 桁数
-		public int frameCnt;
+		public int randCnt;
+		public bool randEnd;
 		
 		public Number num;
 		public TimeManager timeManager;
@@ -33,6 +34,8 @@ namespace Eleconnect
 			point = PlayData.GetInstance().connectNum * 1000+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
 			digit = point.ToString().Length;
 			numeral = new int[digit];
+			randCnt = 0;
+			randEnd = false;
 		}
 		
 		public void Update()
@@ -50,7 +53,7 @@ namespace Eleconnect
 				}
 			}
 			
-			frameCnt++;
+			randCnt++;
 		}
 		
 		public void Draw()
@@ -61,16 +64,17 @@ namespace Eleconnect
 			//	frameが一定数でスコア表示
 			for(int i = 0;i < digit;i++)
 			{
-				if(frameCnt >= RAND_TIME)
+				if(randCnt >= RAND_TIME)
 				{
 					num.numSp[numeral[i]].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 64.0f)+ 320,AppMain.ScreenHeight/2.0f,0.0f);
 					num.numSp[numeral[i]].Draw();
-					frameCnt = RAND_TIME;
+					randCnt = RAND_TIME;
+					randEnd = true;
 				}
 				else
 				{
-					num.numSp[(frameCnt+rand.Next(i)) % 10].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 64.0f)+ 320,AppMain.ScreenHeight/2.0f,0.0f);
-					num.numSp[(frameCnt+rand.Next(i)) % 10].Draw();
+					num.numSp[(randCnt+rand.Next(i)) % 10].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 64.0f)+ 320,AppMain.ScreenHeight/2.0f,0.0f);
+					num.numSp[(randCnt+rand.Next(i)) % 10].Draw();
 				}
 			}
 		}

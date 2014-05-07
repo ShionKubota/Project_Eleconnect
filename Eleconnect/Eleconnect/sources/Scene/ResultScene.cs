@@ -57,9 +57,9 @@ namespace Eleconnect
 			scoreSp.size = new Vector2(0.5f);
 			scoreSp.pos = new Vector3(AppMain.ScreenWidth / 4.0f,AppMain.ScreenHeight/2.0f,0.0f);
 			
-			pakTex = new Texture2D(@"/Application/assets/img/pleaselogo.png", false);
+			pakTex = new Texture2D(@"/Application/assets/img/pushlogo.png", false);
 			pakSp = new Sprite2D(pakTex);
-			pakSp.size = new Vector2(1.0f);
+			pakSp.size = new Vector2(0.8f);
 			pakSp.pos = new Vector3(AppMain.ScreenWidth/2.0f,AppMain.ScreenHeight - 128.0f,0.0f);
 			
 			backTex = new Texture2D(@"/Application/assets/img/Back.png", false);
@@ -82,16 +82,25 @@ namespace Eleconnect
 		// 更新
 		override public void Update()
 		{
-			score.Update();
 			frameCnt++;
+			score.Update();
 			pakSp.color.W = 0.3f + 
 						 FMath.Sin(FMath.Radians(frameCnt * 5)) * 0.6f;
 			
+			// 押したらタイトルに戻る
 			if(input.circle.isPushEnd || input.cross.isPushEnd || input.triangle.isPushEnd ||
 			   input.square.isPushEnd || input.triggerR.isPushEnd || input.triggerL.isPushEnd ||
 			   input.start.isPushEnd || input.select.isPushEnd)
 			{
-				musicEffect.Set();
+				if(TitleScene.seFlg == false && score.randEnd == true)
+				{
+					musicEffect.Set();
+					TitleScene.seFlg = true;
+				}
+			}
+			
+			if(TitleScene.seFlg == true)
+			{
 				AppMain.sceneManager.Switch(SceneId.TITLE);
 			}
 		}
@@ -102,8 +111,11 @@ namespace Eleconnect
 			backSp.Draw();
 			resultLogoSp.Draw();
 			scoreSp.Draw();
-			pakSp.Draw();
 			score.Draw();
+			if(score.randEnd == true)
+			{
+				pakSp.Draw();
+			}
 		}
 		
 		// 解放
@@ -114,6 +126,7 @@ namespace Eleconnect
 			pakTex.Dispose();
 			backTex.Dispose();
 			score.Term();
+			TitleScene.seFlg = false;
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace Eleconnect
 		public void Init()
 		{
 			// 最初に開始するシーン
-			nowScene = new GameScene();
+			nowScene = new LogoScene();
 			
 			fade = new Fade();
 		}

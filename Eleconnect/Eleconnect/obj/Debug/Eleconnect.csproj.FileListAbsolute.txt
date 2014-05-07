@@ -191,7 +191,6 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsi
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Select_One.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Select_Three.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Select_Two.png
-C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\TitleLogo.jpg
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\White.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Score.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\pak.png
@@ -256,7 +255,6 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-sign
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Select_One.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Select_Three.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Select_Two.png
-C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\TitleLogo.jpg
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\White.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Score.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\pak.png
@@ -417,3 +415,5 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.exe
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.pdb
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\pushlogo.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\pushlogo.png
