@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\SceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\General\FileAccess.cs">
     <Files>
       <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="39" Column="23" />
       <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="11" Column="37" />
@@ -9,6 +9,7 @@
       <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="1" Column="1" />
       <File FileName="Eleconnect\sources\Scene\Score.cs" Line="15" Column="3" />
       <File FileName="Eleconnect\sources\Scene\SelectScene.cs" Line="1" Column="1" />
+      <File FileName="Eleconnect\sources\General\FileAccess.cs" Line="48" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

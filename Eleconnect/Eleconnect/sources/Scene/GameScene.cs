@@ -59,7 +59,7 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			PlayData.GetInstance().stageNo = 1;
+			//PlayData.GetInstance().stageNo = 1;
 			Init ();
 		}
 		
@@ -94,12 +94,12 @@ namespace Eleconnect
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
 			
-			guideTex = new Texture2D(@"/Application/assets/img/guide.png", false);
+			guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
 			guideSp = new Sprite2D(guideTex);
 			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
-			guideSp.size = new Vector2(0.8f, 0.8f);
+			guideSp.size = new Vector2(0.4f, 0.4f);
 			
 			// インスタンス生成
 			gameUI = new GameUI();
@@ -260,12 +260,12 @@ namespace Eleconnect
 			Panel panel = panelManager[indexW, indexH];
 			
 			// パネルを回転
-			if(input.triggerR.isPushStart)
+			if(input.triggerR.isPushStart && panel.isGoal == false)
 			{
 				panel.Rotate(true);
 				musicEffect.Set(1.0f,false);
 			}
-			if(input.triggerL.isPushStart)
+			if(input.triggerL.isPushStart && panel.isGoal == false)
 			{
 				panel.Rotate(false);
 				musicEffect.Set(1.0f,false);
