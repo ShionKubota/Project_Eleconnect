@@ -72,7 +72,6 @@
     <Compile Include="sources\Scene\TitleScene.cs" />
     <Compile Include="sources\AppMain.cs" />
     <Compile Include="sources\Game\PanelManager.cs" />
-    <Compile Include="sources\Game\Panel.cs" />
     <Compile Include="sources\Game\CursorOnPanels.cs" />
     <Compile Include="sources\Scene\Number.cs" />
     <Compile Include="sources\Scene\SelectButton.cs" />
@@ -82,7 +81,8 @@
     <Compile Include="sources\Game\TimeManager.cs" />
     <Compile Include="sources\Game\MenuManager.cs" />
     <Compile Include="sources\Game\MenuCommentary.cs" />
-    <Compile Include="sources\Game\Jamming.cs" />
+    <Compile Include="sources\Game\Panel.cs" />
+    <Compile Include="sources\Game\NormalPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -143,7 +143,6 @@
     <Content Include="assets\img\guid.png" />
     <Content Include="assets\img\test.png" />
     <Content Include="assets\img\corner.png" />
-    <Content Include="assets\img\Jamming.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
