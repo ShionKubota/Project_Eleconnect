@@ -56,7 +56,7 @@ namespace Eleconnect
 				{
 					// 読み込んだマップデータを基に配置
 					int loadIndex = ((GameScene.stageHeight * 2) * i) + (j * 2);
-					panelLine.Add (new Panel((Panel.TypeId)GameScene.mapData[loadIndex],
+					panelLine.Add (new NormalPanel((Panel.TypeId)GameScene.mapData[loadIndex],
 					                         new Vector2(basePos.X + panelSize * i,
 					            			  			 basePos.Y + panelSize * j)));
 					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);

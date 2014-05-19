@@ -66,8 +66,8 @@ namespace Eleconnect
 			Panel panel = panelManager[indexW, indexH];
 			
 			// パネルを回転
-			if(input.triggerR.isPushStart) panel.Rotate(true);
-			if(input.triggerL.isPushStart) panel.Rotate(false);
+			if(input.triggerR.isPushStart) panel.ButtonEvent(true);
+			if(input.triggerL.isPushStart) panel.ButtonEvent(false);
 			
 			// アイテムを使用
 			// リピーター

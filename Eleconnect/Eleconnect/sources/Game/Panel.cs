@@ -114,7 +114,7 @@ namespace Eleconnect
 		}
 		
 		// 更新
-		public void Update()
+		public virtual void Update()
 		{
 			// 回転
 			sp.angle += (rotateTo - sp.angle) * ROTATE_SPEED;
@@ -175,9 +175,11 @@ namespace Eleconnect
 			for(int i = 0; i < 4; i++)
 			{
 				//tex[i].Dispose();
-				
 			}
 		}
+		
+		// L,Rボタンを押した際のイベント
+		public virtual void ButtonEvent(bool pushR){}
 		
 		// 位置取得
 		public Vector3 GetPos()
@@ -186,7 +188,7 @@ namespace Eleconnect
 		}
 		
 		// 指定した方向に90°回転開始
-		public void Rotate(bool isClockwise)	// 時計回りならtrue
+		protected void Rotate(bool isClockwise)	// 時計回りならtrue
 		{
 			if(sp.angle % 90.0f != 0.0f) return;	// 非回転時のみ実行
 			rotateTo = sp.angle + (isClockwise ? 90.0f : -90.0f);
