@@ -121,13 +121,12 @@ namespace Eleconnect
 		// ステージのデータを読み込み
 		protected void LoadStageData()
 		{
-			Console.WriteLine("hello");
 			// マップ読み込み
 			mapData = new List<int>();
 			string mapDataStr = "";
 			FileAccess.GetInstance().LoadData(mapFileName,
 			                                  ref mapDataStr);
-			Console.WriteLine("hello");
+			
 			for(int i = 0; i < mapDataStr.Length; i++)
 			{
 				Console.WriteLine ("mapdata[{0}] = {1}", i, mapDataStr[i]);
@@ -135,19 +134,17 @@ namespace Eleconnect
 				mapData.Add(int.Parse(mapDataStr[i]+""));
 			}
 			
-			Console.WriteLine("hello");
 			// ステージ情報読み込み
 			stageData = new List<int>();
 			string stageDataStr = "";
 			FileAccess.GetInstance().LoadData(stageFileName,
 			                                  ref stageDataStr);
-			Console.WriteLine("hello");
+			
 			for(int i = 0; i < stageDataStr.Length; i++)
 			{
 				if(stageDataStr[i] == ',') continue;
 				stageData.Add(int.Parse(stageDataStr[i]+""));
 			}
-			Console.WriteLine("hello");
 		}
 		
 		// 更新
@@ -244,8 +241,6 @@ namespace Eleconnect
 				nowState = StateId.GAME;
 			}
 			
-			// ゲームに戻る
-			//if()
 		}
 		
 		// プレイヤーの操作
@@ -262,12 +257,12 @@ namespace Eleconnect
 			// パネルを回転
 			if(input.triggerR.isPushStart)
 			{
-				panel.Rotate(true);
+				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
 			}
 			if(input.triggerL.isPushStart)
 			{
-				panel.Rotate(false);
+				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);
 			}
 			
