@@ -92,7 +92,61 @@ namespace Eleconnect
 		// 更新
 		public void Update()
 		{
+			// ボタン類更新
+			Button_Move();
 			
+			// 座標更新
+			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+				                              AppMain.ScreenHeight / 2.0f - cornerSize,
+				                              0.0f);
+			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f - cornerSize,
+			                              0.0f);
+			cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize,
+			                              0.0f);
+			cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize,
+			                              0.0f);
+			
+			// ボタン配置
+			for(int i = 1;i<=STAGE_NUM;i++)
+			{
+				selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
+			}
+			
+			//Console.WriteLine(prevGameSp[selectPrevNum].color.W);
+			//Console.WriteLine(selectBtnNo);
+			//Console.WriteLine(changePrevGame);
+		}
+		
+		// 描画
+		public void Draw()
+		{
+			prevGameSp[selectPrevNum].Draw();
+			for(int i = 1;i<=STAGE_NUM;i++)
+			{
+				selectBtnSp[i].Draw();
+			}
+			for(int i = 0; i < 4;i++)
+			{
+				cornerSp[i].Draw();
+			}
+		}
+		
+		// 開放
+		public void Term()
+		{
+			for(int i = 0;i<10;i++)
+			{
+				prevGameTex[i].Dispose();
+				selectBtnTex[i].Dispose();
+			}
+		}
+		
+		// ボタン類の動き
+		public void Button_Move()
+		{
 			// とりあえずキーを押したら
 			// 右キー
 			if(selectBtnNo != STAGE_NUM && selectMoveFlg == false)
@@ -178,57 +232,11 @@ namespace Eleconnect
 				}
 			}
 			
+			// 元に戻す
 			if(changePrevGame == true)
 			{
 				prevGameSp[selectBtnNo].color.W += 0.05f;
 				cornerSize += 5.0f;
-			}
-			
-			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-				                              AppMain.ScreenHeight / 2.0f - cornerSize,
-				                              0.0f);
-			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f - cornerSize,
-			                              0.0f);
-			cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize,
-			                              0.0f);
-			cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize,
-			                              0.0f);
-			
-			// ボタン配置
-			for(int i = 1;i<=STAGE_NUM;i++)
-			{
-				selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
-			}
-			
-			//Console.WriteLine(prevGameSp[selectPrevNum].color.W);
-			//Console.WriteLine(selectBtnNo);
-			//Console.WriteLine(changePrevGame);
-		}
-		
-		// 描画
-		public void Draw()
-		{
-			prevGameSp[selectPrevNum].Draw();
-			for(int i = 1;i<=STAGE_NUM;i++)
-			{
-				selectBtnSp[i].Draw();
-			}
-			for(int i = 0; i < 4;i++)
-			{
-				cornerSp[i].Draw();
-			}
-		}
-		
-		// 開放
-		public void Term()
-		{
-			for(int i = 0;i<10;i++)
-			{
-				prevGameTex[i].Dispose();
-				selectBtnTex[i].Dispose();
 			}
 		}
 	}
