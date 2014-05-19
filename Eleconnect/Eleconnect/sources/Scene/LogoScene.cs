@@ -44,7 +44,6 @@ namespace Eleconnect
 			
 			// フェードの起こる時間
 			fadeTime = 0;
-			
 		}
 		
 		// 更新

@@ -9,10 +9,11 @@
       <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="1" Column="1" />
       <File FileName="Eleconnect\sources\Scene\Score.cs" Line="15" Column="3" />
       <File FileName="Eleconnect\sources\Scene\SelectScene.cs" Line="1" Column="1" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="18" Column="3" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="182" Column="48" />
       <File FileName="Eleconnect\sources\Game\NormalPanel.cs" Line="10" Column="4" />
       <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="62" Column="60" />
       <File FileName="Eleconnect\sources\Scene\EditScene.cs" Line="70" Column="54" />
+      <File FileName="Eleconnect\sources\Scene\LogoScene.cs" Line="48" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
