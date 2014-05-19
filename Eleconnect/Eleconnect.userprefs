@@ -1,14 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\SceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Panel.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="8" Column="14" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="11" Column="21" />
       <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="11" Column="37" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="62" Column="38" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="265" Column="22" />
       <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="62" Column="32" />
       <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="1" Column="1" />
       <File FileName="Eleconnect\sources\Scene\Score.cs" Line="15" Column="3" />
       <File FileName="Eleconnect\sources\Scene\SelectScene.cs" Line="1" Column="1" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="18" Column="3" />
+      <File FileName="Eleconnect\sources\Game\NormalPanel.cs" Line="10" Column="4" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="62" Column="60" />
+      <File FileName="Eleconnect\sources\Scene\EditScene.cs" Line="70" Column="54" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
