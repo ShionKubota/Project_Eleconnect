@@ -19,6 +19,7 @@ namespace Eleconnect
 		// 主要オブジェクト
 		public static GameUI gameUI;
 		protected PanelManager panelManager;
+		protected JammingManager jammingManager;
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
 		// 画像
@@ -78,6 +79,7 @@ namespace Eleconnect
 			CommonInit();
 			
 			panelManager = new PanelManager();
+			jammingManager = new JammingManager(stageWidth-1,stageHeight*2-1);
 			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
@@ -173,6 +175,7 @@ namespace Eleconnect
 			
 			// パネルの更新
 			panelManager.Update();
+			jammingManager.Update();
 			
 			
 			frameCnt++;
@@ -352,6 +355,7 @@ namespace Eleconnect
 			guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
+			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			//gameUI.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();

@@ -16,7 +16,7 @@ namespace Eleconnect
 		private const float BRIGHT_MINI = 0.0f;			// 光のパネルの不透明度の最低値
 		private const float BRIGHT_CHANGE_SPEED = 0.1f;	// 明度変更時の変化スピード
 		
-		public static int ELEC_POW_MAX = 10;	// パネルに流れる電力の最大値
+		public static int ELEC_POW_MAX = 10;			// パネルに流れる電力の最大値
 		
 		// 変数
 		private Sprite2D sp;

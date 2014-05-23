@@ -11,18 +11,19 @@ namespace Eleconnect
 		public Sprite2D jamSp;
 		
 		//コンストラクタ
-		public Jamming (Vector2 pos,float angle)
+		public Jamming ()
 		{
-			Init(pos,angle);
+			Init();
 		}
 		
 		// 初期化
-		private void Init(Vector2 pos,float angle)
+		private void Init()
 		{
 			jamTex = new Texture2D(@"/Application/assets/img/Jamming.png", false);
 			jamSp = new Sprite2D(jamTex);
-			jamSp.size = new Vector2(1.0f,1.0f);
-			jamSp.pos = new Vector3(pos.X,pos.Y,0.0f);
+			jamSp.size = new Vector2(0.22f,0.22f);
+			jamSp.pos = new Vector3(0.0f);
+			jamSp.angle = 1.0f;
 		}
 		
 		// 更新
@@ -31,8 +32,10 @@ namespace Eleconnect
 		}
 		
 		// 描画
-		public void Draw()
+		public void Draw(Vector3 pos,float angle)
 		{
+			jamSp.pos = new Vector3(pos.X,pos.Y,0.0f);
+			jamSp.angle = angle;
 			jamSp.Draw();
 		}
 		
