@@ -79,7 +79,7 @@ namespace Eleconnect
 			CommonInit();
 			
 			panelManager = new PanelManager();
-			jammingManager = new JammingManager(stageWidth-1,stageHeight*2-1);
+			jammingManager = new JammingManager();
 			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
@@ -262,11 +262,13 @@ namespace Eleconnect
 			{
 				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
+				JammingSwitch.isJamming = false;
 			}
 			if(input.triggerL.isPushStart && panel.isGoal == false)
 			{
 				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);
+				JammingSwitch.isJamming = true;
 			}
 			
 			// アイテムを使用
@@ -368,6 +370,7 @@ namespace Eleconnect
 			guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();
+			jammingManager.Term();
 			gameUI.Term ();
 			musicEffect.Term();
 			music.Term();

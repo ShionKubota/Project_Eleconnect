@@ -21,7 +21,7 @@ namespace Eleconnect
 		// 変数
 		private Sprite2D sp;
 		private Sprite2D lightSp;
-		private static Texture2D[] tex = new Texture2D[4];
+		private static Texture2D[] tex = new Texture2D[5];
 		private Sprite2D repeaterSp;
 		private static Texture2D repeaterTex;
 		
@@ -38,7 +38,8 @@ namespace Eleconnect
 			Straight,		// 直線
 			RightAngle,		// 直角
 			T,				// T字
-			Cross			// 十字
+			Cross,			// 十字
+			Jamming			// ジャミング
 		}
 		
 		// パネルのルート情報
@@ -84,6 +85,10 @@ namespace Eleconnect
 				break;
 				
 			case TypeId.Cross:
+				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
+				break;
+				
+			case TypeId.Jamming:
 				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
 				break;
 			}

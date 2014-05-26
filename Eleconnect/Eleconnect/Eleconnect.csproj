@@ -85,6 +85,7 @@
     <Compile Include="sources\Game\NormalPanel.cs" />
     <Compile Include="sources\Game\Jamming.cs" />
     <Compile Include="sources\Game\JammingManager.cs" />
+    <Compile Include="sources\Game\JammingSwitch.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -146,6 +147,8 @@
     <Content Include="assets\img\test.png" />
     <Content Include="assets\img\corner.png" />
     <Content Include="assets\img\Jamming.png" />
+    <Content Include="assets\img\switch_off.png" />
+    <Content Include="assets\img\switch_on.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

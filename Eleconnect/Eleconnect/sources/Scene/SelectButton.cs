@@ -15,25 +15,25 @@ namespace Eleconnect
 	{
 		Input input = Input.GetInstance();
 		private MusicEffect musicEffect;
-		public Sprite2D[] selectBtnSp = new Sprite2D[10];		// スプライト
-		public Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
-		public Sprite2D[] prevGameSp = new Sprite2D[10];		// ステージサンプルスプライト
-		public Texture2D[] prevGameTex = new Texture2D[10];		// ステージサンプルテクスチャ
-		public Sprite2D[] cornerSp = new Sprite2D[4];
-		public Texture2D[] cornerTex = new Texture2D[4];
+		private Sprite2D[] selectBtnSp = new Sprite2D[10];		// スプライト
+		private Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
+		private Sprite2D[] prevGameSp = new Sprite2D[10];		// ステージサンプルスプライト
+		private Texture2D[] prevGameTex = new Texture2D[10];		// ステージサンプルテクスチャ
+		private Sprite2D[] cornerSp = new Sprite2D[4];
+		private Texture2D[] cornerTex = new Texture2D[4];
 		const int SELECT_BTN_SIZE = 128;						// 画像サイズ
 		public const int STAGE_NUM = 9;							// 総ステージ数
 		
 		public int selectBtnNo;									// 選択されているステージNo.
-		public int selectPrevNum;
-		public bool selectMoveFlg;								// 選択されてるステージが変わったとき
-		public bool changePrevGame;								// ゲームプレビューの変更
-		public int changeDirection;								// 動く向き
+		int selectPrevNum;
+		bool selectMoveFlg;										// 選択されてるステージが変わったとき
+		bool changePrevGame;									// ゲームプレビューの変更
+		int changeDirection;									// 動く向き
 		
-		public float btnMoveY;									// ボタンの動き
-		public float btnMoveX;									// ボタンの動き
+		float btnMoveY;											// ボタンの動き
+		float btnMoveX;											// ボタンの動き
 		
-		 float cornerSize = 90.0f;									// 枠の大きさ
+		float cornerSize = 90.0f;								// 枠の大きさ
 		
 		// コンストラクタ
 		public SelectButton ()
@@ -184,6 +184,7 @@ namespace Eleconnect
 				selectBtnSp[selectBtnNo].size += 0.02f;				// 選ばれてるボタンは表示が大きくなる
 				selectBtnSp[selectBtnNo+1].size -= 0.02f;
 				
+				// 後ろの画像のフェード
 				if(changePrevGame == false)
 				{
 					prevGameSp[selectBtnNo+1].color.W -= 0.05f;
@@ -212,6 +213,7 @@ namespace Eleconnect
 				selectBtnSp[selectBtnNo].size += 0.02f;				// 選ばれてるボタンは表示が大きくなる
 				selectBtnSp[selectBtnNo-1].size -= 0.02f;
 				
+				// 後ろの画像のフェード
 				if(changePrevGame == false)
 				{
 					prevGameSp[selectBtnNo-1].color.W -= 0.05f;
@@ -223,6 +225,7 @@ namespace Eleconnect
 					selectPrevNum++;
 					changePrevGame = true;
 				}
+				
 				if( btnMoveX <= -(SELECT_BTN_SIZE * 3.0f * (selectBtnNo-1)))
 				{
 					selectMoveFlg = false;

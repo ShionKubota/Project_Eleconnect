@@ -293,3 +293,7 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-sign
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect.psdp
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Jamming.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Jamming.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\switch_off.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\switch_on.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\switch_off.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\switch_on.png
