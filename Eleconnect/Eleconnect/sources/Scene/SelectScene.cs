@@ -16,8 +16,8 @@ namespace Eleconnect
 		// ボタン設置
 		public SelectButton selectBtn;
 		// 画像設定
-		public Sprite2D selectBackSp;
-		public Texture2D selectBackTex;
+		private Sprite2D selectBackSp;
+		private Texture2D selectBackTex;
 		
 		private MusicEffect musicEffect;
 		

@@ -19,6 +19,7 @@ namespace Eleconnect
 		// 主要オブジェクト
 		public static GameUI gameUI;
 		public static PanelManager panelManager{protected set; get;}
+		protected JammingManager jammingManager;
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
 		protected List<Electh> electh;
@@ -80,6 +81,7 @@ namespace Eleconnect
 			CommonInit();
 			
 			panelManager = new PanelManager();
+			jammingManager = new JammingManager();
 			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
@@ -180,6 +182,7 @@ namespace Eleconnect
 			
 			// パネルの更新
 			panelManager.Update();
+			jammingManager.Update();
 			
 			frameCnt++;
 		}
@@ -360,11 +363,13 @@ namespace Eleconnect
 			{
 				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
+				JammingSwitch.isJamming = false;
 			}
 			if(input.triggerL.isPushStart && panel.isGoal == false)
 			{
 				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);
+				JammingSwitch.isJamming = true;
 			}
 			
 			// エレクスを流す
@@ -463,6 +468,7 @@ namespace Eleconnect
 			guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
+			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			//gameUI.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
@@ -479,6 +485,7 @@ namespace Eleconnect
 			guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();
+			jammingManager.Term();
 			gameUI.Term ();
 			musicEffect.Term();
 			music.Term();

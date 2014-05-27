@@ -15,21 +15,22 @@ namespace Eleconnect
 {
 	public class ResultScene : BaseScene
 	{
-		public Sprite2D 
+		private Sprite2D 
 			resultLogoSp,
 			scoreSp,
 			pakSp,
 			backSp;
-		public Texture2D 
+		private Texture2D 
 			resultLogoTex,
 			scoreTex,
 			pakTex,
 			backTex;
 		
-		public float
+		private float
 			frameCnt,
 			alfaGain;
-		public bool gainChange;
+		
+		private bool gainChange;
 		
 		private MusicEffect resultEffect;
 		private MusicEffect musicEffect;

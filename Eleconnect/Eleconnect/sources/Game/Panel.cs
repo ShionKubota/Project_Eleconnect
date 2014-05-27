@@ -15,13 +15,12 @@ namespace Eleconnect
 		
 		private const float BRIGHT_MINI = 0.0f;			// 光のパネルの不透明度の最低値
 		private const float BRIGHT_CHANGE_SPEED = 0.1f;	// 明度変更時の変化スピード
-		
 		public static int elecPowMax = 81;	// パネルに流れる電力の最大値
 		
 		// 変数
 		private Sprite2D sp;
 		private Sprite2D lightSp;
-		private static Texture2D[] tex = new Texture2D[4];
+		private static Texture2D[] tex = new Texture2D[5];
 		private Sprite2D repeaterSp;
 		private static Texture2D repeaterTex;
 		
@@ -46,7 +45,8 @@ namespace Eleconnect
 			Straight,		// 直線
 			RightAngle,		// 直角
 			T,				// T字
-			Cross			// 十字
+			Cross,			// 十字
+			JammSwitch		// ジャミングスイッチ
 		}
 		
 		// パネルのルート情報
@@ -94,6 +94,10 @@ namespace Eleconnect
 				
 			case RouteId.Cross:
 				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
+				break;
+				
+			case TypeId.JammSwitch:
+				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
 				break;
 			}
 			

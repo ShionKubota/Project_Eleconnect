@@ -12,21 +12,23 @@ namespace Eleconnect
 {
 	public class Score
 	{
-		const int RAND_TIME = 140;				// ぐちゃぐちゃ表示時間
+		const int RAND_TIME = 140;		// ぐちゃぐちゃ表示時間
 		public static float point;		// 得点
-		public int[] numeral;			// 桁ごとの得点
-		public int digit;				// 桁数
-		public int randCnt;
+		int[] numeral;					// 桁ごとの得点
+		int digit;						// 桁数
+		int randCnt;
 		public bool randEnd;
 		
 		public Number num;
 		public TimeManager timeManager;
 		
+		// コンストラクタ
 		public Score ()
 		{
 			Init();
 		}
 		
+		// 初期化
 		private void Init()
 		{
 			num = new Number();
@@ -38,6 +40,7 @@ namespace Eleconnect
 			randEnd = false;
 		}
 		
+		// 更新
 		public void Update()
 		{
 			// 桁数取得してポイント表示しよう
@@ -52,10 +55,10 @@ namespace Eleconnect
 					numeral[i] = (int)(point / (FMath.Pow(10,i))) % 10;
 				}
 			}
-			
 			randCnt++;
 		}
 		
+		// 描画
 		public void Draw()
 		{
 			//	数字をぐちゃぐちゃ
@@ -79,6 +82,7 @@ namespace Eleconnect
 			}
 		}
 		
+		// 解放
 		public void Term()
 		{
 			num.Term();
