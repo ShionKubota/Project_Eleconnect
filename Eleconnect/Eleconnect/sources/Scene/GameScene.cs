@@ -18,9 +18,10 @@ namespace Eleconnect
 	{
 		// 主要オブジェクト
 		public static GameUI gameUI;
-		protected PanelManager panelManager;
+		public static PanelManager panelManager{protected set; get;}
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
+		protected List<Electh> electh;
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
@@ -49,6 +50,7 @@ namespace Eleconnect
 		{
 			GAME,
 			PAUSE,
+			FLOW_ELECTH,
 			CLEAR
 		}
 		public StateId nowState{ private set; get; }
@@ -59,7 +61,7 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			//PlayData.GetInstance().stageNo = 1;
+			//PlayData.GetInstance().stageNo = 2;
 			Init ();
 		}
 		
@@ -81,7 +83,7 @@ namespace Eleconnect
 			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
-			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the ELEC_POW_MAX.");
+			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the elecPowMax.");
 			//if(IS_EDIT_MODE) Console.WriteLine("IS_DEBUG_MODE...Zkey : Save the data of this map.");
 		}
 		
@@ -105,6 +107,7 @@ namespace Eleconnect
 			gameUI = new GameUI();
 			timeManager = new TimeManager();
 			menuManager = new MenuManager();
+			electh = new List<Electh>();
 			
 			// パラメータ初期化
 			repeaterCnt = 0;
@@ -162,6 +165,10 @@ namespace Eleconnect
 				GamingProcess();
 				break;
 				
+			case StateId.FLOW_ELECTH:
+				FrowingProcess();
+				break;
+				
 			case StateId.CLEAR:
 				AfterClearingProcess();
 				break;
@@ -173,7 +180,6 @@ namespace Eleconnect
 			
 			// パネルの更新
 			panelManager.Update();
-			
 			
 			frameCnt++;
 		}
@@ -193,17 +199,112 @@ namespace Eleconnect
 			// 仮に、右下までつながったらクリアーとする
 			if(panelManager[stageWidth - 1, stageHeight - 1].elecPow > 0)
 			{
+				/*
 				frameCnt = 0;
-				nowState = StateId.CLEAR;
-				Panel.ELEC_POW_MAX = 1;
+				nowState = StateId.FLOW_ELECTH;
+				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
+				Panel.elecPowMax = 1;
+				PanelManager.CheckConnectOfPanels(0, 0);
+				*/
 			}
+			
+		}
+		
+		// エレクス（電気の球）がステージ上を流れる際の更新プロセス
+		protected void FrowingProcess()
+		{
+			if(electh.Count == 0)
+			{
+				nowState = StateId.GAME;
+				Panel.elecPowMax = 99;
+			}	
+			
+			for(int i = electh.Count-1; i >= 0; i--)
+			{
+				if(electh[i].state == Electh.StateId.WAIT)
+				{
+					SetElecth (i);
+				}
+				
+				electh[i].Update ();
+				
+				// 役目を果たしたエレクスをリストからはずす
+				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);
+			}
+		}
+		
+		// エレクスを次のパネルに発進させる(分岐していたら新しいエレクスを作る)
+		private void SetElecth(int id)
+		{
+			bool needNewElecth = false;
+			
+			Panel oldTarget = electh[id].target,	// このエレクスが現在到着しているパネル
+				  newTarget;						// 次のターゲットなるパネル(次のターゲットは無いかもしれないので初期化はここではしない)
+			
+			float oldSpeed = electh[id].speed;
+			
+			int id_w = 0, id_h = 0;					// 現在のパネルの、配列における要素番号
+			panelManager.GetIdByPanel(oldTarget, ref id_w, ref id_h);
+			
+			int[] moveTblW = {0, 1, 0, -1};			// 現在のパネルから隣のパネル(上下左右)への移動量テーブル
+			int[] moveTblH = {-1, 0, 1, 0};
+			
+			for(int j = 0; j < 4; j++)	// 4方向チェック
+			{
+				if(oldTarget.route[j])
+				{
+					// 調査先番号
+					int checkIndexW = id_w + moveTblW[j],
+						checkIndexH = id_h + moveTblH[j];
+					
+					// 調査先が存在しない場合は調査しない
+					if(checkIndexW < 0 || checkIndexW >= GameScene.stageWidth ||
+					   checkIndexH < 0 || checkIndexH >= GameScene.stageHeight)
+						continue;
+					
+					// 存在していたら、調査先を確定
+					else
+					{
+						newTarget = panelManager[checkIndexW, checkIndexH];
+					}
+					
+					// 調査先に電流が既に流れていたら調査しない
+					if(newTarget.elecPow > 0) continue;
+					
+					// 調査先パネルにて,調査するルート番号を設定(自分が0(↑)なら相手は2(↓)という具合)
+					int checkRouteIndex = j + 2;
+					if(checkRouteIndex > 3) checkRouteIndex -= 4;
+					
+					// 接続できていたらそのパネルにエレクスを向かわせる
+					if(newTarget.route[checkRouteIndex] == true)
+					{
+						// 新しいエレクスが必要なら生成して再帰
+						if(needNewElecth == true)
+						{
+							electh.Add(new Electh(oldTarget, oldSpeed));
+							SetElecth (electh.Count-1);
+						}
+						// そうでなければ現在のエレクスをそのまま次に向かわせる
+						else
+						{
+							needNewElecth = true;
+							electh[id].SetTarget(newTarget);
+							Console.WriteLine("GO_ELECTH!");
+							newTarget.elecPow = 1;
+						}
+					}
+				}
+			}
+			
+			// どの方向にもエレクスが進まなかったら消滅させる
+			if(electh[id].state == Electh.StateId.WAIT) electh[id].Kill();
 		}
 		
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
 			// リザルトへ
-			if(Panel.ELEC_POW_MAX == 10)
+			if(Panel.elecPowMax == 10)
 			{
 				this.fadeOutTime = 100;
 				this.fadeOutColor = new Vector3(1.0f, 1.0f, 1.0f);
@@ -217,15 +318,15 @@ namespace Eleconnect
 			}
 			
 			// 光る演出
-			if(frameCnt % 5 == 0 && frameCnt > 70 && Panel.ELEC_POW_MAX < 10)
+			if(frameCnt % 5 == 0 && frameCnt > 70 && Panel.elecPowMax < 10)
 			{
-				Panel.ELEC_POW_MAX++;
+				Panel.elecPowMax++;
 				PanelManager.CheckConnectOfPanels(0, 0);
 			}
 			
-			//Panel.ELEC_POW_MAX += (int)(frameCnt * 0.01f);
+			//Panel.elecPowMax += (int)(frameCnt * 0.01f);
 			
-			//Panel.ELEC_POW_MAX = (int)(5.0f + 4 * FMath.Sin(FMath.Radians(frameCnt * 10)));
+			//Panel.elecPowMax = (int)(5.0f + 4 * FMath.Sin(FMath.Radians(frameCnt * 10)));
 			//PanelManager.CheckConnectOfPanels(0, 0);
 		}
 		
@@ -266,6 +367,16 @@ namespace Eleconnect
 				musicEffect.Set(1.0f,false);
 			}
 			
+			// エレクスを流す
+			if(input.circle.isPushStart)
+			{
+				frameCnt = 0;
+				nowState = StateId.FLOW_ELECTH;
+				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
+				Panel.elecPowMax = 1;
+				PanelManager.CheckConnectOfPanels(0, 0);
+			}
+			
 			// アイテムを使用
 			// リピーター
 			if(input.cross.isPushStart)
@@ -283,11 +394,11 @@ namespace Eleconnect
 			}
 			
 			// パネル変化
-			if(input.square.isPushStart && panel.typeId != Panel.TypeId.Cross)
+			if(input.square.isPushStart && panel.routeId != Panel.RouteId.Cross)
 			{
 				if(changeCnt < 2)
 				{
-					Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
+					Panel.RouteId newId = (Panel.RouteId)((int)panel.routeId + 1);
 					panel.ChangeType(newId);
 					PanelManager.CheckConnectOfPanels(0, 0);
 					changeCnt++;
@@ -318,10 +429,10 @@ namespace Eleconnect
 			if(input.start.isPushStart)
 			{
 				Console.WriteLine ("up = {0}\nright = {1}\ndown = {2}\nleft = {3}\nElec = {4}\nrotateCnt = {5}\n", 
-				                   panel.route[Panel.RouteId.UP],
-				                   panel.route[Panel.RouteId.RIGHT],
-				                   panel.route[Panel.RouteId.DOWN],
-				                   panel.route[Panel.RouteId.LEFT],
+				                   panel.route[Panel.DirId.UP],
+				                   panel.route[Panel.DirId.RIGHT],
+				                   panel.route[Panel.DirId.DOWN],
+				                   panel.route[Panel.DirId.LEFT],
 				                   panel.elecPow,
 				                   panel.rotateCnt);
 			}
@@ -331,16 +442,16 @@ namespace Eleconnect
 			if(input.circle.isPushStart ||
 			   input.circle.holdingSeconds > 1.0f)
 			{
-				Panel.ELEC_POW_MAX += 1; 
+				Panel.elecPowMax += 1; 
 				PanelManager.CheckConnectOfPanels(0, 0);
-				Console.WriteLine("ELEC_MAX = " + Panel.ELEC_POW_MAX);
+				Console.WriteLine("ELEC_MAX = " + Panel.elecPowMax);
 			}
 			if((input.triangle.isPushStart ||
-			   input.triangle.holdingSeconds > 1.0f) && Panel.ELEC_POW_MAX > 1)
+			   input.triangle.holdingSeconds > 1.0f) && Panel.elecPowMax > 1)
 			{
-				Panel.ELEC_POW_MAX -= 1;
+				Panel.elecPowMax -= 1;
 				PanelManager.CheckConnectOfPanels(0, 0);
-				Console.WriteLine("ELEC_MAX = " + Panel.ELEC_POW_MAX);
+				Console.WriteLine("ELEC_MAX = " + Panel.elecPowMax);
 			}
 			*/
 		}
@@ -355,6 +466,10 @@ namespace Eleconnect
 			if(nowState == StateId.GAME) cursor.Draw();
 			//gameUI.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
+			foreach(Electh elec in electh)
+			{
+				elec.Draw();
+			}
 		}
 		
 		// 解放

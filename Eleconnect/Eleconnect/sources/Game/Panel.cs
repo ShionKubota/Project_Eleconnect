@@ -4,11 +4,11 @@ using Sce.PlayStation.Core.Graphics;
 
 namespace Eleconnect
 {
-	public class Panel
+	public abstract class Panel
 	{
 		// 各種定数
-		public const float SIZE = 128.0f;
-		public const float SCALE = 0.4f;
+		public const float SIZE = 128.0f;	// テクスチャサイズ
+		public const float SCALE = 0.4f;	// 倍率
 		
 		private const float ROTATE_SPEED = 0.4f;		// パネルの回転スピード
 		private const float ROTATE_STOP_ANGLE = 1.0f;	// 目標の角度と現在の角度の差が、この数値以下になったら回転をストップ
@@ -16,7 +16,7 @@ namespace Eleconnect
 		private const float BRIGHT_MINI = 0.0f;			// 光のパネルの不透明度の最低値
 		private const float BRIGHT_CHANGE_SPEED = 0.1f;	// 明度変更時の変化スピード
 		
-		public static int ELEC_POW_MAX = 10;	// パネルに流れる電力の最大値
+		public static int elecPowMax = 81;	// パネルに流れる電力の最大値
 		
 		// 変数
 		private Sprite2D sp;
@@ -30,10 +30,18 @@ namespace Eleconnect
 		public int elecPow;			// このパネルに流れる電力
 		public bool isRepeater;		// 電力が回復する特殊パネル
 		public bool isGoal;			// ゴールとなるパネル
-		public TypeId typeId{private set; get;}	// 現在のパネルタイプ
+		public RouteId routeId{private set; get;}	// 現在のパネルの通路タイプ
+		public TypeId typeId{protected set; get;}	// 現在のパネルの種類
 		
 		// パネルの種類列挙
 		public enum TypeId
+		{
+			Normal,
+			Group,
+			Switch,
+			Terminal
+		}
+		public enum RouteId
 		{
 			Straight,		// 直線
 			RightAngle,		// 直角
@@ -43,7 +51,7 @@ namespace Eleconnect
 		
 		// パネルのルート情報
 		public bool[] route = new bool[4];
-		public struct RouteId
+		public struct DirId
 		{
 			public const int UP = 0;
 			public const int RIGHT = 1;
@@ -51,13 +59,14 @@ namespace Eleconnect
 			public const int LEFT = 3;
 		}
 		
-		public Panel (TypeId id, Vector2 pos)
+		// コンストラクタ
+		public Panel (RouteId id, Vector2 pos)
 		{
 			Init (id, pos);
 		}
 		
 		// 初期化
-		public void Init(TypeId id, Vector2 pos)
+		public void Init(RouteId id, Vector2 pos)
 		{
 			for(int i = 0; i < 4; i++)
 			{
@@ -67,24 +76,24 @@ namespace Eleconnect
 			
 			switch(id)
 			{
-			case TypeId.Straight:
+			case RouteId.Straight:
 				//sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
-				route[RouteId.UP] = route[RouteId.DOWN] = true;
-				route[RouteId.LEFT] = route[RouteId.RIGHT] = false;
+				route[DirId.UP] = route[DirId.DOWN] = true;
+				route[DirId.LEFT] = route[DirId.RIGHT] = false;
 				break;
 				
-			case TypeId.RightAngle:
-				route[RouteId.RIGHT] = route[RouteId.DOWN] = true;
-				route[RouteId.UP] = route[RouteId.LEFT] =  false;
+			case RouteId.RightAngle:
+				route[DirId.RIGHT] = route[DirId.DOWN] = true;
+				route[DirId.UP] = route[DirId.LEFT] =  false;
 				break;
 				
-			case TypeId.T:
-				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.DOWN] = true;
-				route[RouteId.UP] = false;
+			case RouteId.T:
+				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.DOWN] = true;
+				route[DirId.UP] = false;
 				break;
 				
-			case TypeId.Cross:
-				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
+			case RouteId.Cross:
+				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
 				break;
 			}
 			
@@ -110,7 +119,7 @@ namespace Eleconnect
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
-			typeId = id;
+			routeId = id;
 		}
 		
 		// 更新
@@ -127,8 +136,37 @@ namespace Eleconnect
 				PanelManager.CheckConnectOfPanels(0, 0);
 			}
 			
+			// 光る
+			Bright ();
+			
+			
+			/*
+			float targetBright = BRIGHT_MINI + (elecPow / (float)elecPowMax) * (1.0f - BRIGHT_MINI);	// 目標の明度
+			float nowBright = sp.color.X;																// 現在の明度
+			float newBright = nowBright + (targetBright - nowBright) * BRIGHT_CHANGE_SPEED;				// 新しい明度
+			if(FMath.Abs (targetBright - newBright) < 0.01f) newBright = targetBright;
+			sp.color = new Vector4(newBright, newBright, newBright, 1.0f);
+			*/
+			/*
+			// リピーターのパネルは緑(光は黄色)にする
+			if(isRepeater && repeaterSp.color.W < 1.0f)
+			{
+				repeaterSp.color.W += 0.1f;
+			}
+			*/
+			// ゴールは赤く光る
+			if(isGoal)
+			{
+				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+			}
+		}
+		
+		// 光る
+		protected void Bright()
+		{
 			// 現在の電力に合わせてボンヤリと光らせる(光スプライトの透明度を下げる)
-			float targetBright = BRIGHT_MINI + (elecPow / (float)ELEC_POW_MAX) * (1.0f - BRIGHT_MINI);	// 目標の透明度
+			//float targetBright = BRIGHT_MINI + (elecPow / (float)elecPowMax) * (1.0f - BRIGHT_MINI);	// 目標の透明度
+			float targetBright = (this.elecPow > 0) ? 1.0f : 0.0f;
 			float nowBright = lightSp.color.W;															// 現在の透明度
 			float newBright = nowBright + (targetBright - nowBright) * BRIGHT_CHANGE_SPEED;				// 新しい透明度
 			if(FMath.Abs (targetBright - newBright) < 0.01f) newBright = targetBright;
@@ -136,29 +174,6 @@ namespace Eleconnect
 			
 			// 光スプライトの同期
 			lightSp.angle = sp.angle;
-			
-			/*
-			float targetBright = BRIGHT_MINI + (elecPow / (float)ELEC_POW_MAX) * (1.0f - BRIGHT_MINI);	// 目標の明度
-			float nowBright = sp.color.X;																// 現在の明度
-			float newBright = nowBright + (targetBright - nowBright) * BRIGHT_CHANGE_SPEED;				// 新しい明度
-			if(FMath.Abs (targetBright - newBright) < 0.01f) newBright = targetBright;
-			sp.color = new Vector4(newBright, newBright, newBright, 1.0f);
-			*/
-			
-			// リピーターのパネルは緑(光は黄色)にする
-			if(isRepeater && repeaterSp.color.W < 1.0f)
-			{
-				repeaterSp.color.W += 0.1f;
-				/*
-				sp.color = new Vector4(1.0f, 1.0f, 0.0f, 1.0f);
-				lightSp.color = new Vector4(1.0f, 1.0f, 0.0f, lightSp.color.W);
-				*/
-			}
-			// ゴールは赤く光る
-			if(isGoal)
-			{
-				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-			}
 		}
 		
 		// 描画
@@ -179,7 +194,10 @@ namespace Eleconnect
 		}
 		
 		// L,Rボタンを押した際のイベント
-		public virtual void ButtonEvent(bool pushR){}
+		public abstract TypeId ButtonEvent(bool pushR);
+		
+		// グループにパネルを追加
+		public virtual void AddPanel(RouteId id, Vector2 pos, int indexW, int indexH){}
 		
 		// 位置取得
 		public Vector3 GetPos()
@@ -230,7 +248,7 @@ namespace Eleconnect
 		}
 		
 		// 種類変更
-		public void ChangeType(TypeId id)
+		public void ChangeType(RouteId id)
 		{
 			Init (id, new Vector2(sp.pos.X, sp.pos.Y));
 			PanelManager.CheckConnectOfPanels(0, 0);

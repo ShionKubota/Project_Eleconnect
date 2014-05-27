@@ -7,7 +7,7 @@ namespace Eleconnect
 	public class PanelEditor : PanelManager
 	{
 		// エディット情報
-		public const bool IS_RANDOM_MAP = true;	// マップを新しくランダムに生成
+		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
 		public const int RANDOM_MAP_W = 2;
 		public const int RANDOM_MAP_H = 6;
 		public const int REPEATER_NUM = 0;
@@ -36,7 +36,7 @@ namespace Eleconnect
 				List<Panel> panelLine = new List<Panel>();
 				for(int j = 0; j < GameScene.stageHeight; j++)
 				{
-					panelLine.Add (new Panel((Panel.TypeId)rand.Next(0, 4),
+					panelLine.Add (new NormalPanel((Panel.RouteId)rand.Next(0, 4),
 					               new Vector2(basePos.X + panelSize * i,
 					            			   basePos.Y + panelSize * j)));
 				}
