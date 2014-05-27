@@ -9,7 +9,7 @@ namespace Eleconnect
 		private Texture2D[] switchTex = new Texture2D[2];
 		private Sprite2D[] switchSp = new Sprite2D[2];
 		
-		public static bool isJamming{set; get;} 
+		public static bool isJamming;
 		
 		// コンストラクタ
 		public JammingSwitch ()
@@ -47,7 +47,6 @@ namespace Eleconnect
 			else
 			{
 				switchSp[1].Draw();
-				Console.WriteLine("OFF");
 			}
 		}
 		

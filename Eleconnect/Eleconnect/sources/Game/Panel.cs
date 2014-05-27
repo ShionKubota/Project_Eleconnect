@@ -39,7 +39,7 @@ namespace Eleconnect
 			RightAngle,		// 直角
 			T,				// T字
 			Cross,			// 十字
-			Jamming			// ジャミング
+			JammSwitch		// ジャミングスイッチ
 		}
 		
 		// パネルのルート情報
@@ -88,7 +88,7 @@ namespace Eleconnect
 				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
 				break;
 				
-			case TypeId.Jamming:
+			case TypeId.JammSwitch:
 				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
 				break;
 			}

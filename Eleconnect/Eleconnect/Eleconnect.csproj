@@ -86,6 +86,7 @@
     <Compile Include="sources\Game\Jamming.cs" />
     <Compile Include="sources\Game\JammingManager.cs" />
     <Compile Include="sources\Game\JammingSwitch.cs" />
+    <Compile Include="sources\Game\Transformer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
