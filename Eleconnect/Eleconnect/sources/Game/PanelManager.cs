@@ -56,7 +56,7 @@ namespace Eleconnect
 				{
 					// 読み込んだマップデータを基に配置
 					int loadIndex = ((GameScene.stageHeight * 2) * i) + (j * 2);
-					panelLine.Add (new NormalPanel((Panel.TypeId)GameScene.mapData[loadIndex],
+					panelLine.Add (new NormalPanel((Panel.RouteId)GameScene.mapData[loadIndex],
 					                         new Vector2(basePos.X + panelSize * i,
 					            			  			 basePos.Y + panelSize * j)));
 					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);
@@ -125,7 +125,7 @@ namespace Eleconnect
 			}
 			
 			// 調査
-			CheckConnect(startIndexW, startIndexH, Panel.ELEC_POW_MAX);
+			CheckConnect(startIndexW, startIndexH, Panel.elecPowMax);
 			
 			// 調査後処理(つながった数を計算)
 			int connectNum = 0;
@@ -147,7 +147,7 @@ namespace Eleconnect
 			Panel panel = panels[indexW][indexH];	// 探査の基準とするパネル
 			
 			// pパネルに電力を適用する(リピーターアイテムが使われていれば、電力はMAXに回復)
-			panel.elecPow = (panel.isRepeater) ? Panel.ELEC_POW_MAX : elecPow;
+			panel.elecPow = (panel.isRepeater) ? Panel.elecPowMax : elecPow;
 			
 			// 電力が0ならこれ以上の調査はしない
 			if(panel.elecPow <= 0) return;
@@ -187,6 +187,20 @@ namespace Eleconnect
 				}
 			}
 			return;
+		}
+		
+		// パネルが何行何列目の要素か教えてもらう
+		public void GetIdByPanel(Panel panel, ref int id_w, ref int id_h)
+		{
+			for(int i = 0; i < panels.Count; i++)
+			{
+				int j = panels[i].IndexOf(panel);
+				if(j >= 0)
+				{
+					id_w = i;
+					id_h = j;
+				}
+			}
 		}
 	}// END OF CLASS
 }

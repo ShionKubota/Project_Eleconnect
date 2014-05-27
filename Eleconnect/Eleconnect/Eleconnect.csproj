@@ -83,10 +83,9 @@
     <Compile Include="sources\Game\MenuCommentary.cs" />
     <Compile Include="sources\Game\Panel.cs" />
     <Compile Include="sources\Game\NormalPanel.cs" />
-    <Compile Include="sources\Game\Jamming.cs" />
-    <Compile Include="sources\Game\JammingManager.cs" />
-    <Compile Include="sources\Game\JammingSwitch.cs" />
-    <Compile Include="sources\Game\Transformer.cs" />
+    <Compile Include="sources\Game\GroupPanel.cs" />
+    <Compile Include="sources\Game\ChildPanel.cs" />
+    <Compile Include="sources\Game\Electh.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -147,9 +146,7 @@
     <Content Include="assets\img\guid.png" />
     <Content Include="assets\img\test.png" />
     <Content Include="assets\img\corner.png" />
-    <Content Include="assets\img\Jamming.png" />
-    <Content Include="assets\img\switch_off.png" />
-    <Content Include="assets\img\switch_on.png" />
+    <Content Include="assets\img\electh.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

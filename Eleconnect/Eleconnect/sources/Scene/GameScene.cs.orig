@@ -18,8 +18,12 @@ namespace Eleconnect
 	{
 		// 主要オブジェクト
 		public static GameUI gameUI;
+<<<<<<< HEAD
 		public static PanelManager panelManager{protected set; get;}
+=======
+		protected PanelManager panelManager;
 		protected JammingManager jammingManager;
+>>>>>>> 02f96690a0efe40842366590c350c9ad26e7cd37
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
 		protected List<Electh> electh;
