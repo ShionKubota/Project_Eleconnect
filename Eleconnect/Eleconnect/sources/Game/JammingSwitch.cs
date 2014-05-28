@@ -4,7 +4,7 @@ using Sce.PlayStation.Core;
 
 namespace Eleconnect
 {
-	public class JammingSwitch
+	public class JammingSwitch : Panel
 	{
 		private Texture2D[] switchTex = new Texture2D[2];
 		private Sprite2D[] switchSp = new Sprite2D[2];
@@ -12,13 +12,13 @@ namespace Eleconnect
 		public static bool isJamming;
 		
 		// コンストラクタ
-		public JammingSwitch ()
+		public JammingSwitch () : base(TypeId.JammSwitch,new Vector2(AppMain.ScreenWidth/2,AppMain.ScreenWidth/2))
 		{
-			Init();
+			//Init();
 		}
 		
 		// 初期化
-		private void Init()
+		public override void Init(TypeId id, Vector2 pos)
 		{
 			switchTex[0] = new Texture2D(@"/Application/assets/img/switch_on.png", false);
 			switchTex[1] = new Texture2D(@"/Application/assets/img/switch_off.png", false);
@@ -55,6 +55,10 @@ namespace Eleconnect
 		{
 			switchTex[0].Dispose();
 			switchTex[0].Dispose();
+		}
+		
+		public override void ButtonEvent (bool pushR)
+		{
 		}
 	}
 }

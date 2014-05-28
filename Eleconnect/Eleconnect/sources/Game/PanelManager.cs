@@ -56,9 +56,21 @@ namespace Eleconnect
 				{
 					// 読み込んだマップデータを基に配置
 					int loadIndex = ((GameScene.stageHeight * 2) * i) + (j * 2);
-					panelLine.Add (new NormalPanel((Panel.RouteId)GameScene.mapData[loadIndex],
-					                         new Vector2(basePos.X + panelSize * i,
-					            			  			 basePos.Y + panelSize * j)));
+					Panel.TypeId type = (Panel.TypeId)GameScene.mapData[loadIndex];
+					// 通常パネル
+					if(type <= Panel.TypeId.Cross)
+					{
+						panelLine.Add (new NormalPanel(type,
+					    	                     new Vector2(basePos.X + panelSize * i,
+					        	    			  			 basePos.Y + panelSize * j)));
+					}
+					// スイッチ
+					if(type == Panel.TypeId.JammSwitch)
+					{
+						panelLine.Add (new JammingSwitch(type,
+					    	                     new Vector2(basePos.X + panelSize * i,
+					        	    			  			 basePos.Y + panelSize * j)));
+					}
 					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);
 				}
 				panels.Add(panelLine);

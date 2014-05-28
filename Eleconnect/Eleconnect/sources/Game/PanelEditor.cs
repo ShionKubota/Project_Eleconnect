@@ -36,7 +36,7 @@ namespace Eleconnect
 				List<Panel> panelLine = new List<Panel>();
 				for(int j = 0; j < GameScene.stageHeight; j++)
 				{
-					panelLine.Add (new NormalPanel((Panel.RouteId)rand.Next(0, 4),
+					panelLine.Add (new NormalPanel((Panel.TypeId)rand.Next(0, 4),
 					               new Vector2(basePos.X + panelSize * i,
 					            			   basePos.Y + panelSize * j)));
 				}
