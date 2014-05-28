@@ -95,10 +95,6 @@ namespace Eleconnect
 			case RouteId.Cross:
 				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
 				break;
-				
-			case TypeId.JammSwitch:
-				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
-				break;
 			}
 			
 			sp =  new Sprite2D(tex[(int)id]);
@@ -112,11 +108,13 @@ namespace Eleconnect
 			lightSp.textureUV = new Vector4(0.5f, 0.0f, 1.0f, 1.0f);
 			lightSp.size = sp.size;
 			
+			/*
 			repeaterTex = new Texture2D(@"/Application/assets/img/ianzuma.png", false);
 			repeaterSp =  new Sprite2D(repeaterTex);
 			repeaterSp.pos = sp.pos;
 			repeaterSp.size = new Vector2(0.2f, 0.2f);
 			repeaterSp.color.W = 0.0f;
+			*/
 			
 			isRepeater = false;
 			isGoal = false;
@@ -185,7 +183,7 @@ namespace Eleconnect
 		{
 			sp.Draw();
 			lightSp.Draw();
-			repeaterSp.Draw();
+			//5repeaterSp.Draw();
 		}
 		
 		// 解放

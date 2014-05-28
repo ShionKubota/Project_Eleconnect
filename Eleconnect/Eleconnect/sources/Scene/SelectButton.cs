@@ -16,11 +16,11 @@ namespace Eleconnect
 		Input input = Input.GetInstance();
 		private MusicEffect musicEffect;
 		private Sprite2D[] selectBtnSp = new Sprite2D[10];		// スプライト
-		private Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
+		private static Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
 		private Sprite2D[] prevGameSp = new Sprite2D[10];		// ステージサンプルスプライト
-		private Texture2D[] prevGameTex = new Texture2D[10];		// ステージサンプルテクスチャ
+		private static Texture2D[] prevGameTex = new Texture2D[10];		// ステージサンプルテクスチャ
 		private Sprite2D[] cornerSp = new Sprite2D[4];
-		private Texture2D[] cornerTex = new Texture2D[4];
+		private static Texture2D[] cornerTex = new Texture2D[4];
 		const int SELECT_BTN_SIZE = 128;						// 画像サイズ
 		public const int STAGE_NUM = 9;							// 総ステージ数
 		
@@ -55,13 +55,22 @@ namespace Eleconnect
 			// 画像
 			for(int i = 0;i <= STAGE_NUM;i++)
 			{
-				selectBtnTex[i] = new Texture2D(@"/Application/assets/img/number_"+ i +".png", false);
+				if(selectBtnTex[i] == null)
+				{
+					selectBtnTex[i] = new Texture2D(@"/Application/assets/img/number_"+ i +".png", false);
+				}
+				
 				selectBtnSp[i] = new Sprite2D(selectBtnTex[i]);
 				
-				prevGameTex[i] = new Texture2D(@"/Application/assets/img/test.png",false);
+				if(prevGameTex[i] == null)
+				{
+					prevGameTex[i] = new Texture2D(@"/Application/assets/img/test.png",false);
+				}
+				
 				prevGameSp[i] = new Sprite2D(prevGameTex[i]);
 				prevGameSp[i].pos = new Vector3(AppMain.ScreenWidth/2,AppMain.ScreenHeight/2,0.0f);
 				prevGameSp[i].size = new Vector2(0.8f,0.8f);
+				
 			}
 			for(int i = 1;i<STAGE_NUM;i++)
 			{
@@ -72,7 +81,10 @@ namespace Eleconnect
 			}
 			for(int i = 0; i < 4;i++)
 			{
-				cornerTex[i] = new Texture2D(@"/Application/assets/img/corner.png",false);
+				if(cornerTex[i] == null)
+				{
+					cornerTex[i] = new Texture2D(@"/Application/assets/img/corner.png",false);
+				}
 				cornerSp[i] = new Sprite2D(cornerTex[i]);
 				cornerSp[i].size = new Vector2(1.0f);
 				
@@ -137,11 +149,6 @@ namespace Eleconnect
 		// 開放
 		public void Term()
 		{
-			for(int i = 0;i<10;i++)
-			{
-				prevGameTex[i].Dispose();
-				selectBtnTex[i].Dispose();
-			}
 		}
 		
 		// ボタン類の動き
