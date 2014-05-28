@@ -5,16 +5,14 @@ namespace Eleconnect
 {
 	public class NormalPanel : Panel
 	{
-		public NormalPanel(RouteId id, Vector2 pos) : base(id, pos)
+		public NormalPanel(TypeId id, Vector2 pos) : base(id, pos)
 		{
-			typeId = TypeId.Normal;
 		}
 		
 		// ボタン押された際のイベント
-		public override TypeId ButtonEvent(bool pushR)
+		public override void ButtonEvent(bool pushR)
 		{
 			Rotate (pushR);
-			return typeId;
 		}
 	}
 }

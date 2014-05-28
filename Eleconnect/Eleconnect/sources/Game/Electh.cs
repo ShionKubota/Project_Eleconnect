@@ -23,7 +23,7 @@ namespace Eleconnect
 		public StateId state{get; private set;}
 		public Panel target{get; private set;}
 		
-		public const float DEF_SPEED = 1.5f;
+		public const float DEF_SPEED = 1.0f;
 		
 		public Electh (Panel panel, float speed)
 		{
@@ -73,14 +73,14 @@ namespace Eleconnect
 					state = StateId.DEATH;
 				break;
 			}
-			
 		}
 		
 		public void SetTarget(Panel panel)
 		{
 			state = StateId.FLOW;
 			target = panel;
-			this.speed *= (this.speed < 8.0f) ? 1.1f : 1.0f;
+			//this.speed *= (this.speed < 5.0f) ? 1.3f : 1.0f;
+			this.speed += (this.speed < 5.0f) ? 0.3f : 0.0f;
 		}
 		
 		public void Kill()

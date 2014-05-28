@@ -80,8 +80,8 @@ namespace Eleconnect
 			// パネル変化
 			if(input.square.isPushStart)
 			{
-				Panel.RouteId newId = (Panel.RouteId)((int)panel.routeId + 1);
-				if(newId > Panel.RouteId.Cross) newId = Panel.RouteId.Straight;
+				Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
+				if(newId > Panel.TypeId.Cross) newId = Panel.TypeId.Straight;
 				panel.ChangeType(newId);
 				PanelManager.CheckConnectOfPanels(0, 0);
 			}
@@ -102,7 +102,7 @@ namespace Eleconnect
 			{
 				for(int j = 0; j < EditScene.stageHeight; j++)	
 				{
-					mapData.Add((int)panelManager[i, j].routeId);	// パネルのタイプを保存
+					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプを保存
 					
 					int rotateCnt = panelManager[i, j].rotateCnt;
 					if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;

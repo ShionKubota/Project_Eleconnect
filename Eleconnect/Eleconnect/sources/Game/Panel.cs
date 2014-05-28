@@ -29,18 +29,10 @@ namespace Eleconnect
 		public int elecPow;			// このパネルに流れる電力
 		public bool isRepeater;		// 電力が回復する特殊パネル
 		public bool isGoal;			// ゴールとなるパネル
-		public RouteId routeId{private set; get;}	// 現在のパネルの通路タイプ
-		public TypeId typeId{protected set; get;}	// 現在のパネルの種類
+		public TypeId typeId{private set; get;}	// 現在のパネルのタイプ
 		
 		// パネルの種類列挙
 		public enum TypeId
-		{
-			Normal,
-			Group,
-			Switch,
-			Terminal
-		}
-		public enum RouteId
 		{
 			Straight,		// 直線
 			RightAngle,		// 直角
@@ -60,13 +52,13 @@ namespace Eleconnect
 		}
 		
 		// コンストラクタ
-		public Panel (RouteId id, Vector2 pos)
+		public Panel (TypeId id, Vector2 pos)
 		{
 			Init (id, pos);
 		}
 		
 		// 初期化
-		public void Init(RouteId id, Vector2 pos)
+		public virtual void Init(TypeId id, Vector2 pos)
 		{
 			for(int i = 0; i < 4; i++)
 			{
@@ -76,28 +68,24 @@ namespace Eleconnect
 			
 			switch(id)
 			{
-			case RouteId.Straight:
+			case TypeId.Straight:
 				//sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
 				route[DirId.UP] = route[DirId.DOWN] = true;
 				route[DirId.LEFT] = route[DirId.RIGHT] = false;
 				break;
 				
-			case RouteId.RightAngle:
+			case TypeId.RightAngle:
 				route[DirId.RIGHT] = route[DirId.DOWN] = true;
 				route[DirId.UP] = route[DirId.LEFT] =  false;
 				break;
 				
-			case RouteId.T:
+			case TypeId.T:
 				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.DOWN] = true;
 				route[DirId.UP] = false;
 				break;
 				
-			case RouteId.Cross:
+			case TypeId.Cross:
 				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
-				break;
-				
-			case TypeId.JammSwitch:
-				route[RouteId.RIGHT] = route[RouteId.LEFT] = route[RouteId.UP] = route[RouteId.DOWN] = true;
 				break;
 			}
 			
@@ -123,7 +111,7 @@ namespace Eleconnect
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
-			routeId = id;
+			typeId = id;
 		}
 		
 		// 更新
@@ -198,10 +186,10 @@ namespace Eleconnect
 		}
 		
 		// L,Rボタンを押した際のイベント
-		public abstract TypeId ButtonEvent(bool pushR);
+		public abstract void ButtonEvent(bool pushR);
 		
 		// グループにパネルを追加
-		public virtual void AddPanel(RouteId id, Vector2 pos, int indexW, int indexH){}
+		public virtual void AddPanel(TypeId id, Vector2 pos, int indexW, int indexH){}
 		
 		// 位置取得
 		public Vector3 GetPos()
@@ -252,7 +240,7 @@ namespace Eleconnect
 		}
 		
 		// 種類変更
-		public void ChangeType(RouteId id)
+		public void ChangeType(TypeId id)
 		{
 			Init (id, new Vector2(sp.pos.X, sp.pos.Y));
 			PanelManager.CheckConnectOfPanels(0, 0);

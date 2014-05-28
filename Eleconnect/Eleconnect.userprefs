@@ -1,13 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Panel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Electh.cs">
     <Files>
       <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="87" Column="21" />
       <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="9" Column="13" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="10" Column="48" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="100" Column="37" />
       <File FileName="Eleconnect\sources\Game\GroupPanel.cs" Line="2" Column="34" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="58" Column="11" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="88" Column="25" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="22" Column="43" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="83" Column="44" />
       <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="195" Column="41" />
       <File FileName="Eleconnect\sources\Scene\EditScene.cs" Line="23" Column="41" />
     </Files>

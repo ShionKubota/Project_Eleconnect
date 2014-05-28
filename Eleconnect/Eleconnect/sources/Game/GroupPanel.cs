@@ -8,22 +8,18 @@ namespace Eleconnect
 	{
 		List<List<ChildPanel>> panels;
 		
-		public GroupPanel(RouteId id, Vector2 pos) : base(id, pos)
+		public GroupPanel(TypeId id, Vector2 pos) : base(id, pos)
 		{
-			typeId = TypeId.Group;
 		}
 		
 		// ボタン押された際のイベント
-		public override TypeId ButtonEvent(bool pushR)
+		public override void ButtonEvent(bool pushR)
 		{
-			
-			return typeId;
 		}
 		
 		// グループにパネル追加
-		public override void AddPanel(RouteId id, Vector2 pos, int indexW, int indexH)
+		public override void AddPanel(TypeId id, Vector2 pos, int indexW, int indexH)
 		{
-			//panels.Add (new ChildPanel(id, pos, indexW, indexH));
 			
 		}
 		

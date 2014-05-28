@@ -13,7 +13,7 @@ namespace Eleconnect
 		}
 		protected ChildData childData;
 		
-		public ChildPanel (RouteId id, Vector2 pos, int indexW, int indexH) : base(id, pos)
+		public ChildPanel (TypeId id, Vector2 pos, int indexW, int indexH) : base(id, pos)
 		{
 			childData.indexH = indexH;
 			childData.indexW = indexW;
