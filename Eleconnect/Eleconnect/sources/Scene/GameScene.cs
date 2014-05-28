@@ -399,11 +399,11 @@ namespace Eleconnect
 			}
 			
 			// パネル変化
-			if(input.square.isPushStart && panel.typeId != Panel.TypeId.Cross)
+			if(input.square.isPushStart && panel.routeId != Panel.RouteId.Cross)
 			{
 				if(changeCnt < 2)
 				{
-					Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
+					Panel.RouteId newId = (Panel.RouteId)((int)panel.routeId + 1);
 					panel.ChangeType(newId);
 					PanelManager.CheckConnectOfPanels(0, 0);
 					changeCnt++;
