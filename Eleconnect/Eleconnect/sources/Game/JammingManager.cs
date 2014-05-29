@@ -26,7 +26,6 @@ namespace Eleconnect
 		private void Init()
 		{
 			jamming = new Jamming();
-			jammSwitch = new JammingSwitch();
 			jammingX = GameScene.stageWidth-1;
 			jammingY = GameScene.stageHeight*2-1;
 			panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
@@ -46,10 +45,13 @@ namespace Eleconnect
 			{
 				for(int j = 0;j < jammingY;j++)
 				{
+					//jammingData[i,j] = 1;
+					
 					if(i % 2 == 0)
 					{
 						jammingData[i,j] = 1;
 					}
+					
 				}
 			}
 		}
@@ -62,37 +64,35 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
-			if(JammingSwitch.isJamming)
+			if(!JammingSwitch.isJamming) return;
+			
+			for(int i = 0;i < jammingX;i++)
 			{
-				for(int i = 0;i < jammingX;i++)
+				for(int j = 0;j < jammingY;j++)
 				{
-					for(int j = 0;j < jammingY;j++)
+					if(jammingData[i,j] == 1)
 					{
-						if(jammingData[i,j] == 1)
+						// 縦向き
+						if(j%2 == 0)
 						{
-							// 縦向き
-							if(j%2 == 0)
-							{
-								jammingLocate = new Vector3(basePos.X + panelSize * i,
-					                            		basePos.Y-panelSize/2 + panelSize * (j/2),
-					                            		0.0f);
-								jamming.Draw(jammingLocate,0.0f);
-							}
-							
-							// 横向き
-							if(j%2 == 1)
-							{ 
-								jammingLocate = new Vector3(basePos.X-panelSize/2 + panelSize * i,
-					                            		basePos.Y + panelSize * (j/2),
-					                            		0.0f);
-								jamming.Draw(jammingLocate,changeAngle);
-							}
+							jammingLocate = new Vector3(basePos.X + panelSize * i,
+				                            		basePos.Y-panelSize/2 + panelSize * (j/2),
+				                            		0.0f);
+							jamming.Draw(jammingLocate,0.0f);
+						}
+						
+						// 横向き
+						if(j%2 == 1)
+						{ 
+							jammingLocate = new Vector3(basePos.X-panelSize/2 + panelSize * i,
+				                            		basePos.Y + panelSize * (j/2),
+				                            		0.0f);
+							jamming.Draw(jammingLocate,changeAngle);
 						}
 					}
 				}
 			}
-			jammSwitch.Draw();
-		}
+			}
 		
 		// 解放
 		public void Term()

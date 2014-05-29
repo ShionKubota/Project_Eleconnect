@@ -8,8 +8,8 @@ namespace Eleconnect
 	{
 		// エディット情報
 		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
-		public const int RANDOM_MAP_W = 2;
-		public const int RANDOM_MAP_H = 6;
+		public const int RANDOM_MAP_W = 9;
+		public const int RANDOM_MAP_H = 9;
 		public const int REPEATER_NUM = 0;
 		
 		public PanelEditor ()

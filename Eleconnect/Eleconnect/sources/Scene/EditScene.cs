@@ -57,6 +57,8 @@ namespace Eleconnect
 		// プレイヤー操作
 		protected override void AcceptPlayerInput ()
 		{
+			base.AcceptPlayerInput();
+			
 			Input input = Input.GetInstance();
 			
 			int indexW = cursor.indexW,
@@ -65,29 +67,22 @@ namespace Eleconnect
 			// 選んでいるパネル
 			Panel panel = panelManager[indexW, indexH];
 			
-			// パネルを回転
-			if(input.triggerR.isPushStart) panel.ButtonEvent(true);
-			if(input.triggerL.isPushStart) panel.ButtonEvent(false);
-			
-			// アイテムを使用
-			// リピーター
-			if(input.cross.isPushStart)
-			{
-				panel.isRepeater = true;
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}
-			
 			// パネル変化
-			if(input.square.isPushStart)
+			if(input.cross.isPush == false && input.square.isPushStart)
 			{
-				Panel.RouteId newId = (Panel.RouteId)((int)panel.routeId + 1);
-				if(newId > Panel.RouteId.Cross) newId = Panel.RouteId.Straight;
+				Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
+				if(newId > Panel.TypeId.Cross) newId = Panel.TypeId.Straight;
 				panel.ChangeType(newId);
 				PanelManager.CheckConnectOfPanels(0, 0);
 			}
 			
-			// デバッグ機能
-			DebugProcess(input);
+			// スイッチ設置
+			if(input.cross.isPush && input.square.isPushStart)
+			{
+				panelManager.Replace(indexW, indexH, 
+				                     new JammingSwitch(new Vector2(panel.GetPos().X, panel.GetPos().Y)));
+				PanelManager.CheckConnectOfPanels(0, 0);
+			}
 			
 			// マップデータ保存
 			if(input.select.isPushEnd) SaveMap ();
@@ -100,13 +95,13 @@ namespace Eleconnect
 			
 			for(int i = 0; i < EditScene.stageWidth; i++)
 			{
-				for(int j = 0; j < EditScene.stageHeight; j++)	
+				for(int j = 0; j < EditScene.stageHeight; j++)
 				{
-					mapData.Add((int)panelManager[i, j].routeId);	// パネルのタイプを保存
+					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプを保存
 					
 					int rotateCnt = panelManager[i, j].rotateCnt;
-					if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;
-					if(rotateCnt > 9) rotateCnt = rotateCnt % 4;	// パネルの回転数(2桁の数や負の数であれば、0~3の数値に変換する)
+					//if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;
+					//if(rotateCnt > 9) rotateCnt = rotateCnt % 4;	// パネルの回転数(2桁の数や負の数であれば、0~3の数値に変換する)
 					mapData.Add(rotateCnt);		// パネルの回転数を保存
 				}
 			}

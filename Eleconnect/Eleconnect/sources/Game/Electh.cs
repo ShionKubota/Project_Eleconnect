@@ -62,6 +62,12 @@ namespace Eleconnect
 				{
 					sp.pos = target.GetPos();
 					state = StateId.WAIT;
+					
+					if(target.typeId == Panel.TypeId.JammSwitch)
+					{
+						JammingSwitch.isJamming = false;
+						state = StateId.BURN;
+					}
 				}
 				break;
 			

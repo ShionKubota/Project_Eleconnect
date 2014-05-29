@@ -153,6 +153,7 @@
     <Content Include="assets\img\Jamming.png" />
     <Content Include="assets\img\switch_off.png" />
     <Content Include="assets\img\switch_on.png" />
+    <Content Include="assets\img\switch.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

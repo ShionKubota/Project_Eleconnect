@@ -18,11 +18,11 @@ namespace Eleconnect
 		public static int elecPowMax = 81;	// パネルに流れる電力の最大値
 		
 		// 変数
-		private Sprite2D sp;
-		private Sprite2D lightSp;
-		private static Texture2D[] tex = new Texture2D[5];
-		private Sprite2D repeaterSp;
-		private static Texture2D repeaterTex;
+		protected Sprite2D sp;
+		protected Sprite2D lightSp;
+		protected static Texture2D[] tex = new Texture2D[5];
+		protected Sprite2D repeaterSp;
+		protected static Texture2D repeaterTex;
 		
 		private float rotateTo;
 		public int rotateCnt{ private set; get; }	// 回転させた回数
@@ -55,63 +55,17 @@ namespace Eleconnect
 		public Panel (TypeId id, Vector2 pos)
 		{
 			Init (id, pos);
+			typeId = id;
 		}
 		
 		// 初期化
 		public virtual void Init(TypeId id, Vector2 pos)
 		{
-			for(int i = 0; i < 4; i++)
-			{
-				if(tex[i] == null)
-					tex[i] = new Texture2D(@"/Application/assets/img/paneru" + i + ".png", false);
-			}
-			
-			switch(id)
-			{
-			case TypeId.Straight:
-				//sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
-				route[DirId.UP] = route[DirId.DOWN] = true;
-				route[DirId.LEFT] = route[DirId.RIGHT] = false;
-				break;
-				
-			case TypeId.RightAngle:
-				route[DirId.RIGHT] = route[DirId.DOWN] = true;
-				route[DirId.UP] = route[DirId.LEFT] =  false;
-				break;
-				
-			case TypeId.T:
-				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.DOWN] = true;
-				route[DirId.UP] = false;
-				break;
-				
-			case TypeId.Cross:
-				route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
-				break;
-			}
-			
-			sp =  new Sprite2D(tex[(int)id]);
-			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);
-			sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 1.0f);
-			sp.size = new Vector2(SCALE / 2.0f, SCALE);
-			sp.color = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
-			
-			lightSp = new Sprite2D(tex[(int)id]);
-			lightSp.pos = sp.pos;
-			lightSp.textureUV = new Vector4(0.5f, 0.0f, 1.0f, 1.0f);
-			lightSp.size = sp.size;
-			
-			repeaterTex = new Texture2D(@"/Application/assets/img/ianzuma.png", false);
-			repeaterSp =  new Sprite2D(repeaterTex);
-			repeaterSp.pos = sp.pos;
-			repeaterSp.size = new Vector2(0.2f, 0.2f);
-			repeaterSp.color.W = 0.0f;
-			
 			isRepeater = false;
 			isGoal = false;
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
-			typeId = id;
 		}
 		
 		// 更新
@@ -169,7 +123,7 @@ namespace Eleconnect
 		}
 		
 		// 描画
-		public void Draw()
+		public virtual void Draw()
 		{
 			sp.Draw();
 			lightSp.Draw();

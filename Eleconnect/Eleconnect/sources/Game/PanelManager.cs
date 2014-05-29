@@ -67,9 +67,8 @@ namespace Eleconnect
 					// スイッチ
 					if(type == Panel.TypeId.JammSwitch)
 					{
-						panelLine.Add (new JammingSwitch(type,
-					    	                     new Vector2(basePos.X + panelSize * i,
-					        	    			  			 basePos.Y + panelSize * j)));
+						panelLine.Add (new JammingSwitch(new Vector2(basePos.X + panelSize * i,
+					        	    			  			         basePos.Y + panelSize * j)));
 					}
 					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);
 				}
@@ -213,6 +212,12 @@ namespace Eleconnect
 					id_h = j;
 				}
 			}
+		}
+		
+		// 指定の番号の要素を新しいインスタンスに置き換え
+		public void Replace(int indexW, int indexH, Panel newItem)
+		{
+			panels[indexW][indexH] = newItem;
 		}
 	}// END OF CLASS
 }
