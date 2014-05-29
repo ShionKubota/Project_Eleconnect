@@ -47,7 +47,7 @@ namespace Eleconnect
 				{
 					//jammingData[i,j] = 1;
 					
-					if(i % 2 == 0)
+					if(i == 0 && j == 0)
 					{
 						jammingData[i,j] = 1;
 					}

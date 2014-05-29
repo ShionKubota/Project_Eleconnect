@@ -449,3 +449,5 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect.psdp
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\switch.png
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\switch.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\napple.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\napple.png
