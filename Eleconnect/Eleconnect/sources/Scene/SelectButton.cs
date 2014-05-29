@@ -26,7 +26,7 @@ namespace Eleconnect
 		
 		public int selectBtnNo;									// 選択されているステージNo.
 		int selectPrevNum;
-		bool selectMoveFlg;										// 選択されてるステージが変わったとき
+		public bool selectMoveFlg;						// 選択されてるステージが変わったとき
 		bool changePrevGame;									// ゲームプレビューの変更
 		int changeDirection;									// 動く向き
 		
