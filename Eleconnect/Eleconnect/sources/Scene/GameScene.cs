@@ -221,6 +221,7 @@ namespace Eleconnect
 				nowState = StateId.GAME;
 				JammingSwitch.isJamming = true;
 				Panel.elecPowMax = 99;
+				PanelManager.CheckConnectOfPanels(0, 0);
 			}	
 			
 			// エレクスの更新
@@ -277,18 +278,25 @@ namespace Eleconnect
 					if(newTarget.elecPow > 0) continue;
 					
 					// ジャミングが張られていたら調査しない
-					/*
 					int oldIndexW = 0, oldIndexH = 0, jamIndexW, jamIndexH;
 					panelManager.GetIdByPanel(oldTarget, ref oldIndexW, ref oldIndexH);
-					jamIndexW = (checkIndexW != oldIndexW) ? (checkIndexW < oldIndexW) ? checkIndexW : oldIndexW :
-															 oldIndexW;
-					jamIndexH = (checkIndexH != oldIndexH) ? 2 * ((checkIndexH > oldIndexH) ? checkIndexH : oldIndexH) - 1 :
-															 oldIndexH * 2 - 1;
-					if(jammingManager.jammingData[jamIndexW, jamIndexH] == 1)
+					if(JammingSwitch.isJamming)
 					{
-						continue;
+						if(checkIndexW != oldIndexW) // 横移動
+						{
+							jamIndexW = (checkIndexW < oldIndexW) ? checkIndexW : oldIndexW;
+							jamIndexH = oldIndexH;
+							if(jammingManager.jammingDataLength[jamIndexW, jamIndexH] == 1)
+								continue;
+						}
+						if(checkIndexH != oldIndexH) // 縦移動
+						{
+							jamIndexW = oldIndexW;
+							jamIndexH = (checkIndexH < oldIndexH) ? checkIndexH : oldIndexH;
+							if(jammingManager.jammingDataSide[jamIndexW, jamIndexH] == 1)
+								continue;
+						}
 					}
-					*/
 					
 					// 調査先パネルにて,調査するルート番号を設定(自分が0(↑)なら相手は2(↓)という具合)
 					int checkRouteIndex = j + 2;
