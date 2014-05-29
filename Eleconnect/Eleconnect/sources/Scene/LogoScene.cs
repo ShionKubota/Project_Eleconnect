@@ -33,9 +33,10 @@ namespace Eleconnect
 		override public void Init()
 		{
 			// ロゴ
-			logoTex = new Texture2D(@"/Application/assets/img/Logo.png", false);
+			logoTex = new Texture2D(@"/Application/assets/img/napple.png", false);
 			logoSp = new Sprite2D(logoTex);
 			logoSp.pos = AppMain.ScreenCenter;
+			logoSp.size = new Vector2(0.3f);
 			
 			// 背景色
 			backTex = new Texture2D(@"/Application/assets/img/White.png", false);

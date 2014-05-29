@@ -275,17 +275,21 @@ namespace Eleconnect
 					
 					// 調査先に電流が既に流れていたら調査しない
 					if(newTarget.elecPow > 0) continue;
-					/*
+					
 					// ジャミングが張られていたら調査しない
+					/*
 					int oldIndexW = 0, oldIndexH = 0, jamIndexW, jamIndexH;
 					panelManager.GetIdByPanel(oldTarget, ref oldIndexW, ref oldIndexH);
-					jamIndexW = (checkIndexW > oldIndexW) ? checkIndexW : oldIndexW;
-					jamIndexH = (checkIndexH > oldIndexH) ? checkIndexH : oldIndexH;
+					jamIndexW = (checkIndexW != oldIndexW) ? (checkIndexW < oldIndexW) ? checkIndexW : oldIndexW :
+															 oldIndexW;
+					jamIndexH = (checkIndexH != oldIndexH) ? 2 * ((checkIndexH > oldIndexH) ? checkIndexH : oldIndexH) - 1 :
+															 oldIndexH * 2 - 1;
 					if(jammingManager.jammingData[jamIndexW, jamIndexH] == 1)
 					{
 						continue;
 					}
 					*/
+					
 					// 調査先パネルにて,調査するルート番号を設定(自分が0(↑)なら相手は2(↓)という具合)
 					int checkRouteIndex = j + 2;
 					if(checkRouteIndex > 3) checkRouteIndex -= 4;

@@ -154,6 +154,7 @@
     <Content Include="assets\img\switch_off.png" />
     <Content Include="assets\img\switch_on.png" />
     <Content Include="assets\img\switch.png" />
+    <Content Include="assets\img\napple.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
