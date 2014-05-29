@@ -45,10 +45,13 @@ namespace Eleconnect
 		public override void Update()
 		{
 			// ボタンの移動等更新
-			selectBtn.Update();
+			if(TitleScene.seFlg == false)
+			{
+				selectBtn.Update();
+			}
 			
 			// 決定したときの処理
-			if(input.circle.isPushEnd)
+			if(input.circle.isPushStart && selectBtn.selectMoveFlg == false)
 			{
 				if(TitleScene.seFlg == false)
 				{

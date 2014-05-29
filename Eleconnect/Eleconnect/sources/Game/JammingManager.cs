@@ -104,7 +104,6 @@ namespace Eleconnect
 		public void Term()
 		{
 			jamming.Term();
-			jammSwitch.Term();
 		}
 	}
 }
