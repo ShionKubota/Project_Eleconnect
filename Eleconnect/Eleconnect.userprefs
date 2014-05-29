@@ -1,6 +1,6 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\NormalPanel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Transformer.cs">
     <Files>
       <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="10" Column="1" />
       <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="40" Column="52" />
