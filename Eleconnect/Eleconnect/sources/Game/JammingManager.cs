@@ -47,14 +47,15 @@ namespace Eleconnect
 			{
 				for(int j = 0;j < jammingLength;j++)
 				{
-					jammingDataSide[i,j] = 1;
-					jammingDataLength[i,j] = 1;
+					//jammingDataSide[i,j] = 1;
+					//jammingDataLength[i,j] = 1;
 					
-					/*if(i % 2 == 0)
+					if(i == 2)
 					{
-						jammingData[i,j] = 1;
+						jammingDataSide[i,j] = 1;
+						jammingDataLength[i,j] = 1;
 					}
-					*/
+					
 				}
 			}
 		}

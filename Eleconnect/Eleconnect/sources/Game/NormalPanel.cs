@@ -15,7 +15,6 @@ namespace Eleconnect
 			switch(id)
 			{
 			case TypeId.Straight:
-				//sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 0.5f);
 				route[DirId.UP] = route[DirId.DOWN] = true;
 				route[DirId.LEFT] = route[DirId.RIGHT] = false;
 				break;

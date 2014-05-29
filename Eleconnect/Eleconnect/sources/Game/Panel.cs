@@ -66,6 +66,7 @@ namespace Eleconnect
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
+			typeId = id;
 		}
 		
 		// 更新
