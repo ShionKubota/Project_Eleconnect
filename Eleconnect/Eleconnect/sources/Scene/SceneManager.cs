@@ -36,7 +36,7 @@ namespace Eleconnect
 		public void Init()
 		{
 			// 最初に開始するシーン
-			PlayData.GetInstance().stageNo = 2;
+			PlayData.GetInstance().stageNo = 5;
 			nowScene = new EditScene();
 			
 			fade = new Fade();
@@ -97,7 +97,6 @@ namespace Eleconnect
 		{
 			if(fade.state == Fade.StateId.OUT || fade.state == Fade.StateId.OUT_END) return;
 			
-			Console.WriteLine ("fadecol.r = " + nowScene.fadeOutColor.X + "\n");
 			nextId = nextSceneId;
 			fade.Out(nowScene.fadeOutColor, nowScene.fadeOutTime);	// フェードアウト開始
 		}

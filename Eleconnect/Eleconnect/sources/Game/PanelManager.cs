@@ -74,17 +74,64 @@ namespace Eleconnect
 				}
 				panels.Add(panelLine);
 			}
+			
+			// グループパネルの設置
+			if(PanelEditor.USE_GROUP_PANEL)
+			{
+				int indexW = PanelEditor.GROUP_ORIGIN_W, 
+					indexH = PanelEditor.GROUP_ORIGIN_H;
+				
+				Panel child = panels[indexW][indexH];
+				
+				GroupPanel gPanel = new GroupPanel(new Vector2(child.GetPos().X, child.GetPos().Y),
+				                                   PanelEditor.GROUP_LENGTH);
+				for(int i = 0; i < FMath.Pow(gPanel.length, 2); i++)
+				{
+					// 新しい子パネル
+					indexW = PanelEditor.GROUP_ORIGIN_W + (i) % gPanel.length;
+					indexH += (indexW == PanelEditor.GROUP_ORIGIN_W && i != 0) ? 1 : 0;
+					child = panels[indexW][indexH];
+					
+					Panel.TypeId id = panels[indexW][indexH].typeId;
+					
+					if(i > 1)
+					{
+						Console.WriteLine ();
+					}
+					// グループにパネルを追加
+					gPanel.AddPanel(id, new Vector2(child.GetPos().X, child.GetPos().Y),
+					                indexW, indexH, i);
+					
+					// 配列にグループパネルをセット
+					panels[indexW][indexH] = gPanel;
+				}
+			}
 		}
 		
 		// 更新
 		public void Update()
 		{
+			bool groupUpdated = false;
+			
 			// パネルの更新
 			foreach(List<Panel> line in panels)
 			{
 				foreach(Panel panel in line)
 				{
-					panel.Update();
+					// グループパネルは1度だけ更新する
+					if(panel is GroupPanel)
+					{
+						if(!groupUpdated)
+						{
+							panel.Update();
+							groupUpdated = true;
+						}
+					}
+					// それ以外は通常通り更新
+					else
+					{
+						panel.Update();
+					}
 				}
 			}
 		}
@@ -92,11 +139,25 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
+			bool groupDrawn = false;
+			
 			foreach(List<Panel> line in panels)
 			{
 				foreach(Panel panel in line)
 				{
-					panel.Draw();
+					// グループパネルは1度だけ描画する
+					if(panel is GroupPanel)
+					{
+						if(!groupDrawn)
+						{
+							panel.Draw();
+							groupDrawn = true;
+						}
+					}
+					else
+					{
+						panel.Draw();
+					}
 				}
 			}
 		}
@@ -211,6 +272,20 @@ namespace Eleconnect
 					id_w = i;
 					id_h = j;
 				}
+			}
+		}
+		
+		// 指定した番号のパネル位置を取得
+		public Vector3 GetPos(int indexW, int indexH)
+		{
+			// 修正要綱：パネルの親クラスでGetPosをオーバーロードさせるか？
+			if(panels[indexW][indexH] is GroupPanel)
+			{
+				return panels[indexW][indexH].GetPos(indexW, indexH);
+			}
+			else
+			{
+				return panels[indexW][indexH].GetPos();
 			}
 		}
 		

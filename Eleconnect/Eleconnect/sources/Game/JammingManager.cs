@@ -52,10 +52,13 @@ namespace Eleconnect
 					
 					if(i == 2)
 					{
-						jammingDataSide[i,j] = 1;
-						jammingDataLength[i,j] = 1;
+						//jammingDataSide[i,j] = 1;
+						//jammingDataLength[i,j] = 1;
 					}
-					
+					if(j==2)
+					{
+						jammingDataSide[i, j] = 1;
+					}
 				}
 			}
 		}

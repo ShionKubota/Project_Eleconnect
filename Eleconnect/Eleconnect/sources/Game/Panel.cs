@@ -25,7 +25,7 @@ namespace Eleconnect
 		protected static Texture2D repeaterTex;
 		
 		private float rotateTo;
-		public int rotateCnt{ private set; get; }	// 回転させた回数
+		public int rotateCnt{ protected set; get; }	// 回転させた回数
 		public int elecPow;			// このパネルに流れる電力
 		public bool isRepeater;		// 電力が回復する特殊パネル
 		public bool isGoal;			// ゴールとなるパネル
@@ -38,7 +38,8 @@ namespace Eleconnect
 			RightAngle,		// 直角
 			T,				// T字
 			Cross,			// 十字
-			JammSwitch		// ジャミングスイッチ
+			JammSwitch,		// ジャミングスイッチ
+			Group			// グループパネル
 		}
 		
 		// パネルのルート情報
@@ -144,16 +145,20 @@ namespace Eleconnect
 		public abstract void ButtonEvent(bool pushR);
 		
 		// グループにパネルを追加
-		public virtual void AddPanel(TypeId id, Vector2 pos, int indexW, int indexH){}
+		public virtual void AddPanel(TypeId id, Vector2 pos, int indexW, int indexH, int localIndexW){}
 		
 		// 位置取得
-		public Vector3 GetPos()
+		public virtual Vector3 GetPos()
+		{
+			return sp.pos;
+		}
+		public virtual Vector3 GetPos(int indexW, int indexH)
 		{
 			return sp.pos;
 		}
 		
 		// 指定した方向に90°回転開始
-		protected void Rotate(bool isClockwise)	// 時計回りならtrue
+		protected virtual void Rotate(bool isClockwise)	// 時計回りならtrue
 		{
 			if(sp.angle % 90.0f != 0.0f) return;	// 非回転時のみ実行
 			rotateTo = sp.angle + (isClockwise ? 90.0f : -90.0f);
@@ -166,6 +171,7 @@ namespace Eleconnect
 			if(sp.angle % 90.0f != 0.0f) return;	// 非回転時のみ実行
 			rotateTo = sp.angle + (num >= 0 ? 90.0f : -90.0f) * num;
 			RotateRoute(num);
+			rotateCnt += num;
 		}
 		
 		// 通路データだけを回転(+で時計回りに回転)
