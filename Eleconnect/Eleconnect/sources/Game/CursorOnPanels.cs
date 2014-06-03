@@ -66,7 +66,7 @@ namespace Eleconnect
 				if(indexH >= GameScene.stageHeight) indexH = 0;
 				
 				// 位置適用
-				sp.pos = panels[indexW, indexH].GetPos();
+				sp.pos = panels.GetPos(indexW, indexH);
 			}
 			
 			// 点滅
