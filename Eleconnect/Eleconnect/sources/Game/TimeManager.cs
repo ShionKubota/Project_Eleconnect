@@ -22,7 +22,7 @@ namespace Eleconnect
 		
 		private void Init()
 		{
-			timer =120.0f;
+			timer =300.0f;
 			digit = timer.ToString().Length;
 			numeral = new int[digit];
 			
