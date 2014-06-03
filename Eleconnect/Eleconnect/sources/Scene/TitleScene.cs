@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
+
 namespace Eleconnect
 {
 	public class TitleScene : BaseScene
@@ -33,6 +34,8 @@ namespace Eleconnect
 		
 		private int frameCnt;
 		public static bool seFlg;
+		
+		private Particles particle;
 		
 		// コンストラクタ
 		public TitleScene ()
@@ -70,6 +73,38 @@ namespace Eleconnect
 			
 			frameCnt = 0;
 			seFlg = false;
+			
+			// パーティクルテスト
+			/*
+			particle = new Particles(200);
+			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
+			particle.pos = new Vector2(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight / 4.0f);
+			particle.posVar = new Vector2(250.0f, 0.0f);
+			particle.velocity = new Vector2(0.0f, 0.0f);
+			particle.velocityVar = new Vector2(0.0f, 0.0f);
+			particle.colorEnd = new Vector3(0.6f, 0.8f, 0.9f);
+			particle.colorEndVar = new Vector3(1.0f);
+			particle.scaleStartVar = 0.0f;
+			particle.scaleEndVar = 0.0f;
+			particle.lifeSpan = 0.1f;
+			particle.gravity = new Vector2(0.0f, 0.0f);
+			particle.fade = 0.1f;
+			*/
+			
+			particle = new Particles(200);
+			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
+			particle.pos = new Vector2(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight / 4.0f);
+			particle.posVar = new Vector2(250.0f, 10.0f);
+			particle.velocity = new Vector2(0.0f, 0.0f);
+			particle.velocityVar = new Vector2(3.0f, 3.0f);
+			particle.colorEnd = new Vector3(0.6f, 0.8f, 0.9f);
+			particle.colorEndVar = new Vector3(1.0f);
+			particle.scaleStartVar = 3.0f;
+			particle.scaleEndVar = 0.0f;
+			particle.lifeSpan = 2.0f;
+			particle.gravity = new Vector2(0.0f, -0.00f);
+			particle.fade = 0.2f;
+			
 		}
 		
 		// 更新
@@ -100,7 +135,7 @@ namespace Eleconnect
 			{
 				AppMain.sceneManager.Switch(SceneId.SELECT);
 			}
-			
+			particle.Update();
 			frameCnt++;
 		}
 		
@@ -109,6 +144,7 @@ namespace Eleconnect
 		override public void Draw()
 		{
 			backSp.Draw();
+			particle.Draw ();
 			logoSp.Draw ();
 			startSp.Draw();
 		}
@@ -120,6 +156,7 @@ namespace Eleconnect
 			logoTex.Dispose();
 			startTex.Dispose();
 			musicEffect.Term();
+			particle.Draw ();
 			seFlg = false;
 		}
 	}

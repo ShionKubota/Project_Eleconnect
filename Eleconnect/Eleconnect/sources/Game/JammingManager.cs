@@ -57,7 +57,7 @@ namespace Eleconnect
 					}
 					if(j==2)
 					{
-						jammingDataSide[i, j] = 1;
+						//jammingDataSide[i, j] = 1;
 					}
 				}
 			}
