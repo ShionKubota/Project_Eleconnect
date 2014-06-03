@@ -20,6 +20,7 @@ namespace Eleconnect
 		public float speed{get; private set;}
 		private int frameCnt;
 		private int aniFrame;
+		private Particles particle;
 		public StateId state{get; private set;}
 		public Panel target{get; private set;}
 		
@@ -38,10 +39,26 @@ namespace Eleconnect
 			frameCnt = 0;
 			aniFrame = 0;
 			state = StateId.WAIT;
+			
+			// パーティクルの設定
+			particle = new Particles(50);
+			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
+			particle.pos = new Vector2(sp.pos.X, sp.pos.Y);
+			particle.posVar = new Vector2(0.0f, 0.0f);
+			particle.velocityVar = new Vector2(2.0f, 4.0f);
+			particle.colorEnd = new Vector3(0.6f, 0.8f, 0.9f);
+			particle.colorEndVar = new Vector3(0.2f);
+			particle.scaleStart = 1.0f;
+			particle.scaleStartVar = 0.5f;
+			particle.scaleEndVar = 0.0f;
+			particle.lifeSpan = 1.0f;
+			particle.fade = 0.2f;
+			particle.stopGenerate = true;
 		}
 		
 		public void Update()
 		{
+			particle.Update();
 			frameCnt++;
 			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
 			sp.textureUV.X = (aniFrame % 4) * 0.2f;
@@ -56,12 +73,16 @@ namespace Eleconnect
 				{
 					Vector3 move = Vector3.Normalize(target.GetPos() - sp.pos) * speed;
 					sp.pos += move;
+					
 				}
 				// 到着
 				else
 				{
 					sp.pos = target.GetPos();
 					state = StateId.WAIT;
+					
+					particle.pos = new Vector2(sp.pos.X, sp.pos.Y);
+					particle.Generate(5);
 					
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
@@ -74,7 +95,7 @@ namespace Eleconnect
 			// 消滅
 			case StateId.BURN:
 				if(sp.color.W > 0)
-					sp.color.W -= 0.03f;
+					sp.color.W -= 0.01f;
 				else
 					state = StateId.DEATH;
 				break;
@@ -85,7 +106,6 @@ namespace Eleconnect
 		{
 			state = StateId.FLOW;
 			target = panel;
-			//this.speed *= (this.speed < 5.0f) ? 1.3f : 1.0f;
 			this.speed += (this.speed < 5.0f) ? 0.3f : 0.0f;
 		}
 		
@@ -97,6 +117,7 @@ namespace Eleconnect
 		public void Draw()
 		{
 			sp.Draw();
+			particle.Draw ();
 		}
 	}
 }

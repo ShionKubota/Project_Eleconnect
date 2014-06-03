@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
+<<<<<<< HEAD
+=======
+using Sce.PlayStation.Core.Imaging;	// Font
+>>>>>>> 4cf40ba43a6c64460fcdc1842edb9dbd0c883923
 
 namespace Eleconnect
 {
