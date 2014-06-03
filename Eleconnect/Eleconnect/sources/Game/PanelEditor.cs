@@ -6,10 +6,16 @@ namespace Eleconnect
 {
 	public class PanelEditor : PanelManager
 	{
-		// エディット情報
+		// エディット情報(マップデータ)
 		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
-		public const int RANDOM_MAP_W = 9;
-		public const int RANDOM_MAP_H = 6;
+		public const int RANDOM_MAP_W = 5;
+		public const int RANDOM_MAP_H = 5;
+		// (グループパネルについてのデータ)
+		public const bool USE_GROUP_PANEL = false;
+		public const int GROUP_LENGTH = 2;			// グループパネルの1辺の要素数
+		public const int GROUP_ORIGIN_W = 2;
+		public const int GROUP_ORIGIN_H = 2;
+		
 		public const int REPEATER_NUM = 0;
 		
 		public PanelEditor ()
