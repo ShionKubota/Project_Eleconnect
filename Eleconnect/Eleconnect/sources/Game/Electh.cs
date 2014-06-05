@@ -41,10 +41,11 @@ namespace Eleconnect
 			state = StateId.WAIT;
 			
 			// パーティクルの設定
-			particle = new Particles(50);
+			particle = new Particles(500);
 			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
 			particle.pos = new Vector2(sp.pos.X, sp.pos.Y);
 			particle.posVar = new Vector2(0.0f, 0.0f);
+			particle.velocity = new Vector2(0.0f, -3.0f);
 			particle.velocityVar = new Vector2(2.0f, 4.0f);
 			particle.colorEnd = new Vector3(0.6f, 0.8f, 0.9f);
 			particle.colorEndVar = new Vector3(0.2f);
@@ -53,7 +54,8 @@ namespace Eleconnect
 			particle.scaleEndVar = 0.0f;
 			particle.lifeSpan = 1.0f;
 			particle.fade = 0.2f;
-			particle.stopGenerate = true;
+			particle.gravity = new Vector2(0.0f, 0.1f);
+			particle.stopAutoGenerate = true;
 		}
 		
 		public void Update()
@@ -88,6 +90,22 @@ namespace Eleconnect
 					{
 						JammingSwitch.isJamming = false;
 						state = StateId.BURN;
+					}
+					// ゴールだったらどでかいパーティクル
+					if(target.isGoal)
+					{
+						particle.velocity = new Vector2(0.0f, -7.0f);
+						particle.velocityVar = new Vector2(10.0f, 7.0f);
+						particle.colorStart = new Vector3(1.0f);
+						particle.colorStartVar = new Vector3(1.0f);
+						particle.colorEnd = particle.colorStart;
+						particle.colorEndVar = new Vector3(0.5f);
+						particle.scaleStart = 2.0f;
+						particle.scaleStartVar = 2.0f;
+						particle.lifeSpan = 1.0f;
+						particle.lifeSpanVar = 0.7f;
+						particle.fade = 0.2f;
+						particle.Generate(100);
 					}
 				}
 				break;
