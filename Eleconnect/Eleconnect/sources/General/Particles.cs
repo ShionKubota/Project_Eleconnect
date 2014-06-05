@@ -38,7 +38,7 @@ namespace Eleconnect
 		public float fade;		/* 0.0~1.0 */
 		public float angle;
 		public Vector2 gravity;
-		public bool stopGenerate;
+		public bool stopAutoGenerate;
 		
 		private Random rand;
 		
@@ -74,7 +74,7 @@ namespace Eleconnect
 			fade 				= 0.1f;
 			angle = 0.0f;
 			gravity 			= Vector2.Zero;
-			stopGenerate 		= false;
+			stopAutoGenerate 		= false;
 			frameCnt = 0;
 		}
 		
@@ -93,7 +93,7 @@ namespace Eleconnect
 			//angle += FMath.Radians(0.1f);
 			
 			// パーティクルの発生
-			if(frameCnt / 60.0f >= nextWaitTime && particle.Count < particleMax && !stopGenerate)
+			if(frameCnt / 60.0f >= nextWaitTime && particle.Count < particleMax && !stopAutoGenerate)
 			{
 				Generate (1);
 				frameCnt = 0;
