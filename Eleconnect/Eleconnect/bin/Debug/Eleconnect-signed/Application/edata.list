@@ -5,7 +5,6 @@ System.Runtime.Serialization.dll
 System.Core.dll
 System.ServiceModel.Web.dll
 System.ServiceModel.dll
-Sce.PlayStation.HighLevel.GameEngine2D.dll
 Sce.PlayStation.HighLevel.UI.dll
 assets/se/button55.wav
 assets/se/Rotate_SE.wav

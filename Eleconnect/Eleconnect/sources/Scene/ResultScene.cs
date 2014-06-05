@@ -30,7 +30,9 @@ namespace Eleconnect
 			frameCnt,
 			alfaGain;
 		
-		private bool gainChange;
+		private bool 
+			gainChange,
+			seFlg;
 		
 		private MusicEffect resultEffect;
 		private MusicEffect musicEffect;
@@ -93,14 +95,14 @@ namespace Eleconnect
 			   input.square.isPushEnd || input.triggerR.isPushEnd || input.triggerL.isPushEnd ||
 			   input.start.isPushEnd || input.select.isPushEnd)
 			{
-				if(TitleScene.seFlg == false && score.randEnd == true)
+				if(seFlg == false && score.randEnd == true)
 				{
 					musicEffect.Set();
-					TitleScene.seFlg = true;
+					seFlg = true;
 				}
 			}
 			
-			if(TitleScene.seFlg == true)
+			if(seFlg == true)
 			{
 				AppMain.sceneManager.Switch(SceneId.TITLE);
 			}
@@ -127,7 +129,7 @@ namespace Eleconnect
 			pakTex.Dispose();
 			backTex.Dispose();
 			score.Term();
-			TitleScene.seFlg = false;
+			seFlg = false;
 		}
 	}
 }

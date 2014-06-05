@@ -47,17 +47,65 @@ namespace Eleconnect
 			{
 				for(int j = 0;j < jammingLength;j++)
 				{
-					//jammingDataSide[i,j] = 1;
-					//jammingDataLength[i,j] = 1;
-					
-					if(i == 2)
+					if(PlayData.GetInstance().stageNo == 0)
 					{
-						//jammingDataSide[i,j] = 1;
-						//jammingDataLength[i,j] = 1;
+						jammingDataLength[0,1] = 1;
+						jammingDataLength[0,2] = 1;
+						jammingDataLength[0,3] = 1;
+						jammingDataLength[3,1] = 1;
+						jammingDataLength[3,2] = 1;
+						jammingDataLength[3,3] = 1;
+						jammingDataSide[1,0] = 1;
+						jammingDataSide[2,0] = 1;
+						jammingDataSide[3,0] = 1;
+						jammingDataSide[1,3] = 1;
+						jammingDataSide[2,3] = 1;
+						jammingDataSide[3,3] = 1;
+						jammingDataSide[4,3] = 1;
 					}
-					if(j==2)
+					if(PlayData.GetInstance().stageNo == 1)
 					{
-						//jammingDataSide[i, j] = 1;
+						jammingDataLength[1,4] = 1;
+						jammingDataLength[2,3] = 1;
+						jammingDataLength[3,2] = 1;
+						jammingDataLength[5,1] = 1;
+						jammingDataSide[6,0] = 1;
+						jammingDataSide[7,0] = 1;
+						jammingDataSide[4,1] = 1;
+						jammingDataSide[5,1] = 1;
+						jammingDataSide[3,2] = 1;
+						jammingDataSide[2,3] = 1;
+					}
+					if(PlayData.GetInstance().stageNo == 2)
+					{
+						jammingDataLength[0,1] = 1;
+						jammingDataLength[0,2] = 1;
+						jammingDataLength[0,3] = 1;
+						jammingDataLength[0,4] = 1;
+						jammingDataLength[3,1] = 1;
+						jammingDataLength[3,2] = 1;
+						jammingDataLength[3,3] = 1;
+						jammingDataLength[3,4] = 1;
+						jammingDataLength[4,1] = 1;
+						jammingDataLength[4,2] = 1;
+						jammingDataLength[4,3] = 1;
+						jammingDataLength[4,4] = 1;
+						jammingDataLength[7,1] = 1;
+						jammingDataLength[7,2] = 1;
+						jammingDataLength[7,3] = 1;
+						jammingDataLength[7,4] = 1;
+						jammingDataSide[1,0] = 1;
+						jammingDataSide[2,0] = 1;
+						jammingDataSide[3,0] = 1;
+						jammingDataSide[5,0] = 1;
+						jammingDataSide[6,0] = 1;
+						jammingDataSide[7,0] = 1;
+						jammingDataSide[1,4] = 1;
+						jammingDataSide[2,4] = 1;
+						jammingDataSide[3,4] = 1;
+						jammingDataSide[5,4] = 1;
+						jammingDataSide[6,4] = 1;
+						jammingDataSide[7,4] = 1;
 					}
 				}
 			}

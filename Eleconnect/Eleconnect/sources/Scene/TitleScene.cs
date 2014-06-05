@@ -33,9 +33,10 @@ namespace Eleconnect
 		private MusicEffect musicEffect;
 		
 		private int frameCnt;
-		public static bool seFlg;
+		private bool seFlg;
 		
 		private Particles particle;
+		private SelectScene selectScene;
 		
 		// コンストラクタ
 		public TitleScene ()
@@ -105,6 +106,8 @@ namespace Eleconnect
 			particle.gravity = new Vector2(0.0f, -0.00f);
 			particle.fade = 0.2f;
 			
+			selectScene = new SelectScene();
+			
 		}
 		
 		// 更新
@@ -131,9 +134,10 @@ namespace Eleconnect
 				startSp.color.W = 0.3f + 
 						 FMath.Sin(FMath.Radians(frameCnt * 50)) * 0.6f;
 			}
+			
 			if(frameCnt >= 90 && seFlg == true)
 			{
-				AppMain.sceneManager.Switch(SceneId.SELECT);
+				selectScene.Update();
 			}
 			particle.Update();
 			frameCnt++;
@@ -146,7 +150,14 @@ namespace Eleconnect
 			backSp.Draw();
 			particle.Draw ();
 			logoSp.Draw ();
-			startSp.Draw();
+			if(frameCnt >= 90 && seFlg == true)
+			{
+				selectScene.Draw();
+			}
+			else
+			{
+				startSp.Draw();
+			}
 		}
 		
 		// 解放(musicはセレクトシーンでも使用しているのでセレクトシーンで解放)

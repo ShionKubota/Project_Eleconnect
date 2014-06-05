@@ -19,6 +19,8 @@ namespace Eleconnect
 		private Sprite2D selectBackSp;
 		private Texture2D selectBackTex;
 		
+		private bool seFlg;
+		
 		private MusicEffect musicEffect;
 		
 		Input input = Input.GetInstance();
@@ -31,6 +33,8 @@ namespace Eleconnect
 		public override void Init()
 		{
 			selectBtn = new SelectButton();
+			
+			seFlg = false;
 			
 			selectBackTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
 			selectBackSp = new Sprite2D(selectBackTex);
@@ -45,23 +49,20 @@ namespace Eleconnect
 		public override void Update()
 		{
 			// ボタンの移動等更新
-			if(TitleScene.seFlg == false)
-			{
-				selectBtn.Update();
-			}
+			selectBtn.Update();
 			
 			// 決定したときの処理
 			if(input.circle.isPushStart && selectBtn.selectMoveFlg == false)
 			{
-				if(TitleScene.seFlg == false)
+				if(seFlg == false)
 				{
 					musicEffect.Set();
-					TitleScene.seFlg = true;
+					seFlg = true;
 				}
 			}
 			
 			// 選んだステージに移動
-			if( TitleScene.seFlg == true)
+		if(seFlg == true)
 			{
 				for(int i = 0;i <= SelectButton.STAGE_NUM;i++)
 				{
@@ -78,7 +79,7 @@ namespace Eleconnect
 		// 描画
 		public override void Draw()
 		{
-			selectBackSp.Draw();
+			//selectBackSp.Draw();
 			selectBtn.Draw();
 		}
 		
@@ -89,7 +90,7 @@ namespace Eleconnect
 			musicEffect.Term();
 			selectBackTex.Dispose();
 			selectBtn.Term();
-			TitleScene.seFlg = false;
+			seFlg = false;
 		}
 	}
 }
