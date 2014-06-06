@@ -17,15 +17,12 @@ namespace Eleconnect
 		private MusicEffect musicEffect;
 		private Sprite2D[] selectBtnSp = new Sprite2D[10];		// スプライト
 		private static Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
-		private Sprite2D[] prevGameSp = new Sprite2D[10];		// ステージサンプルスプライト
-		private static Texture2D[] prevGameTex = new Texture2D[10];		// ステージサンプルテクスチャ
 		private Sprite2D[] cornerSp = new Sprite2D[4];
 		private static Texture2D[] cornerTex = new Texture2D[4];
 		const int SELECT_BTN_SIZE = 128;						// 画像サイズ
 		public const int STAGE_NUM = 9;							// 総ステージ数
 		
 		public int selectBtnNo;									// 選択されているステージNo.
-		int selectPrevNum;
 		public bool selectMoveFlg;						// 選択されてるステージが変わったとき
 		bool changePrevGame;									// ゲームプレビューの変更
 		int changeDirection;									// 動く向き
@@ -45,7 +42,6 @@ namespace Eleconnect
 		private void Init()
 		{
 			selectBtnNo = 1;									// 選択No.
-			selectPrevNum = 1;
 			btnMoveX = 0;										// 動き
 			btnMoveY = 0;										// 動き
 			selectMoveFlg = false;								// 動くフラグ
@@ -61,23 +57,12 @@ namespace Eleconnect
 				}
 				
 				selectBtnSp[i] = new Sprite2D(selectBtnTex[i]);
-				
-				if(prevGameTex[i] == null)
-				{
-					prevGameTex[i] = new Texture2D(@"/Application/assets/img/test.png",false);
-				}
-				
-				prevGameSp[i] = new Sprite2D(prevGameTex[i]);
-				prevGameSp[i].pos = new Vector3(AppMain.ScreenWidth/2,AppMain.ScreenHeight/2,0.0f);
-				prevGameSp[i].size = new Vector2(0.8f,0.8f);
-				
 			}
 			for(int i = 1;i<STAGE_NUM;i++)
 			{
-				selectBtnSp[i + 1].pos = new Vector3(AppMain.ScreenWidth/2.0f,
-				                                 AppMain.ScreenHeight/2.0f,
+				selectBtnSp[i + 1].pos = new Vector3(AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * i,
+				                                 AppMain.ScreenHeight/2.0f + SELECT_BTN_SIZE/2,
 				                                 0.0f);
-				prevGameSp[i+1].color.W = 0.0f;
 			}
 			for(int i = 0; i < 4;i++)
 			{
@@ -90,13 +75,24 @@ namespace Eleconnect
 				
 				cornerSp[i].angle = 90 * i;
 			}
+			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+				                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
+				                              0.0f);
+			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
+			                              0.0f);
+			cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
+			                              0.0f);
+			cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
+			                              0.0f);
 			
 			// 最初に選ばれているボタン
 			selectBtnSp[1].size = new Vector2(1.48f,1.48f);
 			selectBtnSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f,
-				                             AppMain.ScreenHeight / 2.0f,
+				                             AppMain.ScreenHeight / 2.0f + SELECT_BTN_SIZE/2,
 				                             0.0f);
-			prevGameSp[1].color.W = 0.6f;
 		
 			musicEffect = new MusicEffect(@"/Application/assets/se/Select_SE.wav");
 		}
@@ -109,16 +105,16 @@ namespace Eleconnect
 			
 			// 座標更新
 			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-				                              AppMain.ScreenHeight / 2.0f - cornerSize,
+				                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
 				                              0.0f);
 			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f - cornerSize,
+			                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
 			                              0.0f);
 			cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
 			                              0.0f);
 			cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize,
+			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
 			                              0.0f);
 			
 			// ボタン配置
@@ -135,7 +131,7 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
-			prevGameSp[selectPrevNum].Draw();
+			//prevGameSp[selectPrevNum].Draw();
 			for(int i = 1;i<=STAGE_NUM;i++)
 			{
 				selectBtnSp[i].Draw();
@@ -194,13 +190,11 @@ namespace Eleconnect
 				// 後ろの画像のフェード
 				if(changePrevGame == false)
 				{
-					prevGameSp[selectBtnNo+1].color.W -= 0.05f;
 					cornerSize -= 5.0f;
 				}
 				
-				if(prevGameSp[selectBtnNo+1].color.W <= 0 && changePrevGame == false)
+				if(btnMoveX % 192 == 0   && changePrevGame == false)
 				{
-					selectPrevNum--;
 					changePrevGame = true;
 				}
 				
@@ -208,7 +202,6 @@ namespace Eleconnect
 				{
 					selectMoveFlg = false;
 					changePrevGame = false;
-					prevGameSp[selectBtnNo].color.W = 0.6f;
 					changeDirection = 2;
 				}
 			}
@@ -223,13 +216,11 @@ namespace Eleconnect
 				// 後ろの画像のフェード
 				if(changePrevGame == false)
 				{
-					prevGameSp[selectBtnNo-1].color.W -= 0.05f;
 					cornerSize -= 5.0f;
 				}
 				
-				if(prevGameSp[selectBtnNo-1].color.W <= 0 && changePrevGame == false)
+				if(btnMoveX % 192 == 0 && changePrevGame == false)
 				{
-					selectPrevNum++;
 					changePrevGame = true;
 				}
 				
@@ -237,15 +228,14 @@ namespace Eleconnect
 				{
 					selectMoveFlg = false;
 					changePrevGame = false;
-					prevGameSp[selectBtnNo].color.W = 0.6f;
 					changeDirection = 2;
 				}
 			}
+			Console.WriteLine(btnMoveX);
 			
 			// 元に戻す
 			if(changePrevGame == true)
 			{
-				prevGameSp[selectBtnNo].color.W += 0.05f;
 				cornerSize += 5.0f;
 			}
 		}
