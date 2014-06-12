@@ -304,7 +304,6 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-sign
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\switch.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\napple.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\particle.png
-<<<<<<< HEAD
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\startlogo_r.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Clear.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Clear_r.png
@@ -312,7 +311,6 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect.psdp
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\obj\Debug\app.exe
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\obj\Debug\app.pdb
-=======
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\app.info
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\app.exe
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\System.Json.dll
@@ -463,4 +461,3 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconn
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\convertedpdb\app.exe.mdb
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.exe
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.pdb
->>>>>>> 85c14a1c7713619732a385e7a59dfed456630dbd

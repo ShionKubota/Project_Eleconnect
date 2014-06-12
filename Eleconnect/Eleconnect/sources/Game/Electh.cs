@@ -61,7 +61,6 @@ namespace Eleconnect
 				{
 					Vector3 move = Vector3.Normalize(target.GetPos() - sp.pos) * speed;
 					sp.pos += move;
-					
 				}
 				// 到着
 				else

@@ -68,11 +68,12 @@ namespace Eleconnect
 			startSp = new Sprite2D(startTex);
 			startSp.size = new Vector2(1.0f,1.0f);
 			startSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
+			/*
 			start_rTex = new Texture2D(@"/Application/assets/img/startlogo_r.png", false);
 			start_rSp = new Sprite2D(start_rTex);
 			start_rSp.size = new Vector2(1.0f,1.0f);
 			start_rSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
-			
+			*/
 			// 音関連
 			music = new Music(@"/Application/assets/music/Title_Music.mp3");
 			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
@@ -123,7 +124,7 @@ namespace Eleconnect
 		{
 			music.Play();
 			startSp.color.W = 0.3f + FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
-			clear.Update();
+			//clear.Update();
 			/*回転
 			panelTurn+=0.01f;
 			startSp.size.X =FMath.Sin(panelTurn*2);
@@ -199,7 +200,7 @@ namespace Eleconnect
 			backTex.Dispose ();
 			logoTex.Dispose();
 			startTex.Dispose();
-			start_rTex.Dispose();
+			//start_rTex.Dispose();
 			musicEffect.Term();
 			particle.Draw ();
 			seFlg = false;
