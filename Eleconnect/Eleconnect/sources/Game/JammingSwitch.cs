@@ -21,9 +21,10 @@ namespace Eleconnect
 		{
 			tex = new Texture2D(@"/Application/assets\img\switch.png", false);
 			
+			const float SWITCH_SCALE = 0.25f;
 			sp = new Sprite2D(tex);
 			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);
-			sp.size = new Vector2(SCALE / 2.0f, SCALE);
+			sp.size = new Vector2(SWITCH_SCALE / 2.0f, SWITCH_SCALE);
 			sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 1.0f);
 			
 			route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
