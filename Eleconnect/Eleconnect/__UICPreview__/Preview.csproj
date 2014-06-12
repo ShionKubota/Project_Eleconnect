@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{23B57BC9-0B58-46FE-8316-5B6412BA156A}</ProjectGuid>
+    <ProjectTypeGuids>{69878862-DA7D-4DC6-B0A1-50D8FAB4242F};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Preview</RootNamespace>
+    <AssemblyName>Preview</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="__DummyProgram.cs" />
+    <Compile Include="Clear.composer.cs" />
+    <Compile Include="Clear.cs" />
+    <Compile Include="panel1.composer.cs" />
+    <Compile Include="panel1.cs" />
+    <Compile Include="Panel2.composer.cs" />
+    <Compile Include="Panel2.cs" />
+    <Compile Include="UIStringTable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\\assets\data\data.dat" >
+      <Link>assets\data\data.dat</Link>
+    </Content>
+    <Content Include="..\\assets\data\data.txt" >
+      <Link>assets\data\data.txt</Link>
+    </Content>
+    <Content Include="..\\assets\img\Back.png" >
+      <Link>assets\img\Back.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\corner.png" >
+      <Link>assets\img\corner.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Cursor.png" >
+      <Link>assets\img\Cursor.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\eleconnect_background01.png" >
+      <Link>assets\img\eleconnect_background01.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\eleconnect_logo.png" >
+      <Link>assets\img\eleconnect_logo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\eleconnect_titlebackground03.png" >
+      <Link>assets\img\eleconnect_titlebackground03.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\electh.png" >
+      <Link>assets\img\electh.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\guid.png" >
+      <Link>assets\img\guid.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\guide.png" >
+      <Link>assets\img\guide.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\guide.xcf" >
+      <Link>assets\img\guide.xcf</Link>
+    </Content>
+    <Content Include="..\\assets\img\ianzuma.png" >
+      <Link>assets\img\ianzuma.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Jamming.png" >
+      <Link>assets\img\Jamming.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Logo.png" >
+      <Link>assets\img\Logo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\napple.png" >
+      <Link>assets\img\napple.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_0.png" >
+      <Link>assets\img\number_0.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_1.png" >
+      <Link>assets\img\number_1.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_2.png" >
+      <Link>assets\img\number_2.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_3.png" >
+      <Link>assets\img\number_3.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_4.png" >
+      <Link>assets\img\number_4.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_5.png" >
+      <Link>assets\img\number_5.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_6.png" >
+      <Link>assets\img\number_6.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_7.png" >
+      <Link>assets\img\number_7.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_8.png" >
+      <Link>assets\img\number_8.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\number_9.png" >
+      <Link>assets\img\number_9.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\on_off.gif" >
+      <Link>assets\img\on_off.gif</Link>
+    </Content>
+    <Content Include="..\\assets\img\pak.png" >
+      <Link>assets\img\pak.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Panels.png" >
+      <Link>assets\img\Panels.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\paneru0.png" >
+      <Link>assets\img\paneru0.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\paneru1.png" >
+      <Link>assets\img\paneru1.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\paneru2.png" >
+      <Link>assets\img\paneru2.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\paneru3.png" >
+      <Link>assets\img\paneru3.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\particle.png" >
+      <Link>assets\img\particle.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\particleBall.png" >
+      <Link>assets\img\particleBall.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\pleaselogo.png" >
+      <Link>assets\img\pleaselogo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\pushlogo.png" >
+      <Link>assets\img\pushlogo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\result.png" >
+      <Link>assets\img\result.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Score.png" >
+      <Link>assets\img\Score.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Select_One.png" >
+      <Link>assets\img\Select_One.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Select_Three.png" >
+      <Link>assets\img\Select_Three.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Select_Two.png" >
+      <Link>assets\img\Select_Two.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\startlogo.png" >
+      <Link>assets\img\startlogo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\switch.png" >
+      <Link>assets\img\switch.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\switch_off.png" >
+      <Link>assets\img\switch_off.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\switch_on.png" >
+      <Link>assets\img\switch_on.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\test.png" >
+      <Link>assets\img\test.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Time.png" >
+      <Link>assets\img\Time.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\timelogo.png" >
+      <Link>assets\img\timelogo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\White.png" >
+      <Link>assets\img\White.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\backmoji.png" >
+      <Link>assets\img/Menuimg\backmoji.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\commentaryback.png" >
+      <Link>assets\img/Menuimg\commentaryback.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\commentarybar.png" >
+      <Link>assets\img/Menuimg\commentarybar.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\commentaryretry.png" >
+      <Link>assets\img/Menuimg\commentaryretry.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\commentaryselect.png" >
+      <Link>assets\img/Menuimg\commentaryselect.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\commentarytitle.png" >
+      <Link>assets\img/Menuimg\commentarytitle.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\menubase.png" >
+      <Link>assets\img/Menuimg\menubase.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\pausemoji.png" >
+      <Link>assets\img/Menuimg\pausemoji.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\retrymoji.png" >
+      <Link>assets\img/Menuimg\retrymoji.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\selectmoji.png" >
+      <Link>assets\img/Menuimg\selectmoji.png</Link>
+    </Content>
+    <Content Include="..\\assets\img/Menuimg\titlemoji.png" >
+      <Link>assets\img/Menuimg\titlemoji.png</Link>
+    </Content>
+    <Content Include="..\\assets\music\Game_Music.mp3" >
+      <Link>assets\music\Game_Music.mp3</Link>
+    </Content>
+    <Content Include="..\\assets\music\Title_Music.mp3" >
+      <Link>assets\music\Title_Music.mp3</Link>
+    </Content>
+    <Content Include="..\\assets\se\button55.wav" >
+      <Link>assets\se\button55.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Choice_SE.wav" >
+      <Link>assets\se\Choice_SE.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Move_SE.wav" >
+      <Link>assets\se\Move_SE.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Result_SE.wav" >
+      <Link>assets\se\Result_SE.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Rotate_SE.wav" >
+      <Link>assets\se\Rotate_SE.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Select_SE.wav" >
+      <Link>assets\se\Select_SE.wav</Link>
+    </Content>
+    <Content Include="..\\assets\se\Title_SE.wav" >
+      <Link>assets\se\Title_SE.wav</Link>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Sce.PlayStation.Core" />
+    <Reference Include="Sce.PlayStation.HighLevel.UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <PsmMetadata Include="app.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Sce\Sce.Psm.CSharp.targets" />
+</Project>

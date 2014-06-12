@@ -18,7 +18,7 @@ namespace Eleconnect
 		public static int elecPowMax = 81;	// パネルに流れる電力の最大値
 		
 		// 変数
-		protected Sprite2D sp;
+		public Sprite2D sp;
 		protected Sprite2D lightSp;
 		protected static Texture2D[] tex = new Texture2D[5];
 		protected Sprite2D repeaterSp;
@@ -86,6 +86,9 @@ namespace Eleconnect
 			
 			// 光る
 			Bright ();
+			
+			lightSp.size = sp.size;
+			lightSp.pos  = sp.pos;
 			
 			
 			/*

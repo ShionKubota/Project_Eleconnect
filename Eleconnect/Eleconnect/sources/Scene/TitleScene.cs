@@ -15,7 +15,6 @@ using System.Collections.Generic;
 using Sce.PlayStation.HighLevel.GameEngine2D;
 using Sce.PlayStation.HighLevel.GameEngine2D.Base;
 
-
 namespace Eleconnect
 {
 	public class TitleScene : BaseScene
@@ -107,7 +106,6 @@ namespace Eleconnect
 			particle.fade = 0.2f;
 			
 			selectScene = new SelectScene();
-			
 		}
 		
 		// 更新
@@ -133,6 +131,9 @@ namespace Eleconnect
 			{
 				startSp.color.W = 0.3f + 
 						 FMath.Sin(FMath.Radians(frameCnt * 50)) * 0.6f;
+				
+				logoSp.pos.Y += ((AppMain.ScreenHeight / 8.0f) - logoSp.pos.Y) * 0.05f;
+				particle.pos.Y = logoSp.pos.Y;
 			}
 			
 			if(frameCnt >= 90 && seFlg == true)
@@ -142,7 +143,6 @@ namespace Eleconnect
 			particle.Update();
 			frameCnt++;
 		}
-		
 		
 		// 描画
 		override public void Draw()
