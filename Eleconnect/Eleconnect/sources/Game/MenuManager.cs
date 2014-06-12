@@ -21,8 +21,11 @@ namespace Eleconnect
 		public static bool menuFlg;							// メニューを表示
 		public static int menuNum;							// 選んでいるメニュー番号
 		
+		private bool selectFlg;								// メニューセレクト用フラグ
+		
 		private float frameCnt;
 		
+		SelectScene selectScene;
 		Input input = Input.GetInstance();
 		MenuCommentary menuCommentary = new MenuCommentary();
 		
@@ -59,10 +62,13 @@ namespace Eleconnect
 			menubaseSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f,AppMain.ScreenHeight / 2.0f,0.0f);
 			menubaseSp.color = new Vector4(1.0f,1.0f,1.0f,1.0f);
 			
+			selectFlg = false;
 			menuFlg = false;
 			menuNum = 1;
 			
 			frameCnt = 0;
+			
+			selectScene = new SelectScene();
 		}
 		
 		// 更新
@@ -97,6 +103,12 @@ namespace Eleconnect
 			
 			// メニューの説明
 			menuCommentary.Update();
+			
+			// ステージセレクト
+			if(selectFlg == true)
+			{
+				selectScene.Update();
+			}
 		}
 		
 		// 描画
@@ -122,6 +134,10 @@ namespace Eleconnect
 				{
 					menuSp[i].Draw();
 				}
+			if(selectFlg == true)
+			{
+				selectScene.Draw();
+			}
 			//}
 		}
 		
@@ -140,7 +156,7 @@ namespace Eleconnect
 		// ボタン押したときの処理
 		void MenuFunction()
 		{
-			if(input.circle.isPushStart)
+			if(input.circle.isPushEnd)
 			{
 				switch(menuNum)
 				{
@@ -156,7 +172,8 @@ namespace Eleconnect
 					}
 					case 3:			// selectボタン
 					{
-						AppMain.sceneManager.Switch(SceneId.SELECT);
+						//AppMain.sceneManager.Switch(SceneId.SELECT);
+					selectFlg = true;
 						break;
 					}
 					case 4:			// titleボタン

@@ -22,17 +22,21 @@ namespace Eleconnect
 		private Sprite2D
 			backSp,
 			startSp,
+			start_rSp,
 			logoSp;
 		private Texture2D
 			backTex,
 			startTex,
+			start_rTex,
 			logoTex;
 		
 		public static Music music;
 		private MusicEffect musicEffect;
 		
 		private int frameCnt;
+		private float panelTurn;
 		private bool seFlg;
+		private bool turnFlg;
 		
 		private Particles particle;
 		private SelectScene selectScene;
@@ -46,6 +50,8 @@ namespace Eleconnect
 		// 初期化
 		override public void Init()
 		{
+			panelTurn = 0;
+			turnFlg = false;
 			// 画像
 			logoTex = new Texture2D(@"/Application/assets/img/eleconnect_logo.png", false);
 			logoSp = new Sprite2D(logoTex);
@@ -60,8 +66,12 @@ namespace Eleconnect
 			
 			startTex = new Texture2D(@"/Application/assets/img/startlogo.png", false);
 			startSp = new Sprite2D(startTex);
-			startSp.size = new Vector2(1.0f);
+			startSp.size = new Vector2(1.0f,1.0f);
 			startSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
+			start_rTex = new Texture2D(@"/Application/assets/img/startlogo_r.png", false);
+			start_rSp = new Sprite2D(start_rTex);
+			start_rSp.size = new Vector2(1.0f,1.0f);
+			start_rSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
 			
 			// 音関連
 			music = new Music(@"/Application/assets/music/Title_Music.mp3");
@@ -112,8 +122,27 @@ namespace Eleconnect
 		override public void Update()
 		{
 			music.Play();
-			startSp.color.W = 0.3f + 
-						 FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
+			startSp.color.W = 0.3f + FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
+			clear.Update();
+			/*回転
+			panelTurn+=0.01f;
+			startSp.size.X =FMath.Sin(panelTurn*2);
+			if(startSp.size.X <= 0 && turnFlg == false)
+			{
+				start_rSp.size.X = 0.01f;
+				panelTurn = 0.01f;
+				turnFlg = true;
+			}
+			if(start_rSp.size.X <= 0 && turnFlg == true)
+			{
+				startSp.size.X = 0.01f;
+				panelTurn = 0.01f;
+				turnFlg = false;
+			}
+			if(turnFlg)
+			{
+				start_rSp.size.X = FMath.Sin(panelTurn*2);
+			}*/
 			
 			// なにかボタンが押されたらフェードアウト開始
 			Input input = Input.GetInstance();
@@ -156,7 +185,11 @@ namespace Eleconnect
 			}
 			else
 			{
+				//if(turnFlg == false)
 				startSp.Draw();
+				//else
+				//start_rSp.Draw();
+				
 			}
 		}
 		
@@ -166,6 +199,7 @@ namespace Eleconnect
 			backTex.Dispose ();
 			logoTex.Dispose();
 			startTex.Dispose();
+			start_rTex.Dispose();
 			musicEffect.Term();
 			particle.Draw ();
 			seFlg = false;
