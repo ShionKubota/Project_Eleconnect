@@ -158,6 +158,9 @@
     <Content Include="assets\img\switch.png" />
     <Content Include="assets\img\napple.png" />
     <Content Include="assets\img\particle.png" />
+    <Content Include="assets\img\startlogo_r.png" />
+    <Content Include="assets\img\Clear.png" />
+    <Content Include="assets\img\Clear_r.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
