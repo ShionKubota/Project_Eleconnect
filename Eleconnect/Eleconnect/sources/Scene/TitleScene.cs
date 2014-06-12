@@ -123,7 +123,6 @@ namespace Eleconnect
 		{
 			music.Play();
 			startSp.color.W = 0.3f + FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
-			clear.Update();
 			/*回転
 			panelTurn+=0.01f;
 			startSp.size.X =FMath.Sin(panelTurn*2);

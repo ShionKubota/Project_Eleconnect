@@ -71,6 +71,7 @@ namespace Eleconnect
 						panelLine.Add (new JammingSwitch(new Vector2(basePos.X + panelSize * i,
 					        	    			  			         basePos.Y + panelSize * j)));
 					}
+
 					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);
 				}
 				panels.Add(panelLine);
