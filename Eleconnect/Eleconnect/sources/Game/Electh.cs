@@ -15,14 +15,14 @@ namespace Eleconnect
 			DEATH
 		}
 		
-		private Sprite2D sp;
+		public Sprite2D sp;
 		private static Texture2D tex;
 		public float speed{get; private set;}
 		private int frameCnt;
 		private int aniFrame;
-		private Particles particle;
 		public StateId state{get; private set;}
 		public Panel target{get; private set;}
+		public static bool arrivedGoal;		// ゴールに到着したらtrue
 		
 		public const float DEF_SPEED = 1.0f;
 		
@@ -34,33 +34,19 @@ namespace Eleconnect
 			sp.pos = panel.GetPos();
 			sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
 			sp.size = new Vector2(0.2f, 1.0f);
+			sp.size *= new Vector2(0.5f, 0.5f);
 			target = panel;
 			this.speed = speed;
 			frameCnt = 0;
 			aniFrame = 0;
 			state = StateId.WAIT;
+			arrivedGoal = false;
 			
-			// パーティクルの設定
-			particle = new Particles(500);
-			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
-			particle.pos = new Vector2(sp.pos.X, sp.pos.Y);
-			particle.posVar = new Vector2(0.0f, 0.0f);
-			particle.velocity = new Vector2(0.0f, -3.0f);
-			particle.velocityVar = new Vector2(2.0f, 4.0f);
-			particle.colorEnd = new Vector3(0.6f, 0.8f, 0.9f);
-			particle.colorEndVar = new Vector3(0.2f);
-			particle.scaleStart = 1.0f;
-			particle.scaleStartVar = 0.5f;
-			particle.scaleEndVar = 0.0f;
-			particle.lifeSpan = 1.0f;
-			particle.fade = 0.2f;
-			particle.gravity = new Vector2(0.0f, 0.1f);
-			particle.stopAutoGenerate = true;
+			
 		}
 		
 		public void Update()
 		{
-			particle.Update();
 			frameCnt++;
 			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
 			sp.textureUV.X = (aniFrame % 4) * 0.2f;
@@ -83,30 +69,16 @@ namespace Eleconnect
 					sp.pos = target.GetPos();
 					state = StateId.WAIT;
 					
-					particle.pos = new Vector2(sp.pos.X, sp.pos.Y);
-					particle.Generate(5);
-					
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
 						JammingSwitch.isJamming = false;
 						state = StateId.BURN;
 					}
-					// ゴールだったらどでかいパーティクル
-					/*if(target.isGoal)
+					// ゴールだったら
+					if(target.isGoal)
 					{
-						particle.velocity = new Vector2(0.0f, -7.0f);
-						particle.velocityVar = new Vector2(10.0f, 7.0f);
-						particle.colorStart = new Vector3(1.0f);
-						particle.colorStartVar = new Vector3(1.0f);
-						particle.colorEnd = particle.colorStart;
-						particle.colorEndVar = new Vector3(0.5f);
-						particle.scaleStart = 2.0f;
-						particle.scaleStartVar = 2.0f;
-						particle.lifeSpan = 1.0f;
-						particle.lifeSpanVar = 0.7f;
-						particle.fade = 0.2f;
-						particle.Generate(100);
-					}*/
+						arrivedGoal = true;
+					}
 				}
 				break;
 			
@@ -135,7 +107,6 @@ namespace Eleconnect
 		public void Draw()
 		{
 			sp.Draw();
-			particle.Draw ();
 		}
 	}
 }

@@ -18,11 +18,11 @@ namespace Eleconnect
 	{
 		// 主要オブジェクト
 		public static GameUI gameUI;
-		public static PanelManager panelManager{protected set; get;}
+		public static PanelManager panelManager{ protected set; get; }
 		protected JammingManager jammingManager;
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
-		protected List<Electh> electh;
+		protected ElecthManager electhManager;
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
@@ -77,9 +77,10 @@ namespace Eleconnect
 			stageWidth = stageData[0];
 			stageHeight = stageData[1];
 			
+			panelManager = new PanelManager();
+			
 			CommonInit();
 			
-			panelManager = new PanelManager();
 			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
@@ -107,8 +108,8 @@ namespace Eleconnect
 			gameUI = new GameUI();
 			timeManager = new TimeManager();
 			menuManager = new MenuManager();
-			electh = new List<Electh>();
 			jammingManager = new JammingManager();
+			electhManager = new ElecthManager(panelManager, jammingManager);
 			
 			// パラメータ初期化
 			repeaterCnt = 0;
@@ -198,162 +199,49 @@ namespace Eleconnect
 			// 操作を受付け＆処理
 			AcceptPlayerInput();
 			
-			// 仮に、右下までつながったらクリアーとする
-			if(panelManager[stageWidth - 1, stageHeight - 1].elecPow > 0)
+			// エレクス更新
+			electhManager.Update();
+			if(frameCnt % 300 == 0)
 			{
-				/*
-				frameCnt = 0;
-				nowState = StateId.FLOW_ELECTH;
-				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
-				Panel.elecPowMax = 1;
-				PanelManager.CheckConnectOfPanels(0, 0);
-				*/
+				//ecthManager.FlowStart(0, 0, false);
 			}
-			
 		}
 		
-		// エレクス（電気の球）がステージ上を流れる際の更新プロセス
+		// エレクスが流れるプロセス
 		protected void FrowingProcess()
 		{
-			// 全てのエレクスが消滅したらゲームへ戻る
-			if(electh.Count == 0)
-			{
-				nowState = StateId.GAME;
-				JammingSwitch.isJamming = true;
-				Panel.elecPowMax = 99;
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}	
+			electhManager.Update();
 			
-			// エレクスの更新
-			for(int i = electh.Count-1; i >= 0; i--)
+			if(!electhManager.nowFlowing)
 			{
-				if(electh[i].state == Electh.StateId.WAIT)
-				{
-					SetElecth (i);
-				}
-				
-				electh[i].Update ();
-				
-				// 役目を果たしたエレクスをリストからはずす
-				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);
+				nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
 			}
-		}
-		
-		// エレクスを次のパネルに発進させる(分岐していたら新しいエレクスを作る)
-		private void SetElecth(int id)
-		{
-			bool needNewElecth = false;
-			
-			Panel oldTarget = electh[id].target,	// このエレクスが現在到着しているパネル
-				  newTarget;						// 次のターゲットなるパネル(次のターゲットは無いかもしれないので初期化はここではしない)
-			
-			float oldSpeed = electh[id].speed;
-			
-			int id_w = 0, id_h = 0;					// 現在のパネルの、配列における要素番号
-			panelManager.GetIdByPanel(oldTarget, ref id_w, ref id_h);
-			
-			int[] moveTblW = {0, 1, 0, -1};			// 現在のパネルから隣のパネル(上下左右)への移動量テーブル
-			int[] moveTblH = {-1, 0, 1, 0};
-			
-			for(int j = 0; j < 4; j++)	// 4方向チェック
-			{
-				if(oldTarget.route[j])
-				{
-					// 調査先番号
-					int checkIndexW = id_w + moveTblW[j],
-						checkIndexH = id_h + moveTblH[j];
-					
-					// 調査先が存在しない場合は調査しない
-					if(checkIndexW < 0 || checkIndexW >= GameScene.stageWidth ||
-					   checkIndexH < 0 || checkIndexH >= GameScene.stageHeight)
-						continue;
-					
-					// 存在していたら、調査先を確定
-					else
-					{
-						newTarget = panelManager[checkIndexW, checkIndexH];
-					}
-					
-					// 調査先に電流が既に流れていたら調査しない
-					if(newTarget.elecPow > 0) continue;
-					
-					// ジャミングが張られていたら調査しない
-					int oldIndexW = 0, oldIndexH = 0, jamIndexW, jamIndexH;
-					panelManager.GetIdByPanel(oldTarget, ref oldIndexW, ref oldIndexH);
-					if(JammingSwitch.isJamming)
-					{
-						if(checkIndexW != oldIndexW) // 横移動
-						{
-							jamIndexW = (checkIndexW < oldIndexW) ? checkIndexW : oldIndexW;
-							jamIndexH = oldIndexH;
-							if(jammingManager.jammingDataLength[jamIndexW, jamIndexH] == 1)
-								continue;
-						}
-						if(checkIndexH != oldIndexH) // 縦移動
-						{
-							jamIndexW = oldIndexW;
-							jamIndexH = (checkIndexH < oldIndexH) ? checkIndexH : oldIndexH;
-							if(jammingManager.jammingDataSide[jamIndexW, jamIndexH] == 1)
-								continue;
-						}
-					}
-					
-					// 調査先パネルにて,調査するルート番号を設定(自分が0(↑)なら相手は2(↓)という具合)
-					int checkRouteIndex = j + 2;
-					if(checkRouteIndex > 3) checkRouteIndex -= 4;
-					
-					// 接続できていたらそのパネルにエレクスを向かわせる
-					if(newTarget.route[checkRouteIndex] == true)
-					{
-						// 新しいエレクスが必要なら生成して再帰
-						if(needNewElecth == true)
-						{
-							electh.Add(new Electh(oldTarget, oldSpeed));
-							SetElecth (electh.Count-1);
-						}
-						// そうでなければ現在のエレクスをそのまま次に向かわせる
-						else
-						{
-							needNewElecth = true;
-							electh[id].SetTarget(newTarget);
-							newTarget.elecPow = 1;
-						}
-					}
-				}
-			}
-			
-			// どの方向にもエレクスが進まなかったら消滅させる
-			if(electh[id].state == Electh.StateId.WAIT) electh[id].Kill();
 		}
 		
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
+			nowState = StateId.GAME;
+			return;
+			for(int i = 0; i < stageWidth; i++)
+			{
+				for(int j = 0; j < stageHeight; j++)
+				{
+					if(panelManager[i, j].sp.size.X > 0.0f)
+					{
+						//panelManager[i, j].sp.size -= (Panel.SCALE+1.0f - panelManager[i, j].sp.size) * 0.1f;
+						//panelManager[i, j].sp.size -= new Vector2(0.01f);
+						//Console.WriteLine (panelManager[i, j].sp.size.X);
+						panelManager[i, j].sp.pos += (panelManager[i, j].sp.pos - AppMain.ScreenCenter + new Vector3(-1.0f, -1.0f, 0.0f)) * 0.1f;
+					}
+					else
+					{
+						panelManager[i, j].sp.size = new Vector2(0.0f);
+					}
+				}
+			}
 			// リザルトへ
-			if(Panel.elecPowMax == 10)
-			{
-				this.fadeOutTime = 100;
-				this.fadeOutColor = new Vector3(1.0f, 1.0f, 1.0f);
-				SceneManager.GetInstance().Switch(SceneId.RESULT);
-			}
-			
-			// 消える演出
-			if(frameCnt == 30)
-			{
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}
-			
-			// 光る演出
-			if(frameCnt % 5 == 0 && frameCnt > 70 && Panel.elecPowMax < 10)
-			{
-				Panel.elecPowMax++;
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}
-			
-			//Panel.elecPowMax += (int)(frameCnt * 0.01f);
-			
-			//Panel.elecPowMax = (int)(5.0f + 4 * FMath.Sin(FMath.Radians(frameCnt * 10)));
-			//PanelManager.CheckConnectOfPanels(0, 0);
+			//SceneManager.GetInstance().Switch(SceneId.RESULT);
 		}
 		
 		// ポーズ中の更新プロセス
@@ -398,9 +286,7 @@ namespace Eleconnect
 			{
 				frameCnt = 0;
 				nowState = StateId.FLOW_ELECTH;
-				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
-				Panel.elecPowMax = 1;
-				PanelManager.CheckConnectOfPanels(0, 0);
+				electhManager.FlowStart(0, 0, true);
 			}
 			
 			/*
@@ -471,10 +357,7 @@ namespace Eleconnect
 			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
-			foreach(Electh elec in electh)
-			{
-				elec.Draw();
-			}
+			electhManager.Draw();
 		}
 		
 		// 解放
