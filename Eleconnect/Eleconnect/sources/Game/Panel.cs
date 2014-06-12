@@ -39,6 +39,7 @@ namespace Eleconnect
 			T,				// T字
 			Cross,			// 十字
 			JammSwitch,		// ジャミングスイッチ
+			Terminal,		// スタート&ゴール
 			Group			// グループパネル
 		}
 		
@@ -63,7 +64,6 @@ namespace Eleconnect
 		public virtual void Init(TypeId id, Vector2 pos)
 		{
 			isRepeater = false;
-			isGoal = false;
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
@@ -103,10 +103,10 @@ namespace Eleconnect
 			}
 			*/
 			// ゴールは赤く光る
-			if(isGoal)
+			/*if(isGoal)
 			{
 				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-			}
+			}*/
 		}
 		
 		// 光る

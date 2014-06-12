@@ -92,7 +92,7 @@ namespace Eleconnect
 						state = StateId.BURN;
 					}
 					// ゴールだったらどでかいパーティクル
-					if(target.isGoal)
+					/*if(target.isGoal)
 					{
 						particle.velocity = new Vector2(0.0f, -7.0f);
 						particle.velocityVar = new Vector2(10.0f, 7.0f);
@@ -106,7 +106,7 @@ namespace Eleconnect
 						particle.lifeSpanVar = 0.7f;
 						particle.fade = 0.2f;
 						particle.Generate(100);
-					}
+					}*/
 				}
 				break;
 			

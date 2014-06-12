@@ -382,12 +382,12 @@ namespace Eleconnect
 			Panel panel = panelManager[indexW, indexH];
 			
 			// パネルを回転
-			if(input.triggerR.isPushStart && panel.isGoal == false)
+			if(input.triggerR.isPushStart)
 			{
 				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
 			}
-			if(input.triggerL.isPushStart && panel.isGoal == false)
+			if(input.triggerL.isPushStart)
 			{
 				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);

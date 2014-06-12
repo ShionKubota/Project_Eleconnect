@@ -91,6 +91,7 @@
     <Compile Include="sources\Game\JammingSwitch.cs" />
     <Compile Include="sources\General\Particles.cs" />
     <Compile Include="sources\General\Particle.cs" />
+    <Compile Include="sources\Game\StartAndGoal.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
