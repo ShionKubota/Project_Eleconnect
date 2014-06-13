@@ -8,8 +8,8 @@ namespace Eleconnect
 	{
 		// エディット情報(マップデータ)
 		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
-		public const int RANDOM_MAP_W = 5;
-		public const int RANDOM_MAP_H = 5;
+		public const int RANDOM_MAP_W = 4;
+		public const int RANDOM_MAP_H = 8;
 		// (グループパネルについてのデータ)
 		public const bool USE_GROUP_PANEL = false;
 		public const int GROUP_LENGTH = 2;			// グループパネルの1辺の要素数

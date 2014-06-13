@@ -20,7 +20,7 @@ namespace Eleconnect
 		
 		public EditScene ()
 		{
-			//PlayData.GetInstance().stageNo = 0;
+			//PlayData.GetInstance().stageNo =1;
 		}
 		
 		// 初期化
