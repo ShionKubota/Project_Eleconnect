@@ -81,7 +81,7 @@ namespace Eleconnect
 			{
 				panelManager.Replace(indexW, indexH, 
 				                     new JammingSwitch(new Vector2(panel.GetPos().X, panel.GetPos().Y)));
-				PanelManager.CheckConnectOfPanels(0, 0);
+				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
 			}
 			
 			// マップデータ保存
@@ -100,15 +100,19 @@ namespace Eleconnect
 					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプを保存
 					
 					int rotateCnt = panelManager[i, j].rotateCnt;
-					//if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;
-					//if(rotateCnt > 9) rotateCnt = rotateCnt % 4;	// パネルの回転数(2桁の数や負の数であれば、0~3の数値に変換する)
+					if(rotateCnt < 0) rotateCnt = 4 - rotateCnt;
+					if(rotateCnt > 9) rotateCnt = rotateCnt % 4;	// パネルの回転数(2桁の数や負の数であれば、0~3の数値に変換する)
 					mapData.Add(rotateCnt);		// パネルの回転数を保存
 				}
 			}
 			fa.SavaData(mapFileName, mapData.ToArray());
 			
-			// ステージデータ保存{横, 縦, リピーター数, チェンジアイテム数}
-			int[] stageData = new int[]{EditScene.stageWidth, EditScene.stageHeight};
+			// ステージデータ保存{横, 縦, }
+			int[] stageData = new int[]{
+										 EditScene.stageWidth, EditScene.stageHeight,
+										 PanelEditor.START_X, PanelEditor.START_Y,
+										 PanelEditor.GOAL_X, PanelEditor.GOAL_Y
+										};
 			fa.SavaData(stageFileName, stageData);
 			Console.WriteLine ("SUCCESSFULL : Save the data of map.\n");
 		}

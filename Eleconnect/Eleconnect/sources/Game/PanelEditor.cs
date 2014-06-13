@@ -10,6 +10,10 @@ namespace Eleconnect
 		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
 		public const int RANDOM_MAP_W = 5;
 		public const int RANDOM_MAP_H = 5;
+		public const int START_X = 0;
+		public const int START_Y = 0;
+		public const int GOAL_X  = 4;
+		public const int GOAL_Y  = 4;
 		// (グループパネルについてのデータ)
 		public const bool USE_GROUP_PANEL = false;
 		public const int GROUP_LENGTH = 2;			// グループパネルの1辺の要素数

@@ -81,7 +81,7 @@ namespace Eleconnect
 				sp.angle = rotateTo;
 				
 				// 接続状況チェック
-				PanelManager.CheckConnectOfPanels(0, 0);
+				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
 			}
 			
 			// 光る
@@ -207,7 +207,7 @@ namespace Eleconnect
 		public void ChangeType(TypeId id)
 		{
 			Init (id, new Vector2(sp.pos.X, sp.pos.Y));
-			PanelManager.CheckConnectOfPanels(0, 0);
+			PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
 		}
 		
 		// 色設定

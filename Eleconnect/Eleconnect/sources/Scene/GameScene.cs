@@ -36,8 +36,8 @@ namespace Eleconnect
 		// ステージ情報
 		public static int stageWidth{ protected set; get; }			// 現ステージのパネルの枚数　横
 		public static int stageHeight{ protected set; get; }			//      〃                縦
-		public static List<int> mapData{ protected set; get; }		// マップデータ
-		public static List<int> stageData{ protected set; get; }		// ステージデータ
+		public static int[] mapData{ protected set; get; }		// マップデータ
+		public static int[] stageData{ protected set; get; }		// ステージデータ
 		public static string mapFileName{ protected set; get; }		// 読み込むマップファイル名
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
@@ -69,9 +69,6 @@ namespace Eleconnect
 		override public void Init()
 		{
 			// 読み込むファイルを選択
-			PlayData playData = PlayData.GetInstance();
-			mapFileName = "mapData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");		// マップデータ
-			stageFileName = "stageData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");	// ステージデータ
 			LoadStageData();
 			
 			stageWidth = stageData[0];
@@ -126,30 +123,14 @@ namespace Eleconnect
 		// ステージのデータを読み込み
 		protected void LoadStageData()
 		{
-			// マップ読み込み
-			mapData = new List<int>();
-			string mapDataStr = "";
-			FileAccess.GetInstance().LoadData(mapFileName,
-			                                  ref mapDataStr);
+			Stage_Base stage;
+			stage = new StageDataList()[PlayData.GetInstance().stageNo];
 			
-			for(int i = 0; i < mapDataStr.Length; i++)
-			{
-				Console.WriteLine ("mapdata[{0}] = {1}", i, mapDataStr[i]);
-				if(mapDataStr[i] == ',') continue;
-				mapData.Add(int.Parse(mapDataStr[i]+""));
-			}
+			// マップ読み込み
+			mapData = stage.mapData;
 			
 			// ステージ情報読み込み
-			stageData = new List<int>();
-			string stageDataStr = "";
-			FileAccess.GetInstance().LoadData(stageFileName,
-			                                  ref stageDataStr);
-			
-			for(int i = 0; i < stageDataStr.Length; i++)
-			{
-				if(stageDataStr[i] == ',') continue;
-				stageData.Add(int.Parse(stageDataStr[i]+""));
-			}
+			stageData = stage.stageData;
 		}
 		
 		// 更新
@@ -286,7 +267,7 @@ namespace Eleconnect
 			{
 				frameCnt = 0;
 				nowState = StateId.FLOW_ELECTH;
-				electhManager.FlowStart(0, 0, true);
+				electhManager.FlowStart(stageData[2], stageData[3], true);
 			}
 			
 			/*

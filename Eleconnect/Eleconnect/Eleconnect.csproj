@@ -49,6 +49,7 @@
     <Folder Include="assets\" />
     <Folder Include="assets\music\" />
     <Folder Include="assets\img\" />
+    <Folder Include="sources\Game\Stage\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="sources\Game\GameUI.cs" />
@@ -92,6 +93,12 @@
     <Compile Include="sources\General\Particles.cs" />
     <Compile Include="sources\General\Particle.cs" />
     <Compile Include="sources\Game\ElecthManager.cs" />
+    <Compile Include="sources\Game\Stage\Stage_Base.cs" />
+    <Compile Include="sources\Game\Stage\Stage_0.cs" />
+    <Compile Include="sources\Game\Stage\StageDataList.cs" />
+    <Compile Include="sources\Game\Stage\Stage_1.cs" />
+    <Compile Include="sources\Game\Stage\Stage_2.cs" />
+    <Compile Include="sources\Game\Stage\Stage_3.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />

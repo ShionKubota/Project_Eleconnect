@@ -50,7 +50,7 @@ namespace Eleconnect
 			
 			
 			Panel.elecPowMax = 1;
-			PanelManager.CheckConnectOfPanels(0, 0);
+			PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
 		}
 		
 		// 更新
@@ -61,11 +61,10 @@ namespace Eleconnect
 			// 全てのエレクスが消滅したらゲーム、もしくはクリア状態へ遷移する
 			if(electh.Count == 0)
 			{
-				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
 				nowFlowing = false;
 				JammingSwitch.isJamming = true;
 				Panel.elecPowMax = 99;
-				PanelManager.CheckConnectOfPanels(0, 0);
+				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
 			}	
 			
 			// エレクスの更新
@@ -81,6 +80,7 @@ namespace Eleconnect
 				// パーティクル
 				if(electh[i].state == Electh.StateId.WAIT)
 				{
+					particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
 					if(electh[i].target.isGoal)
 					{
 						// どでかいパーティクル
@@ -95,11 +95,10 @@ namespace Eleconnect
 						particle.lifeSpan = 1.0f;
 						particle.lifeSpanVar = 0.7f;
 						particle.fade = 0.2f;
-						particle.Generate(100);
+						particle.Generate(40);
 					}
 					else
 					{
-						particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
 						particle.Generate(5);
 					}
 				}
