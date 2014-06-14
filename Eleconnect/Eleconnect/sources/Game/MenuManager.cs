@@ -78,13 +78,16 @@ namespace Eleconnect
 			menuFlg = true;
 			
 			// 上下キーで選択
-			if(input.up.isPushStart && menuNum != 1)
+			if(selectFlg == false)
 			{
-				menuNum--;
-			}
-			else if(input.down.isPushStart && menuNum != 4)
-			{
-				menuNum++;
+				if(input.up.isPushStart && menuNum != 1)
+				{
+					menuNum--;
+				}
+				else if(input.down.isPushStart && menuNum != 4)
+				{
+					menuNum++;
+				}
 			}
 			
 			// 選ばれているボタンは点滅
@@ -108,37 +111,33 @@ namespace Eleconnect
 			if(selectFlg == true)
 			{
 				selectScene.Update();
+				
+				if(input.cross.isPushEnd || input.start.isPush)
+				{
+					selectFlg = false;
+				}
 			}
 		}
 		
 		// 描画
 		public void Draw()
 		{
-			/*
 			// Startが押されたらメニューON/OFF
-			if(input.start.isPushEnd && menuFlg == false)
-			{
-				menuFlg = true;
-			}
-			else if(input.start.isPushEnd && menuFlg == true)
-			{
-				menuFlg = false;
-			}
-			*/
 			// メニュー表示
-			//if(menuFlg == true)
-			//{
-				menubaseSp.Draw();
-				menuCommentary.Draw();
-				for(int i = 0;i<5;i++)
+			menubaseSp.Draw();
+			menuCommentary.Draw();
+			for(int i = 0;i<5;i++)
+			{
+				if(selectFlg == false)
 				{
 					menuSp[i].Draw();
 				}
+			}
 			if(selectFlg == true)
 			{
+				menuSp[0].Draw();
 				selectScene.Draw();
 			}
-			//}
 		}
 		
 		// 解放
@@ -168,17 +167,19 @@ namespace Eleconnect
 					case 2:			// retryボタン
 					{
 						AppMain.sceneManager.Switch(SceneId.GAME);
+						menuFlg = false;
 						break;
 					}
 					case 3:			// selectボタン
 					{
 						//AppMain.sceneManager.Switch(SceneId.SELECT);
-					selectFlg = true;
+						selectFlg = true;
 						break;
 					}
 					case 4:			// titleボタン
 					{
 						AppMain.sceneManager.Switch(SceneId.TITLE);
+						menuFlg = false;
 					break;
 					}
 				}

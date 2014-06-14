@@ -46,7 +46,7 @@ namespace Eleconnect
 			btnMoveY = 0;										// 動き
 			selectMoveFlg = false;								// 動くフラグ
 			changeDirection = 2;								// 動く向き(左=0,右=1,停止=2)
-			changePrevGame = false;								// ゲームプレビュー
+			changePrevGame = false;								// ゲーム選択
 			
 			// 画像
 			for(int i = 0;i <= STAGE_NUM;i++)
@@ -57,13 +57,16 @@ namespace Eleconnect
 				}
 				
 				selectBtnSp[i] = new Sprite2D(selectBtnTex[i]);
+				selectBtnSp[i].size = new Vector2(1.0f);
 			}
+			
 			for(int i = 1;i<STAGE_NUM;i++)
 			{
 				selectBtnSp[i + 1].pos = new Vector3(AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * i,
 				                                 AppMain.ScreenHeight/2.0f + SELECT_BTN_SIZE/2,
 				                                 0.0f);
 			}
+			
 			for(int i = 0; i < 4;i++)
 			{
 				if(cornerTex[i] == null)
@@ -76,8 +79,8 @@ namespace Eleconnect
 				cornerSp[i].angle = 90 * i;
 			}
 			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-				                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
-				                              0.0f);
+			                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
+			                              0.0f);
 			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
 			                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
 			                              0.0f);
@@ -100,45 +103,76 @@ namespace Eleconnect
 		// 更新
 		public void Update()
 		{
-			// ボタン類更新
-			Button_Move();
-			
-			// 座標更新
-			cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+			if(!MenuManager.menuFlg)
+			{
+				// ボタン類更新
+				Button_Move();
+				
+				// 枠座標更新
+				cornerSp[0].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
 				                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
 				                              0.0f);
-			cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
-			                              0.0f);
-			cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
-			                              0.0f);
-			cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
-			                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
-			                              0.0f);
-			
-			// ボタン配置
-			for(int i = 1;i<=STAGE_NUM;i++)
-			{
-				selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
+				cornerSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+				                              AppMain.ScreenHeight / 2.0f - cornerSize + SELECT_BTN_SIZE/2,
+				                              0.0f);
+				cornerSp[2].pos = new Vector3(AppMain.ScreenWidth / 2.0f + cornerSize,
+				                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
+				                              0.0f);
+				cornerSp[3].pos = new Vector3(AppMain.ScreenWidth / 2.0f - cornerSize,
+				                              AppMain.ScreenHeight / 2.0f + cornerSize + SELECT_BTN_SIZE/2,
+				                              0.0f);
+				
+				// ボタン配置
+				for(int i = 1;i<=STAGE_NUM;i++)
+				{
+					selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f + (SELECT_BTN_SIZE) * 3.0f * (i-1);
+				}
 			}
-			
-			//Console.WriteLine(prevGameSp[selectPrevNum].color.W);
-			//Console.WriteLine(selectBtnNo);
-			//Console.WriteLine(changePrevGame);
+			else
+			{
+				menu_Button_Move();
+				// ボタン配置
+				for(int i = 1;i<=STAGE_NUM;i++)
+				{
+					selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f;
+				}
+			}
 		}
 		
 		// 描画
 		public void Draw()
 		{
-			//prevGameSp[selectPrevNum].Draw();
-			for(int i = 1;i<=STAGE_NUM;i++)
+			if(MenuManager.menuFlg == false)
 			{
-				selectBtnSp[i].Draw();
+				for(int i = 1;i<=STAGE_NUM;i++)
+				{
+					selectBtnSp[i].Draw();
+				}
+				for(int i = 0; i < 4;i++)
+				{
+					cornerSp[i].Draw();
+				}
 			}
-			for(int i = 0; i < 4;i++)
+			else
 			{
-				cornerSp[i].Draw();
+				for(int i = 0;i<=STAGE_NUM;i++)
+				{
+					cornerSp[0].angle = -45.0f;
+					cornerSp[1].angle = -225.0f;
+					cornerSp[0].pos = new Vector3 (selectBtnSp[i].pos.X - SELECT_BTN_SIZE,selectBtnSp[i].pos.Y,0.0f);
+					cornerSp[1].pos = new Vector3 (selectBtnSp[i].pos.X + SELECT_BTN_SIZE,selectBtnSp[i].pos.Y,0.0f);
+					selectBtnSp[i].size = new Vector2 (1.48f);
+				}
+				
+				selectBtnSp[selectBtnNo].Draw();
+				if(selectBtnNo != 1)
+				{
+					cornerSp[0].Draw();
+				}
+				if(selectBtnNo != STAGE_NUM)
+				{
+					cornerSp[1].Draw();
+				}
 			}
 		}
 		
@@ -213,7 +247,7 @@ namespace Eleconnect
 				selectBtnSp[selectBtnNo].size += 0.02f;				// 選ばれてるボタンは表示が大きくなる
 				selectBtnSp[selectBtnNo-1].size -= 0.02f;
 				
-				// 後ろの画像のフェード
+				// 枠の移動
 				if(changePrevGame == false)
 				{
 					cornerSize -= 5.0f;
@@ -231,12 +265,39 @@ namespace Eleconnect
 					changeDirection = 2;
 				}
 			}
-			Console.WriteLine(btnMoveX);
 			
-			// 元に戻す
+			// 枠を元の位置に
 			if(changePrevGame == true)
 			{
 				cornerSize += 5.0f;
+			}
+		}
+		
+		public void menu_Button_Move()
+		{
+			// とりあえずキーを押したら
+			// 右キー
+			if(selectBtnNo != STAGE_NUM)
+			{
+				if(input.right.isPushEnd)
+				{
+					musicEffect.Set(0.6f,false);
+					selectMoveFlg = true;
+					
+					selectBtnNo++;
+				}
+			}
+			
+			// 左キー
+			if(selectBtnNo != 1)
+			{
+				if(input.left.isPushEnd)
+				{
+					musicEffect.Set(0.6f,false);
+					selectMoveFlg = true;
+					
+					selectBtnNo--;
+				}
 			}
 		}
 	}

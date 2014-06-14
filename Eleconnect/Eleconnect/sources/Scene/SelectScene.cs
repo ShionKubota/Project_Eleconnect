@@ -70,6 +70,7 @@ namespace Eleconnect
 					{
 						PlayData.GetInstance().stageNo = (i - 1);
 						AppMain.sceneManager.Switch(SceneId.GAME);
+						MenuManager.menuFlg = false;
 					}
 				}
 			}
