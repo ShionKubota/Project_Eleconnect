@@ -23,13 +23,14 @@ namespace Eleconnect
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
 		protected ElecthManager electhManager;
+		protected ResultScene result;
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
 		private Sprite2D guideSp;
 		private Texture2D guideTex;
 		// 音楽
-		protected static MusicEffect musicEffect;
+		protected MusicEffect musicEffect;
 		protected static Music music;
 		protected static TimeManager timeManager;
 		
@@ -45,6 +46,7 @@ namespace Eleconnect
 		private int repeaterCnt;	// アイテム使用カウント
 		private int changeCnt;
 		private int frameCnt;
+		private bool seFlg;
 		
 		// ゲームの状態ID列挙
 		public enum StateId
@@ -115,6 +117,7 @@ namespace Eleconnect
 			repeaterCnt = 0;
 			changeCnt = 0;
 			frameCnt = 0;
+			seFlg = false;
 			nowState = StateId.GAME;
 			
 			// 音関連
@@ -172,7 +175,9 @@ namespace Eleconnect
 				break;
 				
 			case StateId.CLEAR:
+				if(result == null) result = new ResultScene();
 				AfterClearingProcess();
+				seFlg = true;
 				break;
 				
 			case StateId.PAUSE:
@@ -214,16 +219,23 @@ namespace Eleconnect
 			
 			if(!electhManager.nowFlowing)
 			{
-				nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				if(Electh.arrivedGoal)
+				{
+					music.Stop();
+					nowState = StateId.CLEAR;
+				}
+				else
+				{
+					nowState = StateId.GAME;	
+				}
 			}
 		}
 		
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
-			nowState = StateId.GAME;
-			return;
-			for(int i = 0; i < stageWidth; i++)
+			/*for(int i = 0; i < stageWidth; i++)
 			{
 				for(int j = 0; j < stageHeight; j++)
 				{
@@ -239,9 +251,9 @@ namespace Eleconnect
 						panelManager[i, j].sp.size = new Vector2(0.0f);
 					}
 				}
-			}
+			}*/
 			// リザルトへ
-			//SceneManager.GetInstance().Switch(SceneId.RESULT);
+			result.Update();
 		}
 		
 		// ポーズ中の更新プロセス
@@ -357,6 +369,7 @@ namespace Eleconnect
 			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
+			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
 		}
 		

@@ -157,6 +157,7 @@
     <Content Include="assets\img\napple.png" />
     <Content Include="assets\img\particle.png" />
     <Content Include="assets\img\switch.png" />
+    <Content Include="assets\img\electh_test.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
