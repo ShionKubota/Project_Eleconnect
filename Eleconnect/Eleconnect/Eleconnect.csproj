@@ -50,6 +50,7 @@
     <Folder Include="assets\music\" />
     <Folder Include="assets\img\" />
     <Folder Include="sources\Game\Stage\" />
+    <Folder Include="sources\UI\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="sources\Game\GameUI.cs" />
@@ -99,6 +100,11 @@
     <Compile Include="sources\Game\Stage\Stage_1.cs" />
     <Compile Include="sources\Game\Stage\Stage_2.cs" />
     <Compile Include="sources\Game\Stage\Stage_3.cs" />
+    <Compile Include="sources\UI\EditUI.composer.cs" />
+    <Compile Include="sources\UI\EditUI.cs" />
+    <Compile Include="sources\UI\UIStringTable.cs" />
+    <Compile Include="sources\UI\MapSavedDialog.composer.cs" />
+    <Compile Include="sources\UI\MapSavedDialog.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />

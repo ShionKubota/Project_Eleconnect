@@ -60,10 +60,10 @@ namespace Eleconnect
 				indexW += (int)input.GetArrow().X;
 				indexH += (int)input.GetArrow().Y;
 				
-				if(indexW < 0) indexW = GameScene.stageWidth - 1;
-				if(indexH < 0) indexH = GameScene.stageHeight - 1;
-				if(indexW >= GameScene.stageWidth) indexW = 0;
-				if(indexH >= GameScene.stageHeight) indexH = 0;
+				if(indexW < 0) indexW = GameScene.stage.width - 1;
+				if(indexH < 0) indexH = GameScene.stage.height - 1;
+				if(indexW >= GameScene.stage.width) indexW = 0;
+				if(indexH >= GameScene.stage.height) indexH = 0;
 				
 				// 位置適用
 				sp.pos = panels.GetPos(indexW, indexH);

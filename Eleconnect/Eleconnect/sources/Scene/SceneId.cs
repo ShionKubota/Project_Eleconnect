@@ -15,7 +15,8 @@ namespace Eleconnect
 		SELECT,
 		GAME,
 		RESULT,
-		GAMEOVER
+		GAMEOVER,
+		EDIT
 	}
 }
 

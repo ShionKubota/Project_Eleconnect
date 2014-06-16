@@ -50,7 +50,7 @@ namespace Eleconnect
 			
 			
 			Panel.elecPowMax = 1;
-			PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
+			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 		}
 		
 		// 更新
@@ -64,7 +64,7 @@ namespace Eleconnect
 				nowFlowing = false;
 				JammingSwitch.isJamming = true;
 				Panel.elecPowMax = 99;
-				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
+				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}	
 			
 			// エレクスの更新
@@ -95,7 +95,7 @@ namespace Eleconnect
 						particle.lifeSpan = 1.0f;
 						particle.lifeSpanVar = 0.7f;
 						particle.fade = 0.2f;
-						particle.Generate(40);
+						particle.Generate(50);
 					}
 					else
 					{
@@ -133,8 +133,8 @@ namespace Eleconnect
 						checkIndexH = id_h + moveTblH[j];
 					
 					// 調査先が存在しない場合は調査しない
-					if(checkIndexW < 0 || checkIndexW >= GameScene.stageWidth ||
-					   checkIndexH < 0 || checkIndexH >= GameScene.stageHeight)
+					if(checkIndexW < 0 || checkIndexW >= GameScene.stage.width ||
+					   checkIndexH < 0 || checkIndexH >= GameScene.stage.height)
 						continue;
 					
 					// 存在していたら、調査先を確定

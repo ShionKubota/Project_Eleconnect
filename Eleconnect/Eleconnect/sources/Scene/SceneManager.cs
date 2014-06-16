@@ -36,8 +36,8 @@ namespace Eleconnect
 		public void Init()
 		{
 			// 最初に開始するシーン
-			PlayData.GetInstance().stageNo = 5;
-			nowScene = new LogoScene();
+			PlayData.GetInstance().stageNo = 0;
+			nowScene = new EditScene();
 			
 			fade = new Fade();
 		}
@@ -71,6 +71,9 @@ namespace Eleconnect
 				case SceneId.GAME:
 					nowScene = new GameScene();
 					break;
+				case SceneId.EDIT:
+					nowScene = new EditScene();
+					break;
 				case SceneId.RESULT:
 					nowScene = new ResultScene();
 					break;
@@ -89,7 +92,7 @@ namespace Eleconnect
 		{
 			nowScene.Draw();
 			UISystem.Render();
-			fade.Draw ();
+			//fade.Draw ();
 		}
 		
 		// シーン切り替え(フェードアウト開始)

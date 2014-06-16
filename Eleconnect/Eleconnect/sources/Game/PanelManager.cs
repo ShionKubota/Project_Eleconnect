@@ -31,17 +31,17 @@ namespace Eleconnect
 		{
 			// パネル端の位置計算(全体の中心が画面中央に位置するように)
 			float panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
-			Vector2 basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stageWidth) / 2.0f) + (panelSize / 2.0f),
-			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stageHeight) / 2.0f) + (panelSize / 2.0f));
+			Vector2 basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f),
+			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize / 2.0f));
 			// パネルを並べる
 			LineupPanels(panelSize, basePos);
 			
 			// ゴールを設置
-			panels[GameScene.stageData[4]][GameScene.stageData[5]].isGoal = true;
+			panels[GameScene.stage.goalX][GameScene.stage.goalY].isGoal = true;
 			//panels[0][0].isGoal = true;
 			
 			// 接続状況初期化
-			CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
+			CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			
 		}
 		
@@ -50,14 +50,14 @@ namespace Eleconnect
 		{
 			// パネルリストの初期化
 			panels = new List<List<Panel>>();
-			for(int i = 0; i < GameScene.stageWidth; i++)
+			for(int i = 0; i < GameScene.stage.width; i++)
 			{
 				List<Panel> panelLine = new List<Panel>();
-				for(int j = 0; j < GameScene.stageHeight; j++)
+				for(int j = 0; j < GameScene.stage.height; j++)
 				{
 					// 読み込んだマップデータを基に配置
-					int loadIndex = ((GameScene.stageHeight * 2) * i) + (j * 2);
-					Panel.TypeId type = (Panel.TypeId)GameScene.mapData[loadIndex];
+					int loadIndex = ((GameScene.stage.height * 2) * i) + (j * 2);
+					Panel.TypeId type = (Panel.TypeId)GameScene.stage.mapData[loadIndex];
 					// 通常パネル
 					if(type <= Panel.TypeId.Cross)
 					{
@@ -71,7 +71,7 @@ namespace Eleconnect
 						panelLine.Add (new JammingSwitch(new Vector2(basePos.X + panelSize * i,
 					        	    			  			         basePos.Y + panelSize * j)));
 					}
-					panelLine[j].Rotate(GameScene.mapData[loadIndex + 1]);
+					panelLine[j].Rotate(GameScene.stage.mapData[loadIndex + 1]);
 				}
 				panels.Add(panelLine);
 			}
@@ -174,9 +174,9 @@ namespace Eleconnect
 					panel.Term();
 				}
 			}*/
-			for(int i = GameScene.stageWidth - 1; i >= 0; i--)
+			for(int i = GameScene.stage.width - 1; i >= 0; i--)
 			{
-				for(int j = GameScene.stageHeight - 1; j >= 0; j--)
+				for(int j = GameScene.stage.height - 1; j >= 0; j--)
 				{
 					panels[i][j].Term();
 					panels[i].RemoveAt(j);
@@ -189,9 +189,9 @@ namespace Eleconnect
 		public static bool CheckConnectOfPanels(int startIndexW, int startIndexH)
 		{
 			// 探査済みかどうかを保存しておくマップ
-			for(int i = 0; i < GameScene.stageWidth; i++)
+			for(int i = 0; i < GameScene.stage.width; i++)
 			{
-				for(int j = 0; j < GameScene.stageHeight; j++)
+				for(int j = 0; j < GameScene.stage.height; j++)
 				{
 					panels[i][j].elecPow = 0;
 				}
@@ -202,9 +202,9 @@ namespace Eleconnect
 			
 			// 調査後処理(つながった数を計算)
 			int connectNum = 0;
-			for(int i = 0; i < GameScene.stageWidth; i++)
+			for(int i = 0; i < GameScene.stage.width; i++)
 			{
-				for(int j = 0; j < GameScene.stageHeight; j++)
+				for(int j = 0; j < GameScene.stage.height; j++)
 				{
 					if(panels[i][j].elecPow > 0) connectNum++;
 				}
@@ -239,8 +239,8 @@ namespace Eleconnect
 				int checkPanelIndexH = indexH + moveTblH[i];
 				
 				// 調査先が存在しない場合は調査しない
-				if(checkPanelIndexW < 0 || checkPanelIndexW >= GameScene.stageWidth ||
-				   checkPanelIndexH < 0 || checkPanelIndexH >= GameScene.stageHeight)
+				if(checkPanelIndexW < 0 || checkPanelIndexW >= GameScene.stage.width ||
+				   checkPanelIndexH < 0 || checkPanelIndexH >= GameScene.stage.height)
 					continue;
 				
 				// 調査先に、自分より強い電流が既に流れていたら調査しない
@@ -293,6 +293,7 @@ namespace Eleconnect
 		// 指定の番号の要素を新しいインスタンスに置き換え
 		public void Replace(int indexW, int indexH, Panel newItem)
 		{
+			//newItem.sp.pos = panels[indexW][indexH].sp.pos;
 			panels[indexW][indexH] = newItem;
 		}
 	}// END OF CLASS

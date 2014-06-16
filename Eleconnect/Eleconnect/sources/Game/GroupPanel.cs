@@ -55,7 +55,7 @@ namespace Eleconnect
 				angle = rotateTo;
 				
 				// 接続状況チェック
-				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
+				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 				
 				Console.WriteLine ("GroupUpdate");
 			}

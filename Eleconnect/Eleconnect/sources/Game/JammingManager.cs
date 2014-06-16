@@ -27,11 +27,11 @@ namespace Eleconnect
 		private void Init()
 		{
 			jamming = new Jamming();
-			jammingSide = GameScene.stageWidth;
-			jammingLength = GameScene.stageHeight;
+			jammingSide = GameScene.stage.width;
+			jammingLength = GameScene.stage.height;
 			panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
-			basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stageWidth) / 2.0f) + panelSize,
-			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stageHeight) / 2.0f) + panelSize);
+			basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + panelSize,
+			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + panelSize);
 			jammingDataLength = new int[jammingSide,jammingLength];
 			jammingDataSide = new int[jammingSide,jammingLength];
 			jammingLocate = new Vector3(basePos.X + panelSize,

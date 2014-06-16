@@ -16,11 +16,12 @@ namespace Eleconnect
 {
 	public class EditScene : GameScene
 	{
-		private PanelManager panelManager;
+		private EditUI editUI;
+		private Sprite2D dummySp;
+		private Texture2D dummyTex;
 		
 		public EditScene ()
 		{
-			//PlayData.GetInstance().stageNo = 0;
 		}
 		
 		// 初期化
@@ -37,15 +38,18 @@ namespace Eleconnect
 				LoadStageData();
 			}
 			
-			stageWidth = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_W : stageData[0];
-			stageHeight = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_H : stageData[1];
+			stage.width = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_W : GameScene.stage.width;
+			stage.height = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_H : GameScene.stage.height;
+			
+			panelManager = new PanelEditor();
 			
 			CommonInit();
 			
-			gameUI = new GameUI();
-			panelManager = new PanelEditor();
-			cursor = new CursorOnPanels(panelManager);
+			editUI = new EditUI(panelManager);
+			UISystem.SetScene(editUI);
 			
+			// バグ修正用のテクスチャ
+			dummyTex = new Texture2D(@"Application/assets/img/particle.png", false);
 			
 			// デバッグ表示
 			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the elecPowMax.");
@@ -66,8 +70,10 @@ namespace Eleconnect
 			
 			// 選んでいるパネル
 			Panel panel = panelManager[indexW, indexH];
+			editUI.SetIndex(cursor);
 			
 			// パネル変化
+			/*
 			if(input.cross.isPush == false && input.square.isPushStart)
 			{
 				Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
@@ -75,17 +81,20 @@ namespace Eleconnect
 				panel.ChangeType(newId);
 				PanelManager.CheckConnectOfPanels(0, 0);
 			}
-			
+			*/
+			/*
 			// スイッチ設置
 			if(input.cross.isPush && input.square.isPushStart)
 			{
 				panelManager.Replace(indexW, indexH, 
 				                     new JammingSwitch(new Vector2(panel.GetPos().X, panel.GetPos().Y)));
-				PanelManager.CheckConnectOfPanels(GameScene.stageData[2], GameScene.stageData[3]);
+				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}
-			
+			*/
 			// マップデータ保存
-			if(input.select.isPushEnd) SaveMap ();
+			//if(input.select.isPushEnd) SaveMap ();
+			
+			dummySp = new Sprite2D(dummyTex);
 		}
 		// マップデータセーブ
 		private void SaveMap()
@@ -93,9 +102,9 @@ namespace Eleconnect
 			FileAccess fa = FileAccess.GetInstance();
 			List<int> mapData = new List<int>();	// データ保存用リスト
 			
-			for(int i = 0; i < EditScene.stageWidth; i++)
+			for(int i = 0; i < EditScene.stage.width; i++)
 			{
-				for(int j = 0; j < EditScene.stageHeight; j++)
+				for(int j = 0; j < EditScene.stage.height; j++)
 				{
 					mapData.Add((int)panelManager[i, j].typeId);	// パネルのタイプを保存
 					
@@ -105,15 +114,15 @@ namespace Eleconnect
 					mapData.Add(rotateCnt);		// パネルの回転数を保存
 				}
 			}
-			fa.SavaData(mapFileName, mapData.ToArray());
+			fa.SavaData("mapData.dat", mapData.ToArray());
 			
 			// ステージデータ保存{横, 縦, }
 			int[] stageData = new int[]{
-										 EditScene.stageWidth, EditScene.stageHeight,
+										 EditScene.stage.width, EditScene.stage.height,
 										 PanelEditor.START_X, PanelEditor.START_Y,
 										 PanelEditor.GOAL_X, PanelEditor.GOAL_Y
 										};
-			fa.SavaData(stageFileName, stageData);
+			fa.SavaData("stageData.dat", stageData);
 			Console.WriteLine ("SUCCESSFULL : Save the data of map.\n");
 		}
 	}// END OF CLASS
