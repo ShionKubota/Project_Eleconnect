@@ -4,7 +4,7 @@
     <Files>
       <File FileName="Eleconnect\sources\Scene\EditScene.cs" Line="13" Column="36" />
       <File FileName="Eleconnect\sources\UI\EditUI.cs" Line="10" Column="40" />
-      <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="27" Column="3" />
+      <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="11" Column="37" />
       <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="95" Column="1" />
       <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="98" Column="26" />
       <File FileName="Eleconnect\sources\Game\Electh.cs" Line="36" Column="38" />
