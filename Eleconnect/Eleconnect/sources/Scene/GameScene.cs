@@ -17,7 +17,6 @@ namespace Eleconnect
 	public class GameScene : BaseScene
 	{
 		// 主要オブジェクト
-		public static GameUI gameUI;
 		public static PanelManager panelManager{ protected set; get; }
 		protected JammingManager jammingManager;
 		protected CursorOnPanels cursor;
@@ -27,8 +26,8 @@ namespace Eleconnect
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
-		private Sprite2D guideSp;
-		private Texture2D guideTex;
+		//private Sprite2D guideSp;
+		//private Texture2D guideTex;
 		private Sprite2D electhSp;
 		private Texture2D electhTex;
 		// 音楽
@@ -37,16 +36,24 @@ namespace Eleconnect
 		protected static TimeManager timeManager;
 		
 		// ステージ情報
-		public static int stageWidth{ protected set; get; }			// 現ステージのパネルの枚数　横
-		public static int stageHeight{ protected set; get; }			//      〃                縦
-		public static List<int> mapData{ protected set; get; }		// マップデータ
-		public static List<int> stageData{ protected set; get; }		// ステージデータ
+		public struct StageData
+		{
+		
+			public int width, height,
+				startX, startY,
+				goalX, goalY;
+			
+			public int[] mapData;
+		}
+		public static StageData stage;
+		//public static int stage.width{ protected set; get; }			// 現ステージのパネルの枚数　横
+		//public static int stage.height{ protected set; get; }			//      〃                縦
+		//public static int[] mapData{ protected set; get; }		// マップデータ
+		//public static int[] stageData{ protected set; get; }		// ステージデータ
 		public static string mapFileName{ protected set; get; }		// 読み込むマップファイル名
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
 		// プレイ情報
-		private int repeaterCnt;	// アイテム使用カウント
-		private int changeCnt;
 		private int frameCnt;
 		private int aniFrame;
 		private float eleRotate;
@@ -75,19 +82,12 @@ namespace Eleconnect
 		override public void Init()
 		{
 			// 読み込むファイルを選択
-			PlayData playData = PlayData.GetInstance();
-			mapFileName = "mapData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");		// マップデータ
-			stageFileName = "stageData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");	// ステージデータ
 			LoadStageData();
-			
-			stageWidth = stageData[0];
-			stageHeight = stageData[1];
 			
 			panelManager = new PanelManager();
 			
 			CommonInit();
 			
-			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
 			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the elecPowMax.");
@@ -105,7 +105,7 @@ namespace Eleconnect
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
-			
+			/*
 			if(guideTex == null)
 			{
 				guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
@@ -115,7 +115,7 @@ namespace Eleconnect
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.4f, 0.4f);
-			
+			*/
 			if(electhTex == null)
 			{
 				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
@@ -127,15 +127,13 @@ namespace Eleconnect
 			electhSp.size *= new Vector2(0.5f, 0.5f);
 			
 			// インスタンス生成
-			gameUI = new GameUI();
+			cursor = new CursorOnPanels(panelManager);
 			timeManager = new TimeManager();
 			menuManager = new MenuManager();
 			jammingManager = new JammingManager();
 			electhManager = new ElecthManager(panelManager, jammingManager);
 			
 			// パラメータ初期化
-			repeaterCnt = 0;
-			changeCnt = 0;
 			frameCnt = 0;
 			aniFrame = 0;
 			eleRotate = 0;
@@ -151,30 +149,19 @@ namespace Eleconnect
 		// ステージのデータを読み込み
 		protected void LoadStageData()
 		{
-			// マップ読み込み
-			mapData = new List<int>();
-			string mapDataStr = "";
-			FileAccess.GetInstance().LoadData(mapFileName,
-			                                  ref mapDataStr);
+			Stage_Base stageData;
+			stageData = new StageDataList()[PlayData.GetInstance().stageNo];
 			
-			for(int i = 0; i < mapDataStr.Length; i++)
-			{
-				Console.WriteLine ("mapdata[{0}] = {1}", i, mapDataStr[i]);
-				if(mapDataStr[i] == ',') continue;
-				mapData.Add(int.Parse(mapDataStr[i]+""));
-			}
+			// マップ読み込み
+			stage.mapData = stageData.mapData;
 			
 			// ステージ情報読み込み
-			stageData = new List<int>();
-			string stageDataStr = "";
-			FileAccess.GetInstance().LoadData(stageFileName,
-			                                  ref stageDataStr);
-			
-			for(int i = 0; i < stageDataStr.Length; i++)
-			{
-				if(stageDataStr[i] == ',') continue;
-				stageData.Add(int.Parse(stageDataStr[i]+""));
-			}
+			stage.width = stageData.stageData[0];
+			stage.height = stageData.stageData[1];
+			stage.startX = stageData.stageData[2];
+			stage.startY = stageData.stageData[3];
+			stage.goalX = stageData.stageData[4];
+			stage.goalY = stageData.stageData[5];
 		}
 		
 		// 更新
@@ -263,9 +250,9 @@ namespace Eleconnect
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
-			for(int i = 0; i < stageWidth; i++)
+			for(int i = 0; i < stage.width; i++)
 			{
-				for(int j = 0; j < stageHeight; j++)
+				for(int j = 0; j < stage.height; j++)
 				{
 					if(panelManager[i, j].sp.size.X > 0.0f)
 					{
@@ -327,7 +314,7 @@ namespace Eleconnect
 			{
 				frameCnt = 0;
 				nowState = StateId.FLOW_ELECTH;
-				electhManager.FlowStart(0, 0, true);
+				electhManager.FlowStart(stage.startX, stage.startY, true);
 			}
 			
 			/*
@@ -335,7 +322,7 @@ namespace Eleconnect
 			// リピーター
 			if(input.cross.isPushStart)
 			{
-				if(repeaterCnt < 1 && !(indexW == stageWidth - 1 && indexH == stageHeight - 1))
+				if(repeaterCnt < 1 && !(indexW == stage.width - 1 && indexH == stage.height - 1))
 				{
 					panel.isRepeater = true;
 					PanelManager.CheckConnectOfPanels(0, 0);
@@ -392,12 +379,13 @@ namespace Eleconnect
 		override public void Draw()
 		{
 			backSp.Draw();
-			guideSp.Draw ();
+			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
 			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
+			//electhManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
 			if(!electhManager.nowFlowing) electhSp.DrawAdd();
@@ -411,7 +399,6 @@ namespace Eleconnect
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();
-			gameUI.Term ();
 			musicEffect.Term();
 			music.Term();
 			timeManager.Term();
