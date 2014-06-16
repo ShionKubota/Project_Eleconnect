@@ -29,6 +29,8 @@ namespace Eleconnect
 		private Texture2D backTex;
 		private Sprite2D guideSp;
 		private Texture2D guideTex;
+		private Sprite2D electhSp;
+		private Texture2D electhTex;
 		// 音楽
 		protected MusicEffect musicEffect;
 		protected static Music music;
@@ -111,6 +113,14 @@ namespace Eleconnect
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.4f, 0.4f);
+			
+			if(electhTex == null)
+			{
+				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+			}
+			electhSp = new Sprite2D(electhTex);
+			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
+			electhSp.size = new Vector2(0.75f,0.75f);
 			
 			// インスタンス生成
 			gameUI = new GameUI();
@@ -378,6 +388,7 @@ namespace Eleconnect
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
+			if(!electhManager.nowFlowing) electhSp.DrawAdd();
 		}
 		
 		// 解放
