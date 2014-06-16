@@ -48,6 +48,8 @@ namespace Eleconnect
 		private int repeaterCnt;	// アイテム使用カウント
 		private int changeCnt;
 		private int frameCnt;
+		private int aniFrame;
+		private float eleRotate;
 		private bool seFlg;
 		
 		// ゲームの状態ID列挙
@@ -116,11 +118,13 @@ namespace Eleconnect
 			
 			if(electhTex == null)
 			{
-				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
 			electhSp = new Sprite2D(electhTex);
 			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
-			electhSp.size = new Vector2(0.75f,0.75f);
+			electhSp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			electhSp.size = new Vector2(0.2f, 1.0f);
+			electhSp.size *= new Vector2(0.5f, 0.5f);
 			
 			// インスタンス生成
 			gameUI = new GameUI();
@@ -133,6 +137,8 @@ namespace Eleconnect
 			repeaterCnt = 0;
 			changeCnt = 0;
 			frameCnt = 0;
+			aniFrame = 0;
+			eleRotate = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
 			
@@ -206,6 +212,12 @@ namespace Eleconnect
 			jammingManager.Update();
 			
 			frameCnt++;
+			eleRotate += 1.0f;
+			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
+			electhSp.textureUV.X = (aniFrame % 4) * 0.2f;
+			electhSp.textureUV.Z = electhSp.textureUV.X + 0.2f;
+			electhSp.angle=eleRotate;
+			
 		}
 		
 		// ゲーム中の更新プロセス

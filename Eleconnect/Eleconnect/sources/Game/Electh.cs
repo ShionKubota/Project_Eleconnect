@@ -29,12 +29,12 @@ namespace Eleconnect
 		public Electh (Panel panel, float speed)
 		{
 			if(tex == null)
-				tex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+				tex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			sp = new Sprite2D(tex);
 			sp.pos = panel.GetPos();
-			sp.textureUV = new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-			sp.size = new Vector2(1.0f, 1.0f);
-			sp.size *= new Vector2(0.75f, 0.75f);
+			sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			sp.size = new Vector2(0.2f, 1.0f);
+			sp.size *= new Vector2(0.5f, 0.5f);
 			target = panel;
 			this.speed = speed;
 			frameCnt = 0;
@@ -49,8 +49,8 @@ namespace Eleconnect
 		{
 			frameCnt++;
 			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
-			//sp.textureUV.X = (aniFrame % 4) * 0.2f;
-			//sp.textureUV.Z = sp.textureUV.X + 0.2f;
+			sp.textureUV.X = (aniFrame % 4) * 0.2f;
+			sp.textureUV.Z = sp.textureUV.X + 0.2f;
 			
 			switch(state)
 			{

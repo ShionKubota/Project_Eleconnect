@@ -453,3 +453,5 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.exe
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\obj\Debug\app.pdb
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\electh_test.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\electh_test.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\electh_before.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\electh_before.png
