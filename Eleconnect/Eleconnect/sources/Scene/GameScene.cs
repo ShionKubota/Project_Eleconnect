@@ -94,12 +94,18 @@ namespace Eleconnect
 		protected void CommonInit()
 		{
 			// スプライト
-			backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			if(backTex == null)
+			{
+				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			}
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
 			
-			guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+			if(guideTex == null)
+			{
+				guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+			}
 			guideSp = new Sprite2D(guideTex);
 			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
@@ -235,7 +241,7 @@ namespace Eleconnect
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
-			/*for(int i = 0; i < stageWidth; i++)
+			for(int i = 0; i < stageWidth; i++)
 			{
 				for(int j = 0; j < stageHeight; j++)
 				{
@@ -245,13 +251,14 @@ namespace Eleconnect
 						//panelManager[i, j].sp.size -= new Vector2(0.01f);
 						//Console.WriteLine (panelManager[i, j].sp.size.X);
 						panelManager[i, j].sp.pos += (panelManager[i, j].sp.pos - AppMain.ScreenCenter + new Vector3(-1.0f, -1.0f, 0.0f)) * 0.1f;
+						
 					}
 					else
 					{
 						panelManager[i, j].sp.size = new Vector2(0.0f);
 					}
 				}
-			}*/
+			}
 			// リザルトへ
 			result.Update();
 		}
@@ -376,8 +383,8 @@ namespace Eleconnect
 		// 解放
 		override public void Term()
 		{
-			backTex.Dispose();
-			guideTex.Dispose();
+			//backTex.Dispose();
+			//guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();

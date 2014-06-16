@@ -65,7 +65,7 @@ namespace Eleconnect
 			pakSp.size = new Vector2(0.8f);
 			pakSp.pos = new Vector3(AppMain.ScreenWidth/2.0f,AppMain.ScreenHeight - 128.0f,0.0f);
 			
-			if(backTex == null)
+			//if(backTex == null)
 			//backTex = new Texture2D(@"/Application/assets/img/Back.png", false);
 			//backSp = new Sprite2D(backTex);
 			//backSp.center = new Vector2(0.0f);
@@ -86,7 +86,6 @@ namespace Eleconnect
 		// 更新
 		override public void Update()
 		{
-			//resultEffect.Set(1.0f,false);
 			frameCnt++;
 			score.Update();
 			pakSp.color.W = 0.3f + 

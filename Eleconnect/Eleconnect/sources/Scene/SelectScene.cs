@@ -36,6 +36,7 @@ namespace Eleconnect
 			
 			seFlg = false;
 			
+			if(selectBackTex == null)
 			selectBackTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
 			selectBackSp = new Sprite2D(selectBackTex);
 			selectBackSp.center = new Vector2(0.0f,0.0f);
