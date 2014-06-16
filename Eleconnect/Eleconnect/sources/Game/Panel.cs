@@ -106,10 +106,10 @@ namespace Eleconnect
 			}
 			*/
 			// ゴールは赤く光る
-			/*if(isGoal)
+			if(isGoal)
 			{
 				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-			}*/
+			}
 		}
 		
 		// 光る

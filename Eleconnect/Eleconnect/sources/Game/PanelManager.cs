@@ -38,7 +38,6 @@ namespace Eleconnect
 			
 			// ゴールを設置
 			panels[GameScene.stage.goalX][GameScene.stage.goalY].isGoal = true;
-			//panels[0][0].isGoal = true;
 			
 			// 接続状況初期化
 			CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);

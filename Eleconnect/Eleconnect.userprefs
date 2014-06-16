@@ -1,21 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\PanelEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\SceneManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\EditScene.cs" Line="13" Column="36" />
-      <File FileName="Eleconnect\sources\UI\EditUI.cs" Line="10" Column="40" />
-      <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="11" Column="37" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="95" Column="1" />
-      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="98" Column="26" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="36" Column="38" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\PanelManager.cs" Line="74" Column="19" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="39" Column="39" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="40" Column="61" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="157" Column="41" />
       <File FileName="Eleconnect\sources\Game\Stage\Stage_0.cs" Line="16" Column="21" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="173" Column="16" />
-      <File FileName="Eleconnect\sources\Scene\SceneId.cs" Line="19" Column="7" />
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="75" Column="25" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\Stage\StageDataList.cs" Line="22" Column="1" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\NormalPanel.cs" Line="12" Column="3" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\JammingManager.cs" Line="52" Column="21" />
+      <File FileName="Eleconnect\sources\UI\EditUI.cs" Line="78" Column="43" />
+      <File FileName="Eleconnect\sources\Game\NormalPanel.cs" Line="13" Column="52" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="93" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
