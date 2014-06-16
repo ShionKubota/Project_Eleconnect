@@ -22,21 +22,17 @@ namespace Eleconnect
 		private Sprite2D
 			backSp,
 			startSp,
-			start_rSp,
 			logoSp;
 		private Texture2D
 			backTex,
 			startTex,
-			start_rTex,
 			logoTex;
 		
 		public static Music music;
 		private MusicEffect musicEffect;
 		
 		private int frameCnt;
-		private float panelTurn;
 		private bool seFlg;
-		private bool turnFlg;
 		
 		private Particles particle;
 		private SelectScene selectScene;
@@ -50,8 +46,6 @@ namespace Eleconnect
 		// 初期化
 		override public void Init()
 		{
-			panelTurn = 0;
-			turnFlg = false;
 			// 画像
 			logoTex = new Texture2D(@"/Application/assets/img/eleconnect_logo.png", false);
 			logoSp = new Sprite2D(logoTex);

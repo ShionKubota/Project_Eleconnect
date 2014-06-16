@@ -17,38 +17,50 @@ namespace Eleconnect
 	public class GameScene : BaseScene
 	{
 		// 主要オブジェクト
-		public static GameUI gameUI;
-<<<<<<< HEAD
-		public static PanelManager panelManager{protected set; get;}
-=======
-		protected PanelManager panelManager;
+		public static PanelManager panelManager{ protected set; get; }
 		protected JammingManager jammingManager;
->>>>>>> 02f96690a0efe40842366590c350c9ad26e7cd37
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
-		protected List<Electh> electh;
+		protected ElecthManager electhManager;
+		protected ResultScene result;
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
+<<<<<<< HEAD
+		//private Sprite2D guideSp;
+		//private Texture2D guideTex;
+=======
 		private Sprite2D guideSp;
 		private Texture2D guideTex;
+		private Sprite2D electhSp;
+		private Texture2D electhTex;
+>>>>>>> origin/master
 		// 音楽
-		protected static MusicEffect musicEffect;
+		protected MusicEffect musicEffect;
 		protected static Music music;
 		protected static TimeManager timeManager;
 		
 		// ステージ情報
-		public static int stageWidth{ protected set; get; }			// 現ステージのパネルの枚数　横
-		public static int stageHeight{ protected set; get; }			//      〃                縦
-		public static List<int> mapData{ protected set; get; }		// マップデータ
-		public static List<int> stageData{ protected set; get; }		// ステージデータ
+		public struct StageData
+		{
+		
+			public int width, height,
+				startX, startY,
+				goalX, goalY;
+			
+			public int[] mapData;
+		}
+		public static StageData stage;
+		//public static int stage.width{ protected set; get; }			// 現ステージのパネルの枚数　横
+		//public static int stage.height{ protected set; get; }			//      〃                縦
+		//public static int[] mapData{ protected set; get; }		// マップデータ
+		//public static int[] stageData{ protected set; get; }		// ステージデータ
 		public static string mapFileName{ protected set; get; }		// 読み込むマップファイル名
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
 		// プレイ情報
-		private int repeaterCnt;	// アイテム使用カウント
-		private int changeCnt;
 		private int frameCnt;
+		private bool seFlg;
 		
 		// ゲームの状態ID列挙
 		public enum StateId
@@ -66,7 +78,6 @@ namespace Eleconnect
 		// コンストラクタ
 		public GameScene ()
 		{
-			//PlayData.GetInstance().stageNo = 2;
 			Init ();
 		}
 		
@@ -74,19 +85,12 @@ namespace Eleconnect
 		override public void Init()
 		{
 			// 読み込むファイルを選択
-			PlayData playData = PlayData.GetInstance();
-			mapFileName = "mapData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");		// マップデータ
-			stageFileName = "stageData{stageNo}.dat".Replace("{stageNo}", playData.stageNo + "");	// ステージデータ
 			LoadStageData();
 			
-			stageWidth = stageData[0];
-			stageHeight = stageData[1];
+			panelManager = new PanelManager();
 			
 			CommonInit();
 			
-			panelManager = new PanelManager();
-			jammingManager = new JammingManager();
-			cursor = new CursorOnPanels(panelManager);
 			
 			// デバッグ表示
 			//if(IS_DEBUG_MODE) Console.WriteLine("IS_DEBUG_MODE...Xkey : Output the data of this panel.\tD/Wkey : Increment/Decrement the elecPowMax.");
@@ -97,28 +101,51 @@ namespace Eleconnect
 		protected void CommonInit()
 		{
 			// スプライト
-			backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			if(backTex == null)
+			{
+				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			}
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
-			
+<<<<<<< HEAD
+			/*
 			guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+=======
+			
+			if(guideTex == null)
+			{
+				guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+			}
+>>>>>>> origin/master
 			guideSp = new Sprite2D(guideTex);
 			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.4f, 0.4f);
+<<<<<<< HEAD
+			*/
+=======
 			
+			if(electhTex == null)
+			{
+				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+			}
+			electhSp = new Sprite2D(electhTex);
+			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
+			electhSp.size = new Vector2(0.75f,0.75f);
+			
+>>>>>>> origin/master
 			// インスタンス生成
-			gameUI = new GameUI();
+			cursor = new CursorOnPanels(panelManager);
 			timeManager = new TimeManager();
 			menuManager = new MenuManager();
-			electh = new List<Electh>();
+			jammingManager = new JammingManager();
+			electhManager = new ElecthManager(panelManager, jammingManager);
 			
 			// パラメータ初期化
-			repeaterCnt = 0;
-			changeCnt = 0;
 			frameCnt = 0;
+			seFlg = false;
 			nowState = StateId.GAME;
 			
 			// 音関連
@@ -130,30 +157,19 @@ namespace Eleconnect
 		// ステージのデータを読み込み
 		protected void LoadStageData()
 		{
-			// マップ読み込み
-			mapData = new List<int>();
-			string mapDataStr = "";
-			FileAccess.GetInstance().LoadData(mapFileName,
-			                                  ref mapDataStr);
+			Stage_Base stageData;
+			stageData = new StageDataList()[PlayData.GetInstance().stageNo];
 			
-			for(int i = 0; i < mapDataStr.Length; i++)
-			{
-				Console.WriteLine ("mapdata[{0}] = {1}", i, mapDataStr[i]);
-				if(mapDataStr[i] == ',') continue;
-				mapData.Add(int.Parse(mapDataStr[i]+""));
-			}
+			// マップ読み込み
+			stage.mapData = stageData.mapData;
 			
 			// ステージ情報読み込み
-			stageData = new List<int>();
-			string stageDataStr = "";
-			FileAccess.GetInstance().LoadData(stageFileName,
-			                                  ref stageDataStr);
-			
-			for(int i = 0; i < stageDataStr.Length; i++)
-			{
-				if(stageDataStr[i] == ',') continue;
-				stageData.Add(int.Parse(stageDataStr[i]+""));
-			}
+			stage.width = stageData.stageData[0];
+			stage.height = stageData.stageData[1];
+			stage.startX = stageData.stageData[2];
+			stage.startY = stageData.stageData[3];
+			stage.goalX = stageData.stageData[4];
+			stage.goalY = stageData.stageData[5];
 		}
 		
 		// 更新
@@ -176,7 +192,9 @@ namespace Eleconnect
 				break;
 				
 			case StateId.CLEAR:
+				if(result == null) result = new ResultScene();
 				AfterClearingProcess();
+				seFlg = true;
 				break;
 				
 			case StateId.PAUSE:
@@ -203,138 +221,63 @@ namespace Eleconnect
 			// 操作を受付け＆処理
 			AcceptPlayerInput();
 			
-			// 仮に、右下までつながったらクリアーとする
-			if(panelManager[stageWidth - 1, stageHeight - 1].elecPow > 0)
+			// エレクス更新
+			electhManager.Update();
+			if(frameCnt % 300 == 0)
 			{
-				/*
-				frameCnt = 0;
-				nowState = StateId.FLOW_ELECTH;
-				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
-				Panel.elecPowMax = 1;
-				PanelManager.CheckConnectOfPanels(0, 0);
-				*/
+				//ecthManager.FlowStart(0, 0, false);
 			}
-			
 		}
 		
-		// エレクス（電気の球）がステージ上を流れる際の更新プロセス
+		// エレクスが流れるプロセス
 		protected void FrowingProcess()
 		{
-			if(electh.Count == 0)
-			{
-				nowState = StateId.GAME;
-				Panel.elecPowMax = 99;
-			}	
+			electhManager.Update();
 			
-			for(int i = electh.Count-1; i >= 0; i--)
+			if(!electhManager.nowFlowing)
 			{
-				if(electh[i].state == Electh.StateId.WAIT)
+				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				if(Electh.arrivedGoal)
 				{
-					SetElecth (i);
+					music.Stop();
+					nowState = StateId.CLEAR;
 				}
-				
-				electh[i].Update ();
-				
-				// 役目を果たしたエレクスをリストからはずす
-				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);
-			}
-		}
-		
-		// エレクスを次のパネルに発進させる(分岐していたら新しいエレクスを作る)
-		private void SetElecth(int id)
-		{
-			bool needNewElecth = false;
-			
-			Panel oldTarget = electh[id].target,	// このエレクスが現在到着しているパネル
-				  newTarget;						// 次のターゲットなるパネル(次のターゲットは無いかもしれないので初期化はここではしない)
-			
-			float oldSpeed = electh[id].speed;
-			
-			int id_w = 0, id_h = 0;					// 現在のパネルの、配列における要素番号
-			panelManager.GetIdByPanel(oldTarget, ref id_w, ref id_h);
-			
-			int[] moveTblW = {0, 1, 0, -1};			// 現在のパネルから隣のパネル(上下左右)への移動量テーブル
-			int[] moveTblH = {-1, 0, 1, 0};
-			
-			for(int j = 0; j < 4; j++)	// 4方向チェック
-			{
-				if(oldTarget.route[j])
+				else
 				{
-					// 調査先番号
-					int checkIndexW = id_w + moveTblW[j],
-						checkIndexH = id_h + moveTblH[j];
-					
-					// 調査先が存在しない場合は調査しない
-					if(checkIndexW < 0 || checkIndexW >= GameScene.stageWidth ||
-					   checkIndexH < 0 || checkIndexH >= GameScene.stageHeight)
-						continue;
-					
-					// 存在していたら、調査先を確定
-					else
-					{
-						newTarget = panelManager[checkIndexW, checkIndexH];
-					}
-					
-					// 調査先に電流が既に流れていたら調査しない
-					if(newTarget.elecPow > 0) continue;
-					
-					// 調査先パネルにて,調査するルート番号を設定(自分が0(↑)なら相手は2(↓)という具合)
-					int checkRouteIndex = j + 2;
-					if(checkRouteIndex > 3) checkRouteIndex -= 4;
-					
-					// 接続できていたらそのパネルにエレクスを向かわせる
-					if(newTarget.route[checkRouteIndex] == true)
-					{
-						// 新しいエレクスが必要なら生成して再帰
-						if(needNewElecth == true)
-						{
-							electh.Add(new Electh(oldTarget, oldSpeed));
-							SetElecth (electh.Count-1);
-						}
-						// そうでなければ現在のエレクスをそのまま次に向かわせる
-						else
-						{
-							needNewElecth = true;
-							electh[id].SetTarget(newTarget);
-							Console.WriteLine("GO_ELECTH!");
-							newTarget.elecPow = 1;
-						}
-					}
+					nowState = StateId.GAME;	
 				}
 			}
-			
-			// どの方向にもエレクスが進まなかったら消滅させる
-			if(electh[id].state == Electh.StateId.WAIT) electh[id].Kill();
 		}
 		
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
+<<<<<<< HEAD
+			nowState = StateId.GAME;
+			return;
+			for(int i = 0; i < stage.width; i++)
+=======
+			for(int i = 0; i < stageWidth; i++)
+>>>>>>> origin/master
+			{
+				for(int j = 0; j < stage.height; j++)
+				{
+					if(panelManager[i, j].sp.size.X > 0.0f)
+					{
+						//panelManager[i, j].sp.size -= (Panel.SCALE+1.0f - panelManager[i, j].sp.size) * 0.1f;
+						//panelManager[i, j].sp.size -= new Vector2(0.01f);
+						//Console.WriteLine (panelManager[i, j].sp.size.X);
+						panelManager[i, j].sp.pos += (panelManager[i, j].sp.pos - AppMain.ScreenCenter + new Vector3(-1.0f, -1.0f, 0.0f)) * 0.1f;
+						
+					}
+					else
+					{
+						panelManager[i, j].sp.size = new Vector2(0.0f);
+					}
+				}
+			}
 			// リザルトへ
-			if(Panel.elecPowMax == 10)
-			{
-				this.fadeOutTime = 100;
-				this.fadeOutColor = new Vector3(1.0f, 1.0f, 1.0f);
-				SceneManager.GetInstance().Switch(SceneId.RESULT);
-			}
-			
-			// 消える演出
-			if(frameCnt == 30)
-			{
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}
-			
-			// 光る演出
-			if(frameCnt % 5 == 0 && frameCnt > 70 && Panel.elecPowMax < 10)
-			{
-				Panel.elecPowMax++;
-				PanelManager.CheckConnectOfPanels(0, 0);
-			}
-			
-			//Panel.elecPowMax += (int)(frameCnt * 0.01f);
-			
-			//Panel.elecPowMax = (int)(5.0f + 4 * FMath.Sin(FMath.Radians(frameCnt * 10)));
-			//PanelManager.CheckConnectOfPanels(0, 0);
+			result.Update();
 		}
 		
 		// ポーズ中の更新プロセス
@@ -363,17 +306,15 @@ namespace Eleconnect
 			Panel panel = panelManager[indexW, indexH];
 			
 			// パネルを回転
-			if(input.triggerR.isPushStart && panel.isGoal == false)
+			if(input.triggerR.isPushStart)
 			{
 				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
-				JammingSwitch.isJamming = false;
 			}
-			if(input.triggerL.isPushStart && panel.isGoal == false)
+			if(input.triggerL.isPushStart)
 			{
 				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);
-				JammingSwitch.isJamming = true;
 			}
 			
 			// エレクスを流す
@@ -381,16 +322,15 @@ namespace Eleconnect
 			{
 				frameCnt = 0;
 				nowState = StateId.FLOW_ELECTH;
-				electh.Add (new Electh(panelManager[0,0], Electh.DEF_SPEED));
-				Panel.elecPowMax = 1;
-				PanelManager.CheckConnectOfPanels(0, 0);
+				electhManager.FlowStart(stage.startX, stage.startY, true);
 			}
 			
+			/*
 			// アイテムを使用
 			// リピーター
 			if(input.cross.isPushStart)
 			{
-				if(repeaterCnt < 1 && !(indexW == stageWidth - 1 && indexH == stageHeight - 1))
+				if(repeaterCnt < 1 && !(indexW == stage.width - 1 && indexH == stage.height - 1))
 				{
 					panel.isRepeater = true;
 					PanelManager.CheckConnectOfPanels(0, 0);
@@ -403,11 +343,11 @@ namespace Eleconnect
 			}
 			
 			// パネル変化
-			if(input.square.isPushStart && panel.routeId != Panel.RouteId.Cross)
+			if(input.square.isPushStart && panel.typeId != Panel.TypeId.Cross)
 			{
 				if(changeCnt < 2)
 				{
-					Panel.RouteId newId = (Panel.RouteId)((int)panel.routeId + 1);
+					Panel.TypeId newId = (Panel.TypeId)((int)panel.typeId + 1);
 					panel.ChangeType(newId);
 					PanelManager.CheckConnectOfPanels(0, 0);
 					changeCnt++;
@@ -417,7 +357,7 @@ namespace Eleconnect
 					cursor.ChangeColorTemporarily(new Vector3(1.0f, 0.0f, 0.0f));
 				}
 			}
-			
+			*/
 			// ポーズメニューを開く
 			if(input.start.isPushStart) nowState = StateId.PAUSE;
 			
@@ -437,60 +377,43 @@ namespace Eleconnect
 			// パネルの情報を表示(デバッグ機能)
 			if(input.start.isPushStart)
 			{
-				Console.WriteLine ("up = {0}\nright = {1}\ndown = {2}\nleft = {3}\nElec = {4}\nrotateCnt = {5}\n", 
-				                   panel.route[Panel.DirId.UP],
-				                   panel.route[Panel.DirId.RIGHT],
-				                   panel.route[Panel.DirId.DOWN],
-				                   panel.route[Panel.DirId.LEFT],
-				                   panel.elecPow,
+				Console.WriteLine ("TypeId = {0} \nrotateCnt = {1}\n", 
+				                   panel.typeId,
 				                   panel.rotateCnt);
 			}
-			
-			/*
-			// 最大電力量を変更
-			if(input.circle.isPushStart ||
-			   input.circle.holdingSeconds > 1.0f)
-			{
-				Panel.elecPowMax += 1; 
-				PanelManager.CheckConnectOfPanels(0, 0);
-				Console.WriteLine("ELEC_MAX = " + Panel.elecPowMax);
-			}
-			if((input.triangle.isPushStart ||
-			   input.triangle.holdingSeconds > 1.0f) && Panel.elecPowMax > 1)
-			{
-				Panel.elecPowMax -= 1;
-				PanelManager.CheckConnectOfPanels(0, 0);
-				Console.WriteLine("ELEC_MAX = " + Panel.elecPowMax);
-			}
-			*/
 		}
 		
 		// 描画
 		override public void Draw()
 		{
 			backSp.Draw();
-			guideSp.Draw ();
+			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
 			jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
-			//gameUI.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
-			foreach(Electh elec in electh)
-			{
-				elec.Draw();
-			}
+<<<<<<< HEAD
+			//electhManager.Draw();
+=======
+			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
+			electhManager.Draw();
+			if(!electhManager.nowFlowing) electhSp.DrawAdd();
+>>>>>>> origin/master
 		}
 		
 		// 解放
 		override public void Term()
 		{
+<<<<<<< HEAD
 			backTex.Dispose();
-			guideTex.Dispose();
+=======
+			//backTex.Dispose();
+>>>>>>> origin/master
+			//guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();
-			gameUI.Term ();
 			musicEffect.Term();
 			music.Term();
 			timeManager.Term();

@@ -107,6 +107,13 @@ namespace Eleconnect
 						jammingDataSide[6,4] = 1;
 						jammingDataSide[7,4] = 1;
 					}
+					if(PlayData.GetInstance().stageNo == 4)
+					{
+						jammingDataSide[0,3] = 1;
+						jammingDataSide[1,3] = 1;
+						jammingDataSide[2,3] = 1;
+						jammingDataSide[3,3] = 1;
+					}
 				}
 			}
 		}

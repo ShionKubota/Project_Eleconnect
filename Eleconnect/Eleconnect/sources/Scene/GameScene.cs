@@ -22,13 +22,16 @@ namespace Eleconnect
 		protected CursorOnPanels cursor;
 		protected MenuManager menuManager;
 		protected ElecthManager electhManager;
+		protected ResultScene result;
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
 		//private Sprite2D guideSp;
 		//private Texture2D guideTex;
+		private Sprite2D electhSp;
+		private Texture2D electhTex;
 		// 音楽
-		protected static MusicEffect musicEffect;
+		protected MusicEffect musicEffect;
 		protected static Music music;
 		protected static TimeManager timeManager;
 		
@@ -52,6 +55,7 @@ namespace Eleconnect
 		
 		// プレイ情報
 		private int frameCnt;
+		private bool seFlg;
 		
 		// ゲームの状態ID列挙
 		public enum StateId
@@ -92,18 +96,32 @@ namespace Eleconnect
 		protected void CommonInit()
 		{
 			// スプライト
-			backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			if(backTex == null)
+			{
+				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+			}
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
 			/*
-			guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+			if(guideTex == null)
+			{
+				guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
+			}
 			guideSp = new Sprite2D(guideTex);
 			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.4f, 0.4f);
 			*/
+			if(electhTex == null)
+			{
+				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+			}
+			electhSp = new Sprite2D(electhTex);
+			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
+			electhSp.size = new Vector2(0.75f,0.75f);
+			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
 			timeManager = new TimeManager();
@@ -113,6 +131,7 @@ namespace Eleconnect
 			
 			// パラメータ初期化
 			frameCnt = 0;
+			seFlg = false;
 			nowState = StateId.GAME;
 			
 			// 音関連
@@ -159,7 +178,9 @@ namespace Eleconnect
 				break;
 				
 			case StateId.CLEAR:
+				if(result == null) result = new ResultScene();
 				AfterClearingProcess();
+				seFlg = true;
 				break;
 				
 			case StateId.PAUSE:
@@ -201,15 +222,22 @@ namespace Eleconnect
 			
 			if(!electhManager.nowFlowing)
 			{
-				nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				if(Electh.arrivedGoal)
+				{
+					music.Stop();
+					nowState = StateId.CLEAR;
+				}
+				else
+				{
+					nowState = StateId.GAME;	
+				}
 			}
 		}
 		
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
-			nowState = StateId.GAME;
-			return;
 			for(int i = 0; i < stage.width; i++)
 			{
 				for(int j = 0; j < stage.height; j++)
@@ -220,6 +248,7 @@ namespace Eleconnect
 						//panelManager[i, j].sp.size -= new Vector2(0.01f);
 						//Console.WriteLine (panelManager[i, j].sp.size.X);
 						panelManager[i, j].sp.pos += (panelManager[i, j].sp.pos - AppMain.ScreenCenter + new Vector3(-1.0f, -1.0f, 0.0f)) * 0.1f;
+						
 					}
 					else
 					{
@@ -228,7 +257,7 @@ namespace Eleconnect
 				}
 			}
 			// リザルトへ
-			//SceneManager.GetInstance().Switch(SceneId.RESULT);
+			result.Update();
 		}
 		
 		// ポーズ中の更新プロセス
@@ -257,12 +286,12 @@ namespace Eleconnect
 			Panel panel = panelManager[indexW, indexH];
 			
 			// パネルを回転
-			if(input.triggerR.isPushStart && panel.isGoal == false)
+			if(input.triggerR.isPushStart)
 			{
 				panel.ButtonEvent(true);
 				musicEffect.Set(1.0f,false);
 			}
-			if(input.triggerL.isPushStart && panel.isGoal == false)
+			if(input.triggerL.isPushStart)
 			{
 				panel.ButtonEvent(false);
 				musicEffect.Set(1.0f,false);
@@ -345,12 +374,15 @@ namespace Eleconnect
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			//electhManager.Draw();
+			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
+			electhManager.Draw();
+			if(!electhManager.nowFlowing) electhSp.DrawAdd();
 		}
 		
 		// 解放
 		override public void Term()
 		{
-			backTex.Dispose();
+			//backTex.Dispose();
 			//guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();

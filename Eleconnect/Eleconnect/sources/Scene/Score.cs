@@ -34,6 +34,9 @@ namespace Eleconnect
 			num = new Number();
 			
 			point = PlayData.GetInstance().connectNum * 1000+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
+			Console.WriteLine(point);
+			Console.WriteLine(PlayData.GetInstance().connectNum);
+			Console.WriteLine((int)TimeManager.timer);
 			digit = point.ToString().Length;
 			numeral = new int[digit];
 			randCnt = 0;

@@ -13,7 +13,6 @@ namespace Eleconnect
 		
 		public bool visibleElecth;
 		public bool nowFlowing{ private set; get; }
-		
 		public ElecthManager (PanelManager panels, JammingManager jammingMng)
 		{
 			electh = new List<Electh>();
@@ -21,7 +20,6 @@ namespace Eleconnect
 			this.jammingMng = jammingMng;
 			visibleElecth = false;
 			nowFlowing = false;
-			
 			// パーティクルの設定
 			particle = new Particles(500);
 			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
@@ -76,7 +74,6 @@ namespace Eleconnect
 				}
 				
 				electh[i].Update ();
-				
 				// パーティクル
 				if(electh[i].state == Electh.StateId.WAIT)
 				{
@@ -96,6 +93,7 @@ namespace Eleconnect
 						particle.lifeSpanVar = 0.7f;
 						particle.fade = 0.2f;
 						particle.Generate(50);
+						electh[i].Kill();
 					}
 					else
 					{
