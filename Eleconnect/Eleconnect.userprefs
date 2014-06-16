@@ -1,17 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\PanelManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\SceneManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="8" Column="14" />
-      <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="10" Column="42" />
-      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="97" Column="5" />
-      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="196" Column="3" />
-      <File FileName="Eleconnect\sources\Scene\Score.cs" Line="72" Column="10" />
-      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="13" Column="13" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="16" Column="4" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="269" Column="8" />
-      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="21" Column="33" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="40" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="90" Column="3" />
+      <File FileName="Eleconnect\sources\Game\PanelEditor.cs" Line="25" Column="22" />
+      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="99" Column="39" />
+      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="48" Column="4" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="36" Column="38" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="215" Column="22" />
+      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="33" Column="29" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="33" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

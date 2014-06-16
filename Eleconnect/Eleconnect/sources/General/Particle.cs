@@ -32,7 +32,7 @@ namespace Eleconnect
 			sp.size = new Vector2(scaleStart);
 			colorChange = (colorEnd - colorStart) / (lifeSpan * 60);
 			scaleChange = (scaleEnd - scaleStart) / (lifeSpan * 60);
-			this.velocity = velocity; 
+			this.velocity = velocity;
 			this.lifeSpan = lifeSpan;
 			this.fade = fade;
 			isDead = false;

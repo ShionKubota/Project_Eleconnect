@@ -8,15 +8,17 @@ namespace Eleconnect
 	{
 		// エディット情報(マップデータ)
 		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
-		public const int RANDOM_MAP_W = 4;
-		public const int RANDOM_MAP_H = 8;
+		public const int RANDOM_MAP_W = 9;
+		public const int RANDOM_MAP_H = 3;
+		public const int START_X = 0;
+		public const int START_Y = 0;
+		public const int GOAL_X  = 4;
+		public const int GOAL_Y  = 4;
 		// (グループパネルについてのデータ)
 		public const bool USE_GROUP_PANEL = false;
 		public const int GROUP_LENGTH = 2;			// グループパネルの1辺の要素数
 		public const int GROUP_ORIGIN_W = 2;
 		public const int GROUP_ORIGIN_H = 2;
-		
-		public const int REPEATER_NUM = 0;
 		
 		public PanelEditor ()
 		{
@@ -37,10 +39,10 @@ namespace Eleconnect
 			Random rand = new Random();
 			// パネルリストの初期化
 			panels = new List<List<Panel>>();
-			for(int i = 0; i < GameScene.stageWidth; i++)
+			for(int i = 0; i < GameScene.stage.width; i++)
 			{
 				List<Panel> panelLine = new List<Panel>();
-				for(int j = 0; j < GameScene.stageHeight; j++)
+				for(int j = 0; j < GameScene.stage.height; j++)
 				{
 					panelLine.Add (new NormalPanel((Panel.TypeId)rand.Next(0, 4),
 					               new Vector2(basePos.X + panelSize * i,

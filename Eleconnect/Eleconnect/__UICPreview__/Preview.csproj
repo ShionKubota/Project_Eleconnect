@@ -31,12 +31,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="__DummyProgram.cs" />
-    <Compile Include="Clear.composer.cs" />
-    <Compile Include="Clear.cs" />
-    <Compile Include="panel1.composer.cs" />
-    <Compile Include="panel1.cs" />
-    <Compile Include="Panel2.composer.cs" />
-    <Compile Include="Panel2.cs" />
+    <Compile Include="__DummyScene.cs" />
+    <Compile Include="MapSavedDialog.composer.cs" />
+    <Compile Include="MapSavedDialog.cs" />
     <Compile Include="UIStringTable.cs" />
   </ItemGroup>
   <ItemGroup>

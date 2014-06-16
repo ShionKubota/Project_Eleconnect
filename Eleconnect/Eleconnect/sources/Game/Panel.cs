@@ -81,7 +81,7 @@ namespace Eleconnect
 				sp.angle = rotateTo;
 				
 				// 接続状況チェック
-				PanelManager.CheckConnectOfPanels(0, 0);
+				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}
 			
 			// 光る
@@ -106,10 +106,10 @@ namespace Eleconnect
 			}
 			*/
 			// ゴールは赤く光る
-			/*if(isGoal)
+			if(isGoal)
 			{
 				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-			}*/
+			}
 		}
 		
 		// 光る
@@ -167,9 +167,11 @@ namespace Eleconnect
 			rotateTo = sp.angle + (isClockwise ? 90.0f : -90.0f);
 			RotateRoute((isClockwise) ? 1 : -1);
 			rotateCnt += (isClockwise) ? 1 : -1;	// 回転した回数の集計
+			if(rotateCnt == 4) rotateCnt = 0;
+			if(rotateCnt == -1)rotateCnt = 3;
 		}
 		// 90*num° 回転
-		public void Rotate(int num)	// 時計回りならtrue
+		public void Rotate(int num)
 		{
 			if(sp.angle % 90.0f != 0.0f) return;	// 非回転時のみ実行
 			rotateTo = sp.angle + (num >= 0 ? 90.0f : -90.0f) * num;
@@ -207,7 +209,7 @@ namespace Eleconnect
 		public void ChangeType(TypeId id)
 		{
 			Init (id, new Vector2(sp.pos.X, sp.pos.Y));
-			PanelManager.CheckConnectOfPanels(0, 0);
+			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 		}
 		
 		// 色設定

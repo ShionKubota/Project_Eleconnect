@@ -13,9 +13,6 @@ namespace Eleconnect
 		
 		public bool visibleElecth;
 		public bool nowFlowing{ private set; get; }
-		
-		public bool clearFlg;
-		
 		public ElecthManager (PanelManager panels, JammingManager jammingMng)
 		{
 			electh = new List<Electh>();
@@ -23,9 +20,6 @@ namespace Eleconnect
 			this.jammingMng = jammingMng;
 			visibleElecth = false;
 			nowFlowing = false;
-			
-			clearFlg = false;
-			
 			// パーティクルの設定
 			particle = new Particles(500);
 			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
@@ -54,7 +48,7 @@ namespace Eleconnect
 			
 			
 			Panel.elecPowMax = 1;
-			PanelManager.CheckConnectOfPanels(0, 0);
+			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 		}
 		
 		// 更新
@@ -65,11 +59,10 @@ namespace Eleconnect
 			// 全てのエレクスが消滅したらゲーム、もしくはクリア状態へ遷移する
 			if(electh.Count == 0)
 			{
-				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
 				nowFlowing = false;
 				JammingSwitch.isJamming = true;
 				Panel.elecPowMax = 99;
-				PanelManager.CheckConnectOfPanels(0, 0);
+				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}	
 			
 			// エレクスの更新
@@ -84,6 +77,7 @@ namespace Eleconnect
 				// パーティクル
 				if(electh[i].state == Electh.StateId.WAIT)
 				{
+					particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
 					if(electh[i].target.isGoal)
 					{
 						// どでかいパーティクル
@@ -98,12 +92,11 @@ namespace Eleconnect
 						particle.lifeSpan = 1.0f;
 						particle.lifeSpanVar = 0.7f;
 						particle.fade = 0.2f;
-						particle.Generate(100);
+						particle.Generate(50);
 						electh[i].Kill();
 					}
 					else
 					{
-						particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
 						particle.Generate(5);
 					}
 				}
@@ -138,8 +131,8 @@ namespace Eleconnect
 						checkIndexH = id_h + moveTblH[j];
 					
 					// 調査先が存在しない場合は調査しない
-					if(checkIndexW < 0 || checkIndexW >= GameScene.stageWidth ||
-					   checkIndexH < 0 || checkIndexH >= GameScene.stageHeight)
+					if(checkIndexW < 0 || checkIndexW >= GameScene.stage.width ||
+					   checkIndexH < 0 || checkIndexH >= GameScene.stage.height)
 						continue;
 					
 					// 存在していたら、調査先を確定

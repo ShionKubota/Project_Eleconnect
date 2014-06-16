@@ -61,7 +61,7 @@ namespace Eleconnect
 			ScreenCenter = new Vector3(ScreenWidth / 2.0f, ScreenHeight / 2.0f, 0.0f);
 			
 			UISystem.Initialize(graphics);
-			UISystem.EnabledFocus = true;
+			UISystem.EnabledFocus = false;
 			
 			rectScreen = graphics.Screen.Rectangle;
 			sceneManager = SceneManager.GetInstance();
@@ -74,8 +74,8 @@ namespace Eleconnect
 			Input.GetInstance().Update();
             List<TouchData> touchDataList = Touch.GetData (0);
 			
-			sceneManager.Update();
 			UISystem.Update(touchDataList, ref Input.gamePadData);
+			sceneManager.Update();
 		}
 		
 		// 描画
