@@ -185,7 +185,7 @@ namespace Eleconnect
 			vertexBuffer.SetIndices(indices);
 			
 			// 加算合成ON
-			AppMain.graphics.Enable( EnableMode.Blend );
+			//AppMain.graphics.Enable( EnableMode.Blend );
 			AppMain.graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.One ) ;
 
 			graphics.SetVertexBuffer(0, vertexBuffer);
@@ -194,7 +194,7 @@ namespace Eleconnect
 			graphics.DrawArrays(DrawMode.TriangleStrip, 0, 4);
 
 			// ブレンドモードオフ
-			AppMain.graphics.Disable( EnableMode.Blend );	
+			//AppMain.graphics.Disable( EnableMode.Blend );	
 		}
 	}
 }

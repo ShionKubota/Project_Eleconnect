@@ -29,7 +29,7 @@ namespace Eleconnect
 			timeTex= new Texture2D(@"/Application/assets/img/timelogo.png", false);
 			timeSp = new Sprite2D(timeTex);
 			timeSp.size = new Vector2(0.5f);
-			timeSp.pos = new Vector3(AppMain.ScreenWidth-160.0f,32.0f,0.0f);
+			timeSp.pos = new Vector3(96.0f,32.0f,0.0f);
 			
 			num = new Number();
 		}
@@ -62,7 +62,7 @@ namespace Eleconnect
 			for(int i = 0;i<digit;i++)
 			{
 				num.numSp[numeral[i]].size = new Vector2(1.0f/4.0f);
-				num.numSp[numeral[i]].pos = new Vector3(AppMain.ScreenWidth - 32.0f * i - 64.0f,80.0f,0.0f);
+				num.numSp[numeral[i]].pos = new Vector3(160.0f - 32.0f * i,80.0f,0.0f);
 				num.numSp[numeral[i]].Draw();
 			}
 			timeSp.Draw();

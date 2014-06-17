@@ -121,10 +121,10 @@ namespace Eleconnect
 				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
 			electhSp = new Sprite2D(electhTex);
-			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
+			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
 			electhSp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
 			electhSp.size = new Vector2(0.2f, 1.0f);
-			electhSp.size *= new Vector2(0.5f, 0.5f);
+			electhSp.size *= new Vector2(0.75f, 0.75f);
 			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
@@ -382,13 +382,13 @@ namespace Eleconnect
 			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
-			jammingManager.Draw();
+			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			//electhManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
-			if(!electhManager.nowFlowing) electhSp.DrawAdd();
+			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
 		}
 		
 		// 解放

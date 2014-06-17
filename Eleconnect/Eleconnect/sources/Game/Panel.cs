@@ -8,7 +8,7 @@ namespace Eleconnect
 	{
 		// 各種定数
 		public const float SIZE = 128.0f;	// テクスチャサイズ
-		public const float SCALE = 0.4f;	// 倍率
+		public const float SCALE = 0.5f;	// 倍率
 		
 		private const float ROTATE_SPEED = 0.4f;		// パネルの回転スピード
 		private const float ROTATE_STOP_ANGLE = 1.0f;	// 目標の角度と現在の角度の差が、この数値以下になったら回転をストップ

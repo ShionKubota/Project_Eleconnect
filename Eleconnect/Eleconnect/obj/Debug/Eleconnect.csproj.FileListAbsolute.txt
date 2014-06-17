@@ -455,3 +455,5 @@ C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsi
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\electh_test.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\electh_before.png
 C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\electh_before.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\assets\img\Jamming2.png
+C:\Users\user\Desktop\SourceTree\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Jamming2.png

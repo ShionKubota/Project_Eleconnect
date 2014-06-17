@@ -85,7 +85,7 @@ namespace Eleconnect
 			graphics.Clear() ;
 			
 			graphics.Enable( EnableMode.Blend ) ;
-			graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.OneMinusSrcAlpha ) ;
+			//graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.OneMinusSrcAlpha ) ;
 			graphics.Enable( EnableMode.CullFace ) ;
 			graphics.SetCullFace( CullFaceMode.Back, CullFaceDirection.Ccw ) ;
 			graphics.Enable( EnableMode.DepthTest ) ;

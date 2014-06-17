@@ -121,6 +121,7 @@ namespace Eleconnect
 		// 更新
 		public void Update()
 		{
+			jamming.Update();
 		}
 		
 		// 描画
