@@ -55,6 +55,8 @@ namespace Eleconnect
 		
 		// プレイ情報
 		private int frameCnt;
+		private int aniFrame;
+		private float eleRotate;
 		private bool seFlg;
 		
 		// ゲームの状態ID列挙
@@ -116,11 +118,13 @@ namespace Eleconnect
 			*/
 			if(electhTex == null)
 			{
-				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
 			electhSp = new Sprite2D(electhTex);
-			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
-			electhSp.size = new Vector2(0.75f,0.75f);
+			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
+			electhSp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			electhSp.size = new Vector2(0.2f, 1.0f);
+			electhSp.size *= new Vector2(0.75f, 0.75f);
 			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
@@ -131,6 +135,8 @@ namespace Eleconnect
 			
 			// パラメータ初期化
 			frameCnt = 0;
+			aniFrame = 0;
+			eleRotate = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
 			
@@ -193,6 +199,12 @@ namespace Eleconnect
 			jammingManager.Update();
 			
 			frameCnt++;
+			eleRotate += 1.0f;
+			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
+			electhSp.textureUV.X = (aniFrame % 4) * 0.2f;
+			electhSp.textureUV.Z = electhSp.textureUV.X + 0.2f;
+			electhSp.angle=eleRotate;
+			
 		}
 		
 		// ゲーム中の更新プロセス
@@ -370,13 +382,13 @@ namespace Eleconnect
 			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
-			jammingManager.Draw();
+			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			//electhManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
-			if(!electhManager.nowFlowing) electhSp.DrawAdd();
+			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
 		}
 		
 		// 解放

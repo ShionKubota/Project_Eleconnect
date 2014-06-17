@@ -20,6 +20,7 @@ namespace Eleconnect
 		public float speed{get; private set;}
 		private int frameCnt;
 		private int aniFrame;
+		private float eleRotate;
 		public StateId state{get; private set;}
 		public Panel target{get; private set;}
 		public static bool arrivedGoal;		// ゴールに到着したらtrue
@@ -29,28 +30,29 @@ namespace Eleconnect
 		public Electh (Panel panel, float speed)
 		{
 			if(tex == null)
-				tex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+				tex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			sp = new Sprite2D(tex);
 			sp.pos = panel.GetPos();
-			sp.textureUV = new Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-			sp.size = new Vector2(1.0f, 1.0f);
+			sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			sp.size = new Vector2(0.2f, 1.0f);
 			sp.size *= new Vector2(0.75f, 0.75f);
 			target = panel;
 			this.speed = speed;
 			frameCnt = 0;
 			aniFrame = 0;
+			eleRotate = 0;
 			state = StateId.WAIT;
 			arrivedGoal = false;
-			
-			
 		}
 		
 		public void Update()
 		{
 			frameCnt++;
+			eleRotate++;
 			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
-			//sp.textureUV.X = (aniFrame % 4) * 0.2f;
-			//sp.textureUV.Z = sp.textureUV.X + 0.2f;
+			sp.textureUV.X = (aniFrame % 4) * 0.2f;
+			sp.textureUV.Z = sp.textureUV.X + 0.2f;
+			sp.angle = eleRotate;
 			
 			switch(state)
 			{
