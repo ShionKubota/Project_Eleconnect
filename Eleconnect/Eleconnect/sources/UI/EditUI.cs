@@ -118,12 +118,12 @@ namespace Eleconnect
 			fa.SavaData("stageData.dat", stageData);
 			Console.WriteLine ("SUCCESSFULL : Save the data of map.\n");
 		}
-		// マップ保存
+		// マップ読み込み
 		private void LoadMap(object sender, TouchEventArgs e)
 		{
 			if(LoadNoList.SelectedIndex != 0)
 			{
-				PlayData.GetInstance().stageNo = LoadNoList.SelectedIndex;
+				PlayData.GetInstance().stageNo = LoadNoList.SelectedIndex - 1;
 				SceneManager.GetInstance().Switch(SceneId.EDIT);
 			}
 		}

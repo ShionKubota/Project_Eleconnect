@@ -169,6 +169,7 @@ namespace Eleconnect
 			return shaderProgram;
 		}
 		
+		// 加算合成描画
 		public void DrawAdd()
 		{				
 			SetMatrix();
@@ -184,17 +185,14 @@ namespace Eleconnect
 			vertexBuffer.SetVertices(2, colors);
 			vertexBuffer.SetIndices(indices);
 			
-			// 加算合成ON
-			AppMain.graphics.Enable( EnableMode.Blend );
+		
+			// 加算合成
 			AppMain.graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.One ) ;
-
+		
 			graphics.SetVertexBuffer(0, vertexBuffer);
 			graphics.SetTexture(0, texture);
 			shaderProgram.SetUniformValue(0, ref screenMatrix);
 			graphics.DrawArrays(DrawMode.TriangleStrip, 0, 4);
-
-			// ブレンドモードオフ
-			AppMain.graphics.Disable( EnableMode.Blend );	
 		}
 	}
 }

@@ -46,6 +46,7 @@ namespace Eleconnect
 			electh.Add (new Electh(panels[indexW, indexH], Electh.DEF_SPEED));
 			nowFlowing = true;
 			
+			PlayData.GetInstance().connectNum = 1;
 			
 			Panel.elecPowMax = 1;
 			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);

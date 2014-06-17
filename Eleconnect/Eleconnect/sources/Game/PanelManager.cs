@@ -29,10 +29,12 @@ namespace Eleconnect
 		// 初期化
 		public void Init()
 		{
-			// パネル端の位置計算(全体の中心が画面中央に位置するように)
+			// 1つめのパネルの位置計算
 			float panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
-			Vector2 basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f),
+			Vector2 basePos = new Vector2(233.0f /*AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f)*/,
 			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize / 2.0f));
+			basePos.X += 100.0f;
+			
 			// パネルを並べる
 			LineupPanels(panelSize, basePos);
 			
@@ -186,7 +188,7 @@ namespace Eleconnect
 		
 		// パネル同士の接続をチェック
 		public static bool CheckConnectOfPanels(int startIndexW, int startIndexH)
-		{
+		{	
 			// 探査済みかどうかを保存しておくマップ
 			for(int i = 0; i < GameScene.stage.width; i++)
 			{
@@ -198,31 +200,26 @@ namespace Eleconnect
 			
 			// 調査
 			CheckConnect(startIndexW, startIndexH, Panel.elecPowMax);
-			
-			// 調査後処理(つながった数を計算)
-			int connectNum = 0;
-			for(int i = 0; i < GameScene.stage.width; i++)
-			{
-				for(int j = 0; j < GameScene.stage.height; j++)
-				{
-					if(panels[i][j].elecPow > 0) connectNum++;
-				}
-			}
-			PlayData.GetInstance().connectNum = connectNum;
-			
+		
 			return false;
 		}
 		
 		// 指定したパネルと、その上下左右のパネルとの接続を確認していく
 		private static void CheckConnect(int indexW, int indexH, int elecPow)
-		{
-			Panel panel = panels[indexW][indexH];	// 探査の基準とするパネル
+		{	
+			Panel panel = panels[indexW][indexH];	// 探査の基準とするパネル(現在地点)
 			
 			// pパネルに電力を適用する(リピーターアイテムが使われていれば、電力はMAXに回復)
 			panel.elecPow = (panel.isRepeater) ? Panel.elecPowMax : elecPow;
 			
 			// 電力が0ならこれ以上の調査はしない
 			if(panel.elecPow <= 0) return;
+			
+			// この地点がスイッチ、ゴールだったらこれ以上調査しない
+			if(panel.typeId == Panel.TypeId.JammSwitch || panel.isGoal)
+			{
+				return;
+			}
 			
 			// 調査-----------------------------------------------------------------------------
 			// パネルの上下左右を確認、つながっていたらそのパネルもチェック

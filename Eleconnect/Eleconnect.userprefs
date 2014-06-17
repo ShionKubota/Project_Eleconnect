@@ -1,14 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\SceneManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\ElecthManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="39" Column="39" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="40" Column="61" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="157" Column="41" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="72" Column="33" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="237" Column="50" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="136" Column="4" />
       <File FileName="Eleconnect\sources\Game\Stage\Stage_0.cs" Line="16" Column="21" />
       <File FileName="Eleconnect\sources\UI\EditUI.cs" Line="78" Column="43" />
-      <File FileName="Eleconnect\sources\Game\NormalPanel.cs" Line="13" Column="52" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="93" Column="4" />
+      <File FileName="Eleconnect\sources\Game\NormalPanel.cs" Line="4" Column="1" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="1" Column="14" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\General\MusicEffect.cs" Line="37" Column="3" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="1" Column="1" />
+      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="22" Column="23" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

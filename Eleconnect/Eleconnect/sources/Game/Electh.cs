@@ -68,6 +68,12 @@ namespace Eleconnect
 					sp.pos = target.GetPos();
 					state = StateId.WAIT;
 					
+					// 接続数カウント
+					int connectNum = ++PlayData.GetInstance().connectNum;
+					int chargePar = (int)((float)connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f);
+					Console.WriteLine ("CONNECT = " + connectNum);
+					Console.WriteLine ("CHARGE = " + chargePar + "%");
+					
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
 						JammingSwitch.isJamming = false;
