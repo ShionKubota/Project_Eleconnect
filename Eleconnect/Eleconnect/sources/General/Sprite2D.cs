@@ -85,6 +85,8 @@ namespace Eleconnect
 			SetTextureUV();
 			SetColor();
 			
+			
+			AppMain.graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.OneMinusSrcAlpha ) ;
 			vertexBuffer.SetVertices(0, vertices);
 			vertexBuffer.SetVertices(1, texcoords);
 			vertexBuffer.SetVertices(2, colors);

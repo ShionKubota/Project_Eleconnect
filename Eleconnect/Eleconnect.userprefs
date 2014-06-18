@@ -1,10 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\General\Sprite2D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\GameScene.cs">
     <Files>
-      <File FileName="Eleconnect\sources\AppMain.cs" Line="99" Column="24" />
-      <File FileName="Eleconnect\sources\General\Sprite2D.cs" Line="172" Column="12" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="36" Column="24" />
+      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="109" Column="5" />
+      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="48" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="26" Column="3" />
+      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="33" Column="29" />
+      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="161" Column="4" />
+      <File FileName="Eleconnect\sources\Game\Jamming.cs" Line="27" Column="42" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="35" Column="6" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="11" Column="33" />
+      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="10" Column="25" />
+      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="9" Column="29" />
+      <File FileName="Eleconnect\sources\General\PlayData.cs" Line="29" Column="19" />
+      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="21" Column="9" />
+      <File FileName="Eleconnect\sources\Scene\BaseScene.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

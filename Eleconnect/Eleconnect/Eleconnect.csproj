@@ -106,6 +106,7 @@
     <Compile Include="sources\UI\MapSavedDialog.composer.cs" />
     <Compile Include="sources\UI\MapSavedDialog.cs" />
     <Compile Include="sources\Game\AchievementRate.cs" />
+    <Compile Include="sources\Game\ChargePar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
