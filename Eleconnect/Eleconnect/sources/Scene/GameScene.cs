@@ -139,6 +139,7 @@ namespace Eleconnect
 			frameCnt = 0;
 			aniFrame = 0;
 			eleRotate = 0;
+			PlayData.GetInstance().connectNum = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
 			
