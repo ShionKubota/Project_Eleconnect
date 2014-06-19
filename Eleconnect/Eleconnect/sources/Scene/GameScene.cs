@@ -119,7 +119,7 @@ namespace Eleconnect
 			{
 				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
-			electhSp = new Animation(electhTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),3,0,6,true,true,true);
+			electhSp = new Animation(electhTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),3,0,5,true,true,true);
 			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
 			
 			// インスタンス生成
