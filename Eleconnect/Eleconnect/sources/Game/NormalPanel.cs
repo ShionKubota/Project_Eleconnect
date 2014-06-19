@@ -44,7 +44,7 @@ namespace Eleconnect
 			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);
 			sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 1.0f);
 			sp.size = new Vector2(SCALE / 2.0f, SCALE);
-			sp.color = new Vector4(0.3f, 0.3f, 0.3f, 1.0f);
+			sp.color = new Vector4(0.4f, 0.4f, 0.4f, 1.0f);
 			
 			lightSp = new Sprite2D(tex[(int)id]);
 			lightSp.pos = sp.pos;

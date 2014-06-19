@@ -24,6 +24,16 @@ namespace Eleconnect
 			public float holdingSeconds;
 		}
 		
+		// タッチ情報
+		public class TouchState
+		{
+			public bool isTouch;	// タッチしているか否か
+			public bool down;		// タッチした瞬間true
+			public bool up;			// 話した瞬間true
+			public bool move;		// 動いている間true
+			public Vector2 pos;		// タッチ位置
+		}
+		
 		// 各種ボタン情・スティック情報
 		public KeyState circle  { get; private set; }  // ○
 		public KeyState cross   { get; private set; }  // ×
@@ -46,7 +56,8 @@ namespace Eleconnect
 		public Vector2 GetAnalogL(){ return new Vector2(analogL.X, analogL.Y); }
 		
 		// タッチ情報
-		public bool isTouch{ get; private set; }	// タッチしているか否か
+		public const int TOUCH_MAX = 5;
+		public TouchState[] touch = new TouchState[TOUCH_MAX];
 		
 		public static GamePadData gamePadData;
 		public static List<TouchData> touchDataList = Touch.GetData (0);
@@ -68,13 +79,17 @@ namespace Eleconnect
 			arrow = new Vector2();
 			analogR = new Vector2();
 			analogL = new Vector2();
+			for(int i = 0; i < TOUCH_MAX; i++)
+			{
+				touch[i] = new TouchState();
+			}
 		}
 		
 		// 更新
 		public void Update()
 		{
 			gamePadData = GamePad.GetData(0);
-			//List<TouchData> touchDataList = Touch.GetData (0);
+			touchDataList = Touch.GetData(0);
 			
 			// ボタン情報取得
 			SetKeyState (circle, GamePadButtons.Circle);
@@ -106,8 +121,23 @@ namespace Eleconnect
 				                  gamePadData.AnalogLeftY);	 // 左アナログパッド
 			
 			// タッチ情報
-			//isTouch = (touchDataList[0].Status == TouchStatus.Down);
-			
+			for(int i = 0; i < TOUCH_MAX; i++)
+			{
+				// タッチされていないとき
+				if(touchDataList.Count <= i)
+				{
+					touch[i].isTouch = false;
+					break;
+				}
+				
+				// タッチされているとき
+				touch[i].isTouch = true;
+				touch[i].down = (touchDataList[i].Status == TouchStatus.Down);
+				touch[i].up   = (touchDataList[i].Status == TouchStatus.Up);
+				touch[i].move  = (touchDataList[i].Status == TouchStatus.Move);
+				touch[i].pos = new Vector2(AppMain.ScreenWidth  / 2.0f + (AppMain.ScreenWidth  * touchDataList[i].X),
+				                             AppMain.ScreenHeight / 2.0f + (AppMain.ScreenHeight * touchDataList[i].Y));
+			}
 		}
 		
 		// ボタン情報セット

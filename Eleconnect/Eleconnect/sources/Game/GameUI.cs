@@ -12,7 +12,6 @@ namespace Eleconnect
 {
 	public class GameUI
 	{
-		
 		// コンストラクタ
 		public GameUI ()
 		{

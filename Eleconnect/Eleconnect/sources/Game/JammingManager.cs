@@ -30,8 +30,11 @@ namespace Eleconnect
 			jammingSide = GameScene.stage.width;
 			jammingLength = GameScene.stage.height;
 			panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
-			basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + panelSize,
-			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + panelSize);
+			//basePos = new Vector2(AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + panelSize,
+			//                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + panelSize);
+			
+			Vector2 basePos = new Vector2(16.0f*14 + panelSize / 2.0f,
+			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize));
 			jammingDataLength = new int[jammingSide,jammingLength];
 			jammingDataSide = new int[jammingSide,jammingLength];
 			jammingLocate = new Vector3(basePos.X + panelSize,
@@ -136,8 +139,8 @@ namespace Eleconnect
 				{
 					if(jammingDataLength[i,j] == 1)
 					{
-						jammingLocate = new Vector3(basePos.X + panelSize * i,
-				                            		basePos.Y-panelSize/2 + panelSize * j,
+						jammingLocate = new Vector3(basePos.X + panelSize * (i+1) + (panelSize  / 2.0f),
+				                            		basePos.Y-panelSize/2.0f + panelSize * j,
 				                            		0.0f);
 						jamming.Draw(jammingLocate,0.0f);
 					}
@@ -151,7 +154,7 @@ namespace Eleconnect
 				{
 					if(jammingDataSide[i,j] == 1)
 					{
-						jammingLocate = new Vector3(basePos.X-panelSize/2 + panelSize * i,
+						jammingLocate = new Vector3(basePos.X + panelSize * (i+1),
 				                            		basePos.Y + panelSize * j,
 				                            		0.0f);
 						jamming.Draw(jammingLocate,changeAngle);

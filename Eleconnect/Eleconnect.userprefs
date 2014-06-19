@@ -1,10 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\General\Sprite2D.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\ItemManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\AppMain.cs" Line="99" Column="24" />
-      <File FileName="Eleconnect\sources\General\Sprite2D.cs" Line="172" Column="12" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="36" Column="24" />
+      <File FileName="Eleconnect\sources\AppMain.cs" Line="70" Column="8" />
+      <File FileName="Eleconnect\sources\General\Input.cs" Line="128" Column="6" />
+      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="25" Column="4" />
+      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="99" Column="3" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="392" Column="24" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="32" Column="4" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="293" Column="4" />
+      <File FileName="Eleconnect\sources\General\CollisionCheck.cs" Line="34" Column="4" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Scene\SelectScene.cs" Line="26" Column="1" />
+      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="1" Column="1" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\General\Music.cs" Line="36" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -12,5 +20,6 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Eleconnect\sources\Scene\GameScene.cs" line="297" offsetX="277" offsetY="4896" expression="backSp" liveUpdate="False" />
+    <Watch file="Eleconnect\sources\Game\ItemManager.cs" line="47" offsetX="459" offsetY="782" expression="touchData" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

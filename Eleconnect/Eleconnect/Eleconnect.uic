@@ -10,8 +10,8 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>309.14296824534006</X>
-              <Y>20.367520958032912</Y>
+              <X>325.21257814798696</X>
+              <Y>474.00000000000006</Y>
               <Width>342</Width>
               <Height>54</Height>
               <Visible>true</Visible>
@@ -87,10 +87,10 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>43.9572694616391</X>
-              <Y>67.8010919983459</Y>
+              <X>152.07969216679385</X>
+              <Y>20.367520958032912</Y>
               <Width>124</Width>
-              <Height>73</Height>
+              <Height>55</Height>
               <Visible>true</Visible>
               <Anchors>None</Anchors>
             </LayoutProperty>
@@ -181,10 +181,10 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>43.9572694616391</X>
-              <Y>177.93939393939434</Y>
+              <X>325.21257814798696</X>
+              <Y>22.03418762469957</Y>
               <Width>137</Width>
-              <Height>72</Height>
+              <Height>55</Height>
               <Visible>true</Visible>
               <Anchors>None</Anchors>
             </LayoutProperty>
@@ -275,8 +275,8 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>814</X>
-              <Y>389.09090909090924</Y>
+              <X>30.079692166793848</X>
+              <Y>470</Y>
               <Width>122</Width>
               <Height>56</Height>
               <Visible>true</Visible>
@@ -369,8 +369,8 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>608</X>
-              <Y>389</Y>
+              <X>174.06952107236339</X>
+              <Y>470</Y>
               <Width>177</Width>
               <Height>56</Height>
               <Visible>true</Visible>
@@ -456,8 +456,8 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>101.9572694616391</X>
-              <Y>468</Y>
+              <X>703.76904843341083</X>
+              <Y>469</Y>
               <Width>195</Width>
               <Height>58</Height>
               <Visible>true</Visible>
@@ -501,55 +501,10 @@
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>43.9572694616391</X>
-              <Y>275</Y>
-              <Width>58</Width>
-              <Height>195</Height>
-              <Visible>true</Visible>
-              <Anchors>Height</Anchors>
-            </LayoutProperty>
-            <LayoutProperty>
-              <X>43</X>
-              <Y>331</Y>
-              <Width>362</Width>
-              <Height>58</Height>
-              <Visible>true</Visible>
-              <Anchors>Height</Anchors>
-            </LayoutProperty>
-          </LayoutProperty>
-          <Property i:type="SliderProperty">
-            <Effect>SlideInFromTheLeft</Effect>
-            <OwnerNode z:Ref="i9" />
-            <VariableName>MapHeightSlider</VariableName>
-            <Initial>2</Initial>
-            <Max>9</Max>
-            <Min>2</Min>
-            <Orientation>Vertical</Orientation>
-            <Step>1</Step>
-          </Property>
-          <IsRoot>false</IsRoot>
-          <PivotPos>LeftTop</PivotPos>
-          <WidgetType>Slider</WidgetType>
-          <ID>933968955</ID>
-          <ZIndex>9</ZIndex>
-          <LayoutAssistInfo>
-            <SnapGuidesList>
-              <ArrayOfSnapGuide />
-              <ArrayOfSnapGuide />
-            </SnapGuidesList>
-          </LayoutAssistInfo>
-          <IsHideInLayout>false</IsHideInLayout>
-          <IsLockInLayout>false</IsLockInLayout>
-        </UICNode>
-        <UICNode z:Id="i10" i:type="ObjectTreeNode">
-          <Parent z:Ref="i2" />
-          <Nodes />
-          <LayoutProperty>
-            <LayoutProperty>
-              <X>786.93705679473476</X>
-              <Y>157.43263354733318</Y>
+              <X>511.34546412918007</X>
+              <Y>21.200854291366241</Y>
               <Width>135</Width>
-              <Height>73</Height>
+              <Height>55</Height>
               <Visible>true</Visible>
               <Anchors>None</Anchors>
             </LayoutProperty>
@@ -564,7 +519,7 @@
           </LayoutProperty>
           <Property i:type="ButtonProperty">
             <Effect>SlideInFromTheRight</Effect>
-            <OwnerNode z:Ref="i10" />
+            <OwnerNode z:Ref="i9" />
             <VariableName>SetStartButton</VariableName>
             <BackgroundButtonImage xmlns:d7p1="http://schemas.datacontract.org/2004/07/UIComposer.ModelData" i:nil="true" />
             <BackgroundType>Default</BackgroundType>
@@ -635,15 +590,15 @@
           <IsHideInLayout>false</IsHideInLayout>
           <IsLockInLayout>false</IsLockInLayout>
         </UICNode>
-        <UICNode z:Id="i11" i:type="ObjectTreeNode">
+        <UICNode z:Id="i10" i:type="ObjectTreeNode">
           <Parent z:Ref="i2" />
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>786.93705679473476</X>
-              <Y>266.3899511153021</Y>
+              <X>695</X>
+              <Y>21</Y>
               <Width>135</Width>
-              <Height>73</Height>
+              <Height>55</Height>
               <Visible>true</Visible>
               <Anchors>None</Anchors>
             </LayoutProperty>
@@ -658,7 +613,7 @@
           </LayoutProperty>
           <Property i:type="ButtonProperty">
             <Effect>SlideInFromTheRight</Effect>
-            <OwnerNode z:Ref="i11" />
+            <OwnerNode z:Ref="i10" />
             <VariableName>SetGoalButton</VariableName>
             <BackgroundButtonImage xmlns:d7p1="http://schemas.datacontract.org/2004/07/UIComposer.ModelData" i:nil="true" />
             <BackgroundType>Default</BackgroundType>
@@ -729,13 +684,13 @@
           <IsHideInLayout>false</IsHideInLayout>
           <IsLockInLayout>false</IsLockInLayout>
         </UICNode>
-        <UICNode z:Id="i12" i:type="ObjectTreeNode">
+        <UICNode z:Id="i11" i:type="ObjectTreeNode">
           <Parent z:Ref="i2" />
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
-              <X>814</X>
-              <Y>470</Y>
+              <X>30.079692166793848</X>
+              <Y>378.94573556928265</Y>
               <Width>122</Width>
               <Height>56</Height>
               <Visible>true</Visible>
@@ -752,7 +707,7 @@
           </LayoutProperty>
           <Property i:type="ButtonProperty">
             <Effect>SlideInFromTheBottom</Effect>
-            <OwnerNode z:Ref="i12" />
+            <OwnerNode z:Ref="i11" />
             <VariableName>SaveButton</VariableName>
             <BackgroundButtonImage xmlns:d7p1="http://schemas.datacontract.org/2004/07/UIComposer.ModelData" i:nil="true" />
             <BackgroundType>Default</BackgroundType>
@@ -870,11 +825,7 @@
         <SnapGuidesList>
           <ArrayOfSnapGuide>
             <SnapGuide>
-              <Pos>266.3899511153021</Pos>
-            </SnapGuide>
-            <SnapGuide>
-              <IsVertical>true</IsVertical>
-              <Pos>480</Pos>
+              <Pos>272</Pos>
             </SnapGuide>
           </ArrayOfSnapGuide>
           <ArrayOfSnapGuide />
@@ -884,11 +835,11 @@
       <IsHideInLayout>false</IsHideInLayout>
       <IsLockInLayout>false</IsLockInLayout>
     </UICNode>
-    <UICNode z:Id="i13" i:type="ObjectTreeNode">
+    <UICNode z:Id="i12" i:type="ObjectTreeNode">
       <Parent z:Ref="i1" />
       <Nodes>
-        <UICNode z:Id="i14" i:type="ObjectTreeNode">
-          <Parent z:Ref="i13" />
+        <UICNode z:Id="i13" i:type="ObjectTreeNode">
+          <Parent z:Ref="i12" />
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
@@ -910,7 +861,7 @@
           </LayoutProperty>
           <Property i:type="LabelProperty">
             <Effect>None</Effect>
-            <OwnerNode z:Ref="i14" />
+            <OwnerNode z:Ref="i13" />
             <VariableName>Label_1</VariableName>
             <H_Alignment>Center</H_Alignment>
             <HasTextShadow>false</HasTextShadow>
@@ -964,8 +915,8 @@
           <IsHideInLayout>false</IsHideInLayout>
           <IsLockInLayout>false</IsLockInLayout>
         </UICNode>
-        <UICNode z:Id="i15" i:type="ObjectTreeNode">
-          <Parent z:Ref="i13" />
+        <UICNode z:Id="i14" i:type="ObjectTreeNode">
+          <Parent z:Ref="i12" />
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
@@ -987,7 +938,7 @@
           </LayoutProperty>
           <Property i:type="LabelProperty">
             <Effect>FadeInEffect</Effect>
-            <OwnerNode z:Ref="i15" />
+            <OwnerNode z:Ref="i14" />
             <VariableName>Label_2</VariableName>
             <H_Alignment>Left</H_Alignment>
             <HasTextShadow>false</HasTextShadow>
@@ -1041,8 +992,8 @@
           <IsHideInLayout>false</IsHideInLayout>
           <IsLockInLayout>false</IsLockInLayout>
         </UICNode>
-        <UICNode z:Id="i16" i:type="ObjectTreeNode">
-          <Parent z:Ref="i13" />
+        <UICNode z:Id="i15" i:type="ObjectTreeNode">
+          <Parent z:Ref="i12" />
           <Nodes />
           <LayoutProperty>
             <LayoutProperty>
@@ -1064,7 +1015,7 @@
           </LayoutProperty>
           <Property i:type="ButtonProperty">
             <Effect>None</Effect>
-            <OwnerNode z:Ref="i16" />
+            <OwnerNode z:Ref="i15" />
             <VariableName>Button_1</VariableName>
             <BackgroundButtonImage xmlns:d7p1="http://schemas.datacontract.org/2004/07/UIComposer.ModelData" i:nil="true" />
             <BackgroundType>Default</BackgroundType>
@@ -1156,7 +1107,7 @@
       </LayoutProperty>
       <Property i:type="DialogProperty">
         <Effect>SlideInFromTheBottom</Effect>
-        <OwnerNode z:Ref="i13" />
+        <OwnerNode z:Ref="i12" />
         <VariableName>MapSavedDialog</VariableName>
         <BackgroundAlpha>0</BackgroundAlpha>
         <BackgroundColor xmlns:d5p1="http://schemas.datacontract.org/2004/07/System.Windows.Media">
@@ -1206,7 +1157,7 @@
           </ArrayOfSnapGuide>
           <ArrayOfSnapGuide />
         </SnapGuidesList>
-        <OwnerNode z:Ref="i13" />
+        <OwnerNode z:Ref="i12" />
       </LayoutAssistInfo>
       <IsHideInLayout>false</IsHideInLayout>
       <IsLockInLayout>false</IsLockInLayout>

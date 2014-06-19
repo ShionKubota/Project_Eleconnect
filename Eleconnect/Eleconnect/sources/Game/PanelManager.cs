@@ -31,9 +31,11 @@ namespace Eleconnect
 		{
 			// 1つめのパネルの位置計算
 			float panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
-			Vector2 basePos = new Vector2(233.0f /*AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f)*/,
+			Vector2 basePos = new Vector2(16.0f*14,
 			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize / 2.0f));
-			basePos.X += 100.0f;
+			//Vector2 basePos = new Vector2(AppMain.ScreenWidth / 8.0f /*AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f)*/,
+			//                             AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize / 2.0f));
+			//basePos.X += 100.0f;
 			
 			// パネルを並べる
 			LineupPanels(panelSize, basePos);
@@ -289,7 +291,6 @@ namespace Eleconnect
 		// 指定の番号の要素を新しいインスタンスに置き換え
 		public void Replace(int indexW, int indexH, Panel newItem)
 		{
-			//newItem.sp.pos = panels[indexW][indexH].sp.pos;
 			panels[indexW][indexH] = newItem;
 		}
 	}// END OF CLASS
