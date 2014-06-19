@@ -1,20 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\Score.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Electh.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="109" Column="5" />
-      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="48" Column="4" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="170" Column="8" />
-      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="33" Column="29" />
-      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="161" Column="4" />
-      <File FileName="Eleconnect\sources\Game\Jamming.cs" Line="27" Column="42" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="35" Column="6" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="11" Column="33" />
-      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="24" Column="18" />
-      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="9" Column="29" />
-      <File FileName="Eleconnect\sources\General\PlayData.cs" Line="29" Column="19" />
-      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="21" Column="9" />
-      <File FileName="Eleconnect\sources\Scene\Score.cs" Line="19" Column="15" />
+      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="42" Column="4" />
+      <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="4" Column="37" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="12" Column="37" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="26" Column="52" />
+      <File FileName="Eleconnect\sources\General\Animation.cs" Line="81" Column="21" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -22,5 +14,6 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Eleconnect\sources\Scene\GameScene.cs" line="297" offsetX="277" offsetY="4896" expression="backSp" liveUpdate="False" />
+    <Watch file="Eleconnect\sources\Game\ItemManager.cs" line="47" offsetX="459" offsetY="782" expression="touchData" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

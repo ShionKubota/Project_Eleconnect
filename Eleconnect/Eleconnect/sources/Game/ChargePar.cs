@@ -29,7 +29,12 @@ namespace Eleconnect
 		public void Update()
 		{
 			connectNum = PlayData.GetInstance().connectNum;
-			chargePar = (int)((float)connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f);
+			int trueChargePar = (int)((float)connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f);	// 本来のチャージ率
+			int parGap = trueChargePar - chargePar;		// 正確なチャージ率と表示用のチャージ率の差
+			chargePar += (int)(parGap * 0.1f);			// 正確なチャージ率にすこしづつ近づける(1ケタずつ上がっていくのが見たいので)
+			
+			float threshold = 10 * ((float)trueChargePar / 500.0f);	// parGapの絶対値がこの値以下になったら、正確な値を強制する
+			if(Math.Abs(trueChargePar - chargePar) < 10) chargePar = trueChargePar;
 			digit = chargePar.ToString().Length;
 			// 桁数取得してポイント表示しよう
 			for(int i = 0;i < digit;i++)

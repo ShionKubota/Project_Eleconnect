@@ -76,7 +76,7 @@ namespace Eleconnect
 
 		// 描画
 		public void Draw()
-		{				
+		{
 			SetMatrix();
 			screenMatrix *= Matrix4.Translation(pos.X, pos.Y, pos.Z);
 			screenMatrix *= Matrix4.RotationZ(FMath.Radians(angle));

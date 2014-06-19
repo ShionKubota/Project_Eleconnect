@@ -32,7 +32,7 @@ namespace Eleconnect
 		
 		// シーンマネージャ
 		public static SceneManager sceneManager;
-		
+		public static bool gameLoop = true;
 		
 		// Music
 		public const float BGM_VOLUME = 0.25f;			// BGMの音量
@@ -42,7 +42,7 @@ namespace Eleconnect
 		{
 			Console.WriteLine("GAME_START");
 			Init() ; // 初期化
-			while ( true )
+			while ( gameLoop )
 			{
 				SystemEvents.CheckEvents() ;
 				Update();
@@ -72,9 +72,8 @@ namespace Eleconnect
 		{
 			// 入力データ取得
 			Input.GetInstance().Update();
-            List<TouchData> touchDataList = Touch.GetData (0);
 			
-			UISystem.Update(touchDataList, ref Input.gamePadData);
+			UISystem.Update(Input.touchDataList, ref Input.gamePadData);
 			sceneManager.Update();
 		}
 		
@@ -85,7 +84,7 @@ namespace Eleconnect
 			graphics.Clear() ;
 			
 			graphics.Enable( EnableMode.Blend ) ;
-			//graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.OneMinusSrcAlpha ) ;
+			graphics.SetBlendFunc( BlendFuncMode.Add, BlendFuncFactor.SrcAlpha, BlendFuncFactor.OneMinusSrcAlpha ) ;
 			graphics.Enable( EnableMode.CullFace ) ;
 			graphics.SetCullFace( CullFaceMode.Back, CullFaceDirection.Ccw ) ;
 			graphics.Enable( EnableMode.DepthTest ) ;

@@ -23,7 +23,9 @@ namespace Eleconnect
 		protected MenuManager menuManager;
 		protected ElecthManager electhManager;
 		protected ResultScene result;
+		protected ItemManager itemManager;
 		protected ChargePar charge;
+
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
@@ -46,11 +48,7 @@ namespace Eleconnect
 			
 			public int[] mapData;
 		}
-		public static StageData stage;
-		//public static int stage.width{ protected set; get; }			// 現ステージのパネルの枚数　横
-		//public static int stage.height{ protected set; get; }			//      〃                縦
-		//public static int[] mapData{ protected set; get; }		// マップデータ
-		//public static int[] stageData{ protected set; get; }		// ステージデータ
+		public static StageData stage;								// ステージ情報格納用
 		public static string mapFileName{ protected set; get; }		// 読み込むマップファイル名
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
@@ -133,6 +131,7 @@ namespace Eleconnect
 			menuManager = new MenuManager();
 			jammingManager = new JammingManager();
 			electhManager = new ElecthManager(panelManager, jammingManager);
+			itemManager = new ItemManager(panelManager, cursor);
 			charge = new ChargePar();
 			
 			// パラメータ初期化
@@ -220,7 +219,10 @@ namespace Eleconnect
 			// タイムの更新
 			timeManager.Update();
 			
-			// 操作を受付け＆処理
+			// アイテム更新
+			itemManager.Update();
+			
+			// キー操作を受付け＆処理
 			AcceptPlayerInput();
 			
 			// エレクス更新
@@ -391,16 +393,16 @@ namespace Eleconnect
 			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
-			//electhManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
 			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
+			itemManager.Draw ();
 		}
 		
 		// 解放
 		override public void Term()
 		{
-			//backTex.Dispose();
+			backTex.Dispose();
 			//guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();

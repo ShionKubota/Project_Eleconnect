@@ -29,6 +29,16 @@ namespace Eleconnect
 			}
 		}
 		
+		// スプライトの矩形と、点の当たり判定
+		public static bool isHit(Sprite2D sp, Vector2 point)
+		{
+			if(FMath.Abs(sp.pos.X - point.X) < sp.width / 2.0f &&
+			   FMath.Abs(sp.pos.Y - point.Y) < sp.height / 2.0f)
+				return true;
+			
+			return false;
+		}
+		
 		/*
 		public bool IsHit(TouchData touch, SpriteUV sprite)
 		{

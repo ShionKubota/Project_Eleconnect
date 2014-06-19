@@ -78,7 +78,7 @@ namespace Eleconnect
 		}
 		
 		// 更新
-		public void Updata()
+		public void Update()
 		{
 			frameCnt++;
 			

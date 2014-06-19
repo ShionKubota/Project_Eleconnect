@@ -17,7 +17,6 @@ namespace Eleconnect
         Button LoadButton;
         PopupList LoadNoList;
         Slider MapWidthSlider;
-        Slider MapHeightSlider;
         Button SetStartButton;
         Button SetGoalButton;
         Button SaveButton;
@@ -41,8 +40,6 @@ namespace Eleconnect
             LoadNoList.Name = "LoadNoList";
             MapWidthSlider = new Slider();
             MapWidthSlider.Name = "MapWidthSlider";
-            MapHeightSlider = new Slider();
-            MapHeightSlider.Name = "MapHeightSlider";
             SetStartButton = new Button();
             SetStartButton.Name = "SetStartButton";
             SetGoalButton = new Button();
@@ -57,7 +54,6 @@ namespace Eleconnect
             this.RootWidget.AddChildLast(LoadButton);
             this.RootWidget.AddChildLast(LoadNoList);
             this.RootWidget.AddChildLast(MapWidthSlider);
-            this.RootWidget.AddChildLast(MapHeightSlider);
             this.RootWidget.AddChildLast(SetStartButton);
             this.RootWidget.AddChildLast(SetGoalButton);
             this.RootWidget.AddChildLast(SaveButton);
@@ -96,13 +92,6 @@ namespace Eleconnect
             MapWidthSlider.MaxValue = 9;
             MapWidthSlider.Value = 2;
             MapWidthSlider.Step = 1;
-
-            // MapHeightSlider
-            MapHeightSlider.Orientation = SliderOrientation.Vertical;
-            MapHeightSlider.MinValue = 2;
-            MapHeightSlider.MaxValue = 9;
-            MapHeightSlider.Value = 2;
-            MapHeightSlider.Step = 1;
 
             // SetStartButton
             SetStartButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
@@ -161,11 +150,6 @@ namespace Eleconnect
                     MapWidthSlider.Anchors = Anchors.Height;
                     MapWidthSlider.Visible = true;
 
-                    MapHeightSlider.SetPosition(43, 331);
-                    MapHeightSlider.SetSize(362, 58);
-                    MapHeightSlider.Anchors = Anchors.Height;
-                    MapHeightSlider.Visible = true;
-
                     SetStartButton.SetPosition(702, 57);
                     SetStartButton.SetSize(214, 56);
                     SetStartButton.Anchors = Anchors.None;
@@ -187,52 +171,47 @@ namespace Eleconnect
                     this.DesignWidth = 960;
                     this.DesignHeight = 544;
 
-                    TitleLabel.SetPosition(309, 20);
+                    TitleLabel.SetPosition(325, 474);
                     TitleLabel.SetSize(342, 54);
                     TitleLabel.Anchors = Anchors.None;
                     TitleLabel.Visible = true;
 
-                    ChangePanelBuuton.SetPosition(43, 67);
-                    ChangePanelBuuton.SetSize(124, 73);
+                    ChangePanelBuuton.SetPosition(152, 20);
+                    ChangePanelBuuton.SetSize(124, 55);
                     ChangePanelBuuton.Anchors = Anchors.None;
                     ChangePanelBuuton.Visible = true;
 
-                    SetSwitchButton.SetPosition(43, 177);
-                    SetSwitchButton.SetSize(137, 72);
+                    SetSwitchButton.SetPosition(325, 22);
+                    SetSwitchButton.SetSize(137, 55);
                     SetSwitchButton.Anchors = Anchors.None;
                     SetSwitchButton.Visible = true;
 
-                    LoadButton.SetPosition(814, 389);
+                    LoadButton.SetPosition(30, 470);
                     LoadButton.SetSize(122, 56);
                     LoadButton.Anchors = Anchors.None;
                     LoadButton.Visible = true;
 
-                    LoadNoList.SetPosition(608, 389);
+                    LoadNoList.SetPosition(174, 470);
                     LoadNoList.SetSize(177, 56);
                     LoadNoList.Anchors = Anchors.Height;
                     LoadNoList.Visible = true;
 
-                    MapWidthSlider.SetPosition(101, 468);
+                    MapWidthSlider.SetPosition(703, 469);
                     MapWidthSlider.SetSize(195, 58);
                     MapWidthSlider.Anchors = Anchors.Height;
                     MapWidthSlider.Visible = true;
 
-                    MapHeightSlider.SetPosition(43, 275);
-                    MapHeightSlider.SetSize(58, 195);
-                    MapHeightSlider.Anchors = Anchors.Height;
-                    MapHeightSlider.Visible = true;
-
-                    SetStartButton.SetPosition(786, 157);
-                    SetStartButton.SetSize(135, 73);
+                    SetStartButton.SetPosition(511, 21);
+                    SetStartButton.SetSize(135, 55);
                     SetStartButton.Anchors = Anchors.None;
                     SetStartButton.Visible = true;
 
-                    SetGoalButton.SetPosition(786, 266);
-                    SetGoalButton.SetSize(135, 73);
+                    SetGoalButton.SetPosition(695, 21);
+                    SetGoalButton.SetSize(135, 55);
                     SetGoalButton.Anchors = Anchors.None;
                     SetGoalButton.Visible = true;
 
-                    SaveButton.SetPosition(814, 470);
+                    SaveButton.SetPosition(30, 378);
                     SaveButton.SetSize(122, 56);
                     SaveButton.Anchors = Anchors.None;
                     SaveButton.Visible = true;
@@ -289,7 +268,6 @@ namespace Eleconnect
                     LoadButton.Visible = false;
                     LoadNoList.Visible = false;
                     MapWidthSlider.Visible = false;
-                    MapHeightSlider.Visible = false;
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
@@ -302,7 +280,6 @@ namespace Eleconnect
                     LoadButton.Visible = false;
                     LoadNoList.Visible = false;
                     MapWidthSlider.Visible = false;
-                    MapHeightSlider.Visible = false;
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
@@ -343,11 +320,6 @@ namespace Eleconnect
                     {
                         Widget = MapWidthSlider,
                         MoveDirection = FourWayDirection.Up,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = MapHeightSlider,
-                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
@@ -395,11 +367,6 @@ namespace Eleconnect
                     {
                         Widget = MapWidthSlider,
                         MoveDirection = FourWayDirection.Up,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = MapHeightSlider,
-                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {

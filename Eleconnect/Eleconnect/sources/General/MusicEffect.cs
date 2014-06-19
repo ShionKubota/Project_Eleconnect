@@ -24,9 +24,9 @@ using Sce.PlayStation.Core.Audio;
 namespace Eleconnect
 {
 	public class MusicEffect
-	{		
+	{
 		private Sound sound;				// 効果音のデータ
-		private SoundPlayer soundPlayer; 	// 効果音の再生クラス		
+		private SoundPlayer soundPlayer; 	// 効果音の再生クラス
 		
 		// コンストラクタ
 		public MusicEffect (string seName)

@@ -18,12 +18,15 @@ namespace Eleconnect
 		public int indexW{ private set; get; }
 		public int indexH{ private set; get; }
 		
+		// その他
+		public bool notSelected;	// 選択されていないときtrue(タッチ時用)
 		private int frameCnt;
 		
 		// 定数
-		private const int FLASHING_SPEED = 5;	// 点滅の早さ
-		private const float FLASHING_MEDIAN = 0.4f; // 点滅時の不透明度の基準値(中間の値)
-		private const float FLASHING_AMPL = 0.3f;	// 点滅時の不透明度の変化のふり幅
+		private const int FLASHING_SPEED = 5;			// 点滅の早さ
+		private const float FLASHING_MEDIAN = 0.4f; 	// 点滅時の不透明度の基準値(中間の値)
+		private const float FLASHING_AMPL = 0.3f;		// 点滅時の不透明度の変化のふり幅
+		public  const float TOUCH_Y_OFFSET = -100.0f;	// タッチ位置と実際のカーソルY位置をこの数値分ずらす(ずらさないと指で隠れるため)
 		
 		// コンストラクタ
 		public CursorOnPanels (PanelManager panels)
@@ -38,6 +41,7 @@ namespace Eleconnect
 			indexW = 0;
 			indexH = 0;
 			frameCnt = 0;
+			notSelected = false;
 			
 			tex = new Texture2D(@"/Application/assets/img/Cursor.png", false);
 			sp = new Sprite2D(tex);
@@ -49,7 +53,7 @@ namespace Eleconnect
 		
 		// 更新
 		public void Update(PanelManager panels)
-		{	
+		{
 			Input input = Input.GetInstance();
 			
 			// カーソル移動
@@ -67,6 +71,32 @@ namespace Eleconnect
 				
 				// 位置適用
 				sp.pos = panels.GetPos(indexW, indexH);
+			}
+			
+			// タッチ中
+			if(Input.GetInstance().touch[0].isTouch)
+			{
+				Vector2 touchPos = Input.GetInstance().touch[0].pos;
+				touchPos.Y += TOUCH_Y_OFFSET;
+				notSelected = true;
+				
+				// 当たり判定
+				for(int i = 0; i < GameScene.stage.width; i++)
+				{
+					for(int j = 0; j < GameScene.stage.height; j++)
+					{
+						if(CollisionCheck.isHit(panels[i, j].sp, touchPos))
+						{
+							// 位置適用
+							indexW = i;
+							indexH = j;
+							sp.pos = panels.GetPos(indexW, indexH);
+							notSelected = false;
+							break;
+						}
+					}
+					if(notSelected == false) break;	// 選択されたらループ終了
+				}
 			}
 			
 			// 点滅
@@ -91,6 +121,7 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
+			if(Input.GetInstance().touch[0].isTouch && notSelected) return;	// タッチ中、選択していないときは描画しない
 			sp.Draw ();
 		}
 		
