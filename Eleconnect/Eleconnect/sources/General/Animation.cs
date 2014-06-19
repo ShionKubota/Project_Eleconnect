@@ -15,7 +15,7 @@ namespace Eleconnect
 	public class Animation : Sprite2D
 	{
 		private enum ANIMATION_STATE{STAY, ONES, LOOP};	// アニメーションの状態
-		private int speed;								// アニメーションスピード
+		public int speed;								// アニメーションスピード
 		private int frameCnt;							// フレームカウンター
 		private int frameNo;							// アニメーションナンバー
 		private int frameFirst;							// 最初のフレーム
@@ -139,7 +139,6 @@ namespace Eleconnect
 			this.frameLast = frameLast;
 			animationState = ANIMATION_STATE.ONES;
 		}
-		
 		public override void Term()
 		{
 			vertexBuffer.Dispose();
