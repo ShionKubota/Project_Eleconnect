@@ -23,18 +23,18 @@ namespace Eleconnect
 		protected MenuManager menuManager;
 		protected ElecthManager electhManager;
 		protected ResultScene result;
+<<<<<<< HEAD
+		protected ItemManager itemManager;
+=======
+		protected ChargePar charge;
+>>>>>>> 352542059f67d66e58a0648ecf0a7119534a93e1
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
-<<<<<<< HEAD
 		//private Sprite2D guideSp;
 		//private Texture2D guideTex;
-=======
-		private Sprite2D guideSp;
-		private Texture2D guideTex;
 		private Sprite2D electhSp;
 		private Texture2D electhTex;
->>>>>>> origin/master
 		// 音楽
 		protected MusicEffect musicEffect;
 		protected static Music music;
@@ -50,16 +50,14 @@ namespace Eleconnect
 			
 			public int[] mapData;
 		}
-		public static StageData stage;
-		//public static int stage.width{ protected set; get; }			// 現ステージのパネルの枚数　横
-		//public static int stage.height{ protected set; get; }			//      〃                縦
-		//public static int[] mapData{ protected set; get; }		// マップデータ
-		//public static int[] stageData{ protected set; get; }		// ステージデータ
+		public static StageData stage;								// ステージ情報格納用
 		public static string mapFileName{ protected set; get; }		// 読み込むマップファイル名
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
 		// プレイ情報
 		private int frameCnt;
+		private int aniFrame;
+		private float eleRotate;
 		private bool seFlg;
 		
 		// ゲームの状態ID列挙
@@ -108,43 +106,44 @@ namespace Eleconnect
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
 			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
-<<<<<<< HEAD
 			/*
-			guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
-=======
-			
 			if(guideTex == null)
 			{
 				guideTex = new Texture2D(@"/Application/assets/img/guid.png", false);
 			}
->>>>>>> origin/master
 			guideSp = new Sprite2D(guideTex);
 			guideSp.pos = new Vector3(AppMain.ScreenWidth - 130.0f,
 			                          AppMain.ScreenHeight / 2.0f + 50.0f,
 			                          0.0f);
 			guideSp.size = new Vector2(0.4f, 0.4f);
-<<<<<<< HEAD
 			*/
-=======
-			
 			if(electhTex == null)
 			{
-				electhTex = new Texture2D(@"/Application/assets/img/electh_test.png", false);
+				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
 			electhSp = new Sprite2D(electhTex);
-			electhSp.pos = new Vector3(panelManager[0,0].sp.pos.X,panelManager[0,0].sp.pos.Y,0.0f);
-			electhSp.size = new Vector2(0.75f,0.75f);
+			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
+			electhSp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			electhSp.size = new Vector2(0.2f, 1.0f);
+			electhSp.size *= new Vector2(0.75f, 0.75f);
 			
->>>>>>> origin/master
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
 			timeManager = new TimeManager();
 			menuManager = new MenuManager();
 			jammingManager = new JammingManager();
 			electhManager = new ElecthManager(panelManager, jammingManager);
+<<<<<<< HEAD
+			itemManager = new ItemManager(panelManager, cursor);
+=======
+			charge = new ChargePar();
+>>>>>>> 352542059f67d66e58a0648ecf0a7119534a93e1
 			
 			// パラメータ初期化
 			frameCnt = 0;
+			aniFrame = 0;
+			eleRotate = 0;
+			PlayData.GetInstance().connectNum = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
 			
@@ -205,8 +204,15 @@ namespace Eleconnect
 			// パネルの更新
 			panelManager.Update();
 			jammingManager.Update();
+			charge.Update();
 			
 			frameCnt++;
+			eleRotate += 1.0f;
+			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
+			electhSp.textureUV.X = (aniFrame % 4) * 0.2f;
+			electhSp.textureUV.Z = electhSp.textureUV.X + 0.2f;
+			electhSp.angle=eleRotate;
+			
 		}
 		
 		// ゲーム中の更新プロセス
@@ -218,7 +224,10 @@ namespace Eleconnect
 			// タイムの更新
 			timeManager.Update();
 			
-			// 操作を受付け＆処理
+			// アイテム更新
+			itemManager.Update();
+			
+			// キー操作を受付け＆処理
 			AcceptPlayerInput();
 			
 			// エレクス更新
@@ -244,6 +253,7 @@ namespace Eleconnect
 				}
 				else
 				{
+					PlayData.GetInstance().connectNum = 0;
 					nowState = StateId.GAME;	
 				}
 			}
@@ -252,13 +262,7 @@ namespace Eleconnect
 		// クリア後の更新プロセス
 		protected void AfterClearingProcess()
 		{
-<<<<<<< HEAD
-			nowState = StateId.GAME;
-			return;
 			for(int i = 0; i < stage.width; i++)
-=======
-			for(int i = 0; i < stageWidth; i++)
->>>>>>> origin/master
 			{
 				for(int j = 0; j < stage.height; j++)
 				{
@@ -390,26 +394,20 @@ namespace Eleconnect
 			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
-			jammingManager.Draw();
+			charge.Draw();
+			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
-<<<<<<< HEAD
-			//electhManager.Draw();
-=======
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			electhManager.Draw();
-			if(!electhManager.nowFlowing) electhSp.DrawAdd();
->>>>>>> origin/master
+			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
+			itemManager.Draw ();
 		}
 		
 		// 解放
 		override public void Term()
 		{
-<<<<<<< HEAD
 			backTex.Dispose();
-=======
-			//backTex.Dispose();
->>>>>>> origin/master
 			//guideTex.Dispose();
 			cursor.Term();
 			panelManager.Term();

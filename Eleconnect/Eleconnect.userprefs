@@ -1,18 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\ItemManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\CursorOnPanels.cs">
     <Files>
-      <File FileName="Eleconnect\sources\AppMain.cs" Line="70" Column="8" />
-      <File FileName="Eleconnect\sources\General\Input.cs" Line="128" Column="6" />
-      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="25" Column="4" />
-      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="99" Column="3" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="392" Column="24" />
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="32" Column="4" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="293" Column="4" />
-      <File FileName="Eleconnect\sources\General\CollisionCheck.cs" Line="34" Column="4" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Scene\SelectScene.cs" Line="26" Column="1" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="1" Column="1" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\General\Music.cs" Line="36" Column="1" />
+      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="77" Column="74" />
+      <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="44" Column="24" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

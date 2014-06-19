@@ -24,6 +24,8 @@ namespace Eleconnect
 		protected ElecthManager electhManager;
 		protected ResultScene result;
 		protected ItemManager itemManager;
+		protected ChargePar charge;
+
 		// 画像
 		private Sprite2D backSp;
 		private Texture2D backTex;
@@ -130,11 +132,13 @@ namespace Eleconnect
 			jammingManager = new JammingManager();
 			electhManager = new ElecthManager(panelManager, jammingManager);
 			itemManager = new ItemManager(panelManager, cursor);
+			charge = new ChargePar();
 			
 			// パラメータ初期化
 			frameCnt = 0;
 			aniFrame = 0;
 			eleRotate = 0;
+			PlayData.GetInstance().connectNum = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
 			
@@ -195,6 +199,7 @@ namespace Eleconnect
 			// パネルの更新
 			panelManager.Update();
 			jammingManager.Update();
+			charge.Update();
 			
 			frameCnt++;
 			eleRotate += 1.0f;
@@ -243,6 +248,7 @@ namespace Eleconnect
 				}
 				else
 				{
+					PlayData.GetInstance().connectNum = 0;
 					nowState = StateId.GAME;	
 				}
 			}
@@ -383,6 +389,7 @@ namespace Eleconnect
 			//guideSp.Draw ();
 			timeManager.Draw();
 			panelManager.Draw();
+			charge.Draw();
 			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
