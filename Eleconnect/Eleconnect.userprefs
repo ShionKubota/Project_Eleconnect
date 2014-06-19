@@ -1,9 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\CursorOnPanels.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\ItemManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="77" Column="74" />
-      <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="44" Column="24" />
+      <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="43" Column="3" />
+      <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="4" Column="37" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="12" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -28,8 +28,8 @@ namespace Eleconnect
 			{
 				// 2 * 2で正方形の形に並ぶように配置する
 				float offset = 70.0f;	// 隙間
-				items[i].basePos = new Vector3((int)(i % 2.0f) * offset + 64.0f,
-				                               (int)(i / 2.0f) * offset + 300.0f,
+				items[i].basePos = new Vector3((i % 2.0f) * offset + 64.0f,
+				                               (int)(i / 2.0f) * offset + 400.0f,
 				                               0.0f);
 				items[i].panel = new NormalPanel((Panel.TypeId)i, 										// パネル種類
 				                                 new Vector2(items[i].basePos.X, items[i].basePos.Y));	// 位置
@@ -73,7 +73,7 @@ namespace Eleconnect
 				// 掴まれている場合、その指に追従
 				if(item.isGripped)
 				{
-					item.panel.sp.pos.X += (touch.pos.X 										 - item.panel.sp.pos.X) * 0.3f;
+					item.panel.sp.pos.X += (touch.pos.X 								  - item.panel.sp.pos.X) * 0.3f;
 					item.panel.sp.pos.Y += ((touch.pos.Y + CursorOnPanels.TOUCH_Y_OFFSET) - item.panel.sp.pos.Y) * 0.3f;
 				}
 			}
