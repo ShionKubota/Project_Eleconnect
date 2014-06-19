@@ -1,13 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Electh.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\ChargePar.cs">
     <Files>
       <File FileName="Eleconnect\sources\Game\ItemManager.cs" Line="42" Column="4" />
       <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="4" Column="37" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="262" Column="23" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="114" Column="16" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="33" Column="71" />
       <File FileName="Eleconnect\sources\General\Animation.cs" Line="146" Column="20" />
-      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="37" Column="37" />
+      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="86" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="195" Column="22" />
+      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="45" Column="20" />
+      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

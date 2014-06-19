@@ -12,6 +12,8 @@ namespace Eleconnect
 {
 	public class GameUI
 	{
+		protected static TimeManager timeManager;
+		protected ChargePar charge;
 		// コンストラクタ
 		public GameUI ()
 		{
@@ -21,23 +23,32 @@ namespace Eleconnect
 		// 初期化
 		private void Init()
 		{
+			timeManager = new TimeManager();
+			charge = new ChargePar();
 			
 		}
 		
 		// 更新
 		public void Update()
 		{
+			// タイムの更新
+			timeManager.Update();
+			// チャージ率
+			charge.Update();
 		}
 		
 		
 		// 描画
 		public void Draw()
 		{
+			timeManager.Draw();
+			charge.Draw();
 		}
 		
 		// 解放
 		public void Term()
 		{
+			timeManager.Term();
 		}
 	}
 }
