@@ -24,7 +24,7 @@ namespace Eleconnect
 		protected ElecthManager electhManager;
 		protected ResultScene result;
 		protected ItemManager itemManager;
-		protected ChargePar charge;
+		protected GameUI gameUi;
 
 		// 画像
 		private Sprite2D backSp;
@@ -36,7 +36,6 @@ namespace Eleconnect
 		// 音楽
 		protected MusicEffect musicEffect;
 		protected static Music music;
-		protected static TimeManager timeManager;
 		
 		// ステージ情報
 		public struct StageData
@@ -124,12 +123,11 @@ namespace Eleconnect
 			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
-			timeManager = new TimeManager();
 			menuManager = new MenuManager();
 			jammingManager = new JammingManager();
 			electhManager = new ElecthManager(panelManager, jammingManager);
 			itemManager = new ItemManager(panelManager, cursor);
-			charge = new ChargePar();
+			gameUi = new GameUI();
 			
 			// パラメータ初期化
 			frameCnt = 0;
@@ -196,8 +194,8 @@ namespace Eleconnect
 			// パネルの更新
 			panelManager.Update();
 			jammingManager.Update();
-			charge.Update();
 			electhSp.Update();
+			gameUi.Update();
 			
 			frameCnt++;
 			eleRotate++;
@@ -211,8 +209,6 @@ namespace Eleconnect
 			// カーソルの更新
 			cursor.Update(panelManager);
 			
-			// タイムの更新
-			timeManager.Update();
 			
 			// アイテム更新
 			itemManager.Update();
@@ -382,9 +378,7 @@ namespace Eleconnect
 		{
 			backSp.Draw();
 			//guideSp.Draw ();
-			timeManager.Draw();
 			panelManager.Draw();
-			charge.Draw();
 			if(nowState != StateId.CLEAR) jammingManager.Draw();
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
@@ -392,6 +386,7 @@ namespace Eleconnect
 			electhManager.Draw();
 			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
 			itemManager.Draw ();
+			gameUi.Draw();
 		}
 		
 		// 解放
@@ -404,7 +399,7 @@ namespace Eleconnect
 			jammingManager.Term();
 			musicEffect.Term();
 			music.Term();
-			timeManager.Term();
+			gameUi.Term();
 		}
 	}
 }

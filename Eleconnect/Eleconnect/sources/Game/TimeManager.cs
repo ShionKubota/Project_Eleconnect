@@ -28,7 +28,7 @@ namespace Eleconnect
 			
 			timeTex= new Texture2D(@"/Application/assets/img/timelogo.png", false);
 			timeSp = new Sprite2D(timeTex);
-			timeSp.size = new Vector2(0.5f);
+			timeSp.size = new Vector2(0.35f);
 			timeSp.pos = new Vector3(96.0f,32.0f,0.0f);
 			
 			num = new Number();

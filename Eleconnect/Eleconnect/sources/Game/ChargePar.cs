@@ -1,16 +1,23 @@
 using System;
 using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Graphics;
 
 namespace Eleconnect
 {
 	public class ChargePar
 	{
 		private Number num;
+		private Sprite2D chargeSp;
+		private Texture2D chargeTex;
 		private int digit;
 		private int[] numeral;
 		private int connectNum;
 		private int chargePar;
 		private Random rand;
+		
+		private const float CHARGE_NUM_X = 160.0f;
+		private const float CHARGE_NUM_Y = 256.0f;
+		
 		public ChargePar ()
 		{
 			Init();
@@ -18,6 +25,11 @@ namespace Eleconnect
 		
 		private void Init()
 		{
+			chargeTex = new Texture2D(@"/Application/assets/img/charge.png", false);
+			chargeSp = new Sprite2D(chargeTex);
+			chargeSp.pos = new Vector3(96.0f,196.0f,0.0f);
+			chargeSp.size = new Vector2(0.35f);
+			
 			num = new Number();
 			digit = 0;
 			connectNum = 0;
@@ -58,21 +70,22 @@ namespace Eleconnect
 			for(int i = 1;i<digit;i++)
 			{
 				num.numSp[numeral[i]].size = new Vector2((1.0f+chargePar*0.002f)/4.0f);
-				num.numSp[numeral[i]].pos = new Vector3(160.0f - (32.0f+rand.Next(-2,2)*chargePar/100%10) * i - 32.0f * chargePar*0.002f*i,
-				                                        320.0f+rand.Next(-2,2)*chargePar/100%10,
+				num.numSp[numeral[i]].pos = new Vector3(CHARGE_NUM_X - (32.0f+rand.Next(-2,2)*chargePar/100%10) * i - 32.0f * chargePar*0.002f*i,
+				                                        CHARGE_NUM_Y + rand.Next(-2,2)*chargePar/100%10,
 				                                        0.0f);
 				num.numSp[numeral[i]].Draw();
 			}
 			num.numSp[numeral[0]].size = new Vector2((1.0f+chargePar*0.002f)/4.0f);
-			num.numSp[numeral[0]].pos = new Vector3(160.0f + rand.Next(-2,2)*chargePar/100%10,
-			                                        320.0f+rand.Next(-2,2)*chargePar/100%10,
+			num.numSp[numeral[0]].pos = new Vector3(CHARGE_NUM_X + rand.Next(-2,2)*chargePar/100%10,
+			                                        CHARGE_NUM_Y + rand.Next(-2,2)*chargePar/100%10,
 			                                        0.0f);
 			num.numSp[numeral[0]].Draw();
+			chargeSp.Draw();
 		}
 		
 		public void Term()
 		{
-			
+			chargeTex.Dispose();
 		}
 	}
 }
