@@ -31,7 +31,7 @@ namespace Eleconnect
 		private Texture2D backTex;
 		//private Sprite2D guideSp;
 		//private Texture2D guideTex;
-		private Sprite2D electhSp;
+		public Animation electhSp;
 		private Texture2D electhTex;
 		// 音楽
 		protected MusicEffect musicEffect;
@@ -119,11 +119,8 @@ namespace Eleconnect
 			{
 				electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
 			}
-			electhSp = new Sprite2D(electhTex);
+			electhSp = new Animation(electhTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),3,0,6,true,true,true);
 			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
-			electhSp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
-			electhSp.size = new Vector2(0.2f, 1.0f);
-			electhSp.size *= new Vector2(0.75f, 0.75f);
 			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
@@ -200,12 +197,10 @@ namespace Eleconnect
 			panelManager.Update();
 			jammingManager.Update();
 			charge.Update();
+			electhSp.Update();
 			
 			frameCnt++;
-			eleRotate += 1.0f;
-			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
-			electhSp.textureUV.X = (aniFrame % 4) * 0.2f;
-			electhSp.textureUV.Z = electhSp.textureUV.X + 0.2f;
+			eleRotate++;
 			electhSp.angle=eleRotate;
 			
 		}
