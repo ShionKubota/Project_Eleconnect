@@ -15,7 +15,7 @@ namespace Eleconnect
 			DEATH
 		}
 		
-		public Sprite2D sp;
+		public Animation sp;
 		private static Texture2D tex;
 		public float speed{get; private set;}
 		private int frameCnt;
@@ -31,11 +31,11 @@ namespace Eleconnect
 		{
 			if(tex == null)
 				tex = new Texture2D(@"/Application/assets/img/electh.png", false);
-			sp = new Sprite2D(tex);
+			sp = new Animation(tex, new Vector2(0.2f * 0.75f, 1.0f * 0.75f),3,0,4,true,true,true);
 			sp.pos = panel.GetPos();
-			sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
-			sp.size = new Vector2(0.2f, 1.0f);
-			sp.size *= new Vector2(0.75f, 0.75f);
+			//sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
+			//sp.size = new Vector2(0.2f, 1.0f);
+			//sp.size *= new Vector2(0.75f, 0.75f);
 			target = panel;
 			this.speed = speed;
 			frameCnt = 0;
@@ -50,9 +50,10 @@ namespace Eleconnect
 			frameCnt++;
 			eleRotate++;
 			aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
-			sp.textureUV.X = (aniFrame % 4) * 0.2f;
-			sp.textureUV.Z = sp.textureUV.X + 0.2f;
+			//sp.textureUV.X = (aniFrame % 4) * 0.2f;
+			//sp.textureUV.Z = sp.textureUV.X + 0.2f;
 			sp.angle = eleRotate;
+			sp.Update();
 			
 			switch(state)
 			{

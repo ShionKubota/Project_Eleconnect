@@ -32,7 +32,7 @@ namespace Eleconnect
 		
 		// シーンマネージャ
 		public static SceneManager sceneManager;
-		
+		public static bool gameLoop = true;
 		
 		// Music
 		public const float BGM_VOLUME = 0.25f;			// BGMの音量
@@ -42,7 +42,7 @@ namespace Eleconnect
 		{
 			Console.WriteLine("GAME_START");
 			Init() ; // 初期化
-			while ( true )
+			while ( gameLoop )
 			{
 				SystemEvents.CheckEvents() ;
 				Update();
