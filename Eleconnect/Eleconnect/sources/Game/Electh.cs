@@ -31,7 +31,7 @@ namespace Eleconnect
 		{
 			if(tex == null)
 				tex = new Texture2D(@"/Application/assets/img/electh.png", false);
-			sp = new Animation(tex, new Vector2(0.2f * 0.75f, 1.0f * 0.75f),3,0,4,true,true,true);
+			sp = new Animation(tex, new Vector2(1.0f / 6.0f, 0.5f),3,1,5,true,false,true);
 			sp.pos = panel.GetPos();
 			//sp.textureUV = new Vector4(0.0f, 0.0f, 0.2f, 1.0f);
 			//sp.size = new Vector2(0.2f, 1.0f);
@@ -77,7 +77,7 @@ namespace Eleconnect
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
 						JammingSwitch.isJamming = false;
-						state = StateId.BURN;
+						Kill ();
 					}
 					// ゴールだったら
 					if(target.isGoal)
@@ -89,9 +89,13 @@ namespace Eleconnect
 			
 			// 消滅
 			case StateId.BURN:
+				/*
 				if(sp.color.W > 0)
-					sp.color.W -= 0.01f;
+					sp.color.W -= 0.02f;
 				else
+					state = StateId.DEATH;
+					*/
+				if(sp.FrameNo == 12)
 					state = StateId.DEATH;
 				break;
 			}
@@ -106,6 +110,9 @@ namespace Eleconnect
 		
 		public void Kill()
 		{
+			Vector3 tempPos = sp.pos;
+			sp.speed = 3;
+			sp.Set(6, 12);
 			state = StateId.BURN;
 		}
 		
