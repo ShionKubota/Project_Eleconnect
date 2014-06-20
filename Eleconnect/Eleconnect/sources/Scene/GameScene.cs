@@ -97,11 +97,12 @@ namespace Eleconnect
 			// スプライト
 			if(backTex == null)
 			{
-				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background.png", false);
 			}
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
-			backSp.color = new Vector4(0.4f, 0.4f, 0.4f, 1.0f);
+			backSp.color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+			backSp.color *= new Vector4(1.0f);
 			/*
 			if(guideTex == null)
 			{

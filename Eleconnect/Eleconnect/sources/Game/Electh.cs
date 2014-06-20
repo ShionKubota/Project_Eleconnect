@@ -25,7 +25,8 @@ namespace Eleconnect
 		public Panel target{get; private set;}
 		public static bool arrivedGoal;		// ゴールに到着したらtrue
 		
-		public const float DEF_SPEED = 4.0f;
+		public const float DEF_SPEED = 2.0f;
+		public const float MAX_SPEED = 10.0f;
 		
 		private MusicEffect musicEffect;
 		
@@ -66,7 +67,9 @@ namespace Eleconnect
 				// 移動
 				if( speed < Vector3.Length(target.GetPos() - sp.pos))
 				{
-					Vector3 move = Vector3.Normalize(target.GetPos() - sp.pos) * speed;
+					// ○押している間は早送り
+					float moveSpeed = (Input.GetInstance().circle.isPush) ? speed*2.0f : speed;
+					Vector3 move = Vector3.Normalize(target.GetPos() - sp.pos) * moveSpeed;
 					sp.pos += move;
 				}
 				// 到着
@@ -110,7 +113,7 @@ namespace Eleconnect
 		{
 			state = StateId.FLOW;
 			target = panel;
-			this.speed += (this.speed < 10.0f) ? 0.5f : 0.0f;
+			this.speed += (this.speed < MAX_SPEED) ? 0.5f : 0.0f;
 		}
 		
 		public void Kill()
