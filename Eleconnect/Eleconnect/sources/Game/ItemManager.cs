@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Input;
+using Sce.PlayStation.Core.Graphics;
 
 namespace Eleconnect
 {
@@ -17,6 +18,8 @@ namespace Eleconnect
 		private Item[] items;
 		public const int ITEM_NUM = 4;
 		
+		private Sprite2D logoSp;
+		private Texture2D logoTex;
 		private PanelManager panels;
 		private CursorOnPanels cursor;
 		
@@ -39,6 +42,12 @@ namespace Eleconnect
 			
 			this.panels = paMng;
 			this.cursor = cOP;
+			
+			logoTex = new Texture2D(@"/Application/assets/img/itemlogo.png", false);
+			logoSp  = new Sprite2D(logoTex);
+			logoSp.pos.X = (items[0].panel.GetPos().X + items[1].panel.GetPos().X) / 2.0f;
+			logoSp.pos.Y = items[0].panel.GetPos().Y - 64.0f;
+			logoSp.size = new Vector2(0.35f);
 		}
 		
 		// 更新
@@ -117,6 +126,7 @@ namespace Eleconnect
 				if(items[i].isVisible)
 					items[i].panel.Draw();
 			}
+			logoSp.Draw();
 		}
 		
 		// 解放
@@ -126,6 +136,8 @@ namespace Eleconnect
 			{
 				items[i].panel.Term();
 			}
+			logoTex.Dispose();
+			logoSp.Term();
 		}
 	}
 }
