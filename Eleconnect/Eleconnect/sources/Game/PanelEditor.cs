@@ -7,13 +7,14 @@ namespace Eleconnect
 	public class PanelEditor : PanelManager
 	{
 		// エディット情報(マップデータ)
-		public const bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
-		public const int RANDOM_MAP_W = 9;
+		public static bool IS_RANDOM_MAP = false;	// マップを新しくランダムに生成
+		public static int RANDOM_MAP_W = 5;
 		public const int RANDOM_MAP_H = 5;
 		public const int START_X = 0;
 		public const int START_Y = 0;
 		public const int GOAL_X  = 4;
 		public const int GOAL_Y  = 4;
+		public static GameScene.StageData randomStage;	// ランダムマップ生成時に使う、ステージデータ構造体
 		// (グループパネルについてのデータ)
 		public const bool USE_GROUP_PANEL = false;
 		public const int GROUP_LENGTH = 2;			// グループパネルの1辺の要素数

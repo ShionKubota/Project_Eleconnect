@@ -95,17 +95,17 @@ namespace Preview
 
                     Label_1.SetPosition(-9, 17);
                     Label_1.SetSize(499, 89);
-                    Label_1.Anchors = Anchors.None;
+                    Label_1.Anchors = Anchors.Top | Anchors.Bottom | Anchors.Left | Anchors.Right;
                     Label_1.Visible = true;
 
                     Label_2.SetPosition(29, 98);
                     Label_2.SetSize(421, 70);
-                    Label_2.Anchors = Anchors.None;
+                    Label_2.Anchors = Anchors.Top | Anchors.Bottom | Anchors.Left | Anchors.Right;
                     Label_2.Visible = true;
 
                     Button_1.SetPosition(181, 192);
                     Button_1.SetSize(117, 54);
-                    Button_1.Anchors = Anchors.None;
+                    Button_1.Anchors = Anchors.Top | Anchors.Bottom | Anchors.Height | Anchors.Left | Anchors.Right | Anchors.Width;
                     Button_1.Visible = true;
 
                     break;

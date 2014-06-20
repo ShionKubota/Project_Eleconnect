@@ -90,7 +90,8 @@ namespace Eleconnect
 		{
 			TitleScene.music.Term();
 			musicEffect.Term();
-			selectBackTex.Dispose();
+			//selectBackTex.Dispose();
+			selectBackSp.Term();
 			selectBtn.Term();
 			seFlg = false;
 		}

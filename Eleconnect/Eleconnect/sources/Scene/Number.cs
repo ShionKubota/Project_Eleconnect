@@ -56,7 +56,8 @@ namespace Eleconnect
 		{
 			for(int i = 0;i<10;i++)
 			{
-				numTex[i].Dispose();
+				//numTex[i].Dispose();
+				numSp[i].Term();
 			}
 		}
 	}

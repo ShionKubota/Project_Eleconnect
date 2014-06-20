@@ -143,13 +143,8 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
-			menubaseTex.Dispose();
-			pausemojiTex.Dispose();
-			backmojiTex.Dispose();
-			retrymojiTex.Dispose();
-			selectmojiTex.Dispose();
-			titlemojiTex.Dispose();
-			menuCommentary.Term();
+			foreach(Sprite2D sp in menuSp) sp.Term();
+			menubaseSp.Term();
 		}
 		
 		// ボタン押したときの処理

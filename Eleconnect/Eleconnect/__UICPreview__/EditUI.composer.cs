@@ -14,14 +14,13 @@ namespace Preview
         Label TitleLabel;
         Button ChangePanelBuuton;
         Button SetSwitchButton;
-        PopupList SaveNoList;
         Button LoadButton;
         PopupList LoadNoList;
         Slider MapWidthSlider;
-        Slider MapHeightSlider;
         Button SetStartButton;
         Button SetGoalButton;
         Button SaveButton;
+        Button RandomSetButton;
 
         private void InitializeWidget()
         {
@@ -36,35 +35,32 @@ namespace Preview
             ChangePanelBuuton.Name = "ChangePanelBuuton";
             SetSwitchButton = new Button();
             SetSwitchButton.Name = "SetSwitchButton";
-            SaveNoList = new PopupList();
-            SaveNoList.Name = "SaveNoList";
             LoadButton = new Button();
             LoadButton.Name = "LoadButton";
             LoadNoList = new PopupList();
             LoadNoList.Name = "LoadNoList";
             MapWidthSlider = new Slider();
             MapWidthSlider.Name = "MapWidthSlider";
-            MapHeightSlider = new Slider();
-            MapHeightSlider.Name = "MapHeightSlider";
             SetStartButton = new Button();
             SetStartButton.Name = "SetStartButton";
             SetGoalButton = new Button();
             SetGoalButton.Name = "SetGoalButton";
             SaveButton = new Button();
             SaveButton.Name = "SaveButton";
+            RandomSetButton = new Button();
+            RandomSetButton.Name = "RandomSetButton";
 
             // EditUI
             this.RootWidget.AddChildLast(TitleLabel);
             this.RootWidget.AddChildLast(ChangePanelBuuton);
             this.RootWidget.AddChildLast(SetSwitchButton);
-            this.RootWidget.AddChildLast(SaveNoList);
             this.RootWidget.AddChildLast(LoadButton);
             this.RootWidget.AddChildLast(LoadNoList);
             this.RootWidget.AddChildLast(MapWidthSlider);
-            this.RootWidget.AddChildLast(MapHeightSlider);
             this.RootWidget.AddChildLast(SetStartButton);
             this.RootWidget.AddChildLast(SetGoalButton);
             this.RootWidget.AddChildLast(SaveButton);
+            this.RootWidget.AddChildLast(RandomSetButton);
             this.Showing += new EventHandler(onShowing);
             this.Shown += new EventHandler(onShown);
 
@@ -82,39 +78,24 @@ namespace Preview
             SetSwitchButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             SetSwitchButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
 
-            // SaveNoList
-            SaveNoList.TextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
-            SaveNoList.Font = new UIFont(FontAlias.System, 25, FontStyle.Regular);
-            SaveNoList.ListItemTextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
-            SaveNoList.ListItemFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
-            SaveNoList.ListTitleTextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
-            SaveNoList.ListTitleFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
-
             // LoadButton
             LoadButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             LoadButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
             LoadButton.BackgroundFilterColor = new UIColor(0f / 255f, 222f / 255f, 38f / 255f, 255f / 255f);
 
             // LoadNoList
-            LoadNoList.TextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+            LoadNoList.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             LoadNoList.Font = new UIFont(FontAlias.System, 25, FontStyle.Regular);
-            LoadNoList.ListItemTextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+            LoadNoList.ListItemTextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             LoadNoList.ListItemFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
-            LoadNoList.ListTitleTextColor = new UIColor(0f / 255f, 0f / 255f, 0f / 255f, 255f / 255f);
+            LoadNoList.ListTitleTextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             LoadNoList.ListTitleFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
 
             // MapWidthSlider
             MapWidthSlider.MinValue = 2;
-            MapWidthSlider.MaxValue = 9;
+            MapWidthSlider.MaxValue = 8;
             MapWidthSlider.Value = 2;
             MapWidthSlider.Step = 1;
-
-            // MapHeightSlider
-            MapHeightSlider.Orientation = SliderOrientation.Vertical;
-            MapHeightSlider.MinValue = 2;
-            MapHeightSlider.MaxValue = 9;
-            MapHeightSlider.Value = 2;
-            MapHeightSlider.Step = 1;
 
             // SetStartButton
             SetStartButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
@@ -128,6 +109,11 @@ namespace Preview
             SaveButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             SaveButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
             SaveButton.BackgroundFilterColor = new UIColor(255f / 255f, 0f / 255f, 7f / 255f, 255f / 255f);
+
+            // RandomSetButton
+            RandomSetButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+            RandomSetButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
+            RandomSetButton.BackgroundFilterColor = new UIColor(0f / 255f, 124f / 255f, 255f / 255f, 255f / 255f);
 
             SetWidgetLayout(orientation);
 
@@ -158,11 +144,6 @@ namespace Preview
                     SetSwitchButton.Anchors = Anchors.None;
                     SetSwitchButton.Visible = true;
 
-                    SaveNoList.SetPosition(414, 470);
-                    SaveNoList.SetSize(360, 56);
-                    SaveNoList.Anchors = Anchors.Height;
-                    SaveNoList.Visible = true;
-
                     LoadButton.SetPosition(43, 395);
                     LoadButton.SetSize(214, 56);
                     LoadButton.Anchors = Anchors.None;
@@ -177,11 +158,6 @@ namespace Preview
                     MapWidthSlider.SetSize(362, 58);
                     MapWidthSlider.Anchors = Anchors.Height;
                     MapWidthSlider.Visible = true;
-
-                    MapHeightSlider.SetPosition(43, 331);
-                    MapHeightSlider.SetSize(362, 58);
-                    MapHeightSlider.Anchors = Anchors.Height;
-                    MapHeightSlider.Visible = true;
 
                     SetStartButton.SetPosition(702, 57);
                     SetStartButton.SetSize(214, 56);
@@ -198,66 +174,66 @@ namespace Preview
                     SaveButton.Anchors = Anchors.None;
                     SaveButton.Visible = true;
 
+                    RandomSetButton.SetPosition(713, 378);
+                    RandomSetButton.SetSize(214, 56);
+                    RandomSetButton.Anchors = Anchors.None;
+                    RandomSetButton.Visible = true;
+
                     break;
 
                 default:
                     this.DesignWidth = 960;
                     this.DesignHeight = 544;
 
-                    TitleLabel.SetPosition(309, 20);
+                    TitleLabel.SetPosition(325, 474);
                     TitleLabel.SetSize(342, 54);
                     TitleLabel.Anchors = Anchors.None;
                     TitleLabel.Visible = true;
 
-                    ChangePanelBuuton.SetPosition(43, 67);
-                    ChangePanelBuuton.SetSize(124, 73);
+                    ChangePanelBuuton.SetPosition(152, 21);
+                    ChangePanelBuuton.SetSize(124, 55);
                     ChangePanelBuuton.Anchors = Anchors.None;
                     ChangePanelBuuton.Visible = true;
 
-                    SetSwitchButton.SetPosition(43, 177);
-                    SetSwitchButton.SetSize(137, 72);
+                    SetSwitchButton.SetPosition(325, 21);
+                    SetSwitchButton.SetSize(137, 55);
                     SetSwitchButton.Anchors = Anchors.None;
                     SetSwitchButton.Visible = true;
 
-                    SaveNoList.SetPosition(608, 470);
-                    SaveNoList.SetSize(178, 56);
-                    SaveNoList.Anchors = Anchors.Height;
-                    SaveNoList.Visible = true;
-
-                    LoadButton.SetPosition(814, 389);
+                    LoadButton.SetPosition(30, 470);
                     LoadButton.SetSize(122, 56);
                     LoadButton.Anchors = Anchors.None;
                     LoadButton.Visible = true;
 
-                    LoadNoList.SetPosition(608, 389);
+                    LoadNoList.SetPosition(174, 470);
                     LoadNoList.SetSize(177, 56);
                     LoadNoList.Anchors = Anchors.Height;
                     LoadNoList.Visible = true;
 
-                    MapWidthSlider.SetPosition(101, 468);
+                    MapWidthSlider.SetPosition(729, 412);
                     MapWidthSlider.SetSize(195, 58);
                     MapWidthSlider.Anchors = Anchors.Height;
                     MapWidthSlider.Visible = true;
 
-                    MapHeightSlider.SetPosition(43, 275);
-                    MapHeightSlider.SetSize(58, 195);
-                    MapHeightSlider.Anchors = Anchors.Height;
-                    MapHeightSlider.Visible = true;
-
-                    SetStartButton.SetPosition(786, 157);
-                    SetStartButton.SetSize(135, 73);
+                    SetStartButton.SetPosition(511, 21);
+                    SetStartButton.SetSize(135, 55);
                     SetStartButton.Anchors = Anchors.None;
                     SetStartButton.Visible = true;
 
-                    SetGoalButton.SetPosition(786, 266);
-                    SetGoalButton.SetSize(135, 73);
+                    SetGoalButton.SetPosition(695, 21);
+                    SetGoalButton.SetSize(135, 55);
                     SetGoalButton.Anchors = Anchors.None;
                     SetGoalButton.Visible = true;
 
-                    SaveButton.SetPosition(814, 470);
+                    SaveButton.SetPosition(30, 378);
                     SaveButton.SetSize(122, 56);
                     SaveButton.Anchors = Anchors.None;
                     SaveButton.Visible = true;
+
+                    RandomSetButton.SetPosition(744, 470);
+                    RandomSetButton.SetSize(165, 56);
+                    RandomSetButton.Anchors = Anchors.None;
+                    RandomSetButton.Visible = true;
 
                     break;
             }
@@ -273,23 +249,6 @@ namespace Preview
             ChangePanelBuuton.Text = "パネル変更";
 
             SetSwitchButton.Text = "スイッチ設置";
-
-            SaveNoList.ListTitle = "保存するファイルNo";
-            SaveNoList.ListItems.Clear();
-            SaveNoList.ListItems.AddRange(new String[]
-            {
-                "no selected",
-                "0",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                "6",
-                "7",
-                "8",
-            });
-            SaveNoList.SelectedIndex = 0;
 
             LoadButton.Text = "読込み";
 
@@ -315,6 +274,8 @@ namespace Preview
             SetGoalButton.Text = "ゴール設置";
 
             SaveButton.Text = "保存";
+
+            RandomSetButton.Text = "ランダムセット";
         }
 
         private void onShowing(object sender, EventArgs e)
@@ -325,28 +286,26 @@ namespace Preview
                     TitleLabel.Visible = false;
                     ChangePanelBuuton.Visible = false;
                     SetSwitchButton.Visible = false;
-                    SaveNoList.Visible = false;
                     LoadButton.Visible = false;
                     LoadNoList.Visible = false;
                     MapWidthSlider.Visible = false;
-                    MapHeightSlider.Visible = false;
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
+                    RandomSetButton.Visible = false;
                     break;
 
                 default:
                     TitleLabel.Visible = false;
                     ChangePanelBuuton.Visible = false;
                     SetSwitchButton.Visible = false;
-                    SaveNoList.Visible = false;
                     LoadButton.Visible = false;
                     LoadNoList.Visible = false;
                     MapWidthSlider.Visible = false;
-                    MapHeightSlider.Visible = false;
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
+                    RandomSetButton.Visible = false;
                     break;
             }
         }
@@ -356,43 +315,34 @@ namespace Preview
             switch (_currentLayoutOrientation)
             {
                 case LayoutOrientation.Vertical:
-                    new FadeInEffect()
+                    new SlideInEffect()
                     {
                         Widget = TitleLabel,
+                        MoveDirection = FourWayDirection.Up,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = ChangePanelBuuton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = SetSwitchButton,
-                        MoveDirection = FourWayDirection.Right,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = SaveNoList,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadButton,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadNoList,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = MapWidthSlider,
-                        MoveDirection = FourWayDirection.Up,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = MapHeightSlider,
                         MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
@@ -408,48 +358,44 @@ namespace Preview
                     new SlideInEffect()
                     {
                         Widget = SaveButton,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
+                    }.Start();
+                    new SlideInEffect()
+                    {
+                        Widget = RandomSetButton,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     break;
 
                 default:
-                    new FadeInEffect()
+                    new SlideInEffect()
                     {
                         Widget = TitleLabel,
+                        MoveDirection = FourWayDirection.Up,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = ChangePanelBuuton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = SetSwitchButton,
-                        MoveDirection = FourWayDirection.Right,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = SaveNoList,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadButton,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadNoList,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = MapWidthSlider,
-                        MoveDirection = FourWayDirection.Up,
-                    }.Start();
-                    new SlideInEffect()
-                    {
-                        Widget = MapHeightSlider,
                         MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
@@ -465,7 +411,12 @@ namespace Preview
                     new SlideInEffect()
                     {
                         Widget = SaveButton,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
+                    }.Start();
+                    new SlideInEffect()
+                    {
+                        Widget = RandomSetButton,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     break;
             }

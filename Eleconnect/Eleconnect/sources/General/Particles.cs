@@ -128,7 +128,7 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
-			tex.Dispose();
+			//tex.Dispose();
 			for(int i = particle.Count - 1; i >= 0; i--)
 				particle.RemoveAt(i);
 		}

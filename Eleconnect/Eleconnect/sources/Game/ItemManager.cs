@@ -136,7 +136,7 @@ namespace Eleconnect
 			{
 				items[i].panel.Term();
 			}
-			logoTex.Dispose();
+			//logoTex.Dispose();
 			logoSp.Term();
 		}
 	}

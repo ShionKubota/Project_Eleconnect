@@ -13,6 +13,8 @@ namespace Eleconnect
 			data.Add (new Stage_1());
 			data.Add (new Stage_2());
 			data.Add (new Stage_3());
+			data.Add (new Stage_4());
+			data.Add (new Stage_5());
 		}
 		
 		public Stage_Base this[int index]

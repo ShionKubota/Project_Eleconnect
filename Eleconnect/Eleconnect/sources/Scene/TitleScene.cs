@@ -191,12 +191,14 @@ namespace Eleconnect
 		// 解放(musicはセレクトシーンでも使用しているのでセレクトシーンで解放)
 		override public void Term()
 		{
-			backTex.Dispose ();
-			logoTex.Dispose();
-			startTex.Dispose();
+			//backTex.Dispose ();
+			//logoTex.Dispose();
+			//startTex.Dispose();
 			//start_rTex.Dispose();
+			backSp.Term();
+			logoSp.Term();
+			startSp.Term();
 			musicEffect.Term();
-			particle.Draw ();
 			seFlg = false;
 		}
 	}

@@ -25,7 +25,7 @@ namespace Eleconnect
 		public Panel target{get; private set;}
 		public static bool arrivedGoal;		// ゴールに到着したらtrue
 		
-		public const float DEF_SPEED = 1.0f;
+		public const float DEF_SPEED = 4.0f;
 		
 		public Electh (Panel panel, float speed)
 		{
@@ -42,7 +42,6 @@ namespace Eleconnect
 			aniFrame = 0;
 			eleRotate = 0;
 			state = StateId.WAIT;
-			arrivedGoal = false;
 		}
 		
 		public void Update()
@@ -105,7 +104,7 @@ namespace Eleconnect
 		{
 			state = StateId.FLOW;
 			target = panel;
-			this.speed += (this.speed < 5.0f) ? 0.3f : 0.0f;
+			this.speed += (this.speed < 10.0f) ? 0.5f : 0.0f;
 		}
 		
 		public void Kill()

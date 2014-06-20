@@ -78,7 +78,8 @@ namespace Eleconnect
 					nowScene = new ResultScene();
 					break;
 				}
-			fade.In(nowScene.fadeInColor, nowScene.fadeInTime);
+				fade.In(nowScene.fadeInColor, nowScene.fadeInTime);
+				GC.Collect();
 			}
 		}
 		

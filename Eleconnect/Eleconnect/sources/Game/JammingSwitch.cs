@@ -48,7 +48,8 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
-			tex.Dispose();
+			//tex.Dispose();
+			sp.Term();
 		}
 		
 		public override void ButtonEvent (bool pushR)
