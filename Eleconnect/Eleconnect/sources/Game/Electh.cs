@@ -27,6 +27,8 @@ namespace Eleconnect
 		
 		public const float DEF_SPEED = 4.0f;
 		
+		private MusicEffect musicEffect;
+		
 		public Electh (Panel panel, float speed)
 		{
 			if(tex == null)
@@ -42,6 +44,9 @@ namespace Eleconnect
 			aniFrame = 0;
 			eleRotate = 0;
 			state = StateId.WAIT;
+			
+			if(musicEffect == null)
+				musicEffect = new MusicEffect(@"/Application/assets/se/Switch_SE.wav");
 		}
 		
 		public void Update()
@@ -75,6 +80,7 @@ namespace Eleconnect
 					
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
+						musicEffect.Set(1.0f,false);
 						JammingSwitch.isJamming = false;
 						Kill ();
 					}
