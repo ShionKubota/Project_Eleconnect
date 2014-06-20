@@ -40,7 +40,6 @@ namespace Eleconnect
 		// ステージ情報
 		public struct StageData
 		{
-		
 			public int width, height,
 				startX, startY,
 				goalX, goalY;
@@ -98,11 +97,12 @@ namespace Eleconnect
 			// スプライト
 			if(backTex == null)
 			{
-				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
+				backTex = new Texture2D(@"/Application/assets/img/eleconnect_background.png", false);
 			}
 			backSp = new Sprite2D(backTex);
 			backSp.pos = AppMain.ScreenCenter;
-			backSp.color = new Vector4(0.6f, 0.6f, 0.6f, 1.0f);
+			backSp.color = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+			backSp.color *= new Vector4(1.0f);
 			/*
 			if(guideTex == null)
 			{
@@ -218,10 +218,6 @@ namespace Eleconnect
 			
 			// エレクス更新
 			electhManager.Update();
-			if(frameCnt % 300 == 0)
-			{
-				//ecthManager.FlowStart(0, 0, false);
-			}
 		}
 		
 		// エレクスが流れるプロセス
@@ -229,9 +225,11 @@ namespace Eleconnect
 		{
 			electhManager.Update();
 			
+			// エレクスが流れきったとき
 			if(!electhManager.nowFlowing)
 			{
 				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
+				GC.Collect();	// ガベコレ発動
 				if(Electh.arrivedGoal)
 				{
 					music.Stop();
@@ -268,6 +266,9 @@ namespace Eleconnect
 			}
 			// リザルトへ
 			result.Update();
+			
+			// エレクス更新
+			electhManager.Update();
 		}
 		
 		// ポーズ中の更新プロセス
@@ -392,14 +393,19 @@ namespace Eleconnect
 		// 解放
 		override public void Term()
 		{
-			backTex.Dispose();
-			//guideTex.Dispose();
+			//backTex.Dispose();
+			backSp.Term();
+			//electhTex.Dispose ();
+			electhSp.Term();
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();
 			musicEffect.Term();
 			music.Term();
 			gameUi.Term();
+			menuManager.Term();
+			//result.Term();
+			itemManager.Term();
 		}
 	}
 }

@@ -30,7 +30,7 @@ namespace Eleconnect
 		public void Init()
 		{
 			// 1つめのパネルの位置計算
-			float panelSize = Panel.SIZE * Panel.SCALE + 5.0f;
+			float panelSize = Panel.SIZE * Panel.SCALE;// + 5.0f;
 			Vector2 basePos = new Vector2(16.0f*14,
 			                              AppMain.ScreenCenter.Y - ((panelSize * GameScene.stage.height) / 2.0f) + (panelSize / 2.0f));
 			//Vector2 basePos = new Vector2(AppMain.ScreenWidth / 8.0f /*AppMain.ScreenCenter.X - ((panelSize * GameScene.stage.width) / 2.0f) + (panelSize / 2.0f)*/,
