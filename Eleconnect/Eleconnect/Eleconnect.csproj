@@ -180,6 +180,7 @@
     <Content Include="assets\img\charge.png" />
     <Content Include="assets\img\itemlogo.png" />
     <Content Include="assets\se\Switch_SE.wav" />
+    <Content Include="assets\se\Electh_SE.wav" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

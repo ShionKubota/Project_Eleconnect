@@ -13,6 +13,9 @@ namespace Eleconnect
 		
 		public bool visibleElecth;
 		public bool nowFlowing{ private set; get; }
+		
+		public MusicEffect flowEffect;
+		
 		public ElecthManager (PanelManager panels, JammingManager jammingMng)
 		{
 			electh = new List<Electh>();
@@ -20,6 +23,10 @@ namespace Eleconnect
 			this.jammingMng = jammingMng;
 			visibleElecth = false;
 			nowFlowing = false;
+			if(flowEffect == null)
+			{
+				flowEffect = new MusicEffect(@"/Application/assets/se/Electh_SE.wav");
+			}
 			// パーティクルの設定
 			particle = new Particles(500);
 			particle.LoadTextureInfo(@"Application/assets/img/particle.png", false);
@@ -42,6 +49,7 @@ namespace Eleconnect
 		{
 			if(nowFlowing) return;
 			
+			flowEffect.Set();
 			this.visibleElecth = visibleElecth;
 			electh.Add (new Electh(panels[indexW, indexH], Electh.DEF_SPEED));
 			nowFlowing = true;
@@ -63,6 +71,7 @@ namespace Eleconnect
 			// 全てのエレクスが消滅したらゲーム、もしくはクリア状態へ遷移する
 			if(electh.Count == 0)
 			{
+				flowEffect.Stop();
 				nowFlowing = false;
 				JammingSwitch.isJamming = true;
 				Panel.elecPowMax = 99;

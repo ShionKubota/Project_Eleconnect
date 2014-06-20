@@ -47,6 +47,7 @@ namespace Eleconnect
 			
 			if(musicEffect == null)
 				musicEffect = new MusicEffect(@"/Application/assets/se/Switch_SE.wav");
+			
 		}
 		
 		public void Update()
