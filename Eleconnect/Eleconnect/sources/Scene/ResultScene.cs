@@ -125,9 +125,12 @@ namespace Eleconnect
 		// 解放
 		public override void Term()
 		{
-			resultLogoTex.Dispose();
-			scoreTex.Dispose();
-			pakTex.Dispose();
+			//resultLogoTex.Dispose();
+			//scoreTex.Dispose();
+			//pakTex.Dispose();
+			resultLogoSp.Term();
+			scoreSp.Term();
+			pakSp.Term();
 			//backTex.Dispose();
 			score.Term();
 			seFlg = false;

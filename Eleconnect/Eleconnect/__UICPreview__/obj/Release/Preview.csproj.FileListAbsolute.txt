@@ -159,3 +159,15 @@ C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bi
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview.psdp
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\obj\Release\Preview.csprojResolveAssemblyReference.cache
 C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\obj\Release\app.exe
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\charge.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\electh_before.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\electh_test.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\itemlogo.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\Jamming2.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-unsigned\Application\assets\img\Unity Projects.lnk
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\charge.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\electh_before.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\electh_test.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\itemlogo.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\Jamming2.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\__UICPreview__\bin\Release\Preview-signed\Application\assets\img\Unity Projects.lnk

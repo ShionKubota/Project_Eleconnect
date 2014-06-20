@@ -20,6 +20,7 @@ namespace Eleconnect
         Button SetStartButton;
         Button SetGoalButton;
         Button SaveButton;
+        Button RandomSetButton;
 
         private void InitializeWidget()
         {
@@ -46,6 +47,8 @@ namespace Eleconnect
             SetGoalButton.Name = "SetGoalButton";
             SaveButton = new Button();
             SaveButton.Name = "SaveButton";
+            RandomSetButton = new Button();
+            RandomSetButton.Name = "RandomSetButton";
 
             // EditUI
             this.RootWidget.AddChildLast(TitleLabel);
@@ -57,6 +60,7 @@ namespace Eleconnect
             this.RootWidget.AddChildLast(SetStartButton);
             this.RootWidget.AddChildLast(SetGoalButton);
             this.RootWidget.AddChildLast(SaveButton);
+            this.RootWidget.AddChildLast(RandomSetButton);
             this.Showing += new EventHandler(onShowing);
             this.Shown += new EventHandler(onShown);
 
@@ -105,6 +109,11 @@ namespace Eleconnect
             SaveButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
             SaveButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
             SaveButton.BackgroundFilterColor = new UIColor(255f / 255f, 0f / 255f, 7f / 255f, 255f / 255f);
+
+            // RandomSetButton
+            RandomSetButton.TextColor = new UIColor(255f / 255f, 255f / 255f, 255f / 255f, 255f / 255f);
+            RandomSetButton.TextFont = new UIFont(FontAlias.System, 25, FontStyle.Regular);
+            RandomSetButton.BackgroundFilterColor = new UIColor(0f / 255f, 124f / 255f, 255f / 255f, 255f / 255f);
 
             SetWidgetLayout(orientation);
 
@@ -165,6 +174,11 @@ namespace Eleconnect
                     SaveButton.Anchors = Anchors.None;
                     SaveButton.Visible = true;
 
+                    RandomSetButton.SetPosition(713, 378);
+                    RandomSetButton.SetSize(214, 56);
+                    RandomSetButton.Anchors = Anchors.None;
+                    RandomSetButton.Visible = true;
+
                     break;
 
                 default:
@@ -176,12 +190,12 @@ namespace Eleconnect
                     TitleLabel.Anchors = Anchors.None;
                     TitleLabel.Visible = true;
 
-                    ChangePanelBuuton.SetPosition(152, 20);
+                    ChangePanelBuuton.SetPosition(152, 21);
                     ChangePanelBuuton.SetSize(124, 55);
                     ChangePanelBuuton.Anchors = Anchors.None;
                     ChangePanelBuuton.Visible = true;
 
-                    SetSwitchButton.SetPosition(325, 22);
+                    SetSwitchButton.SetPosition(325, 21);
                     SetSwitchButton.SetSize(137, 55);
                     SetSwitchButton.Anchors = Anchors.None;
                     SetSwitchButton.Visible = true;
@@ -196,7 +210,7 @@ namespace Eleconnect
                     LoadNoList.Anchors = Anchors.Height;
                     LoadNoList.Visible = true;
 
-                    MapWidthSlider.SetPosition(703, 469);
+                    MapWidthSlider.SetPosition(729, 412);
                     MapWidthSlider.SetSize(195, 58);
                     MapWidthSlider.Anchors = Anchors.Height;
                     MapWidthSlider.Visible = true;
@@ -215,6 +229,11 @@ namespace Eleconnect
                     SaveButton.SetSize(122, 56);
                     SaveButton.Anchors = Anchors.None;
                     SaveButton.Visible = true;
+
+                    RandomSetButton.SetPosition(744, 470);
+                    RandomSetButton.SetSize(165, 56);
+                    RandomSetButton.Anchors = Anchors.None;
+                    RandomSetButton.Visible = true;
 
                     break;
             }
@@ -255,6 +274,8 @@ namespace Eleconnect
             SetGoalButton.Text = "ゴール設置";
 
             SaveButton.Text = "保存";
+
+            RandomSetButton.Text = "ランダムセット";
         }
 
         private void onShowing(object sender, EventArgs e)
@@ -271,6 +292,7 @@ namespace Eleconnect
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
+                    RandomSetButton.Visible = false;
                     break;
 
                 default:
@@ -283,6 +305,7 @@ namespace Eleconnect
                     SetStartButton.Visible = false;
                     SetGoalButton.Visible = false;
                     SaveButton.Visible = false;
+                    RandomSetButton.Visible = false;
                     break;
             }
         }
@@ -292,34 +315,35 @@ namespace Eleconnect
             switch (_currentLayoutOrientation)
             {
                 case LayoutOrientation.Vertical:
-                    new FadeInEffect()
+                    new SlideInEffect()
                     {
                         Widget = TitleLabel,
+                        MoveDirection = FourWayDirection.Up,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = ChangePanelBuuton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = SetSwitchButton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadButton,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadNoList,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = MapWidthSlider,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
@@ -334,39 +358,45 @@ namespace Eleconnect
                     new SlideInEffect()
                     {
                         Widget = SaveButton,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
+                    }.Start();
+                    new SlideInEffect()
+                    {
+                        Widget = RandomSetButton,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     break;
 
                 default:
-                    new FadeInEffect()
+                    new SlideInEffect()
                     {
                         Widget = TitleLabel,
+                        MoveDirection = FourWayDirection.Up,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = ChangePanelBuuton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = SetSwitchButton,
-                        MoveDirection = FourWayDirection.Right,
+                        MoveDirection = FourWayDirection.Left,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadButton,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = LoadNoList,
-                        MoveDirection = FourWayDirection.Left,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
                         Widget = MapWidthSlider,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     new SlideInEffect()
                     {
@@ -381,7 +411,12 @@ namespace Eleconnect
                     new SlideInEffect()
                     {
                         Widget = SaveButton,
-                        MoveDirection = FourWayDirection.Up,
+                        MoveDirection = FourWayDirection.Right,
+                    }.Start();
+                    new SlideInEffect()
+                    {
+                        Widget = RandomSetButton,
+                        MoveDirection = FourWayDirection.Right,
                     }.Start();
                     break;
             }

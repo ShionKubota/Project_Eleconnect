@@ -129,6 +129,7 @@ namespace Eleconnect
 		public void Term()
 		{
 			sp.Term();
+			//tex.Dispose();
 			musicEffect.Term();
 		}
 	}//END OF CLASS

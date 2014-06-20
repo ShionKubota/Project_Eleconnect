@@ -72,7 +72,8 @@ namespace Eleconnect
 		
 		public void Term()
 		{
-			timeTex.Dispose();
+			//timeTex.Dispose();
+			timeSp.Term();
 		}
 	}
 }

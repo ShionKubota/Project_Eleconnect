@@ -142,6 +142,7 @@ namespace Eleconnect
 			{
 				//tex[i].Dispose();
 			}
+			sp.Term();
 		}
 		
 		// L,Rボタンを押した際のイベント

@@ -42,6 +42,7 @@ namespace Eleconnect
 		
 		public void JammingSet()
 		{
+			if(PanelEditor.IS_RANDOM_MAP) return;
 			// ジャミング配置場所の数値は1
 			for(int i = 0;i < jammingSide;i++)
 			{
@@ -107,12 +108,16 @@ namespace Eleconnect
 						jammingDataSide[6,4] = 1;
 						jammingDataSide[7,4] = 1;
 					}
+					
 					if(PlayData.GetInstance().stageNo == 4)
 					{
+						jammingDataLength[4, 2] = 1;
+						/*
 						jammingDataSide[0,3] = 1;
 						jammingDataSide[1,3] = 1;
 						jammingDataSide[2,3] = 1;
 						jammingDataSide[3,3] = 1;
+						*/
 					}
 				}
 			}
@@ -164,6 +169,7 @@ namespace Eleconnect
 		public void Term()
 		{
 			jamming.Term();
+			
 		}
 	}
 }

@@ -67,11 +67,18 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
+			/*
 			commentaryBarTex.Dispose ();
 			commentaryBackTex.Dispose ();
 			commentaryRetryTex.Dispose ();
 			commentarySelectTex.Dispose ();
 			commentaryTitleTex.Dispose ();
+			*/
+			commentaryBarSp.Term();
+			foreach(Sprite2D sp in commentarySp)
+			{
+				sp.Term();
+			}
 		}
 	}
 }

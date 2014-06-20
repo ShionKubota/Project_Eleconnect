@@ -38,9 +38,13 @@ namespace Eleconnect
 			{
 				LoadStageData();
 			}
+			else
+			{
+				stage = PanelEditor.randomStage;
+			}
 			
-			stage.width = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_W : GameScene.stage.width;
-			stage.height = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_H : GameScene.stage.height;
+			//stage.width = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_W : GameScene.stage.width;
+			//stage.height = (PanelEditor.IS_RANDOM_MAP) ? PanelEditor.RANDOM_MAP_H : GameScene.stage.height;
 			
 			panelManager = new PanelEditor();
 			

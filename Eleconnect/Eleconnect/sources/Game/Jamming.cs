@@ -53,7 +53,8 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
-			jamTex.Dispose();
+			//jamTex.Dispose();
+			jamSp.Term();
 		}
 	}
 }

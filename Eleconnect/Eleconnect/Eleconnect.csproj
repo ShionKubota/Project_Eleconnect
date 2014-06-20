@@ -107,6 +107,8 @@
     <Compile Include="sources\UI\MapSavedDialog.cs" />
     <Compile Include="sources\Game\ChargePar.cs" />
     <Compile Include="sources\Game\ItemManager.cs" />
+    <Compile Include="sources\Game\Stage\Stage_4.cs" />
+    <Compile Include="sources\Game\Stage\Stage_5.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -177,6 +179,7 @@
     <Content Include="assets\img\Jamming2.png" />
     <Content Include="assets\img\charge.png" />
     <Content Include="assets\img\itemlogo.png" />
+    <Content Include="assets\se\Switch_SE.wav" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

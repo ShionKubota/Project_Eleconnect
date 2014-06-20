@@ -85,7 +85,8 @@ namespace Eleconnect
 		
 		public void Term()
 		{
-			chargeTex.Dispose();
+			//chargeTex.Dispose();
+			chargeSp.Term ();
 		}
 	}
 }

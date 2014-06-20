@@ -74,8 +74,10 @@ namespace Eleconnect
 		// 解放
 		override public void Term()
 		{
-			backTex.Dispose();
-			logoTex.Dispose();
+			//backTex.Dispose();
+			//logoTex.Dispose();
+			backSp.Term();
+			logoSp.Term();
 		}
 	}
 }

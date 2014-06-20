@@ -66,8 +66,8 @@ namespace Eleconnect
 		
 		public void Term()
 		{
-			//fadeSprite.Term();
-			fadeTex.Dispose();	// テクスチャ解放
+			fadeSprite.Term();
+			//fadeTex.Dispose();	// テクスチャ解放
 		}
 		
 		public void Draw()

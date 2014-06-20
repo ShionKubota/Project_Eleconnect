@@ -50,6 +50,9 @@ namespace Eleconnect
 			
 			Panel.elecPowMax = 1;
 			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
+			Electh.arrivedGoal = false;
+			
+			GC.Collect();
 		}
 		
 		// 更新

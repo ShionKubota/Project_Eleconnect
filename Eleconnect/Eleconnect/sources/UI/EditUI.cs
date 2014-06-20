@@ -23,6 +23,7 @@ namespace Eleconnect
 			SetGoalButton.ButtonAction     += new EventHandler<TouchEventArgs>(SetGoal);
 			SaveButton.ButtonAction		   += new EventHandler<TouchEventArgs>(SaveMap);
 			LoadButton.ButtonAction		   += new EventHandler<TouchEventArgs>(LoadMap);
+			RandomSetButton.ButtonAction   += new EventHandler<TouchEventArgs>(RandomSet);
         }
 		
 		// パネル切り替え
@@ -112,8 +113,8 @@ namespace Eleconnect
 			// ステージデータ保存{横, 縦, }
 			int[] stageData = new int[]{
 										 EditScene.stage.width, EditScene.stage.height,
-										 PanelEditor.START_X, PanelEditor.START_Y,
-										 PanelEditor.GOAL_X, PanelEditor.GOAL_Y
+										 EditScene.stage.startX, EditScene.stage.startY,
+										 EditScene.stage.goalX, EditScene.stage.goalY
 										};
 			fa.SavaData("stageData.dat", stageData);
 			Console.WriteLine ("SUCCESSFULL : Save the data of map.\n");
@@ -124,8 +125,23 @@ namespace Eleconnect
 			if(LoadNoList.SelectedIndex != 0)
 			{
 				PlayData.GetInstance().stageNo = LoadNoList.SelectedIndex - 1;
+				PanelEditor.IS_RANDOM_MAP = false;
 				SceneManager.GetInstance().Switch(SceneId.EDIT);
 			}
+		}
+		// ランダムにマップ生成	
+		private void RandomSet(object sender, TouchEventArgs e)
+		{
+			PanelEditor.IS_RANDOM_MAP = true;
+			// ステージ情報読み込み
+			PanelEditor.randomStage.width = (int)this.MapWidthSlider.Value;
+			PanelEditor.randomStage.height = PanelEditor.RANDOM_MAP_H;
+			PanelEditor.randomStage.startX = 0;
+			PanelEditor.randomStage.startY = 0;
+			PanelEditor.randomStage.goalX = PanelEditor.randomStage.width - 1;
+			PanelEditor.randomStage.goalY = PanelEditor.randomStage.height - 1;
+			
+			SceneManager.GetInstance().Switch(SceneId.EDIT);
 		}
 		// 操作対象のパネルをセット
 		public void SetIndex(CursorOnPanels cursor)

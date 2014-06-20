@@ -31,9 +31,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="__DummyProgram.cs" />
-    <Compile Include="__DummyScene.cs" />
-    <Compile Include="MapSavedDialog.composer.cs" />
-    <Compile Include="MapSavedDialog.cs" />
+    <Compile Include="EditUI.composer.cs" />
+    <Compile Include="EditUI.cs" />
     <Compile Include="UIStringTable.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +44,9 @@
     </Content>
     <Content Include="..\\assets\img\Back.png" >
       <Link>assets\img\Back.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\charge.png" >
+      <Link>assets\img\charge.png</Link>
     </Content>
     <Content Include="..\\assets\img\corner.png" >
       <Link>assets\img\corner.png</Link>
@@ -64,6 +66,12 @@
     <Content Include="..\\assets\img\electh.png" >
       <Link>assets\img\electh.png</Link>
     </Content>
+    <Content Include="..\\assets\img\electh_before.png" >
+      <Link>assets\img\electh_before.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\electh_test.png" >
+      <Link>assets\img\electh_test.png</Link>
+    </Content>
     <Content Include="..\\assets\img\guid.png" >
       <Link>assets\img\guid.png</Link>
     </Content>
@@ -76,8 +84,14 @@
     <Content Include="..\\assets\img\ianzuma.png" >
       <Link>assets\img\ianzuma.png</Link>
     </Content>
+    <Content Include="..\\assets\img\itemlogo.png" >
+      <Link>assets\img\itemlogo.png</Link>
+    </Content>
     <Content Include="..\\assets\img\Jamming.png" >
       <Link>assets\img\Jamming.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Jamming2.png" >
+      <Link>assets\img\Jamming2.png</Link>
     </Content>
     <Content Include="..\\assets\img\Logo.png" >
       <Link>assets\img\Logo.png</Link>
@@ -183,6 +197,9 @@
     </Content>
     <Content Include="..\\assets\img\timelogo.png" >
       <Link>assets\img\timelogo.png</Link>
+    </Content>
+    <Content Include="..\\assets\img\Unity Projects.lnk" >
+      <Link>assets\img\Unity Projects.lnk</Link>
     </Content>
     <Content Include="..\\assets\img\White.png" >
       <Link>assets\img\White.png</Link>
