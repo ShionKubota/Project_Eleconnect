@@ -278,11 +278,10 @@ namespace Eleconnect
 			menuManager.Update();
 			
 			// ポーズ終了をチェック
-			if(menuManager.isEnd || Input.GetInstance().start.isPushStart)
+			if((menuManager.isEnd || Input.GetInstance().start.isPushStart)&&menuManager.selectFlg == false)
 			{
 				nowState = StateId.GAME;
 			}
-			
 		}
 		
 		// プレイヤーの操作
@@ -384,10 +383,13 @@ namespace Eleconnect
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
+			else
+			{
+				itemManager.Draw ();
+				gameUi.Draw();
+			}
 			electhManager.Draw();
 			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
-			itemManager.Draw ();
-			gameUi.Draw();
 		}
 		
 		// 解放

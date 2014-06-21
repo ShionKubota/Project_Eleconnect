@@ -282,7 +282,6 @@ namespace Eleconnect
 				if(input.right.isPushEnd)
 				{
 					musicEffect.Set(0.6f,false);
-					selectMoveFlg = true;
 					
 					selectBtnNo++;
 				}
@@ -294,7 +293,6 @@ namespace Eleconnect
 				if(input.left.isPushEnd)
 				{
 					musicEffect.Set(0.6f,false);
-					selectMoveFlg = true;
 					
 					selectBtnNo--;
 				}

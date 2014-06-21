@@ -66,7 +66,7 @@ namespace Eleconnect
 			// パネル上を流れる
 			case StateId.FLOW:
 				// 移動
-				if( speed < Vector3.Length(target.GetPos() - sp.pos))
+				if( speed*2.0f < Vector3.Length(target.GetPos() - sp.pos))
 				{
 					// ○押している間は早送り
 					float moveSpeed = (Input.GetInstance().circle.isPush) ? speed*2.0f : speed;
