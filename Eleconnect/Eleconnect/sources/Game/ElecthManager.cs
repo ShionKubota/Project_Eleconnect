@@ -126,8 +126,10 @@ namespace Eleconnect
 				}
 				
 				// スイッチに到達していたらジャミングをOFF
-				if(Electh.arrivedSwitch) JammingSwitch.isJamming = false;
-				
+				if(Electh.arrivedSwitch)
+				{
+					JammingSwitch.isJamming = false;
+				}
 				// 役目を果たしたエレクスをリストからはずす
 				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);
 			}

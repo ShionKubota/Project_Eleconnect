@@ -85,7 +85,6 @@
     <Compile Include="sources\Game\MenuCommentary.cs" />
     <Compile Include="sources\Game\Panel.cs" />
     <Compile Include="sources\Game\NormalPanel.cs" />
-    <Compile Include="sources\Game\GroupPanel.cs" />
     <Compile Include="sources\Game\ChildPanel.cs" />
     <Compile Include="sources\Game\Electh.cs" />
     <Compile Include="sources\Game\Jamming.cs" />
@@ -109,6 +108,8 @@
     <Compile Include="sources\Game\ItemManager.cs" />
     <Compile Include="sources\Game\Stage\Stage_4.cs" />
     <Compile Include="sources\Game\Stage\Stage_5.cs" />
+    <Compile Include="sources\Game\LinePanel.cs" />
+    <Compile Include="sources\Game\GroupPanel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
