@@ -51,6 +51,7 @@ namespace Eleconnect
 			Panel.elecPowMax = 1;
 			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			Electh.arrivedGoal = false;
+			Electh.arrivedSwitch = false;
 			
 			GC.Collect();
 		}
@@ -65,6 +66,7 @@ namespace Eleconnect
 			{
 				nowFlowing = false;
 				JammingSwitch.isJamming = true;
+				Electh.arrivedSwitch = false;
 				Panel.elecPowMax = 99;
 				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}	
@@ -72,13 +74,9 @@ namespace Eleconnect
 			// エレクスの更新
 			for(int i = electh.Count-1; i >= 0; i--)
 			{
-				if(electh[i].state == Electh.StateId.WAIT)
-				{
-					SetElecth (i);
-				}
-				
 				electh[i].Update ();
-				// パーティクル
+				
+				// 到着しているエレクス
 				if(electh[i].state == Electh.StateId.WAIT)
 				{
 					particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
@@ -103,7 +101,13 @@ namespace Eleconnect
 					{
 						particle.Generate(5);
 					}
+					
+					// エレクスを次にむかわせる
+					SetElecth (i);
 				}
+				
+				// スイッチに到達していたらジャミングをOFF
+				if(Electh.arrivedSwitch) JammingSwitch.isJamming = false;
 				
 				// 役目を果たしたエレクスをリストからはずす
 				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);

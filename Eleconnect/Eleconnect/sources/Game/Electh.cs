@@ -24,6 +24,7 @@ namespace Eleconnect
 		public StateId state{get; private set;}
 		public Panel target{get; private set;}
 		public static bool arrivedGoal;		// ゴールに到着したらtrue
+		public static bool arrivedSwitch;
 		
 		public const float DEF_SPEED = 2.0f;
 		public const float MAX_SPEED = 10.0f;
@@ -81,10 +82,11 @@ namespace Eleconnect
 					// 接続数カウント
 					++PlayData.GetInstance().connectNum;
 					
+					// スイッチだったら
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
 						musicEffect.Set(1.0f,false);
-						JammingSwitch.isJamming = false;
+						arrivedSwitch = true;
 						Kill ();
 					}
 					// ゴールだったら
