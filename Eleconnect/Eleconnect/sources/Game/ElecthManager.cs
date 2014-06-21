@@ -14,7 +14,9 @@ namespace Eleconnect
 		public bool visibleElecth;
 		public bool nowFlowing{ private set; get; }
 		
-		public MusicEffect flowEffect;
+		private MusicEffect flowEffect;
+		private MusicEffect burstEffect;
+		private MusicEffect divisionEffect;
 		
 		public ElecthManager (PanelManager panels, JammingManager jammingMng)
 		{
@@ -26,6 +28,14 @@ namespace Eleconnect
 			if(flowEffect == null)
 			{
 				flowEffect = new MusicEffect(@"/Application/assets/se/Electh_SE.wav");
+			}
+			if(burstEffect == null)
+			{
+				burstEffect = new MusicEffect(@"/Application/assets/se/Burst_SE.wav");
+			}
+			if(divisionEffect == null)
+			{
+				divisionEffect = new MusicEffect(@"/Application/assets/se/Division_SE.wav");
 			}
 			// パーティクルの設定
 			particle = new Particles(500);
@@ -192,6 +202,7 @@ namespace Eleconnect
 						// 新しいエレクスが必要なら生成して再帰
 						if(needNewElecth == true)
 						{
+							divisionEffect.Set();
 							electh.Add(new Electh(oldTarget, oldSpeed));
 							SetElecth (electh.Count-1);
 						}
@@ -207,7 +218,11 @@ namespace Eleconnect
 			}
 			
 			// どの方向にもエレクスが進まなかったら消滅させる
-			if(electh[id].state == Electh.StateId.WAIT) electh[id].Kill();
+			if(electh[id].state == Electh.StateId.WAIT) 
+			{
+				burstEffect.Set();
+				electh[id].Kill();
+			}
 		}
 		
 		public void Draw()

@@ -21,7 +21,7 @@ namespace Eleconnect
 		public static bool menuFlg;							// メニューを表示
 		public static int menuNum;							// 選んでいるメニュー番号
 		
-		private bool selectFlg;								// メニューセレクト用フラグ
+		public bool selectFlg;								// メニューセレクト用フラグ
 		
 		private float frameCnt;
 		
@@ -112,7 +112,7 @@ namespace Eleconnect
 			{
 				selectScene.Update();
 				
-				if(input.cross.isPushEnd || input.start.isPush)
+				if(input.cross.isPushEnd || input.start.isPushEnd)
 				{
 					selectFlg = false;
 				}

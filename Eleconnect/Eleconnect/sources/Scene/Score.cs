@@ -33,7 +33,8 @@ namespace Eleconnect
 		{
 			num = new Number();
 			
-			point = PlayData.GetInstance().connectNum * 1000+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
+			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f) * 100
+				+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
 			Console.WriteLine(point);
 			Console.WriteLine(PlayData.GetInstance().connectNum);
 			Console.WriteLine((int)TimeManager.timer);

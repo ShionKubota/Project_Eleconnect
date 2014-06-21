@@ -181,6 +181,9 @@
     <Content Include="assets\img\itemlogo.png" />
     <Content Include="assets\se\Switch_SE.wav" />
     <Content Include="assets\img\eleconnect_background.png" />
+    <Content Include="assets\se\Burst_SE.wav" />
+    <Content Include="assets\se\Electh_SE.wav" />
+    <Content Include="assets\se\Division_SE.wav" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
