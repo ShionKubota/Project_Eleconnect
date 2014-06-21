@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\GameScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\JammingSwitch.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="381" Column="24" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="393" Column="4" />
       <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="33" Column="57" />
       <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="41" Column="4" />
       <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="195" Column="33" />
@@ -14,6 +14,7 @@
       <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="19" Column="4" />
       <File FileName="Eleconnect\sources\Scene\Score.cs" Line="42" Column="29" />
       <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="44" Column="116" />
+      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="11" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
