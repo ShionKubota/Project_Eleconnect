@@ -9,6 +9,8 @@ namespace Eleconnect
 		private Texture2D tex;
 		
 		public static bool isJamming;
+		private int aniFrame;
+		private int frameCnt;
 		
 		// コンストラクタ
 		public JammingSwitch (Vector2 pos) : base(TypeId.JammSwitch, pos)
@@ -19,24 +21,36 @@ namespace Eleconnect
 		// 初期化
 		public override void Init(TypeId id, Vector2 pos)
 		{
-			tex = new Texture2D(@"/Application/assets\img\switch.png", false);
+			tex = new Texture2D(@"/Application/assets\img\jamm_anime.png", false);
 			
 			const float SWITCH_SCALE = 0.25f;
 			sp = new Sprite2D(tex);
 			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);
-			sp.size = new Vector2(SWITCH_SCALE / 2.0f, SWITCH_SCALE);
-			sp.textureUV = new Vector4(0.0f, 0.0f, 0.5f, 1.0f);
+			sp.size = new Vector2(SWITCH_SCALE / 5.0f, SWITCH_SCALE);
+			sp.textureUV = new Vector4(0.0f, 0.0f, 1.0f/5.0f, 1.0f);
 			
 			route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
 			
 			isJamming = true;
+			aniFrame = 0;
+			frameCnt = 0;
 		}
 		
 		// 更新
 		public override void Update()
 		{
-			sp.textureUV.X = (isJamming) ? 0.0f : 0.5f;
-			sp.textureUV.Z = sp.textureUV.X + 0.5f;
+			frameCnt++;
+			if(isJamming)
+			{
+				aniFrame += (frameCnt % 5) == 0 ? 1 : 0;
+				sp.textureUV.X = (aniFrame % 4) * 1.0f/5.0f;
+				sp.textureUV.Z = sp.textureUV.X + 1.0f/5.0f;
+			}
+			else
+			{
+				sp.textureUV.X = 4.0f/5.0f;
+				sp.textureUV.Z = sp.textureUV.X + 1.0f/5.0f;
+			}
 		}
 		
 		// 描画

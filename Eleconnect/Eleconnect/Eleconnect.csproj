@@ -185,6 +185,7 @@
     <Content Include="assets\se\Burst_SE.wav" />
     <Content Include="assets\se\Electh_SE.wav" />
     <Content Include="assets\se\Division_SE.wav" />
+    <Content Include="assets\img\jamm_anime.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
