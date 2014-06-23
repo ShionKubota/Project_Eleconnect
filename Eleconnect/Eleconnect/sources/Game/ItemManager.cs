@@ -82,8 +82,10 @@ namespace Eleconnect
 				// 掴まれている場合、その指に追従
 				if(item.isGripped)
 				{
-					item.panel.sp.pos.X += (touch.pos.X 								  - item.panel.sp.pos.X) * 0.3f;
-					item.panel.sp.pos.Y += ((touch.pos.Y + CursorOnPanels.TOUCH_Y_OFFSET) - item.panel.sp.pos.Y) * 0.3f;
+					item.panel.moveSpeed = 0.3f;
+					item.panel.moveTo = new Vector3(touch.pos.X, touch.pos.Y + CursorOnPanels.TOUCH_Y_OFFSET, 0.0f);
+					//item.panel.sp.pos.X += (touch.pos.X 								  - item.panel.sp.pos.X) * 0.3f;
+					//item.panel.sp.pos.Y += ((touch.pos.Y + CursorOnPanels.TOUCH_Y_OFFSET) - item.panel.sp.pos.Y) * 0.3f;
 				}
 			}
 			
@@ -94,10 +96,11 @@ namespace Eleconnect
 				if(cursor.notSelected || panels[cursor.indexW, cursor.indexH].typeId == Panel.TypeId.JammSwitch)
 				{
 					item.isGripped = false;
+					item.panel.moveSpeed = 0.15f;
 				}
 				
 				// パネルが選択されていたら、そこにパネルを当てはめる
-				else 
+				else
 				{
 					item.isVisible = false;
 					item.panel.sp.pos = panels[cursor.indexW, cursor.indexH].sp.pos;	// 位置を正す
@@ -110,8 +113,9 @@ namespace Eleconnect
 			// 掴まれていないアイテムを初期値まで移動させる
 			if(item.isGripped == false)
 			{
-				Vector3 move = (item.basePos - item.panel.GetPos()) * 0.15f;
-				item.panel.sp.pos += move;
+				//Vector3 move = (item.basePos - item.panel.GetPos()) * 0.15f;
+				//item.panel.sp.pos += move;
+				item.panel.moveTo = item.basePos;
 			}
 			
 			// パネルの更新

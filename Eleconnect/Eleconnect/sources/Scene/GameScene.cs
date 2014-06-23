@@ -27,8 +27,8 @@ namespace Eleconnect
 		protected GameUI gameUi;
 
 		// 画像
-		private Sprite2D backSp;
-		private Texture2D backTex;
+		protected Sprite2D backSp;
+		protected Texture2D backTex;
 		//private Sprite2D guideSp;
 		//private Texture2D guideTex;
 		public Animation electhSp;
@@ -233,18 +233,29 @@ namespace Eleconnect
 			// エレクスが流れきったとき
 			if(!electhManager.nowFlowing)
 			{
-				//nowState = (Electh.arrivedGoal) ? StateId.CLEAR : StateId.GAME;
-				GC.Collect();	// ガベコレ発動
+				GC.Collect();
+				// ゴールしてたらクリア
 				if(Electh.arrivedGoal)
 				{
 					music.Stop();
 					resultEffect.Set();
 					nowState = StateId.CLEAR;
+					// moveToを設定。中央に集める
+					for(int i = 0; i < stage.width; i++)
+					{
+						for(int j = 0; j < stage.height; j++)
+						{
+							Vector3 center = 
+							panelManager[i, j].moveTo = panelManager[i, j].GetPos() - AppMain.ScreenCenter;
+						}
+					}
 				}
+				
+				// ゴールしていなかったらゲームに戻る
 				else
 				{
 					PlayData.GetInstance().connectNum = 0;
-					nowState = StateId.GAME;	
+					nowState = StateId.GAME;
 				}
 			}
 		}
@@ -256,18 +267,7 @@ namespace Eleconnect
 			{
 				for(int j = 0; j < stage.height; j++)
 				{
-					if(panelManager[i, j].sp.size.X > 0.0f)
-					{
-						//panelManager[i, j].sp.size -= (Panel.SCALE+1.0f - panelManager[i, j].sp.size) * 0.1f;
-						//panelManager[i, j].sp.size -= new Vector2(0.01f);
-						//Console.WriteLine (panelManager[i, j].sp.size.X);
-						panelManager[i, j].sp.pos += (panelManager[i, j].sp.pos - AppMain.ScreenCenter + new Vector3(-1.0f, -1.0f, 0.0f)) * 0.1f;
-						
-					}
-					else
-					{
-						panelManager[i, j].sp.size = new Vector2(0.0f);
-					}
+					panelManager[i, j].sp.color.W -= 0.03f;
 				}
 			}
 			// リザルトへ

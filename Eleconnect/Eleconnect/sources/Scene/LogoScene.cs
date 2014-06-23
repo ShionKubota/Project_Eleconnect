@@ -60,7 +60,7 @@ namespace Eleconnect
 			
 			if(fadeTime > 100)
 			{
-				SceneManager.GetInstance().Switch(SceneId.TITLE);
+				SceneManager.GetInstance().Switch(SceneId.TUTORIAL);
 			}
 		}
 		

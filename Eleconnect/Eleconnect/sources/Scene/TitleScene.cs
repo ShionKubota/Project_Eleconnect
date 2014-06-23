@@ -75,6 +75,7 @@ namespace Eleconnect
 			
 			this.fadeInTime = 120;
 			this.fadeOutTime = 30;
+			this.fadeInColor = new Vector3(1.0f);
 			
 			frameCnt = 0;
 			seFlg = false;

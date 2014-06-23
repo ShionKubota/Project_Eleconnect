@@ -123,7 +123,7 @@ namespace Eleconnect
 		{
 			Vector3 tempPos = sp.pos;
 			sp.speed = 3;
-			sp.Set(6, 12);
+			sp.Set(6, 13);
 			state = StateId.BURN;
 		}
 		
