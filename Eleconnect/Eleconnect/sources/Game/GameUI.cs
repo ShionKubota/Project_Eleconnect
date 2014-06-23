@@ -32,7 +32,6 @@ namespace Eleconnect
 		// 更新
 		public void Update(GameScene.StateId nowState)
 		{
-			Console.WriteLine(nowState);
 			// タイムの更新
 			if(nowState == GameScene.StateId.GAME)
 			{

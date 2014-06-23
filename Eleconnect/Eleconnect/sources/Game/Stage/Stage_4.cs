@@ -13,7 +13,7 @@ namespace Eleconnect
 			
 			stageData = new int[]
 			{
-				9,5,8,0,4,2
+				9,5,8,0,4,2,4
 			};
 		}
 	}

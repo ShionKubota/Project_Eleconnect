@@ -43,7 +43,8 @@ namespace Eleconnect
 		{
 			public int width, height,
 				startX, startY,
-				goalX, goalY;
+				goalX, goalY,
+				jamming;
 			
 			public int[] mapData;
 		}
@@ -162,6 +163,7 @@ namespace Eleconnect
 			stage.startY = stageData.stageData[3];
 			stage.goalX = stageData.stageData[4];
 			stage.goalY = stageData.stageData[5];
+			stage.jamming = stageData.stageData[6];
 		}
 		
 		// 更新

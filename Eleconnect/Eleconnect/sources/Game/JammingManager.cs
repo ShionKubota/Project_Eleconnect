@@ -48,7 +48,7 @@ namespace Eleconnect
 			{
 				for(int j = 0;j < jammingLength;j++)
 				{
-					if(PlayData.GetInstance().stageNo == 0)
+					if(GameScene.stage.jamming == 0)
 					{
 						jammingDataLength[0,1] = 1;
 						jammingDataLength[0,2] = 1;
@@ -64,7 +64,7 @@ namespace Eleconnect
 						jammingDataSide[3,3] = 1;
 						jammingDataSide[4,3] = 1;
 					}
-					if(PlayData.GetInstance().stageNo == 1)
+					if(GameScene.stage.jamming == 1)
 					{
 						jammingDataLength[1,4] = 1;
 						jammingDataLength[2,3] = 1;
@@ -77,7 +77,7 @@ namespace Eleconnect
 						jammingDataSide[3,2] = 1;
 						jammingDataSide[2,3] = 1;
 					}
-					if(PlayData.GetInstance().stageNo == 2)
+					if(GameScene.stage.jamming == 2)
 					{
 						jammingDataLength[0,1] = 1;
 						jammingDataLength[0,2] = 1;
@@ -109,7 +109,7 @@ namespace Eleconnect
 						jammingDataSide[7,4] = 1;
 					}
 					
-					if(PlayData.GetInstance().stageNo == 4)
+					if(GameScene.stage.jamming == 4)
 					{
 						jammingDataLength[4, 2] = 1;
 						/*

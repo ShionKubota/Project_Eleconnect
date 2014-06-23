@@ -9,11 +9,11 @@ namespace Eleconnect
 		public StageDataList ()
 		{
 			data = new List<Stage_Base>();
+			data.Add (new Stage_4());
 			data.Add (new Stage_0());
 			data.Add (new Stage_1());
 			data.Add (new Stage_2());
 			data.Add (new Stage_3());
-			data.Add (new Stage_4());
 			data.Add (new Stage_5());
 		}
 		
