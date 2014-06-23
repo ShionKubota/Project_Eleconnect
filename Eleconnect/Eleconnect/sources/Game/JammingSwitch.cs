@@ -22,7 +22,6 @@ namespace Eleconnect
 		public override void Init(TypeId id, Vector2 pos)
 		{
 			tex = new Texture2D(@"/Application/assets\img\jamm_anime.png", false);
-			
 			const float SWITCH_SCALE = 0.25f;
 			sp = new Sprite2D(tex);
 			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);

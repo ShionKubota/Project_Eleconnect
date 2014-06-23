@@ -18,13 +18,11 @@ namespace Eleconnect
 		private Sprite2D 
 			resultLogoSp,
 			scoreSp,
-			pakSp,
-			backSp;
+			pakSp;
 		private Texture2D 
 			resultLogoTex,
 			scoreTex,
-			pakTex,
-			backTex;
+			pakTex;
 		
 		private float
 			frameCnt,
@@ -34,10 +32,9 @@ namespace Eleconnect
 			gainChange,
 			seFlg;
 		
-		public MusicEffect resultEffect;
 		private MusicEffect musicEffect;
 		
-		Score score = new Score();
+		private Score score;
 		
 		Input input = Input.GetInstance();
 		
@@ -65,27 +62,22 @@ namespace Eleconnect
 			pakSp.size = new Vector2(0.8f);
 			pakSp.pos = new Vector3(AppMain.ScreenWidth/2.0f,AppMain.ScreenHeight - 128.0f,0.0f);
 			
-			//if(backTex == null)
-			//backTex = new Texture2D(@"/Application/assets/img/Back.png", false);
-			//backSp = new Sprite2D(backTex);
-			//backSp.center = new Vector2(0.0f);
-			//backSp.size = new Vector2(1.0f);
-			//backSp.pos = new Vector3(0.0f);
-			
 			frameCnt = 0;
 			alfaGain = 0.05f;
 			gainChange = false;
 			
-			resultEffect = new MusicEffect(@"/Application/assets/se/Result_SE.wav");
 			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
 			
-			resultEffect.Set();
 		}
 		
 		
 		// 更新
 		override public void Update()
 		{
+			if(score == null)
+			{
+				score = new Score();
+			}
 			frameCnt++;
 			score.Update();
 			pakSp.color.W = 0.3f + 
@@ -112,7 +104,6 @@ namespace Eleconnect
 		// 描画
 		override public void Draw()
 		{
-			//backSp.Draw();
 			resultLogoSp.Draw();
 			scoreSp.Draw();
 			score.Draw();
@@ -125,13 +116,9 @@ namespace Eleconnect
 		// 解放
 		public override void Term()
 		{
-			//resultLogoTex.Dispose();
-			//scoreTex.Dispose();
-			//pakTex.Dispose();
 			resultLogoSp.Term();
 			scoreSp.Term();
 			pakSp.Term();
-			//backTex.Dispose();
 			score.Term();
 			seFlg = false;
 		}
