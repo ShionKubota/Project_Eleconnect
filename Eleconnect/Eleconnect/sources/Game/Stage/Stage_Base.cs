@@ -7,7 +7,6 @@ namespace Eleconnect
 	{
 		public int[] mapData;
 		public int[] stageData;
-		
 		public Stage_Base ()
 		{
 		}

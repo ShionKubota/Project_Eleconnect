@@ -79,6 +79,7 @@ namespace Eleconnect
 			
 			frameCnt = 0;
 			seFlg = false;
+			MenuManager.menuFlg = false;
 			
 			// パーティクルテスト
 			/*

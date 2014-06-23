@@ -35,6 +35,7 @@ namespace Eleconnect
 		private Texture2D electhTex;
 		// 音楽
 		protected MusicEffect musicEffect;
+		protected MusicEffect resultEffect;
 		protected static Music music;
 		
 		// ステージ情報
@@ -42,7 +43,8 @@ namespace Eleconnect
 		{
 			public int width, height,
 				startX, startY,
-				goalX, goalY;
+				goalX, goalY,
+				jamming;
 			
 			public int[] mapData;
 		}
@@ -128,6 +130,7 @@ namespace Eleconnect
 			electhManager = new ElecthManager(panelManager, jammingManager);
 			itemManager = new ItemManager(panelManager, cursor);
 			gameUi = new GameUI();
+			result = new ResultScene();
 			
 			// パラメータ初期化
 			frameCnt = 0;
@@ -136,10 +139,11 @@ namespace Eleconnect
 			PlayData.GetInstance().connectNum = 0;
 			seFlg = false;
 			nowState = StateId.GAME;
-			
+	
 			// 音関連
 			music = new Music(@"/Application/assets/music/Game_Music.mp3");
 			musicEffect = new MusicEffect(@"/Application/assets/se/Rotate_SE.wav");
+			resultEffect = new MusicEffect(@"/Application/assets/se/Result_SE.wav");
 			music.Set(true,0.4f,0.0d);
 		}
 		
@@ -159,6 +163,7 @@ namespace Eleconnect
 			stage.startY = stageData.stageData[3];
 			stage.goalX = stageData.stageData[4];
 			stage.goalY = stageData.stageData[5];
+			stage.jamming = stageData.stageData[6];
 		}
 		
 		// 更新
@@ -181,7 +186,7 @@ namespace Eleconnect
 				break;
 				
 			case StateId.CLEAR:
-				if(result == null) result = new ResultScene();
+				backSp.color.W += (0.2f - backSp.color.W) * 0.1f;
 				AfterClearingProcess();
 				seFlg = true;
 				break;
@@ -195,7 +200,7 @@ namespace Eleconnect
 			panelManager.Update();
 			jammingManager.Update();
 			electhSp.Update();
-			gameUi.Update();
+			gameUi.Update(nowState);
 			
 			frameCnt++;
 			eleRotate++;
@@ -233,6 +238,7 @@ namespace Eleconnect
 				if(Electh.arrivedGoal)
 				{
 					music.Stop();
+					resultEffect.Set();
 					nowState = StateId.CLEAR;
 					// moveToを設定。中央に集める
 					for(int i = 0; i < stage.width; i++)

@@ -59,7 +59,7 @@ namespace Eleconnect
 		{
 			if(nowFlowing) return;
 			
-			flowEffect.Set();
+			flowEffect.Set(1.0f,true);
 			this.visibleElecth = visibleElecth;
 			electh.Add (new Electh(panels[indexW, indexH], Electh.DEF_SPEED));
 			nowFlowing = true;

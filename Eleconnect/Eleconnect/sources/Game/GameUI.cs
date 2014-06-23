@@ -12,8 +12,9 @@ namespace Eleconnect
 {
 	public class GameUI
 	{
-		protected static TimeManager timeManager;
+		protected TimeManager timeManager;
 		protected ChargePar charge;
+		
 		// コンストラクタ
 		public GameUI ()
 		{
@@ -29,10 +30,13 @@ namespace Eleconnect
 		}
 		
 		// 更新
-		public void Update()
+		public void Update(GameScene.StateId nowState)
 		{
 			// タイムの更新
-			timeManager.Update();
+			if(nowState == GameScene.StateId.GAME)
+			{
+				timeManager.Update();
+			}
 			// チャージ率
 			charge.Update();
 		}
