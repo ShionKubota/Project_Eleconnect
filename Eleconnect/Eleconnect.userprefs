@@ -1,16 +1,17 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\PanelManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\JammingManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Game\Stage\Stage_Base.cs" Line="9" Column="26" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="166" Column="43" />
-      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="47" Column="4" />
-      <File FileName="Eleconnect\sources\Scene\Score.cs" Line="42" Column="29" />
-      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="44" Column="116" />
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="40" Column="24" />
-      <File FileName="Eleconnect\sources\Game\Stage\StageDataList.cs" Line="12" Column="29" />
-      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="75" Column="7" />
-      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="33" Column="57" />
+      <File FileName="Eleconnect\sources\Game\LinePanel.cs" Line="10" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="77" Column="3" />
+      <File FileName="Eleconnect\sources\Game\PanelManager.cs" Line="44" Column="1" />
+      <File FileName="Eleconnect\sources\Game\Stage\Stage_5.cs" Line="16" Column="20" />
+      <File FileName="Eleconnect\sources\Scene\TutorialScene.cs" Line="25" Column="23" />
+      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="45" Column="7" />
+      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="55" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\LogoScene.cs" Line="63" Column="55" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="42" Column="22" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\JammingManager.cs" Line="45" Column="41" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
