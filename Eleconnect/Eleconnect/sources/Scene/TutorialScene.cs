@@ -22,6 +22,7 @@ namespace Eleconnect
 			stage.startY = 0;
 			stage.goalX = 8;
 			stage.goalY = 0;
+			stage.jamming = -1;
 			
 			panelManager = new PanelManager();
 			chargePar = new ChargePar();
