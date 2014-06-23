@@ -11,6 +11,7 @@ namespace Eleconnect
 	public enum SceneId
 	{
 		LOGO,
+		TUTORIAL,
 		TITLE,
 		SELECT,
 		GAME,

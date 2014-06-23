@@ -63,8 +63,15 @@ namespace Eleconnect
 		// ボタン押された際のイベント
 		public override void ButtonEvent(bool pushR)
 		{
-			Rotate (pushR);
+			if(lineId == LineId.None)
+			{
+				//PanelManager.Displace(2, lineId == LineId.Side);
+				Rotate (pushR);
+			}
+			else
+			{
+				PanelManager.Displace(this, lineId == LineId.Side);
+			}
 		}
 	}
 }
-

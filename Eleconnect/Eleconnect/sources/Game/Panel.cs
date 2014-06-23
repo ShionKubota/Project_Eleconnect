@@ -26,10 +26,13 @@ namespace Eleconnect
 		
 		private float rotateTo;
 		public int rotateCnt{ protected set; get; }	// 回転させた回数
+		public Vector3 moveTo;
+		public float moveSpeed;
 		public int elecPow;			// このパネルに流れる電力
 		public bool isRepeater;		// 電力が回復する特殊パネル
 		public bool isGoal;			// ゴールとなるパネル
 		public TypeId typeId{private set; get;}	// 現在のパネルのタイプ
+		public LineId lineId;
 		
 		// パネルの種類列挙
 		public enum TypeId
@@ -39,8 +42,16 @@ namespace Eleconnect
 			T,				// T字
 			Cross,			// 十字
 			JammSwitch,		// ジャミングスイッチ
-			Terminal,		// スタート&ゴール
+			Terminal,		// スタート&ゴール,
 			Group			// グループパネル
+		}
+		
+		// ラインパネルの種類列挙
+		public enum LineId
+		{
+			Side,
+			Length,
+			None
 		}
 		
 		// パネルのルート情報
@@ -58,6 +69,7 @@ namespace Eleconnect
 		{
 			Init (id, pos);
 			typeId = id;
+			lineId = LineId.None;
 		}
 		
 		// 初期化
@@ -67,6 +79,8 @@ namespace Eleconnect
 			elecPow = 0;
 			rotateCnt = 0;
 			rotateTo = 0;
+			moveTo   = new Vector3(pos.X, pos.Y, 0.0f);
+			moveSpeed = 0.1f;
 			typeId = id;
 		}
 		
@@ -84,12 +98,16 @@ namespace Eleconnect
 				PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			}
 			
+			// 移動
+			sp.pos += (moveTo - sp.pos) * moveSpeed;
+			if(CollisionCheck.isHit (sp.pos, moveTo, 2.0f))
+			{
+				// 移動終了
+				sp.pos = moveTo;
+			}
+			
 			// 光る
 			Bright ();
-			
-			lightSp.size = sp.size;
-			lightSp.pos  = sp.pos;
-			
 			
 			/*
 			float targetBright = BRIGHT_MINI + (elecPow / (float)elecPowMax) * (1.0f - BRIGHT_MINI);	// 目標の明度
@@ -105,11 +123,25 @@ namespace Eleconnect
 				repeaterSp.color.W += 0.1f;
 			}
 			*/
+			
+			// ラインパネルは緑に
+			if(lineId != LineId.None)
+			{
+				sp.color = new Vector4 (0.6f, 1.0f, 0.6f, sp.color.W);
+				lightSp.color = new Vector4(0.6f, 1.0f, 0.6f, 1.0f);
+			}
 			// ゴールは赤く光る
 			if(isGoal)
 			{
 				lightSp.color = new Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 			}
+			
+			
+			// 光スプライトを本体に同期
+			lightSp.angle = sp.angle;
+			lightSp.size = sp.size;
+			lightSp.pos  = sp.pos;
+			lightSp.color.W -= (1.0f - sp.color.W);
 		}
 		
 		// 光る
@@ -122,9 +154,6 @@ namespace Eleconnect
 			float newBright = nowBright + (targetBright - nowBright) * BRIGHT_CHANGE_SPEED;				// 新しい透明度
 			if(FMath.Abs (targetBright - newBright) < 0.01f) newBright = targetBright;
 			lightSp.color.W = newBright;
-			
-			// 光スプライトの同期
-			lightSp.angle = sp.angle;
 		}
 		
 		// 描画

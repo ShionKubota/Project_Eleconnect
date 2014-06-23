@@ -62,23 +62,28 @@ namespace Eleconnect
 					int loadIndex = ((GameScene.stage.height * 2) * i) + (j * 2);
 					Panel.TypeId type = (Panel.TypeId)GameScene.stage.mapData[loadIndex];
 					// 通常パネル
-					if(type <= Panel.TypeId.Cross)
-					{
-						panelLine.Add (new NormalPanel(type,
-					    	                     new Vector2(basePos.X + panelSize * i,
+					panelLine.Add(GetPanelInstance (type,
+					                                new Vector2(basePos.X + panelSize * i,
 					        	    			  			 basePos.Y + panelSize * j)));
-					}
-					// スイッチ
-					if(type == Panel.TypeId.JammSwitch)
-					{
-						panelLine.Add (new JammingSwitch(new Vector2(basePos.X + panelSize * i,
-					        	    			  			         basePos.Y + panelSize * j)));
-					}
+					
 					panelLine[j].Rotate(GameScene.stage.mapData[loadIndex + 1]);
 				}
 				panels.Add(panelLine);
 			}
 			
+			// ラインパネルの設定(仮)
+			if(PlayData.GetInstance().stageNo < 0) return;
+			Stage_Base stageData;
+			stageData = new StageDataList()[PlayData.GetInstance().stageNo];
+			for(int i = 6; i < stageData.stageData.Length; i++)
+			{
+				for(int j = 0; j < GameScene.stage.height; j++)
+				{
+					panels[stageData.stageData[i]][j].lineId = Panel.LineId.Length;
+				}
+			}
+			
+			/*
 			// グループパネルの設置
 			if(PanelEditor.USE_GROUP_PANEL)
 			{
@@ -109,7 +114,9 @@ namespace Eleconnect
 					// 配列にグループパネルをセット
 					panels[indexW][indexH] = gPanel;
 				}
+				
 			}
+			*/
 		}
 		
 		// 更新
@@ -288,10 +295,78 @@ namespace Eleconnect
 			}
 		}
 		
+		// 指定の行をスライド
+		public static void Displace(Panel panel, bool isSide)
+		{
+			int index = 0;
+			foreach(List<Panel> list in panels)
+			{
+				if(list.IndexOf(panel) == -1) continue;
+				else
+				{
+					index = (isSide) ? list.IndexOf(panel) : panels.IndexOf(list);
+					Console.WriteLine (index);
+					break;
+				}
+			}
+			
+			// 横スライド
+			if(isSide)
+			{
+				/*
+				Panel tempPanel = panels[0][index];
+				for(int i = 0; i < GameScene.stage.width-1; i++)
+				{
+					panels[i][index] = panels[i+1][index];
+				}
+				panels[GameScene.stage.width-1][index] = tempPanel;
+				*/
+			}
+			
+			// 縦スライド
+			else
+			{
+				// 要素ずらし
+				Panel tempPanel = panels[index][0];
+				for(int i = 0; i < GameScene.stage.height-1; i++)
+				{
+					panels[index][i] = panels[index][i+1];
+				}
+				panels[index][GameScene.stage.height-1] = tempPanel;
+				
+				// 位置ずらし
+				Vector3 tempPos = panels[index][GameScene.stage.height-1].moveTo;
+				for(int i = (GameScene.stage.height-1); i > 0; i--)
+				{
+					panels[index][i].moveTo = panels[index][i-1].moveTo;
+				}
+				panels[index][0].moveTo = tempPos;
+			}
+		}
+		
 		// 指定の番号の要素を新しいインスタンスに置き換え
 		public void Replace(int indexW, int indexH, Panel newItem)
 		{
 			panels[indexW][indexH] = newItem;
+		}
+		
+		// 指定したidのPanelの子クラスのインスタンスを返す
+		private Panel GetPanelInstance(Panel.TypeId id, Vector2 pos)
+		{
+			switch(id)
+			{
+			case Panel.TypeId.Straight:
+			case Panel.TypeId.RightAngle:
+			case Panel.TypeId.T:
+			case Panel.TypeId.Cross:
+				return new NormalPanel(id, pos);
+				
+			case Panel.TypeId.JammSwitch:
+				return new JammingSwitch(pos);
+				
+			default:
+				return new NormalPanel(0, pos);
+			}
 		}
 	}// END OF CLASS
 }

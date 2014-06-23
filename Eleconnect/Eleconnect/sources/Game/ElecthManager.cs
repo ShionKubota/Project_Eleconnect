@@ -115,6 +115,7 @@ namespace Eleconnect
 						particle.fade = 0.2f;
 						particle.Generate(50);
 						electh[i].Kill();
+						continue;
 					}
 					else
 					{
