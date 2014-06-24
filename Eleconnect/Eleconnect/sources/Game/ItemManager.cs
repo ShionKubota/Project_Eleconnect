@@ -103,7 +103,7 @@ namespace Eleconnect
 				else
 				{
 					item.isVisible = false;
-					item.panel.sp.pos = panels[cursor.indexW, cursor.indexH].sp.pos;	// 位置を正す
+					item.panel.moveTo = panels[cursor.indexW, cursor.indexH].sp.pos;	// 位置を正す
 					panels.Replace(cursor.indexW, cursor.indexH, item.panel);			// パネル置き換え
 					PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 					return;
