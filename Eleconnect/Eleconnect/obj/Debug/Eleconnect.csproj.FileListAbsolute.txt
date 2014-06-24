@@ -151,3 +151,6 @@ C:\Users\user\Desktop\Projects\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed
 C:\Users\user\Desktop\Projects\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\retrymoji.png
 C:\Users\user\Desktop\Projects\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\selectmoji.png
 C:\Users\user\Desktop\Projects\Eleconnect\Eleconnect\bin\Debug\Eleconnect-signed\Application\assets\img\Menuimg\titlemoji.png
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\app.exe
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\Sce.PlayStation.HighLevel.UI.dll
+C:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\bin\Debug\Eleconnect-unsigned\Application\app.exe.mdb

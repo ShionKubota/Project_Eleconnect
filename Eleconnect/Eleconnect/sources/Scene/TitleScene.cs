@@ -26,7 +26,12 @@ namespace Eleconnect
 		private Texture2D
 			backTex,
 			startTex,
-			logoTex;
+			logoTex,
+			electhTex
+			;
+		
+		private const int ELECTH_NUM = 10;
+		private Animation[] electhSp = new Animation[ELECTH_NUM];
 		
 		public static Music music;
 		private MusicEffect musicEffect;
@@ -68,6 +73,14 @@ namespace Eleconnect
 			start_rSp.size = new Vector2(1.0f,1.0f);
 			start_rSp.pos = new Vector3(AppMain.ScreenWidth / 2.0f ,AppMain.ScreenHeight *3.0f /4.0f,0.0f);
 			*/
+			
+			electhTex = new Texture2D(@"/Application/assets/img/electh.png", false);
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				electhSp[i] = new Animation(electhTex, new Vector2(1.0f / 6.0f, 0.5f),3,1,5,true,false,true);
+				electhSp[i].color.W = 0.0f;
+			}
+			
 			// 音関連
 			music = new Music(@"/Application/assets/music/Title_Music.mp3");
 			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
@@ -119,6 +132,7 @@ namespace Eleconnect
 		override public void Update()
 		{
 			music.Play();
+			particle.Update();
 			startSp.color.W = 0.3f + FMath.Sin(FMath.Radians(frameCnt * 2)) * 0.6f;			// Startボタンの点滅
 			//clear.Update();
 			/*回転
@@ -166,7 +180,20 @@ namespace Eleconnect
 			{
 				selectScene.Update();
 			}
-			particle.Update();
+			
+			// エレクス更新
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				electhSp[i].Update();
+				electhSp[i].pos += (new Vector3(AppMain.ScreenWidth / 2.0f, 40.0f, 0.0f) - electhSp[i].pos) * 0.01f;
+				electhSp[i].size += (new Vector2(0.0f, 0.0f) - electhSp[i].size) * 0.015f;
+				electhSp[i].color.W += (-1.0f - electhSp[i].color.W) * 0.01f;
+			}
+			if(frameCnt % 15 == 0)
+			{
+				SetElecth();
+			}
+			
 			frameCnt++;
 		}
 		
@@ -176,6 +203,10 @@ namespace Eleconnect
 			backSp.Draw();
 			particle.Draw ();
 			logoSp.Draw ();
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				electhSp[i].DrawAdd();
+			}
 			if(frameCnt >= 90 && seFlg == true)
 			{
 				selectScene.Draw();
@@ -183,7 +214,7 @@ namespace Eleconnect
 			else
 			{
 				//if(turnFlg == false)
-				startSp.Draw();
+				startSp.DrawAdd();
 				//else
 				//start_rSp.Draw();
 				
@@ -202,6 +233,23 @@ namespace Eleconnect
 			startSp.Term();
 			musicEffect.Term();
 			seFlg = false;
+		}
+		
+		// 背景のエレクスを射出
+		private void SetElecth()
+		{
+			Random rand = new Random();
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				if(electhSp[i].color.W > 0.0f) continue;
+				
+				electhSp[i].color.W = 1.0f;
+				electhSp[i].pos = new Vector3(	 rand.Next(10) * 128.0f,
+				                                 AppMain.ScreenHeight - 10.0f,
+				                                 0.0f);
+				electhSp[i].size = new Vector2(1.0f / 6.0f, 0.5f);
+				break;
+			}
 		}
 	}
 }
