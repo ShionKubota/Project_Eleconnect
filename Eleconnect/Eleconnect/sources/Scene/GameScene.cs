@@ -33,6 +33,8 @@ namespace Eleconnect
 		//private Texture2D guideTex;
 		public Animation electhSp;
 		private Texture2D electhTex;
+		public Animation lowElecthSp;
+		private Texture2D lowElecthTex;
 		// 音楽
 		protected MusicEffect musicEffect;
 		protected MusicEffect resultEffect;
@@ -123,6 +125,14 @@ namespace Eleconnect
 			electhSp = new Animation(electhTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),3,0,5,true,true,true);
 			electhSp.pos = panelManager[stage.startX, stage.startY].GetPos();
 			
+			if(lowElecthTex == null)
+			{
+				lowElecthTex = new Texture2D(@"/Application/assets/img/electh.png", false);
+			}
+			lowElecthSp = new Animation(lowElecthTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),5,0,5,true,true,true);
+			lowElecthSp.pos = panelManager[stage.goalX,stage.goalY].GetPos();
+			lowElecthSp.color = new Vector4(1.0f,0.1f,0.1f,1.0f);
+			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
 			menuManager = new MenuManager();
@@ -200,11 +210,15 @@ namespace Eleconnect
 			panelManager.Update();
 			jammingManager.Update();
 			electhSp.Update();
+			lowElecthSp.Update();
 			gameUi.Update(nowState);
 			
 			frameCnt++;
 			eleRotate++;
 			electhSp.angle=eleRotate;
+			lowElecthSp.angle = eleRotate * 0.75f;
+			lowElecthSp.color.W = 0.3f + 
+						 FMath.Sin(FMath.Radians(frameCnt * 3)) * 0.6f;
 			
 		}
 		
@@ -385,7 +399,11 @@ namespace Eleconnect
 			backSp.Draw();
 			//guideSp.Draw ();
 			panelManager.Draw();
-			if(nowState != StateId.CLEAR) jammingManager.Draw();
+			if(nowState != StateId.CLEAR) 
+			{
+				jammingManager.Draw();
+				lowElecthSp.DrawAdd();
+			}
 			if(nowState == StateId.GAME) cursor.Draw();
 			if(nowState == StateId.PAUSE) menuManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
@@ -405,6 +423,7 @@ namespace Eleconnect
 			backSp.Term();
 			//electhTex.Dispose ();
 			electhSp.Term();
+			lowElecthSp.Term();
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();

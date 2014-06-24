@@ -75,7 +75,7 @@ namespace Eleconnect
 			if(PlayData.GetInstance().stageNo < 0) return;
 			Stage_Base stageData;
 			stageData = new StageDataList()[PlayData.GetInstance().stageNo];
-			for(int i = 6; i < stageData.stageData.Length; i++)
+			for(int i = 7; i < stageData.stageData.Length; i++)
 			{
 				for(int j = 0; j < GameScene.stage.height; j++)
 				{
