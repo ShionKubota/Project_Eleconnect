@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System;
 using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Graphics;
@@ -31,7 +32,7 @@ namespace Eleconnect
 			chargePar = new ChargePar();
 			CommonInit();
 			
-			// ƒ`ƒ…[ƒgƒŠƒAƒ‹—pƒKƒCƒh‰æ‘œ
+			// ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ç”¨ã‚¬ã‚¤ãƒ‰ç”»åƒ
 			guideTex = new Texture2D(@"/Application/assets/img/tutorial.png", false);
 			guideSp = new Sprite2D(guideTex);
 			guideSp.size = new Vector2(1.0f, 1.0f / 3.0f);
@@ -41,7 +42,7 @@ namespace Eleconnect
 			guideSp.pos = AppMain.ScreenCenter;
 			guideSp.pos.Y += 150;
 			
-			// vita–{‘Ì‰æ‘œ
+			// vitaæœ¬ä½“ç”»åƒ
 			vitaSp = new Sprite2D(guideTex);
 			vitaSp.size = new Vector2(1.0f, 1.0f / 3.0f);
 			vitaSp.size *= new Vector2(0.7f);
@@ -61,12 +62,12 @@ namespace Eleconnect
 			chargePar.Update();
 			base.Update ();
 			
-			// vita•\Ž¦
+			// vitaè¡¨ç¤º
 			vitaSp.color.W += 0.1f;
-			// guide“_–Å
+			// guideç‚¹æ»…
 			guideSp.color.W = FMath.Sin(frameCnt * 0.05f);
 			
-			// ‘S•”‚Â‚È‚ª‚Á‚½‚çƒKƒCƒh‚Ì‰æ‘œ‚©‚¦‚é
+			// å…¨éƒ¨ã¤ãªãŒã£ãŸã‚‰ã‚¬ã‚¤ãƒ‰ã®ç”»åƒã‹ãˆã‚‹
 			if(panelManager[stage.goalX, stage.goalY].elecPow > 0 &&
 			   guideSp.color.W <= 0.0f)
 			{
@@ -88,7 +89,6 @@ namespace Eleconnect
 			cursor.Draw();
 			electhManager.Draw();
 			electhSp.DrawAdd();
-			lowElecthSp.DrawAdd();
 			chargePar.Draw();
 			vitaSp.Draw ();
 			guideSp.Draw();
@@ -104,3 +104,72 @@ namespace Eleconnect
 	}
 }
 
+=======
+using System;
+using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Graphics;
+
+namespace Eleconnect
+{
+	public class TutorialScene : GameScene
+	{
+		ChargePar chargePar;
+		public TutorialScene ()
+		{
+			Init ();
+		}
+		
+		public override void Init ()
+		{
+			PlayData.GetInstance().stageNo = -1;
+			stage.mapData = new int[]{2, 3, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1};
+			stage.width = 9;
+			stage.height = 1;
+			stage.startX = 0;
+			stage.startY = 0;
+			stage.goalX = 8;
+			stage.goalY = 0;
+			stage.jamming = -1;
+			
+			panelManager = new PanelManager();
+			chargePar = new ChargePar();
+			CommonInit();
+			
+			backTex = new Texture2D(@"/Application/assets/img/eleconnect_titlebackground03.png", false);
+			backSp = new Sprite2D(backTex);
+			backSp.center = new Vector2(0.0f);
+			backSp.size = new Vector2(1.0f);
+			backSp.pos = new Vector3(0.0f);
+		}
+		
+		public override void Update ()
+		{
+			chargePar.Update();
+			base.Update ();
+			
+			if(nowState == GameScene.StateId.CLEAR)
+			{
+				fadeOutColor = new Vector3(1.0f);
+				fadeOutTime = 120;
+				AppMain.sceneManager.Switch(SceneId.TITLE);
+			}
+		}
+		
+		public override void Draw ()
+		{
+			backSp.Draw();
+			panelManager.Draw();
+			cursor.Draw();
+			electhManager.Draw();
+			chargePar.Draw();
+		}
+		
+		public override void Term ()
+		{
+			chargePar.Term();
+			base.Term();
+		}
+	}
+}
+
+>>>>>>> a7420f872e826bc128a6ee0509058bc112782b75
