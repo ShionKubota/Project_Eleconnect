@@ -259,8 +259,9 @@ namespace Eleconnect
 					{
 						for(int j = 0; j < stage.height; j++)
 						{
-							Vector3 center = 
-							panelManager[i, j].moveTo = panelManager[i, j].GetPos() - AppMain.ScreenCenter;
+							Vector3 center = new Vector3(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight*0.7f, 0.0f);
+							panelManager[i, j].moveTo = center + (panelManager[i, j].GetPos() - center) * 4.0f;
+							panelManager[i, j].moveSpeed = 0.1f;
 						}
 					}
 				}
