@@ -29,8 +29,6 @@ namespace Eleconnect
 		// 画像
 		protected Sprite2D backSp;
 		protected Texture2D backTex;
-		//private Sprite2D guideSp;
-		//private Texture2D guideTex;
 		public Animation electhSp;
 		private Texture2D electhTex;
 		// 音楽
@@ -53,7 +51,7 @@ namespace Eleconnect
 		public static string stageFileName{ protected set; get; }		// 読み込むステージ情報ファイル名
 		
 		// プレイ情報
-		private int frameCnt;
+		protected int frameCnt;
 		private int aniFrame;
 		private float eleRotate;
 		private bool seFlg;

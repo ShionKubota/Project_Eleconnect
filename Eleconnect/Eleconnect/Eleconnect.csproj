@@ -189,6 +189,7 @@
     <Content Include="assets\img\jamm_anime.png" />
     <Content Include="assets\img\particleBall.png" />
     <Content Include="assets\img\backGridBlack.png" />
+    <Content Include="assets\img\tutorial.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
