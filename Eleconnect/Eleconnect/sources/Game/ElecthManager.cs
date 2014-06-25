@@ -93,38 +93,38 @@ namespace Eleconnect
 			// エレクスの更新
 			for(int i = electh.Count-1; i >= 0; i--)
 			{
-				electh[i].Update ();
 				
+				electh[i].Update ();
 				// 到着しているエレクス
 				if(electh[i].state == Electh.StateId.WAIT)
 				{
-					particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
-					if(electh[i].target.isGoal)
-					{
-						// どでかいパーティクル
-						particle.velocity = new Vector2(0.0f, -7.0f);
-						particle.velocityVar = new Vector2(10.0f, 7.0f);
-						particle.colorStart = new Vector3(1.0f);
-						particle.colorStartVar = new Vector3(1.0f);
-						particle.colorEnd = particle.colorStart;
-						particle.colorEndVar = new Vector3(0.5f);
-						particle.scaleStart = 2.0f;
-						particle.scaleStartVar = 2.0f;
-						particle.lifeSpan = 1.0f;
-						particle.lifeSpanVar = 0.7f;
-						particle.fade = 0.2f;
-						particle.Generate(50);
-						electh[i].Kill();
-						continue;
+						particle.pos = new Vector2(electh[i].sp.pos.X, electh[i].sp.pos.Y);
+						if(electh[i].target.isGoal)
+						{
+							// どでかいパーティクル
+							particle.velocity = new Vector2(0.0f, -7.0f);
+							particle.velocityVar = new Vector2(10.0f, 7.0f);
+							particle.colorStart = new Vector3(1.0f);
+							particle.colorStartVar = new Vector3(1.0f);
+							particle.colorEnd = particle.colorStart;
+							particle.colorEndVar = new Vector3(0.5f);
+							particle.scaleStart = 2.0f;
+							particle.scaleStartVar = 2.0f;
+							particle.lifeSpan = 1.0f;
+							particle.lifeSpanVar = 0.7f;
+							particle.fade = 0.2f;
+							particle.Generate(50);
+							electh[i].Kill();
+							continue;
+						}
+						else
+						{
+							particle.Generate(5);
+						}
+						// エレクスを次にむかわせる
+						SetElecth (i);
 					}
-					else
-					{
-						particle.Generate(5);
-					}
-					
-					// エレクスを次にむかわせる
-					SetElecth (i);
-				}
+				
 				
 				// スイッチに到達していたらジャミングをOFF
 				if(Electh.arrivedSwitch)
@@ -133,8 +133,10 @@ namespace Eleconnect
 				}
 				// 役目を果たしたエレクスをリストからはずす
 				if(electh[i].state == Electh.StateId.DEATH) electh.RemoveAt(i);
+				
 			}
 		}
+		
 		
 		// エレクスを次のパネルに発進させる(分岐していたら新しいエレクスを作る)
 		private void SetElecth(int id)

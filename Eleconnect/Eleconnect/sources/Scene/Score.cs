@@ -33,11 +33,15 @@ namespace Eleconnect
 		{
 			num = new Number();
 			
+			// 繋がってるパネルの数＋残り時間-(アイテムを全て使ったら)20000
 			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f) * 100
-				+ (int)TimeManager.timer * 100;		// 繋がってるパネルの数＋残り時間
+					+ (int)((((int)TimeManager.timer/25)/11) * 10000);
+			if(ItemManager.itemUsed ==4)
+			{
+				point -= 20000;
+			}
 			Console.WriteLine(point);
 			Console.WriteLine(PlayData.GetInstance().connectNum);
-			Console.WriteLine((int)TimeManager.timer);
 			digit = point.ToString().Length;
 			numeral = new int[digit];
 			randCnt = 0;

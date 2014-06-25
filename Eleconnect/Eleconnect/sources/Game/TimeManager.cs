@@ -6,7 +6,7 @@ namespace Eleconnect
 {
 	public class TimeManager
 	{
-		public static float timer;
+		public static float timer = 0;
 		public int digit;
 		public int[] numeral;
 		public Sprite2D timeSp;
@@ -38,7 +38,7 @@ namespace Eleconnect
 		{
 			timer -= 1.0f / 60.0f;
 			
-			// 桁数取得してポイント表示しよう
+			// 桁数取得して時間表示しよう
 			for(int i = 0;i < digit;i++)
 			{
 				if(i == 0)
@@ -66,8 +66,6 @@ namespace Eleconnect
 				num.numSp[numeral[i]].Draw();
 			}
 			timeSp.Draw();
-			
-			
 		}
 		
 		public void Term()

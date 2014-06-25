@@ -23,6 +23,8 @@ namespace Eleconnect
 		private PanelManager panels;
 		private CursorOnPanels cursor;
 		
+		public static int itemUsed;	// アイテム使用時にスコアを減らすため
+		
 		// 初期化
 		public ItemManager (PanelManager paMng, CursorOnPanels cOP)
 		{
@@ -48,6 +50,8 @@ namespace Eleconnect
 			logoSp.pos.X = (items[0].panel.GetPos().X + items[1].panel.GetPos().X) / 2.0f;
 			logoSp.pos.Y = items[0].panel.GetPos().Y - 64.0f;
 			logoSp.size = new Vector2(0.35f);
+			
+			itemUsed = 0;
 		}
 		
 		// 更新
@@ -106,6 +110,8 @@ namespace Eleconnect
 					item.panel.moveTo = panels[cursor.indexW, cursor.indexH].sp.pos;	// 位置を正す
 					panels.Replace(cursor.indexW, cursor.indexH, item.panel);			// パネル置き換え
 					PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
+					
+					itemUsed++;
 					return;
 				}
 			}
