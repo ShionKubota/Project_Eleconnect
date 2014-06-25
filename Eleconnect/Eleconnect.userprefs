@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\TutorialScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\GameScene.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="178" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\TitleScene.cs" Line="165" Column="33" />
       <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="239" Column="12" />
       <File FileName="Eleconnect\sources\Game\Electh.cs" Line="44" Column="23" />
-      <File FileName="Eleconnect\sources\Scene\TutorialScene.cs" Line="93" Column="19" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="54" Column="12" />
+      <File FileName="Eleconnect\sources\Scene\TutorialScene.cs" Line="27" Column="20" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="26" Column="37" />
       <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="47" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>

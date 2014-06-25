@@ -33,6 +33,9 @@ namespace Eleconnect
 		private Texture2D electhTex;
 		public Animation lowElecthSp;
 		private Texture2D lowElecthTex;
+		private Animation flashSp;
+		private Texture2D flashTex;
+		
 		// 音楽
 		protected MusicEffect musicEffect;
 		protected MusicEffect resultEffect;
@@ -130,6 +133,10 @@ namespace Eleconnect
 			lowElecthSp = new Animation(lowElecthTex,new Vector2(1.0f/6.0f, 1.0f/2.0f),5,0,5,true,true,true);
 			lowElecthSp.pos = panelManager[stage.goalX,stage.goalY].GetPos();
 			lowElecthSp.color = new Vector4(1.0f,0.1f,0.1f,1.0f);
+			
+			// フラッシュ
+			flashTex = new Texture2D(@"/Application/assets/img/flash.png", false);
+			flashSp = new Animation(flashTex, new Vector2(1.0f, 1.0f), 2, 0, 8, false, false, false);
 			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
