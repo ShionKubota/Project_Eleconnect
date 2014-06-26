@@ -28,6 +28,7 @@ namespace Eleconnect
 			jamSp.pos = new Vector3(0.0f);
 			jamSp.textureUV = new Vector4(0.0f, 0.0f, 1.0f/8.0f, 1.0f);
 			jamSp.angle = 1.0f;
+			jamSp.color = new Vector4(1.0f,1.0f,1.0f,1.0f);
 			
 			aniFrame = 0;
 			frameCnt = 0;

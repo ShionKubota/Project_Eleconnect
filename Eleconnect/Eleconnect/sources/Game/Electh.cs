@@ -70,7 +70,7 @@ namespace Eleconnect
 				if( speed*2.0f < Vector3.Length(target.GetPos() - sp.pos))
 				{
 					// ○押している間は早送り
-					float moveSpeed = (Input.GetInstance().circle.isPush) ? speed*2.0f : speed;
+					float moveSpeed = (Input.GetInstance().circle.isPush) ? speed * 2.0f : speed;
 					Vector3 move = Vector3.Normalize(target.GetPos() - sp.pos) * moveSpeed;
 					sp.pos += move;
 				}
@@ -109,7 +109,9 @@ namespace Eleconnect
 				if(sp.FrameNo == 12)
 					state = StateId.DEATH;
 				break;
+				
 			}
+			
 		}
 		
 		public void SetTarget(Panel panel)

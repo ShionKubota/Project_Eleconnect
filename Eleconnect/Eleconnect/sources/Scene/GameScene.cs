@@ -57,7 +57,7 @@ namespace Eleconnect
 		
 		// プレイ情報
 		protected int frameCnt;
-		private int aniFrame;
+		private int goalFrame;
 		private float eleRotate;
 		private bool seFlg;
 		
@@ -149,10 +149,11 @@ namespace Eleconnect
 			
 			// パラメータ初期化
 			frameCnt = 0;
-			aniFrame = 0;
+			goalFrame = 0;
 			eleRotate = 0;
 			PlayData.GetInstance().connectNum = 0;
 			seFlg = false;
+			Electh.arrivedGoal = false;
 			nowState = StateId.GAME;
 	
 			// 音関連
@@ -256,17 +257,21 @@ namespace Eleconnect
 				// ゴールしてたらクリア
 				if(Electh.arrivedGoal)
 				{
-					music.Stop();
-					resultEffect.Set();
-					nowState = StateId.CLEAR;
-					// moveToを設定。中央に集める
-					for(int i = 0; i < stage.width; i++)
+					goalFrame++;
+					if(goalFrame>=90)
 					{
-						for(int j = 0; j < stage.height; j++)
+						music.Stop();
+						resultEffect.Set();
+						nowState = StateId.CLEAR;
+						// moveToを設定。中央に集める
+						for(int i = 0; i < stage.width; i++)
 						{
-							Vector3 center = new Vector3(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight*0.7f, 0.0f);
-							panelManager[i, j].moveTo = center + (panelManager[i, j].GetPos() - center) * 4.0f;
-							panelManager[i, j].moveSpeed = 0.1f;
+							for(int j = 0; j < stage.height; j++)
+							{
+								Vector3 center = new Vector3(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight*0.7f, 0.0f);
+								panelManager[i, j].moveTo = center + (panelManager[i, j].GetPos() - center) * 4.0f;
+								panelManager[i, j].moveSpeed = 0.1f;
+							}
 						}
 					}
 				}
@@ -405,7 +410,7 @@ namespace Eleconnect
 			backSp.Draw();
 			//guideSp.Draw ();
 			panelManager.Draw();
-			if(nowState != StateId.CLEAR) 
+			if(nowState != StateId.CLEAR && !Electh.arrivedGoal) 
 			{
 				jammingManager.Draw();
 				lowElecthSp.DrawAdd();
@@ -419,7 +424,7 @@ namespace Eleconnect
 				gameUi.Draw();
 			}
 			electhManager.Draw();
-			if(!electhManager.nowFlowing && nowState != StateId.CLEAR) electhSp.DrawAdd();
+			if(!electhManager.nowFlowing && (nowState != StateId.CLEAR && !Electh.arrivedGoal)) electhSp.DrawAdd();
 		}
 		
 		// 解放
