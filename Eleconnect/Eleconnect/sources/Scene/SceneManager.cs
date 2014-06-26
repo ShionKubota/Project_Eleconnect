@@ -37,7 +37,7 @@ namespace Eleconnect
 		{
 			// 最初に開始するシーン
 			PlayData.GetInstance().stageNo = 8;
-			
+			nowScene = new LogoScene();
 			fade = new Fade();
 		}
 		

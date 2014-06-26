@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using Sce.PlayStation.Core;
 using Sce.PlayStation.Core.Graphics;
 
@@ -31,7 +31,7 @@ namespace Eleconnect
 			chargePar = new ChargePar();
 			CommonInit();
 			
-			// ƒ`ƒ…[ƒgƒŠƒAƒ‹—pƒKƒCƒh‰æ‘œ
+			// æ“ä½œæ–¹æ³•èª¬æ˜Žç”¨ç”»åƒ
 			guideTex = new Texture2D(@"/Application/assets/img/tutorial.png", false);
 			guideSp = new Sprite2D(guideTex);
 			guideSp.size = new Vector2(1.0f, 1.0f / 3.0f);
@@ -41,7 +41,7 @@ namespace Eleconnect
 			guideSp.pos = AppMain.ScreenCenter;
 			guideSp.pos.Y += 150;
 			
-			// vita–{‘Ì‰æ‘œ
+			// vitaç”»åƒ
 			vitaSp = new Sprite2D(guideTex);
 			vitaSp.size = new Vector2(1.0f, 1.0f / 3.0f);
 			vitaSp.size *= new Vector2(0.7f);
@@ -61,12 +61,12 @@ namespace Eleconnect
 			chargePar.Update();
 			base.Update ();
 			
-			// vita•\Ž¦
+			// vitaè¡¨ç¤º
 			vitaSp.color.W += 0.1f;
-			// guide“_–Å
+			// æ“ä½œèª¬æ˜Žç”»åƒã‚’æ˜Žæ»…ã•ã›ã‚‹
 			guideSp.color.W = FMath.Sin(frameCnt * 0.05f);
 			
-			// ‘S•”‚Â‚È‚ª‚Á‚½‚çƒKƒCƒh‚Ì‰æ‘œ‚©‚¦‚é
+			// Â‘æ“ä½œæ–¹æ³•ç”»åƒã‚’åˆ‡ã‚Šæ›¿ãˆã‚‹(å›žè»¢ã®ã•ã›æ–¹ã€€â†’ã€€ã‚¨ãƒ¬ã‚¯ã‚¹ã®æµã—æ–¹)
 			if(panelManager[stage.goalX, stage.goalY].elecPow > 0 &&
 			   guideSp.color.W <= 0.0f)
 			{
