@@ -6,21 +6,21 @@
 //--------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using Sce.PlayStation.Core ;
-using Sce.PlayStation.Core.Graphics ;
+using Sce.PlayStation.Core;
+using Sce.PlayStation.Core.Graphics;
 
 namespace Eleconnect
 {
 	// アニメーションクラス
 	public class Animation : Sprite2D
 	{
-		private enum ANIMATION_STATE{STAY, ONES, LOOP};	// アニメーションの状態
+		public enum ANIMATION_STATE{STAY, ONES, LOOP};	// アニメーションの状態
 		public int speed;								// アニメーションスピード
 		private int frameCnt;							// フレームカウンター
 		private int frameNo;							// アニメーションナンバー
 		private int frameFirst;							// 最初のフレーム
 		private int frameLast;							// フレームの最大値
-		private ANIMATION_STATE animationState;			// アニメーションの状態
+		public ANIMATION_STATE animationState{ get; private set;}	// アニメーションの状態
 		private bool isLoop;							// ループするかどうか
 		private bool isFirst;							// 最初の画像に戻すかどうか
 		private bool isVisibleStay;						// 停止中に表示するかどうか
@@ -50,7 +50,7 @@ namespace Eleconnect
 			this.isVisibleStay	= isVisibleStay;
 			animationState		= (isLoop) ? ANIMATION_STATE.LOOP : ANIMATION_STATE.STAY;
 			texUVList 			= new List<Vector4>();
-			SetTextureUVList(width, height, tex.Width, tex.Height);			
+			SetTextureUVList(width, height, tex.Width, tex.Height);
 		}
 		
 		// 切り取り矩形をListにセット

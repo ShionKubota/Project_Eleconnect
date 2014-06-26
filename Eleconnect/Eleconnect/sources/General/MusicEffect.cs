@@ -56,7 +56,8 @@ namespace Eleconnect
 		// 解放
 		public void Term()
 		{
-			Stop ();
+			try{Stop ();}
+			catch(ObjectDisposedException e){}
 			sound.Dispose();
 			soundPlayer.Dispose();
 		}

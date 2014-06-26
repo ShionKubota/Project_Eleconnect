@@ -14,6 +14,8 @@ namespace Eleconnect
 		Vector2 basePos;
 		public Vector3 jammingLocate;
 		const float changeAngle =  90.0f;
+		int vanishCnt;											// 消滅演出に使うフレームカウンタ
+		bool visible;											// 表示するか否か
 		
 		Jamming jamming;
 		JammingSwitch jammSwitch;
@@ -37,6 +39,8 @@ namespace Eleconnect
 			jammingLocate = new Vector3(basePos.X + panelSize,
 			                            basePos.Y + panelSize,
 			                            0.0f);
+			vanishCnt = 0;
+			visible = true;
 			JammingSet();
 		}
 		
@@ -112,12 +116,25 @@ namespace Eleconnect
 		public void Update()
 		{
 			jamming.Update();
+			
+			// 消滅演出
+			if(!JammingSwitch.isJamming)
+			{
+				vanishCnt++;
+				if(vanishCnt % 5 == 0)
+					visible = (visible == true || vanishCnt > 60) ? false : true;
+			}
+			else
+			{
+				visible = true;
+				vanishCnt = 0;
+			}
 		}
 		
 		// 描画
 		public void Draw()
 		{
-			if(!JammingSwitch.isJamming) return;
+			if(visible == false) return;	// 非表示
 			
 			// ジャミング縦
 			for(int i = 0;i < jammingSide-1;i++)

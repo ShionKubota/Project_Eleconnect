@@ -125,7 +125,7 @@ namespace Eleconnect
 			resultLogoSp.Term();
 			scoreSp.Term();
 			pakSp.Term();
-			score.Term();
+			//score.Term();
 			seFlg = false;
 			stageChange = false;
 		}

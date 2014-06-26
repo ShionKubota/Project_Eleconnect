@@ -37,8 +37,7 @@ namespace Eleconnect
 		{
 			// 最初に開始するシーン
 			PlayData.GetInstance().stageNo = 8;
-			nowScene = new TitleScene();
-			
+			nowScene = new LogoScene();
 			fade = new Fade();
 		}
 		
@@ -56,6 +55,7 @@ namespace Eleconnect
 			if(fade.state == Fade.StateId.OUT_END)
 			{
 				nowScene.Term ();
+				GC.Collect();
 				
 				switch(nextId)
 				{
@@ -82,7 +82,6 @@ namespace Eleconnect
 					break;
 				}
 				fade.In(nowScene.fadeInColor, nowScene.fadeInTime);
-				GC.Collect();
 			}
 		}
 		

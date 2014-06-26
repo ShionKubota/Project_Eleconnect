@@ -161,7 +161,6 @@ namespace Eleconnect
 			   input.square.isPushEnd || input.triggerR.isPushEnd || input.triggerL.isPushEnd ||
 			   input.start.isPushEnd || input.select.isPushEnd) && seFlg == false)
 			{
-				
 				seFlg = true;
 				musicEffect.Set(0.6f,false);
 				frameCnt = 0;
@@ -233,6 +232,10 @@ namespace Eleconnect
 			startSp.Term();
 			musicEffect.Term();
 			seFlg = false;
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				electhSp[i].Term();
+			}
 		}
 		
 		// 背景のエレクスを射出
