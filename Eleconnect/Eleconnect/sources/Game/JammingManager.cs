@@ -47,6 +47,7 @@ namespace Eleconnect
 		public void JammingSet()
 		{
 			if(PanelEditor.IS_RANDOM_MAP) return;
+			
 			// ジャミング配置場所の数値は1
 			for(int i = 0;i < jammingSide;i++)
 			{
@@ -129,6 +130,8 @@ namespace Eleconnect
 				visible = true;
 				vanishCnt = 0;
 			}
+			
+			
 		}
 		
 		// 描画

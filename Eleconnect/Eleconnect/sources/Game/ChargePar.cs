@@ -30,7 +30,7 @@ namespace Eleconnect
 			chargeSp.pos = new Vector3(96.0f,196.0f,0.0f);
 			chargeSp.size = new Vector2(0.35f);
 			
-			num = new Number();
+			num = new Number(0,9);
 			digit = 0;
 			connectNum = 0;
 			chargePar = 0;

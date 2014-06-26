@@ -31,11 +31,10 @@ namespace Eleconnect
 		// 初期化
 		private void Init()
 		{
-			num = new Number();
+			num = new Number(0,9);
 			
 			// 繋がってるパネルの数＋残り時間-(アイテムを全て使ったら)20000
-			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f) * 100
-					+ (int)((((int)TimeManager.timer/25)/11) * 10000);
+			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f) * 100;
 			if(ItemManager.itemUsed ==4)
 			{
 				point -= 20000;
