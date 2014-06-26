@@ -38,11 +38,11 @@ namespace Eleconnect
 			// 最初に開始するシーン
 <<<<<<< HEAD
 			PlayData.GetInstance().stageNo = 0;
-			nowScene = new EditScene();
+			nowScene = new GameScene();
 =======
-			PlayData.GetInstance().stageNo = 4;
-			nowScene = new LogoScene();
->>>>>>> origin/master
+			PlayData.GetInstance().stageNo = 8;
+			nowScene = new TitleScene();
+>>>>>>> 675c016f5529c7c53c569031053fd03d4852e713
 			
 			fade = new Fade();
 		}
@@ -61,11 +61,15 @@ namespace Eleconnect
 			if(fade.state == Fade.StateId.OUT_END)
 			{
 				nowScene.Term ();
+				GC.Collect();
 				
 				switch(nextId)
 				{
 				case SceneId.LOGO:
 					nowScene = new LogoScene();
+					break;
+				case SceneId.TUTORIAL:
+					nowScene = new TutorialScene();
 					break;
 				case SceneId.TITLE:
 					nowScene = new TitleScene();
@@ -83,7 +87,7 @@ namespace Eleconnect
 					nowScene = new ResultScene();
 					break;
 				}
-			fade.In(nowScene.fadeInColor, nowScene.fadeInTime);
+				fade.In(nowScene.fadeInColor, nowScene.fadeInTime);
 			}
 		}
 		
@@ -97,7 +101,7 @@ namespace Eleconnect
 		{
 			nowScene.Draw();
 			UISystem.Render();
-			//fade.Draw ();
+			fade.Draw ();
 		}
 		
 		// シーン切り替え(フェードアウト開始)

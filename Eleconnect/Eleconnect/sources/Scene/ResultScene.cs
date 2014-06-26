@@ -29,7 +29,7 @@ namespace Eleconnect
 			alfaGain;
 		
 		private bool 
-			gainChange,
+			stageChange,
 			seFlg;
 		
 		private MusicEffect musicEffect;
@@ -64,7 +64,7 @@ namespace Eleconnect
 			
 			frameCnt = 0;
 			alfaGain = 0.05f;
-			gainChange = false;
+			stageChange = false;
 			
 			musicEffect = new MusicEffect(@"/Application/assets/se/Title_SE.wav");
 			
@@ -84,23 +84,27 @@ namespace Eleconnect
 						 FMath.Sin(FMath.Radians(frameCnt * 5)) * 0.6f;
 			
 			// 押したらタイトルに戻る
-			if(input.circle.isPushEnd || input.cross.isPushEnd || input.triangle.isPushEnd ||
+			if((input.circle.isPushEnd || input.cross.isPushEnd || input.triangle.isPushEnd ||
 			   input.square.isPushEnd || input.triggerR.isPushEnd || input.triggerL.isPushEnd ||
-			   input.start.isPushEnd || input.select.isPushEnd)
+			   input.start.isPushEnd || input.select.isPushEnd) && !stageChange)
 			{
 				if(seFlg == false && score.randEnd == true)
 				{
 					musicEffect.Set();
 					seFlg = true;
 				}
+				if(PlayData.GetInstance().stageNo == 8)
+				{
+					AppMain.sceneManager.Switch(SceneId.TITLE);
+				}
 			}
-			
-			if(seFlg == true)
+			else if(seFlg == true && !stageChange)
 			{
 				PlayData.GetInstance().stageNo++;
 				AppMain.sceneManager.Switch(SceneId.GAME);
-				seFlg=false;
+				stageChange = true;
 			}
+			
 		}
 		
 		// 描画
@@ -123,6 +127,7 @@ namespace Eleconnect
 			pakSp.Term();
 			//score.Term();
 			seFlg = false;
+			stageChange = false;
 		}
 	}
 }

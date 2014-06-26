@@ -436,6 +436,7 @@ namespace Eleconnect
 			cursor.Term();
 			panelManager.Term();
 			jammingManager.Term();
+			resultEffect.Term();
 			musicEffect.Term();
 			music.Term();
 			gameUi.Term();
