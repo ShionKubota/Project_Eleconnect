@@ -10,7 +10,7 @@ namespace Eleconnect
 		private PanelManager panels;
 		private JammingManager jammingMng;
 		private Particles particle;
-		
+		private int switchWaitCnt;
 		public bool visibleElecth;
 		public bool nowFlowing{ private set; get; }
 		
@@ -63,13 +63,13 @@ namespace Eleconnect
 			this.visibleElecth = visibleElecth;
 			electh.Add (new Electh(panels[indexW, indexH], Electh.DEF_SPEED));
 			nowFlowing = true;
-			
 			PlayData.GetInstance().connectNum = 1;
 			
 			Panel.elecPowMax = 1;
 			PanelManager.CheckConnectOfPanels(GameScene.stage.startX, GameScene.stage.startY);
 			Electh.arrivedGoal = false;
 			Electh.arrivedSwitch = false;
+			switchWaitCnt = 0;
 			
 			GC.Collect();
 		}
@@ -77,6 +77,11 @@ namespace Eleconnect
 		// 更新
 		public void Update()
 		{
+			if(Electh.arrivedSwitch && switchWaitCnt < 80)	// スイッチOFFになった瞬間の”止め”
+			{
+				switchWaitCnt++;
+				return;
+			}
 			particle.Update();
 			
 			// 全てのエレクスが消滅したらゲーム、もしくはクリア状態へ遷移する
@@ -223,7 +228,7 @@ namespace Eleconnect
 			}
 			
 			// どの方向にもエレクスが進まなかったら消滅させる
-			if(electh[id].state == Electh.StateId.WAIT) 
+			if(electh[id].state == Electh.StateId.WAIT)
 			{
 				burstEffect.Set();
 				electh[id].Kill();

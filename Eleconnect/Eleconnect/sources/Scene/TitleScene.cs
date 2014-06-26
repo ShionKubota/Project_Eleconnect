@@ -232,6 +232,10 @@ namespace Eleconnect
 			startSp.Term();
 			musicEffect.Term();
 			seFlg = false;
+			for(int i = 0; i < ELECTH_NUM; i++)
+			{
+				electhSp[i].Term();
+			}
 		}
 		
 		// 背景のエレクスを射出

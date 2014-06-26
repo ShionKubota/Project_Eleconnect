@@ -111,6 +111,7 @@
     <Compile Include="sources\Game\LinePanel.cs" />
     <Compile Include="sources\Game\GroupPanel.cs" />
     <Compile Include="sources\Scene\TutorialScene.cs" />
+    <Compile Include="sources\General\AnimeSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -190,6 +191,8 @@
     <Content Include="assets\img\particleBall.png" />
     <Content Include="assets\img\backGridBlack.png" />
     <Content Include="assets\img\tutorial.png" />
+    <Content Include="assets\img\flash.png" />
+    <Content Include="assets\img\UIArea.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

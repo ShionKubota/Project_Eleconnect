@@ -29,7 +29,8 @@ namespace Eleconnect
 		public const float DEF_SPEED = 2.0f;
 		public const float MAX_SPEED = 10.0f;
 		
-		private MusicEffect musicEffect;
+		private MusicEffect switchSE;
+		private MusicEffect goalSE;
 		
 		public Electh (Panel panel, float speed)
 		{
@@ -47,8 +48,10 @@ namespace Eleconnect
 			eleRotate = 0;
 			state = StateId.WAIT;
 			
-			if(musicEffect == null)
-				musicEffect = new MusicEffect(@"/Application/assets/se/Switch_SE.wav");
+			if(switchSE == null)
+				switchSE = new MusicEffect(@"/Application/assets/se/Switch_SE.wav");
+			if(goalSE == null)
+				goalSE = new MusicEffect(@"/Application/assets/se/Switch_SE.wav");
 			
 		}
 		
@@ -86,7 +89,7 @@ namespace Eleconnect
 					// スイッチだったら
 					if(target.typeId == Panel.TypeId.JammSwitch)
 					{
-						musicEffect.Set(1.0f,false);
+						switchSE.Set(1.0f,false);
 						arrivedSwitch = true;
 						Kill ();
 					}
@@ -94,6 +97,7 @@ namespace Eleconnect
 					if(target.isGoal)
 					{
 						arrivedGoal = true;
+						goalSE.Set();
 					}
 				}
 				break;

@@ -33,8 +33,6 @@ namespace Eleconnect
 		private Texture2D electhTex;
 		public Animation lowElecthSp;
 		private Texture2D lowElecthTex;
-		private Animation flashSp;
-		private Texture2D flashTex;
 		
 		// 音楽
 		protected MusicEffect musicEffect;
@@ -134,10 +132,6 @@ namespace Eleconnect
 			lowElecthSp.pos = panelManager[stage.goalX,stage.goalY].GetPos();
 			lowElecthSp.color = new Vector4(1.0f,0.1f,0.1f,1.0f);
 			
-			// フラッシュ
-			flashTex = new Texture2D(@"/Application/assets/img/flash.png", false);
-			flashSp = new Animation(flashTex, new Vector2(1.0f, 1.0f), 2, 0, 8, false, false, false);
-			
 			// インスタンス生成
 			cursor = new CursorOnPanels(panelManager);
 			menuManager = new MenuManager();
@@ -155,7 +149,7 @@ namespace Eleconnect
 			seFlg = false;
 			Electh.arrivedGoal = false;
 			nowState = StateId.GAME;
-	
+			
 			// 音関連
 			music = new Music(@"/Application/assets/music/Game_Music.mp3");
 			musicEffect = new MusicEffect(@"/Application/assets/se/Rotate_SE.wav");
@@ -215,6 +209,7 @@ namespace Eleconnect
 			// パネルの更新
 			panelManager.Update();
 			jammingManager.Update();
+			
 			electhSp.Update();
 			lowElecthSp.Update();
 			gameUi.Update(nowState);
@@ -258,18 +253,20 @@ namespace Eleconnect
 				if(Electh.arrivedGoal)
 				{
 					goalFrame++;
-					if(goalFrame>=90)
+					
+					if(goalFrame>=60)
 					{
 						music.Stop();
 						resultEffect.Set();
 						nowState = StateId.CLEAR;
-						// moveToを設定。中央に集める
+						// moveToを設定。爆散する
 						for(int i = 0; i < stage.width; i++)
 						{
 							for(int j = 0; j < stage.height; j++)
 							{
-								Vector3 center = new Vector3(AppMain.ScreenWidth / 2.0f, AppMain.ScreenHeight*0.7f, 0.0f);
+								Vector3 center = AppMain.ScreenCenter;
 								panelManager[i, j].moveTo = center + (panelManager[i, j].GetPos() - center) * 4.0f;
+								//panelManager[i, j].moveTo = panelManager[stage.goalX, stage.goalY].GetPos();
 								panelManager[i, j].moveSpeed = 0.1f;
 							}
 						}
@@ -295,6 +292,7 @@ namespace Eleconnect
 					panelManager[i, j].sp.color.W -= 0.03f;
 				}
 			}
+			
 			// リザルトへ
 			result.Update();
 			
@@ -420,8 +418,8 @@ namespace Eleconnect
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			else
 			{
-				itemManager.Draw ();
 				gameUi.Draw();
+				itemManager.Draw ();
 			}
 			electhManager.Draw();
 			if(!electhManager.nowFlowing && (nowState != StateId.CLEAR && !Electh.arrivedGoal)) electhSp.DrawAdd();
@@ -441,9 +439,10 @@ namespace Eleconnect
 			musicEffect.Term();
 			music.Term();
 			gameUi.Term();
-			menuManager.Term();
-			//result.Term();
 			itemManager.Term();
+			menuManager.Term();
+			result.Term();
+			resultEffect.Term();
 		}
 	}
 }

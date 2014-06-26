@@ -7,8 +7,9 @@ namespace Eleconnect
 	public class JammingSwitch : Panel
 	{
 		private Texture2D tex;
+		private static Sprite2D effectSp;	// OFFになった時の演出用スプライト
 		
-		public static bool isJamming;
+		private static bool _isJamming;
 		private int aniFrame;
 		private int frameCnt;
 		
@@ -27,6 +28,12 @@ namespace Eleconnect
 			sp.pos = new Vector3(pos.X, pos.Y, 0.0f);
 			sp.size = new Vector2(SWITCH_SCALE / 5.0f, SWITCH_SCALE);
 			sp.textureUV = new Vector4(0.0f, 0.0f, 1.0f/5.0f, 1.0f);
+			
+			effectSp = new Sprite2D(tex);
+			effectSp.pos = sp.pos;
+			effectSp.size = sp.size;
+			effectSp.textureUV = sp.textureUV;
+			effectSp.color.W = 0.0f;
 			
 			route[DirId.RIGHT] = route[DirId.LEFT] = route[DirId.UP] = route[DirId.DOWN] = true;
 			
@@ -49,13 +56,27 @@ namespace Eleconnect
 			{
 				sp.textureUV.X = 4.0f/5.0f;
 				sp.textureUV.Z = sp.textureUV.X + 1.0f/5.0f;
+				
 			}
+			
+			// スイッチOFF演出
+			if(effectSp.color.W > 0.0f)
+			{
+				effectSp.color.W -= 0.05f;
+				effectSp.size    += new Vector2(0.2f) * new Vector2(1.0f / 5.0f, 1.0f);
+			}
+			else
+			{
+				effectSp.size = sp.size;
+			}
+			
 		}
 		
 		// 描画
 		public override void Draw()
 		{
 			sp.Draw ();
+			effectSp.Draw();
 		}
 		
 		// 解放
@@ -63,6 +84,26 @@ namespace Eleconnect
 		{
 			//tex.Dispose();
 			sp.Term();
+		}
+		
+		// ジャミングのON/OFF
+		public static bool isJamming
+		{
+			get
+			{
+				return _isJamming;
+			}
+			set
+			{
+				// スイッチOFFエフェクトを表示
+				if( _isJamming == true && value == false)
+				{
+					effectSp.color.W = 1.0f;
+				}
+				_isJamming = value;
+				
+				
+			}
 		}
 		
 		public override void ButtonEvent (bool pushR)

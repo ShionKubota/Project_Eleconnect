@@ -15,6 +15,9 @@ namespace Eleconnect
 		protected TimeManager timeManager;
 		protected ChargePar charge;
 		
+		protected Sprite2D uiAreaSp;
+		protected Texture2D uiAreaTex;
+		
 		// コンストラクタ
 		public GameUI ()
 		{
@@ -27,6 +30,10 @@ namespace Eleconnect
 			timeManager = new TimeManager();
 			charge = new ChargePar();
 			
+			uiAreaTex = new Texture2D(@"/Application/assets/img/UIArea.png", false);
+			uiAreaSp = new Sprite2D(uiAreaTex);
+			uiAreaSp.center = new Vector2(0.0f, 0.0f);
+			uiAreaSp.pos = new Vector3(0.0f);
 		}
 		
 		// 更新
@@ -45,6 +52,7 @@ namespace Eleconnect
 		// 描画
 		public void Draw()
 		{
+			uiAreaSp.Draw ();
 			timeManager.Draw();
 			charge.Draw();
 		}
@@ -53,6 +61,7 @@ namespace Eleconnect
 		public void Term()
 		{
 			timeManager.Term();
+			charge.Term();
 		}
 	}
 }
