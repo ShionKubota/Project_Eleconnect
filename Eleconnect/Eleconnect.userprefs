@@ -1,17 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Electh.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\JammingManager.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="46" Column="4" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="54" Column="62" />
-      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="33" Column="62" />
-      <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="38" Column="70" />
-      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="145" Column="19" />
-      <File FileName="Eleconnect\sources\Game\Jamming.cs" Line="51" Column="20" />
-      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="64" Column="5" />
-      <File FileName="Eleconnect\sources\Game\Panel.cs" Line="8" Column="3" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="430" Column="4" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\General\MusicEffect.cs" Line="48" Column="3" />
+      <File FileName="Eleconnect\sources\Scene\SelectButton.cs" Line="98" Column="40" />
+      <File FileName="Eleconnect\sources\General\PlayData.cs" Line="23" Column="4" />
+      <File FileName="Eleconnect\sources\Scene\TutorialScene.cs" Line="67" Column="45" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="344" Column="25" />
+      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="99" Column="41" />
+      <File FileName="Eleconnect\sources\Scene\Number.cs" Line="51" Column="5" />
+      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="15" Column="5" />
+      <File FileName="Eleconnect\sources\Game\StageNoDisplayer.cs" Line="15" Column="26" />
+      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="14" Column="3" />
+      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="59" Column="5" />
+      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="146" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -20,5 +21,6 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
     <Watch file="Eleconnect\sources\Scene\GameScene.cs" line="297" offsetX="277" offsetY="4896" expression="backSp" liveUpdate="False" />
     <Watch file="Eleconnect\sources\Game\ItemManager.cs" line="47" offsetX="459" offsetY="782" expression="touchData" liveUpdate="False" />
+    <Watch file="Eleconnect\sources\Scene\SelectButton.cs" line="44" offsetX="583" offsetY="731" expression="PlayData.GetInstance" liveUpdate="False" />
   </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

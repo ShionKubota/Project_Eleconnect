@@ -96,6 +96,9 @@ namespace Eleconnect
 				if(PlayData.GetInstance().stageNo == 8)
 				{
 					AppMain.sceneManager.Switch(SceneId.TITLE);
+					PlayData.GetInstance().stageNo = 0;
+					stageChange = true;
+					return;
 				}
 			}
 			else if(seFlg == true && !stageChange)

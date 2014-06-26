@@ -73,10 +73,12 @@ namespace Eleconnect
 				guideSp.textureUV = new Vector4(0.0f, 2.0f / 3.0f, 1.0f, 1.0f);
 			}
 			
+			// クリアー
 			if(nowState == GameScene.StateId.CLEAR)
 			{
 				fadeOutColor = new Vector3(1.0f);
 				fadeOutTime = 120;
+				PlayData.GetInstance().stageNo = 0;
 				AppMain.sceneManager.Switch(SceneId.TITLE);
 			}
 		}

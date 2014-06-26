@@ -12,7 +12,8 @@ namespace Eleconnect
 {
 	public class GameUI
 	{
-		protected TimeManager timeManager;
+		//protected TimeManager timeManager;
+		protected StageNoDisplayer stageNo;
 		protected ChargePar charge;
 		
 		protected Sprite2D uiAreaSp;
@@ -27,8 +28,9 @@ namespace Eleconnect
 		// 初期化
 		private void Init()
 		{
-			timeManager = new TimeManager();
+			//timeManager = new TimeManager();
 			charge = new ChargePar();
+			stageNo = new StageNoDisplayer();
 			
 			uiAreaTex = new Texture2D(@"/Application/assets/img/UIArea.png", false);
 			uiAreaSp = new Sprite2D(uiAreaTex);
@@ -42,7 +44,7 @@ namespace Eleconnect
 			// タイムの更新
 			if(nowState == GameScene.StateId.GAME)
 			{
-				timeManager.Update();
+				//timeManager.Update();
 			}
 			// チャージ率
 			charge.Update();
@@ -53,14 +55,16 @@ namespace Eleconnect
 		public void Draw()
 		{
 			uiAreaSp.Draw ();
-			timeManager.Draw();
+			//timeManager.Draw();
+			stageNo.Draw();
 			charge.Draw();
 		}
 		
 		// 解放
 		public void Term()
 		{
-			timeManager.Term();
+			//timeManager.Term();
+			stageNo.Term();
 			charge.Term();
 		}
 	}

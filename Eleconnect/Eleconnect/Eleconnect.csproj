@@ -115,6 +115,7 @@
     <Compile Include="sources\Game\Stage\Stage_7.cs" />
     <Compile Include="sources\Game\Stage\Stage_8.cs" />
     <Compile Include="sources\Game\Stage\Stage_9.cs" />
+    <Compile Include="sources\Game\StageNoDisplayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -196,6 +197,7 @@
     <Content Include="assets\img\number_10.png" />
     <Content Include="assets\img\UIArea.png" />
     <Content Include="assets\img\tutorial.png" />
+    <Content Include="assets\img\Stage.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

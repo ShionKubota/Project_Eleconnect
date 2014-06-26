@@ -63,7 +63,7 @@ namespace Eleconnect
 			}
 			
 			// 選んだステージに移動
-		if(seFlg == true)
+			if(seFlg == true)
 			{
 				for(int i = 0;i <= SelectButton.STAGE_NUM;i++)
 				{

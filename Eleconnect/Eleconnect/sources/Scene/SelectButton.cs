@@ -41,7 +41,7 @@ namespace Eleconnect
 		// 初期化
 		private void Init()
 		{
-			selectBtnNo = 1;									// 選択No.
+			selectBtnNo = (PlayData.GetInstance().stageNo >= 0) ? PlayData.GetInstance().stageNo+1 : 1;	// 選択No.
 			btnMoveX = 0;										// 動き
 			btnMoveY = 0;										// 動き
 			selectMoveFlg = false;								// 動くフラグ
@@ -92,11 +92,11 @@ namespace Eleconnect
 			                              0.0f);
 			
 			// 最初に選ばれているボタン
-			selectBtnSp[1].size = new Vector2(1.48f,1.48f);
-			selectBtnSp[1].pos = new Vector3(AppMain.ScreenWidth / 2.0f,
+			selectBtnSp[selectBtnNo].size = new Vector2(1.48f,1.48f);
+			selectBtnSp[selectBtnNo].pos = new Vector3(AppMain.ScreenWidth / 2.0f,
 				                             AppMain.ScreenHeight / 2.0f + SELECT_BTN_SIZE/2,
 				                             0.0f);
-		
+			
 			musicEffect = new MusicEffect(@"/Application/assets/se/Select_SE.wav");
 		}
 		
