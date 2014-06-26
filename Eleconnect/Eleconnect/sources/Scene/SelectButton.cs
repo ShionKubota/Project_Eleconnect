@@ -15,8 +15,8 @@ namespace Eleconnect
 	{
 		Input input = Input.GetInstance();
 		private MusicEffect musicEffect;
-		private Sprite2D[] selectBtnSp = new Sprite2D[10];		// スプライト
-		private static Texture2D[] selectBtnTex = new Texture2D[10];	// テクスチャ
+		private Sprite2D[] selectBtnSp = new Sprite2D[11];		// スプライト
+		private static Texture2D[] selectBtnTex = new Texture2D[11];	// テクスチャ
 		private Sprite2D[] cornerSp = new Sprite2D[4];
 		private static Texture2D[] cornerTex = new Texture2D[4];
 		const int SELECT_BTN_SIZE = 128;						// 画像サイズ
@@ -49,7 +49,7 @@ namespace Eleconnect
 			changePrevGame = false;								// ゲーム選択
 			
 			// 画像
-			for(int i = 0;i <= STAGE_NUM;i++)
+			for(int i = 1;i <= STAGE_NUM;i++)
 			{
 				if(selectBtnTex[i] == null)
 				{
@@ -155,7 +155,7 @@ namespace Eleconnect
 			}
 			else
 			{
-				for(int i = 0;i<=STAGE_NUM;i++)
+				for(int i = 1;i<=STAGE_NUM;i++)
 				{
 					cornerSp[0].angle = -45.0f;
 					cornerSp[1].angle = -225.0f;

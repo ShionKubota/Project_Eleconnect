@@ -111,6 +111,10 @@
     <Compile Include="sources\Game\LinePanel.cs" />
     <Compile Include="sources\Game\GroupPanel.cs" />
     <Compile Include="sources\Scene\TutorialScene.cs" />
+    <Compile Include="sources\Game\Stage\Stage_6.cs" />
+    <Compile Include="sources\Game\Stage\Stage_7.cs" />
+    <Compile Include="sources\Game\Stage\Stage_8.cs" />
+    <Compile Include="sources\Game\Stage\Stage_9.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\se\button55.wav" />
@@ -189,6 +193,7 @@
     <Content Include="assets\img\jamm_anime.png" />
     <Content Include="assets\img\particleBall.png" />
     <Content Include="assets\img\backGridBlack.png" />
+    <Content Include="assets\img\number_10.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />
