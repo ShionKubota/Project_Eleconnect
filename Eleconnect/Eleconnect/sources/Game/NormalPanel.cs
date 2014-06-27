@@ -64,7 +64,7 @@ namespace Eleconnect
 			}
 			else
 			{
-				PanelManager.Displace(this, lineId == LineId.Side);
+				PanelManager.Displace(this, pushR);
 			}
 		}
 	}

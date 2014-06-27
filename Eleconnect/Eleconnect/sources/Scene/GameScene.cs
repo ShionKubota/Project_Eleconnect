@@ -242,7 +242,7 @@ namespace Eleconnect
 		
 		// エレクスが流れるプロセス
 		protected void FrowingProcess()
-		{
+		{	
 			electhManager.Update();
 			
 			// エレクスが流れきったとき

@@ -296,8 +296,11 @@ namespace Eleconnect
 		}
 		
 		// 指定の行をスライド
-		public static void Displace(Panel panel, bool isSide)
+		public static void Displace(Panel panel, bool pushR)
 		{
+			bool isSide = false;
+			
+			// ずらす行を検出
 			int index = 0;
 			foreach(List<Panel> list in panels)
 			{
@@ -310,21 +313,9 @@ namespace Eleconnect
 				}
 			}
 			
-			// 横スライド
-			if(isSide)
-			{
-				/*
-				Panel tempPanel = panels[0][index];
-				for(int i = 0; i < GameScene.stage.width-1; i++)
-				{
-					panels[i][index] = panels[i+1][index];
-				}
-				panels[GameScene.stage.width-1][index] = tempPanel;
-				*/
-			}
 			
-			// 縦スライド
-			else
+			// Lおして上がる
+			if(!pushR)
 			{
 				// 要素ずらし
 				Panel tempPanel = panels[index][0];
@@ -341,6 +332,25 @@ namespace Eleconnect
 					panels[index][i].moveTo = panels[index][i-1].moveTo;
 				}
 				panels[index][0].moveTo = tempPos;
+			}
+			// Rおして下がる
+			else
+			{
+				// 要素ずらし
+				Panel tempPanel = panels[index][GameScene.stage.height-1];
+				for(int i = (GameScene.stage.height-1); i > 0; i--)
+				{
+					panels[index][i] = panels[index][i-1];
+				}
+				panels[index][0] = tempPanel;
+				
+				// 位置ずらし
+				Vector3 tempPos = panels[index][0].moveTo;
+				for(int i = 0; i < GameScene.stage.height - 1; i++)
+				{
+					panels[index][i].moveTo = panels[index][i+1].moveTo;
+				}
+				panels[index][GameScene.stage.height-1].moveTo = tempPos;
 			}
 		}
 		

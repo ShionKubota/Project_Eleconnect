@@ -106,6 +106,11 @@ namespace Eleconnect
 				// パネルが選択されていたら、そこにパネルを当てはめる
 				else
 				{
+					// 置き換える前のパネルデータを保存
+					item.panel.isGoal = panels[cursor.indexW, cursor.indexH].isGoal;
+					item.panel.lineId = panels[cursor.indexW, cursor.indexH].lineId;
+					item.panel.moveSpeed = panels[cursor.indexW, cursor.indexH].moveSpeed;
+					
 					item.isVisible = false;
 					item.panel.moveTo = panels[cursor.indexW, cursor.indexH].sp.pos;	// 位置を正す
 					panels.Replace(cursor.indexW, cursor.indexH, item.panel);			// パネル置き換え
