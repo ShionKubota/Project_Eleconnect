@@ -103,6 +103,7 @@ namespace Eleconnect
 		// 更新
 		public void Update()
 		{
+			Console.WriteLine(selectBtnSp[selectBtnNo].pos.Y);
 			if(!MenuManager.menuFlg)
 			{
 				// ボタン類更新
@@ -134,7 +135,7 @@ namespace Eleconnect
 				// ボタン配置
 				for(int i = 1;i<=STAGE_NUM;i++)
 				{
-					selectBtnSp[i].pos.X = btnMoveX + AppMain.ScreenWidth/2.0f;
+					selectBtnSp[i].pos = new Vector3(btnMoveX + AppMain.ScreenWidth/2.0f,AppMain.ScreenHeight / 2.0f + SELECT_BTN_SIZE/2,0.0f);
 				}
 			}
 		}
