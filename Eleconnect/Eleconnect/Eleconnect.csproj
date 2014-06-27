@@ -126,7 +126,6 @@
     <Content Include="assets\music\Title_Music.mp3" />
     <Content Include="assets\img\Back.png" />
     <Content Include="assets\img\Cursor.png" />
-    <Content Include="assets\img\Logo.png" />
     <Content Include="assets\img\number_0.png" />
     <Content Include="assets\img\number_1.png" />
     <Content Include="assets\img\number_2.png" />

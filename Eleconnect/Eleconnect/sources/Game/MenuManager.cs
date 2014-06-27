@@ -173,6 +173,7 @@ namespace Eleconnect
 					}
 					case 4:			// titleボタン
 					{
+						PlayData.GetInstance().stageNo = 0;
 						AppMain.sceneManager.Switch(SceneId.TITLE);
 						menuFlg = false;
 					break;

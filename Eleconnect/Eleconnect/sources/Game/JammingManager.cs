@@ -101,7 +101,10 @@ namespace Eleconnect
 					
 					if(GameScene.stage.jamming == 4)
 					{
+						jammingDataLength[3, 2] = 1;
 						jammingDataLength[4, 2] = 1;
+						jammingDataSide[4, 1] = 1;
+						jammingDataSide[4, 2] = 1;
 						/*
 						jammingDataSide[0,3] = 1;
 						jammingDataSide[1,3] = 1;
