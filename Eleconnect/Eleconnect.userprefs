@@ -1,18 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\JammingManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\GameScene.cs">
     <Files>
-      <File FileName="Eleconnect\sources\Scene\SelectButton.cs" Line="98" Column="40" />
-      <File FileName="Eleconnect\sources\General\PlayData.cs" Line="23" Column="4" />
-      <File FileName="Eleconnect\sources\Scene\TutorialScene.cs" Line="67" Column="45" />
-      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="344" Column="25" />
-      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="99" Column="41" />
-      <File FileName="Eleconnect\sources\Scene\Number.cs" Line="51" Column="5" />
-      <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="15" Column="5" />
-      <File FileName="Eleconnect\sources\Game\StageNoDisplayer.cs" Line="15" Column="26" />
-      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="14" Column="3" />
-      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="59" Column="5" />
-      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="146" Column="35" />
+      <File FileName="Eleconnect\sources\Scene\Score.cs" Line="70" Column="21" />
+      <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="40" Column="23" />
+      <File FileName="Eleconnect\sources\Scene\ResultScene.cs" Line="57" Column="57" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\NormalPanel.cs" Line="53" Column="4" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Scene\SelectScene.cs" Line="45" Column="6" />
+      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\Game\Panel.cs" Line="169" Column="30" />
+      <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="245" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

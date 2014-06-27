@@ -21,6 +21,7 @@ namespace Eleconnect
 		// その他
 		public bool notSelected;	// 選択されていないときtrue(タッチ時用)
 		private int frameCnt;
+		private int keyCnt;
 		
 		// 定数
 		private const int FLASHING_SPEED = 5;			// 点滅の早さ
@@ -41,6 +42,7 @@ namespace Eleconnect
 			indexW = 0;
 			indexH = 0;
 			frameCnt = 0;
+			keyCnt = 0;
 			notSelected = false;
 			
 			tex = new Texture2D(@"/Application/assets/img/Cursor.png", false);
@@ -55,10 +57,10 @@ namespace Eleconnect
 		public void Update(PanelManager panels)
 		{
 			Input input = Input.GetInstance();
-			
+			keyCnt++;
 			// カーソル移動
-			if(input.left.isPushStart || input.right.isPushStart ||
-			   input.up.isPushStart   || input.down.isPushStart)
+			if((input.left.isPush || input.right.isPush ||
+			   input.up.isPush   || input.down.isPush) && keyCnt >= 10)
 			{
 				musicEffect.Set(0.6f,false);
 				indexW += (int)input.GetArrow().X;
@@ -71,6 +73,7 @@ namespace Eleconnect
 				
 				// 位置適用
 				sp.pos = panels.GetPos(indexW, indexH);
+				keyCnt = 0;
 			}
 			
 			// タッチ中

@@ -126,8 +126,6 @@
     <Content Include="assets\music\Title_Music.mp3" />
     <Content Include="assets\img\Back.png" />
     <Content Include="assets\img\Cursor.png" />
-    <Content Include="assets\img\eleconnect_background01.png" />
-    <Content Include="assets\img\guide.png" />
     <Content Include="assets\img\Logo.png" />
     <Content Include="assets\img\number_0.png" />
     <Content Include="assets\img\number_1.png" />
@@ -138,15 +136,11 @@
     <Content Include="assets\img\number_7.png" />
     <Content Include="assets\img\number_8.png" />
     <Content Include="assets\img\number_9.png" />
-    <Content Include="assets\img\Panels.png" />
     <Content Include="assets\img\paneru0.png" />
     <Content Include="assets\img\paneru1.png" />
     <Content Include="assets\img\paneru2.png" />
     <Content Include="assets\img\paneru3.png" />
     <Content Include="assets\img\result.png" />
-    <Content Include="assets\img\Select_One.png" />
-    <Content Include="assets\img\Select_Three.png" />
-    <Content Include="assets\img\Select_Two.png" />
     <Content Include="assets\img\White.png" />
     <Content Include="assets\img\Score.png" />
     <Content Include="assets\img\pak.png" />
@@ -154,7 +148,6 @@
     <Content Include="assets\img\eleconnect_logo.png" />
     <Content Include="assets\img\eleconnect_titlebackground03.png" />
     <Content Include="assets\img\startlogo.png" />
-    <Content Include="assets\img\ianzuma.png" />
     <Content Include="assets\se\Move_SE.wav" />
     <Content Include="assets\img\pleaselogo.png" />
     <Content Include="assets\img\timelogo.png" />
@@ -173,15 +166,11 @@
     <Content Include="assets\img\Menuimg\commentarytitle.png" />
     <Content Include="assets\img\number_3.png" />
     <Content Include="assets\img\pushlogo.png" />
-    <Content Include="assets\img\guid.png" />
     <Content Include="assets\img\test.png" />
     <Content Include="assets\img\corner.png" />
-    <Content Include="assets\img\Jamming.png" />
     <Content Include="assets\img\napple.png" />
     <Content Include="assets\img\particle.png" />
     <Content Include="assets\img\switch.png" />
-    <Content Include="assets\img\electh_test.png" />
-    <Content Include="assets\img\electh_before.png" />
     <Content Include="assets\img\electh.png" />
     <Content Include="assets\img\Jamming2.png" />
     <Content Include="assets\img\charge.png" />
@@ -198,6 +187,8 @@
     <Content Include="assets\img\UIArea.png" />
     <Content Include="assets\img\tutorial.png" />
     <Content Include="assets\img\Stage.png" />
+    <Content Include="assets\img\percentage.png" />
+    <Content Include="assets\img\eleconnect_background01.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedShaderProgram Include="shaders\SimpleSprite.fcg" />

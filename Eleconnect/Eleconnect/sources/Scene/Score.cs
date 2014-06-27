@@ -31,14 +31,14 @@ namespace Eleconnect
 		// 初期化
 		private void Init()
 		{
-			num = new Number();
+			num = new Number(0,9);
+			num.SetSize(new Vector2(0.7f));
 			
 			// 繋がってるパネルの数＋残り時間-(アイテムを全て使ったら)20000
-			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f) * 100
-					+ (int)((((int)TimeManager.timer/25)/11) * 10000);
+			point = (int)((float)PlayData.GetInstance().connectNum / (float)(GameScene.stage.width * GameScene.stage.height) * 500.0f);
 			if(ItemManager.itemUsed ==4)
 			{
-				point -= 20000;
+				//point -= 20000;
 			}
 			Console.WriteLine(point);
 			Console.WriteLine(PlayData.GetInstance().connectNum);
@@ -77,14 +77,14 @@ namespace Eleconnect
 			{
 				if(randCnt >= RAND_TIME)
 				{
-					num.numSp[numeral[i]].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 64.0f)+ 320,AppMain.ScreenHeight/2.0f,0.0f);
+					num.numSp[numeral[i]].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 80.0f) + 100,AppMain.ScreenHeight/2.0f,0.0f);
 					num.numSp[numeral[i]].Draw();
 					randCnt = RAND_TIME;
 					randEnd = true;
 				}
 				else
 				{
-					num.numSp[(randCnt+rand.Next(i)) % 10].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 64.0f)+ 320,AppMain.ScreenHeight/2.0f,0.0f);
+					num.numSp[(randCnt+rand.Next(i)) % 10].pos = new Vector3(AppMain.ScreenWidth/2.0f - (i * 80.0f)+ 100,AppMain.ScreenHeight/2.0f,0.0f);
 					num.numSp[(randCnt+rand.Next(i)) % 10].Draw();
 				}
 			}

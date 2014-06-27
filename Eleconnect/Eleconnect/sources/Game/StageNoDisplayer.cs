@@ -12,7 +12,8 @@ namespace Eleconnect
 		
 		public StageNoDisplayer ()
 		{
-			number = new Number();
+			number = new Number(1, 9);
+			number.SetPos( new Vector3(96.0f,90.0f,0.0f));
 			//number.numSp.
 			
 			labelTex = new Texture2D(@"/Application/assets/img/Stage.png", false);
@@ -24,7 +25,7 @@ namespace Eleconnect
 		public void Draw()
 		{
 			labelSp.Draw();
-			//number.Draw();
+			number.Draw(PlayData.GetInstance().stageNo+1);
 		}
 		
 		public void Term()

@@ -31,7 +31,7 @@ namespace Eleconnect
 			timeSp.size = new Vector2(0.35f);
 			timeSp.pos = new Vector3(96.0f,32.0f,0.0f);
 			
-			num = new Number();
+			num = new Number(0,9);
 		}
 		
 		public void Update()

@@ -14,8 +14,6 @@ assets/music/Game_Music.mp3
 assets/music/Title_Music.mp3
 assets/img/Back.png
 assets/img/Cursor.png
-assets/img/eleconnect_background01.png
-assets/img/guide.png
 assets/img/Logo.png
 assets/img/number_0.png
 assets/img/number_1.png
@@ -26,15 +24,11 @@ assets/img/number_6.png
 assets/img/number_7.png
 assets/img/number_8.png
 assets/img/number_9.png
-assets/img/Panels.png
 assets/img/paneru0.png
 assets/img/paneru1.png
 assets/img/paneru2.png
 assets/img/paneru3.png
 assets/img/result.png
-assets/img/Select_One.png
-assets/img/Select_Three.png
-assets/img/Select_Two.png
 assets/img/White.png
 assets/img/Score.png
 assets/img/pak.png
@@ -42,7 +36,6 @@ assets/img/Time.png
 assets/img/eleconnect_logo.png
 assets/img/eleconnect_titlebackground03.png
 assets/img/startlogo.png
-assets/img/ianzuma.png
 assets/se/Move_SE.wav
 assets/img/pleaselogo.png
 assets/img/timelogo.png
@@ -61,15 +54,11 @@ assets/img/Menuimg/commentaryselect.png
 assets/img/Menuimg/commentarytitle.png
 assets/img/number_3.png
 assets/img/pushlogo.png
-assets/img/guid.png
 assets/img/test.png
 assets/img/corner.png
-assets/img/Jamming.png
 assets/img/napple.png
 assets/img/particle.png
 assets/img/switch.png
-assets/img/electh_test.png
-assets/img/electh_before.png
 assets/img/electh.png
 assets/img/Jamming2.png
 assets/img/charge.png
@@ -86,3 +75,5 @@ assets/img/number_10.png
 assets/img/UIArea.png
 assets/img/tutorial.png
 assets/img/Stage.png
+assets/img/percentage.png
+assets/img/eleconnect_background01.png

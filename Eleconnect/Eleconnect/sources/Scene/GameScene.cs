@@ -408,21 +408,21 @@ namespace Eleconnect
 			backSp.Draw();
 			//guideSp.Draw ();
 			panelManager.Draw();
+			if(!electhManager.nowFlowing && (nowState != StateId.CLEAR && !Electh.arrivedGoal)) electhSp.DrawAdd();
 			if(nowState != StateId.CLEAR && !Electh.arrivedGoal) 
 			{
 				jammingManager.Draw();
 				lowElecthSp.DrawAdd();
 			}
 			if(nowState == StateId.GAME) cursor.Draw();
-			if(nowState == StateId.PAUSE) menuManager.Draw();
 			if(nowState == StateId.CLEAR && seFlg == true) result.Draw();
 			else
 			{
 				gameUi.Draw();
 				itemManager.Draw ();
 			}
+			if(nowState == StateId.PAUSE) menuManager.Draw();
 			electhManager.Draw();
-			if(!electhManager.nowFlowing && (nowState != StateId.CLEAR && !Electh.arrivedGoal)) electhSp.DrawAdd();
 		}
 		
 		// 解放
