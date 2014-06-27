@@ -161,7 +161,6 @@ namespace Eleconnect
 		{
 			sp.Draw();
 			lightSp.Draw();
-			repeaterSp.Draw();
 		}
 		
 		// 解放

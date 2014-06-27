@@ -51,12 +51,6 @@ namespace Eleconnect
 			lightSp.textureUV = new Vector4(0.5f, 0.0f, 1.0f, 1.0f);
 			lightSp.size = sp.size;
 			
-			repeaterTex = new Texture2D(@"/Application/assets/img/ianzuma.png", false);
-			repeaterSp =  new Sprite2D(repeaterTex);
-			repeaterSp.pos = sp.pos;
-			repeaterSp.size = new Vector2(0.2f, 0.2f);
-			repeaterSp.color.W = 0.0f;
-			
 			base.Init(id, pos);
 		}
 		

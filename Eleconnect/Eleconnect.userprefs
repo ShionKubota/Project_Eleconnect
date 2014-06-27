@@ -1,17 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Game\Electh.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Eleconnect\sources\Scene\Number.cs">
     <Files>
       <File FileName="Eleconnect\sources\Scene\SceneManager.cs" Line="46" Column="4" />
-      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="54" Column="62" />
+      <File FileName="Eleconnect\sources\Game\Electh.cs" Line="46" Column="2" />
       <File FileName="Eleconnect\sources\Game\GameUI.cs" Line="33" Column="62" />
       <File FileName="Eleconnect\sources\Game\ElecthManager.cs" Line="38" Column="70" />
-      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="145" Column="19" />
+      <File FileName="Eleconnect\sources\Game\JammingManager.cs" Line="170" Column="5" />
       <File FileName="Eleconnect\sources\Game\Jamming.cs" Line="51" Column="20" />
-      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="64" Column="5" />
+      <File FileName="Eleconnect\sources\Game\JammingSwitch.cs" Line="65" Column="31" />
       <File FileName="Eleconnect\sources\Game\Panel.cs" Line="8" Column="3" />
       <File FileName="Eleconnect\sources\Scene\GameScene.cs" Line="430" Column="4" />
-      <File FileName="c:\Users\user\Desktop\Project_Eleconnect\Eleconnect\Eleconnect\sources\General\MusicEffect.cs" Line="48" Column="3" />
+      <File FileName="Eleconnect\sources\Scene\Score.cs" Line="80" Column="32" />
+      <File FileName="Eleconnect\sources\Game\CursorOnPanels.cs" Line="64" Column="5" />
+      <File FileName="Eleconnect\sources\Scene\Number.cs" Line="52" Column="31" />
+      <File FileName="Eleconnect\sources\Scene\SelectButton.cs" Line="21" Column="39" />
+      <File FileName="Eleconnect\sources\Game\TimeManager.cs" Line="34" Column="24" />
+      <File FileName="Eleconnect\sources\Game\ChargePar.cs" Line="56" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

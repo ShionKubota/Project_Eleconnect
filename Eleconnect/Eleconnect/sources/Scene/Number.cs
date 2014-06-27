@@ -66,6 +66,22 @@ namespace Eleconnect
 				numSp[i].Term();
 			}
 		}
+		
+		public void SetPos(Vector3 pos)
+		{
+			for(int i = minNumber;i<= maxNumber;i++)
+			{
+				numSp[i].pos = pos;
+			}
+		}
+		
+		public void SetSize(Vector2 size)
+		{
+			for(int i = minNumber;i<= maxNumber;i++)
+			{
+				numSp[i].size = size;
+			}
+		}
 	}
 }
 

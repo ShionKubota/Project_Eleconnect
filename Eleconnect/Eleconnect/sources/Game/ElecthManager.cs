@@ -71,7 +71,7 @@ namespace Eleconnect
 			Electh.arrivedSwitch = false;
 			switchWaitCnt = 0;
 			
-			GC.Collect();
+			//GC.Collect();
 		}
 		
 		// 更新

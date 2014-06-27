@@ -35,14 +35,14 @@ namespace Eleconnect
 			selectBtn = new SelectButton();
 			
 			seFlg = false;
-			
+			/*
 			if(selectBackTex == null)
 			selectBackTex = new Texture2D(@"/Application/assets/img/eleconnect_background01.png", false);
 			selectBackSp = new Sprite2D(selectBackTex);
 			selectBackSp.center = new Vector2(0.0f,0.0f);
 			selectBackSp.size = new Vector2(1.0f,1.0f);
 			selectBackSp.pos = new Vector3(0.0f,0.0f,0.0f);
-			
+			*/
 			musicEffect = new MusicEffect(@"/Application/assets/se/Choice_SE.wav");
 		}
 		
@@ -63,7 +63,7 @@ namespace Eleconnect
 			}
 			
 			// 選んだステージに移動
-		if(seFlg == true)
+			if(seFlg == true)
 			{
 				for(int i = 0;i <= SelectButton.STAGE_NUM;i++)
 				{

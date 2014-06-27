@@ -17,11 +17,13 @@ namespace Eleconnect
 	{
 		private Sprite2D 
 			resultLogoSp,
-			scoreSp,
+			chargeSp,
+			perSp,
 			pakSp;
 		private Texture2D 
 			resultLogoTex,
-			scoreTex,
+			chargeTex,
+			perTex,
 			pakTex;
 		
 		private float
@@ -52,10 +54,16 @@ namespace Eleconnect
 			resultLogoSp.size = new Vector2(1.0f);
 			resultLogoSp.pos = new Vector3(AppMain.ScreenWidth/2.0f,resultLogoTex.Height/2.0f+30,0.0f);
 			
-			scoreTex = new Texture2D(@"/Application/assets/img/Score.png", false);
-			scoreSp = new Sprite2D(scoreTex);
-			scoreSp.size = new Vector2(0.5f);
-			scoreSp.pos = new Vector3(AppMain.ScreenWidth / 4.0f,AppMain.ScreenHeight/2.0f,0.0f);
+			chargeTex = new Texture2D(@"/Application/assets/img/charge.png", false);
+			chargeSp = new Sprite2D(chargeTex);
+			chargeSp.size = new Vector2(0.5f);
+			chargeSp.pos = new Vector3(AppMain.ScreenWidth / 4.0f,AppMain.ScreenHeight/2.0f,0.0f);
+			
+			// "/500"画像
+			perTex = new Texture2D(@"/Application/assets/img/percentage.png", false);
+			perSp = new Sprite2D(perTex);
+			perSp.size = new Vector2(0.5f);
+			perSp.pos = AppMain.ScreenCenter + new Vector3(230.0f, 20.0f, 0.0f);
 			
 			pakTex = new Texture2D(@"/Application/assets/img/pushlogo.png", false);
 			pakSp = new Sprite2D(pakTex);
@@ -96,6 +104,9 @@ namespace Eleconnect
 				if(PlayData.GetInstance().stageNo == 8)
 				{
 					AppMain.sceneManager.Switch(SceneId.TITLE);
+					PlayData.GetInstance().stageNo = 0;
+					stageChange = true;
+					return;
 				}
 			}
 			else if(seFlg == true && !stageChange)
@@ -111,8 +122,9 @@ namespace Eleconnect
 		override public void Draw()
 		{
 			resultLogoSp.Draw();
-			scoreSp.Draw();
+			chargeSp.Draw();
 			score.Draw();
+			perSp.Draw ();
 			if(score.randEnd == true)
 			{
 				pakSp.Draw();
@@ -123,11 +135,12 @@ namespace Eleconnect
 		public override void Term()
 		{
 			resultLogoSp.Term();
-			scoreSp.Term();
+			chargeSp.Term();
 			pakSp.Term();
 			//score.Term();
 			seFlg = false;
 			stageChange = false;
+			perSp.Term();
 		}
 	}
 }
